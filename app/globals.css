@@ -1,8 +1,8 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: oklch(98.5% 0.001 106.423); 
+  --foreground: oklch(14.7% 0.004 49.25); 
 }
 
 @theme inline {
@@ -13,8 +13,8 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --background: oklch(14.7% 0.004 49.25); 
+    --foreground: oklch(98.5% 0.001 106.423); 
   }
 }
 
