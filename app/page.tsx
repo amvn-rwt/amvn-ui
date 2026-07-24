@@ -1,8 +1,8 @@
 export default function Home() {
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-background font-sans">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 sm:items-start">
-        <h1>Hello World</h1>
+    <div>
+      <main className="max-w-16 mx-auto py-10 px-2">
+        <h1 className="text-3xl font-bold">Button</h1>
       </main>
     </div>
   );

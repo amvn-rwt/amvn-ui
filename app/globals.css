@@ -11,6 +11,36 @@
   --font-sans: var(--font-satoshi);
 }
 
+@theme {
+  /* Spacing */
+  --spacing-1: 0.25rem; /* 4px */
+  --spacing-2: 0.5rem; /* 8px */
+  --spacing-3: 0.75rem; /* 12px */
+  --spacing-4: 1rem; /* 16px */
+  --spacing-5: 1.5rem; /* 24px */
+  --spacing-6: 2rem; /* 32px */
+  --spacing-7: 3rem; /* 48px */
+  --spacing-8: 4rem; /* 64px */
+  --spacing-9: 6rem; /* 96px */
+  --spacing-10: 8rem; /* 128px */
+  --spacing-11: 12rem; /* 192px */
+  --spacing-12: 16rem; /* 256px */
+  --spacing-13: 24rem; /* 384px */
+  --spacing-14: 32rem; /* 512px */
+  --spacing-15: 40rem; /* 640px */
+  --spacing-16: 48rem; /* 768px */
+
+  /* Typography */
+  --text-xs: 0.75rem; /* 12px */
+  --text-sm: 0.875rem; /* 14px */
+  --text-base: 1rem; /* 16px */
+  --text-lg: 1.125rem; /* 18px */
+  --text-xl: 1.25rem; /* 20px */
+  --text-2xl: 1.5rem; /* 24px */
+  --text-3xl: 1.875rem; /* 30px */
+  --text-4xl: 2.25rem; /* 36px */
+}
+
 @media (prefers-color-scheme: dark) {
   :root {
     --background: oklch(14.7% 0.004 49.25); 
