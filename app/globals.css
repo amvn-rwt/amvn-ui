@@ -1,13 +1,29 @@
 @import "tailwindcss";
 
 :root {
-  --background: oklch(98.5% 0.001 106.423); 
-  --foreground: oklch(14.7% 0.004 49.25); 
+  --background: oklch(98.5% 0.001 106.423);
+  --foreground: oklch(14.7% 0.004 49.25);
+  --primary: oklch(20% 0.004 49.25);
+  --primary-foreground: oklch(98.5% 0.001 106.423);
+  --muted: oklch(94% 0.002 106.423);
+  --muted-foreground: oklch(45% 0.004 49.25);
+  --border: oklch(88% 0.003 106.423);
+  --ring: oklch(55% 0.004 49.25);
+  --radius: 0.5rem;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-border: var(--border);
+  --color-ring: var(--ring);
+  --radius-sm: calc(var(--radius) - 0.125rem);
+  --radius-md: var(--radius);
+  --radius-lg: calc(var(--radius) + 0.125rem);
   --font-sans: var(--font-satoshi);
 }
 
@@ -43,8 +59,14 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: oklch(14.7% 0.004 49.25); 
-    --foreground: oklch(98.5% 0.001 106.423); 
+    --background: oklch(14.7% 0.004 49.25);
+    --foreground: oklch(98.5% 0.001 106.423);
+    --primary: oklch(94% 0.002 106.423);
+    --primary-foreground: oklch(20% 0.004 49.25);
+    --muted: oklch(22% 0.004 49.25);
+    --muted-foreground: oklch(70% 0.003 106.423);
+    --border: oklch(30% 0.004 49.25);
+    --ring: oklch(65% 0.003 106.423);
   }
 }
 
