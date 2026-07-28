@@ -29,14 +29,6 @@ export default function Home() {
             </div>
           ))}
         </section>
-
-        <section className="mt-10 space-y-3">
-          <h2 className="text-sm font-medium text-muted-foreground">States</h2>
-          <div className="flex flex-wrap items-center gap-3">
-            <Button disabled>Disabled</Button>
-            <Button autoFocus>Focus visible</Button>
-          </div>
-        </section>
       </main>
     </div>
   );

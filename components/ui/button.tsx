@@ -1,5 +1,8 @@
+"use client";
+
 import { Button as ButtonPrimitive } from "@base-ui/react/button";
 import { cva, type VariantProps } from "class-variance-authority";
+import { motion } from "motion/react";
 
 import { cn } from "@/lib/utils";
 
@@ -14,7 +17,7 @@ const buttonVariants = cva(
         ghost: "bg-transparent text-foreground hover:bg-muted",
       },
       size: {
-        md: "h-6 px-4 text-base",
+        md: "h-6 px-4 text-sm",
       },
     },
     defaultVariants: {
@@ -24,7 +27,14 @@ const buttonVariants = cva(
   },
 );
 
-type ButtonProps = Omit<ButtonPrimitive.Props, "className"> &
+const pressSpring = {
+  type: "spring",
+  stiffness: 500,
+  damping: 18,
+  mass: 0.5,
+} as const;
+
+type ButtonProps = Omit<ButtonPrimitive.Props, "className" | "render"> &
   VariantProps<typeof buttonVariants> & {
     className?: string;
   };
@@ -41,6 +51,13 @@ function Button({
       type={type}
       className={cn(buttonVariants({ variant, size }), className)}
       {...props}
+      render={
+        <motion.button
+          whileHover={{ scale: 1.02 }}
+          whileTap={{ scale: 0.96, y: 1 }}
+          transition={pressSpring}
+        />
+      }
     />
   );
 }
