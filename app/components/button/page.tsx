@@ -94,7 +94,7 @@ export default function ButtonPage() {
             <h2 className="text-lg font-medium">Outline</h2>
             <ComponentPreview code={outlineCode}>
               <div className="flex h-8 w-full items-center justify-center">
-                <Button variant="outline">Learn more (or don't)</Button>
+                <Button variant="outline">Learn more if you want</Button>
               </div>
             </ComponentPreview>
           </div>
