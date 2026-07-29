@@ -26,7 +26,7 @@ const outlineCode = `import { Button } from "@/components/ui/button"
 export default function Example() {
   return (
     <div className="flex h-8 w-full items-center justify-center">
-      <Button variant="outline">Learn more (or don't)</Button>
+      <Button variant="outline">Learn more if you want</Button>
     </div>
   )
 }`;
