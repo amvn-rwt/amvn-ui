@@ -11,17 +11,21 @@ const buttonVariants = cva(
   {
     variants: {
       variant: {
-        solid: "bg-primary text-primary-foreground hover:bg-primary/90",
+        primary: "bg-primary text-primary-foreground hover:bg-primary/90",
+        secondary:
+          "bg-secondary text-secondary-foreground hover:bg-secondary/80",
         outline:
           "border border-border bg-transparent text-foreground hover:bg-muted",
         ghost: "bg-transparent text-foreground hover:bg-muted",
+        danger: "bg-danger text-danger-foreground hover:bg-danger/90",
+        success: "bg-success text-success-foreground hover:bg-success/90",
       },
       size: {
         md: "h-6 px-4 text-sm",
       },
     },
     defaultVariants: {
-      variant: "solid",
+      variant: "primary",
       size: "md",
     },
   },

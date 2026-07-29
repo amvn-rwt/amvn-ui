@@ -5,8 +5,14 @@
   --foreground: oklch(14.7% 0.004 49.25);
   --primary: oklch(20% 0.004 49.25);
   --primary-foreground: oklch(98.5% 0.001 106.423);
+  --secondary: oklch(94% 0.002 106.423);
+  --secondary-foreground: oklch(14.7% 0.004 49.25);
   --muted: oklch(94% 0.002 106.423);
   --muted-foreground: oklch(45% 0.004 49.25);
+  --danger: oklch(52% 0.18 25);
+  --danger-foreground: oklch(98.5% 0.001 106.423);
+  --success: oklch(52% 0.16 145);
+  --success-foreground: oklch(98.5% 0.001 106.423);
   --border: oklch(88% 0.003 106.423);
   --ring: oklch(55% 0.004 49.25);
   --radius: 0.5rem;
@@ -17,8 +23,14 @@
   --color-foreground: var(--foreground);
   --color-primary: var(--primary);
   --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
   --color-muted: var(--muted);
   --color-muted-foreground: var(--muted-foreground);
+  --color-danger: var(--danger);
+  --color-danger-foreground: var(--danger-foreground);
+  --color-success: var(--success);
+  --color-success-foreground: var(--success-foreground);
   --color-border: var(--border);
   --color-ring: var(--ring);
   --radius-sm: calc(var(--radius) - 0.125rem);
@@ -63,8 +75,14 @@
     --foreground: oklch(98.5% 0.001 106.423);
     --primary: oklch(94% 0.002 106.423);
     --primary-foreground: oklch(20% 0.004 49.25);
+    --secondary: oklch(22% 0.004 49.25);
+    --secondary-foreground: oklch(98.5% 0.001 106.423);
     --muted: oklch(22% 0.004 49.25);
     --muted-foreground: oklch(70% 0.003 106.423);
+    --danger: oklch(55% 0.18 25);
+    --danger-foreground: oklch(98.5% 0.001 106.423);
+    --success: oklch(55% 0.16 145);
+    --success-foreground: oklch(98.5% 0.001 106.423);
     --border: oklch(30% 0.004 49.25);
     --ring: oklch(65% 0.003 106.423);
   }
@@ -79,6 +97,11 @@ body {
 /* Shiki dual-theme (defaultColor: false) + line numbers */
 .shiki {
   background-color: transparent !important;
+}
+
+.shiki:focus,
+.shiki:focus-visible {
+  outline: none;
 }
 
 .shiki code {

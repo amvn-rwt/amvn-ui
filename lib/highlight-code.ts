@@ -8,7 +8,7 @@ export async function highlightCode(
   code: string,
   lang: HighlightLanguage = "tsx",
 ): Promise<string> {
-  return codeToHtml(code, {
+  const html = await codeToHtml(code, {
     lang: lang as BundledLanguage,
     themes: {
       light: "github-light",
@@ -16,4 +16,8 @@ export async function highlightCode(
     },
     defaultColor: false,
   });
+
+  // Shiki adds tabindex="0" for keyboard access; docs use Copy/View Code
+  // instead, and the default focus ring is unwanted on the template.
+  return html.replace(/ tabindex="0"/, "");
 }

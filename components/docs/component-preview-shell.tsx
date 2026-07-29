@@ -16,6 +16,7 @@ type ComponentPreviewShellProps = {
 };
 
 const COLLAPSED_HEIGHT = 96;
+const EXPANDED_MAX_HEIGHT = 320; // 20rem — scroll beyond this
 
 const heightTransition = {
   type: "spring",
@@ -38,9 +39,26 @@ function ComponentPreviewShell({
 }: ComponentPreviewShellProps) {
   const [expanded, setExpanded] = React.useState(false);
   const [copied, setCopied] = React.useState(false);
+  const [contentHeight, setContentHeight] = React.useState(0);
+  const contentRef = React.useRef<HTMLDivElement>(null);
   const copyTimeoutRef = React.useRef<ReturnType<typeof setTimeout> | null>(
     null,
   );
+
+  React.useLayoutEffect(() => {
+    const node = contentRef.current;
+    if (!node) return;
+
+    const measure = () => {
+      setContentHeight(node.scrollHeight);
+    };
+
+    measure();
+
+    const observer = new ResizeObserver(measure);
+    observer.observe(node);
+    return () => observer.disconnect();
+  }, [highlightedHtml]);
 
   React.useEffect(() => {
     return () => {
@@ -63,6 +81,12 @@ function ComponentPreviewShell({
     }
   }
 
+  const expandedHeight = Math.min(
+    Math.max(contentHeight, COLLAPSED_HEIGHT),
+    EXPANDED_MAX_HEIGHT,
+  );
+  const isScrollable = contentHeight > EXPANDED_MAX_HEIGHT;
+
   return (
     <div
       className={cn(
@@ -77,13 +101,17 @@ function ComponentPreviewShell({
       <div className="relative border-t border-border bg-muted/90">
         <motion.div
           initial={false}
-          animate={{ height: expanded ? "384px" : COLLAPSED_HEIGHT }}
+          animate={{ height: expanded ? expandedHeight : COLLAPSED_HEIGHT }}
           transition={heightTransition}
-          className="relative overflow-hidden"
+          className={cn(
+            "relative",
+            expanded && isScrollable ? "overflow-y-auto" : "overflow-hidden",
+          )}
         >
           <div
+            ref={contentRef}
             className={cn(
-              "overflow-x-auto p-4 pb-12 font-mono text-sm [&_pre]:m-0 [&_pre]:bg-transparent! [&_pre]:p-0",
+              "overflow-x-auto p-4 pb-8 font-mono text-sm [&_pre]:m-0 [&_pre]:bg-transparent! [&_pre]:p-0",
               !expanded && "pointer-events-none select-none",
             )}
             dangerouslySetInnerHTML={{ __html: highlightedHtml }}
@@ -131,7 +159,7 @@ function ComponentPreviewShell({
             type="button"
             variant="outline"
             size="md"
-            className="bg-background px-3 text-xs shadow-sm"
+            className="bg-background shadow-sm"
             onClick={() => setExpanded((value) => !value)}
           >
             {expanded ? "Hide Code" : "View Code"}
