@@ -77,7 +77,7 @@ function ComponentPreviewShell({
       <div className="relative border-t border-border bg-muted/90">
         <motion.div
           initial={false}
-          animate={{ height: expanded ? "auto" : COLLAPSED_HEIGHT }}
+          animate={{ height: expanded ? "384px" : COLLAPSED_HEIGHT }}
           transition={heightTransition}
           className="relative overflow-hidden"
         >
@@ -111,7 +111,7 @@ function ComponentPreviewShell({
             type="button"
             variant="ghost"
             size="md"
-            className="gap-2 px-2 text-xs text-muted-foreground hover:text-foreground"
+            className="hover:bg-transparent"
             onClick={handleCopy}
             tabIndex={expanded ? 0 : -1}
             aria-hidden={!expanded}

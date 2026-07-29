@@ -1,66 +1,19 @@
-import { ComponentPreview } from "@/components/docs/component-preview";
-import { Button } from "@/components/ui/button";
-
-const solidCode = `import { Button } from "@/components/ui/button"
-
-export default function Example() {
-  return (
-    <div className="flex h-6 w-full items-center justify-center">
-      <Button variant="solid">Button</Button>
-    </div>
-  )
-}`;
-
-const outlineCode = `import { Button } from "@/components/ui/button"
-
-export default function Example() {
-  return (
-    <div className="flex h-6 w-full items-center justify-center">
-      <Button variant="outline">Button</Button>
-    </div>
-  )
-}`;
-
-const ghostCode = `import { Button } from "@/components/ui/button"
-
-export default function Example() {
-  return (
-    <div className="flex h-6 w-full items-center justify-center">
-      <Button variant="ghost">Button</Button>
-    </div>
-  )
-}`;
+import Link from "next/link";
 
 export default function Home() {
   return (
-    <div>
-      <main className="mx-auto max-w-16 px-2 py-10">
-        <h1 className="text-3xl font-bold">Button</h1>
-        <p className="mt-2 text-muted-foreground">
-          Displays a button or a component that looks like a button. Tab to a
-          button to see the focus ring.
-        </p>
-
-        <section className="mt-8 space-y-6">
-          <ComponentPreview code={solidCode}>
-            <div className="flex h-6 w-full items-center justify-center">
-              <Button variant="solid">Button</Button>
-            </div>
-          </ComponentPreview>
-
-          <ComponentPreview code={outlineCode}>
-            <div className="flex h-6 w-full items-center justify-center">
-              <Button variant="outline">Button</Button>
-            </div>
-          </ComponentPreview>
-
-          <ComponentPreview code={ghostCode}>
-            <div className="flex h-6 w-full items-center justify-center">
-              <Button variant="ghost">Button</Button>
-            </div>
-          </ComponentPreview>
-        </section>
-      </main>
-    </div>
+    <main className="mx-auto flex max-w-16 flex-col px-2 py-10">
+      <h1 className="text-3xl font-bold">amvn/ui</h1>
+      <p className="mt-2 text-muted-foreground">
+        Aman Rawat&apos;s UI library — accessible components built with Base UI
+        and Tailwind CSS.
+      </p>
+      <Link
+        href="/components"
+        className="mt-8 text-sm font-medium underline-offset-4 hover:underline"
+      >
+        Browse components
+      </Link>
+    </main>
   );
 }
