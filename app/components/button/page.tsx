@@ -6,7 +6,7 @@ const primaryCode = `import { Button } from "@/components/ui/button"
 export default function Example() {
   return (
     <div className="flex h-8 w-full items-center justify-center">
-      <Button variant="primary">Button</Button>
+      <Button variant="primary">Launch the rocket</Button>
     </div>
   )
 }`;
@@ -16,7 +16,7 @@ const secondaryCode = `import { Button } from "@/components/ui/button"
 export default function Example() {
   return (
     <div className="flex h-8 w-full items-center justify-center">
-      <Button variant="secondary">Button</Button>
+      <Button variant="secondary">Maybe later</Button>
     </div>
   )
 }`;
@@ -26,7 +26,7 @@ const outlineCode = `import { Button } from "@/components/ui/button"
 export default function Example() {
   return (
     <div className="flex h-8 w-full items-center justify-center">
-      <Button variant="outline">Button</Button>
+      <Button variant="outline">Learn more (or don't)</Button>
     </div>
   )
 }`;
@@ -36,7 +36,7 @@ const ghostCode = `import { Button } from "@/components/ui/button"
 export default function Example() {
   return (
     <div className="flex h-8 w-full items-center justify-center">
-      <Button variant="ghost">Button</Button>
+      <Button variant="ghost">I'm barely here</Button>
     </div>
   )
 }`;
@@ -46,7 +46,7 @@ const dangerCode = `import { Button } from "@/components/ui/button"
 export default function Example() {
   return (
     <div className="flex h-8 w-full items-center justify-center">
-      <Button variant="danger">Button</Button>
+      <Button variant="danger">Delete the bank account</Button>
     </div>
   )
 }`;
@@ -56,7 +56,7 @@ const successCode = `import { Button } from "@/components/ui/button"
 export default function Example() {
   return (
     <div className="flex h-8 w-full items-center justify-center">
-      <Button variant="success">Button</Button>
+      <Button variant="success">Withdraw $10,000</Button>
     </div>
   )
 }`;
@@ -76,7 +76,7 @@ export default function ButtonPage() {
             <h2 className="text-lg font-medium">Primary</h2>
             <ComponentPreview code={primaryCode}>
               <div className="flex h-8 w-full items-center justify-center">
-                <Button variant="primary">Button</Button>
+                <Button variant="primary">Launch the rocket</Button>
               </div>
             </ComponentPreview>
           </div>
@@ -85,7 +85,7 @@ export default function ButtonPage() {
             <h2 className="text-lg font-medium">Secondary</h2>
             <ComponentPreview code={secondaryCode}>
               <div className="flex h-8 w-full items-center justify-center">
-                <Button variant="secondary">Button</Button>
+                <Button variant="secondary">Maybe later</Button>
               </div>
             </ComponentPreview>
           </div>
@@ -94,7 +94,7 @@ export default function ButtonPage() {
             <h2 className="text-lg font-medium">Outline</h2>
             <ComponentPreview code={outlineCode}>
               <div className="flex h-8 w-full items-center justify-center">
-                <Button variant="outline">Button</Button>
+                <Button variant="outline">Learn more (or don't)</Button>
               </div>
             </ComponentPreview>
           </div>
@@ -103,7 +103,7 @@ export default function ButtonPage() {
             <h2 className="text-lg font-medium">Ghost</h2>
             <ComponentPreview code={ghostCode}>
               <div className="flex h-8 w-full items-center justify-center">
-                <Button variant="ghost">Button</Button>
+                <Button variant="ghost">I'm barely here</Button>
               </div>
             </ComponentPreview>
           </div>
@@ -112,7 +112,7 @@ export default function ButtonPage() {
             <h2 className="text-lg font-medium">Danger</h2>
             <ComponentPreview code={dangerCode}>
               <div className="flex h-8 w-full items-center justify-center">
-                <Button variant="danger">Button</Button>
+                <Button variant="danger">Delete the bank account</Button>
               </div>
             </ComponentPreview>
           </div>
@@ -121,7 +121,7 @@ export default function ButtonPage() {
             <h2 className="text-lg font-medium">Success</h2>
             <ComponentPreview code={successCode}>
               <div className="flex h-8 w-full items-center justify-center">
-                <Button variant="success">Button</Button>
+                <Button variant="success">Withdraw $10,000</Button>
               </div>
             </ComponentPreview>
           </div>
