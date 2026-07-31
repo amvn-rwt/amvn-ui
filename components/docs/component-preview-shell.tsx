@@ -104,34 +104,35 @@ function ComponentPreviewShell({
           animate={{ height: expanded ? expandedHeight : COLLAPSED_HEIGHT }}
           transition={heightTransition}
           className={cn(
-            "relative",
+            "outline-none",
             expanded && isScrollable ? "overflow-y-auto" : "overflow-hidden",
           )}
         >
           <div
             ref={contentRef}
             className={cn(
-              "overflow-x-auto p-4 pb-8 font-mono text-sm [&_pre]:m-0 [&_pre]:bg-transparent! [&_pre]:p-0",
+              "overflow-x-auto p-4 pb-8 font-mono text-sm outline-none [&_pre]:m-0 [&_pre]:bg-transparent! [&_pre]:p-0",
               !expanded && "pointer-events-none select-none",
             )}
             dangerouslySetInnerHTML={{ __html: highlightedHtml }}
           />
-
-          <motion.div
-            initial={false}
-            animate={{ opacity: expanded ? 0 : 1 }}
-            transition={fadeTransition}
-            className="pointer-events-none absolute inset-0 bg-linear-to-t from-muted via-muted/70 to-transparent"
-            aria-hidden="true"
-          />
         </motion.div>
+
+        <motion.div
+          initial={false}
+          animate={{ opacity: expanded ? 0 : 1 }}
+          transition={fadeTransition}
+          className="pointer-events-none absolute inset-x-0 top-0 z-10 bg-linear-to-t from-muted via-muted/80 to-transparent"
+          style={{ height: COLLAPSED_HEIGHT }}
+          aria-hidden="true"
+        />
 
         <motion.div
           initial={false}
           animate={{ opacity: expanded ? 1 : 0 }}
           transition={fadeTransition}
           className={cn(
-            "absolute top-2 right-2",
+            "absolute top-2 right-2 z-20",
             !expanded && "pointer-events-none",
           )}
         >
@@ -154,7 +155,7 @@ function ComponentPreviewShell({
           </Button>
         </motion.div>
 
-        <div className="absolute inset-x-0 bottom-3 z-10 flex justify-center">
+        <div className="absolute inset-x-0 bottom-3 z-20 flex justify-center">
           <Button
             type="button"
             variant="outline"

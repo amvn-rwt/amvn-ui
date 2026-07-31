@@ -1,3 +1,5 @@
+import { RocketIcon } from "lucide-react";
+
 import { ComponentPreview } from "@/components/docs/component-preview";
 import { SetDocsToc } from "@/components/docs/docs-toc";
 import { Button } from "@/components/ui/button";
@@ -11,10 +13,35 @@ const examples = [
   { title: "Success", variant: "success", label: "Withdraw $10,000" },
 ] as const;
 
-const toc = examples.map((example) => ({
-  id: example.variant,
-  title: example.title,
-}));
+const iconCode = `import { RocketIcon } from "lucide-react"
+import { Button } from "@/components/ui/button"
+
+export default function Example() {
+  return (
+    <div className="flex h-8 w-full items-center justify-center gap-3">
+      <Button variant="primary" size="icon" aria-label="Launch the rocket">
+        <RocketIcon />
+      </Button>
+      <Button variant="secondary" size="icon" aria-label="Launch the rocket">
+        <RocketIcon />
+      </Button>
+      <Button variant="outline" size="icon" aria-label="Launch the rocket">
+        <RocketIcon />
+      </Button>
+      <Button variant="ghost" size="icon" aria-label="Launch the rocket">
+        <RocketIcon />
+      </Button>
+    </div>
+  )
+}`;
+
+const toc = [
+  ...examples.map((example) => ({
+    id: example.variant,
+    title: example.title,
+  })),
+  { id: "icon", title: "Icon" },
+];
 
 function exampleCode(
   variant: (typeof examples)[number]["variant"],
@@ -60,6 +87,44 @@ export default function ButtonPage() {
             </ComponentPreview>
           </div>
         ))}
+
+        <div className="space-y-3">
+          <h2 id="icon" className="scroll-mt-10 text-lg font-medium">
+            Icon
+          </h2>
+          <ComponentPreview code={iconCode}>
+            <div className="flex h-8 w-full items-center justify-center gap-3">
+              <Button
+                variant="primary"
+                size="icon"
+                aria-label="Launch the rocket"
+              >
+                <RocketIcon />
+              </Button>
+              <Button
+                variant="secondary"
+                size="icon"
+                aria-label="Launch the rocket"
+              >
+                <RocketIcon />
+              </Button>
+              <Button
+                variant="outline"
+                size="icon"
+                aria-label="Launch the rocket"
+              >
+                <RocketIcon />
+              </Button>
+              <Button
+                variant="ghost"
+                size="icon"
+                aria-label="Launch the rocket"
+              >
+                <RocketIcon />
+              </Button>
+            </div>
+          </ComponentPreview>
+        </div>
       </section>
     </>
   );
