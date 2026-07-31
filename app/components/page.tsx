@@ -1,11 +1,6 @@
 import Link from "next/link";
 
-const components = [
-  {
-    name: "Button",
-    href: "/components/button",
-  },
-] as const;
+import { components } from "@/lib/docs-nav";
 
 export default function ComponentsPage() {
   return (
@@ -20,9 +15,9 @@ export default function ComponentsPage() {
           <li key={component.href}>
             <Link
               href={component.href}
-              className="mt-8 font-medium underline-offset-4 hover:underline"
+              className="font-medium underline-offset-4 hover:underline"
             >
-              {component.name}
+              {component.title}
             </Link>
           </li>
         ))}

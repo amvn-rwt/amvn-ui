@@ -94,6 +94,16 @@ body {
   font-family: var(--font-sans), sans-serif;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
 /* Shiki dual-theme (defaultColor: false) + line numbers */
 .shiki {
   background-color: transparent !important;

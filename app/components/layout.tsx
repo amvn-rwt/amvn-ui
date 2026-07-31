@@ -1,5 +1,5 @@
 import { DocsSidebar } from "@/components/docs/docs-sidebar";
-import { DocsToc } from "@/components/docs/docs-toc";
+import { DocsToc, DocsTocProvider } from "@/components/docs/docs-toc";
 import { Navbar } from "@/components/docs/navbar";
 
 export default function ComponentsLayout({
@@ -8,7 +8,7 @@ export default function ComponentsLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <>
+    <DocsTocProvider>
       <Navbar />
       <div className="flex flex-1">
         <DocsSidebar />
@@ -17,6 +17,6 @@ export default function ComponentsLayout({
         </main>
         <DocsToc />
       </div>
-    </>
+    </DocsTocProvider>
   );
 }
