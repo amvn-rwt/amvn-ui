@@ -26,11 +26,7 @@ function useDocsTocContext() {
 }
 
 /** Holds the active page's TOC items for the right-rail nav in the layout. */
-export function DocsTocProvider({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export function DocsTocProvider({ children }: { children: React.ReactNode }) {
   const [items, setItems] = React.useState<TocItem[]>([]);
   const value = React.useMemo(() => ({ items, setItems }), [items]);
 
@@ -62,7 +58,7 @@ export function DocsToc() {
     <aside className="sticky top-8 hidden h-[calc(100vh-var(--spacing-7))] w-64 shrink-0 overflow-y-auto xl:block">
       {items.length > 0 ? (
         <nav className="px-4 py-8" aria-label="On this page">
-          <p className="mb-3 px-2 text-xs font-medium tracking-wide text-muted-foreground uppercase">
+          <p className="mb-3 px-2 text-sm font-medium tracking-wide">
             On this page
           </p>
           <ul className="space-y-0.5">

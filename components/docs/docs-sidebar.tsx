@@ -15,7 +15,7 @@ export function DocsSidebar() {
         <div className="space-y-8">
           {docsNav.map((section) => (
             <div key={section.title}>
-              <h2 className="mb-3 px-2 text-xs font-medium tracking-wide text-muted-foreground uppercase">
+              <h2 className="mb-3 px-2 text-sm font-medium tracking-wide">
                 {section.title}
               </h2>
               <ul className="space-y-0.5">
