@@ -3,7 +3,19 @@ import Link from "next/link";
 export default function Home() {
   return (
     <main className="mx-auto flex min-w-15 max-w-15 flex-col py-10">
-      <h1 className="text-3xl font-bold">amvn/ui</h1>
+      <h1>
+        <Link
+          href="/"
+          aria-label="amvn.ui"
+          className="inline-flex items-center text-3xl font-semibold tracking-tight"
+        >
+          <span aria-hidden="true" className="inline-flex items-center">
+            <span>amvn</span>
+            <span className="mx-[0.2em] size-[0.22em] rounded-full bg-current" />
+            <span>uı</span>
+          </span>
+        </Link>
+      </h1>
       <p className="mt-2 text-muted-foreground">
         Aman Rawat&apos;s UI library — accessible components built with Base UI
         and Tailwind CSS.

@@ -20,7 +20,7 @@ const satoshi = localFont({
 });
 
 export const metadata: Metadata = {
-  title: "amvn/ui",
+  title: "amvn.uı",
   description: "Aman Rawat's UI library",
 };
 
