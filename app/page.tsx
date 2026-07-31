@@ -10,9 +10,7 @@ export default function Home() {
           className="inline-flex items-center text-3xl font-semibold tracking-tight"
         >
           <span aria-hidden="true" className="inline-flex items-center">
-            <span>amvn</span>
-            <span className="mx-[0.2em] size-[0.22em] rounded-full bg-current" />
-            <span>uı</span>
+            <span>amvn.uı</span>
           </span>
         </Link>
       </h1>

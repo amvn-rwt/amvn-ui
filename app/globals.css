@@ -1,5 +1,7 @@
 @import "tailwindcss";
 
+@custom-variant dark (&:where(.dark, .dark *));
+
 :root {
   --background: oklch(98.5% 0.001 106.423);
   --foreground: oklch(14.7% 0.004 49.25);
@@ -69,23 +71,21 @@
   --text-4xl: 2.25rem; /* 36px */
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: oklch(14.7% 0.004 49.25);
-    --foreground: oklch(98.5% 0.001 106.423);
-    --primary: oklch(94% 0.002 106.423);
-    --primary-foreground: oklch(20% 0.004 49.25);
-    --secondary: oklch(22% 0.004 49.25);
-    --secondary-foreground: oklch(98.5% 0.001 106.423);
-    --muted: oklch(22% 0.004 49.25);
-    --muted-foreground: oklch(70% 0.003 106.423);
-    --danger: oklch(55% 0.18 25);
-    --danger-foreground: oklch(98.5% 0.001 106.423);
-    --success: oklch(55% 0.16 145);
-    --success-foreground: oklch(98.5% 0.001 106.423);
-    --border: oklch(30% 0.004 49.25);
-    --ring: oklch(65% 0.003 106.423);
-  }
+.dark {
+  --background: oklch(14.7% 0.004 49.25);
+  --foreground: oklch(98.5% 0.001 106.423);
+  --primary: oklch(94% 0.002 106.423);
+  --primary-foreground: oklch(20% 0.004 49.25);
+  --secondary: oklch(22% 0.004 49.25);
+  --secondary-foreground: oklch(98.5% 0.001 106.423);
+  --muted: oklch(22% 0.004 49.25);
+  --muted-foreground: oklch(70% 0.003 106.423);
+  --danger: oklch(55% 0.18 25);
+  --danger-foreground: oklch(98.5% 0.001 106.423);
+  --success: oklch(55% 0.16 145);
+  --success-foreground: oklch(98.5% 0.001 106.423);
+  --border: oklch(30% 0.004 49.25);
+  --ring: oklch(65% 0.003 106.423);
 }
 
 body {
@@ -139,8 +139,6 @@ html {
   color: var(--shiki-light);
 }
 
-@media (prefers-color-scheme: dark) {
-  .shiki span {
-    color: var(--shiki-dark);
-  }
+.dark .shiki span {
+  color: var(--shiki-dark);
 }
