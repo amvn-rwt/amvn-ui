@@ -55,7 +55,7 @@ export function DocsToc() {
   const { items } = useDocsTocContext();
 
   return (
-    <aside className="sticky top-8 hidden h-[calc(100vh-var(--spacing-7))] w-64 shrink-0 overflow-y-auto xl:block">
+    <aside className="sticky top-8 hidden h-[calc(100vh-var(--spacing-8))] w-64 shrink-0 overflow-y-auto xl:block">
       {items.length > 0 ? (
         <nav className="px-4 py-8" aria-label="On this page">
           <p className="mb-3 px-2 text-sm font-medium tracking-wide">

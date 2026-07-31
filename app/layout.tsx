@@ -36,6 +36,7 @@ export default function RootLayout({
     <html
       lang="en"
       className={`${satoshi.variable} h-full antialiased`}
+      data-scroll-behavior="smooth"
       suppressHydrationWarning
     >
       <body className="flex min-h-full flex-col font-sans">
