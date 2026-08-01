@@ -112,7 +112,7 @@ export function DocsToc() {
                     aria-current={isActive ? "location" : undefined}
                     onClick={() => setActiveId(item.id)}
                     className={cn(
-                      "block rounded-md px-2 py-1.5 text-sm transition-colors hover:text-foreground",
+                      "block rounded-md px-2 py-1.5 text-sm outline-none transition-colors hover:text-foreground focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background",
                       (item.level ?? 2) === 3 && "pl-4",
                       isActive
                         ? "text-foreground"
