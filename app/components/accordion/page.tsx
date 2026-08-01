@@ -295,8 +295,10 @@ export default function AccordionPage() {
       <p className="mt-2 text-muted-foreground">
         A set of collapsible panels for FAQs and progressive disclosure.
         Accessible by default — Base UI handles{" "}
-        <code className="text-foreground">aria-expanded</code>, heading
-        semantics, and keyboard navigation.
+        <code className="text-foreground text-sm bg-muted p-1 rounded">
+          aria-expanded
+        </code>
+        , heading semantics and keyboard navigation.
       </p>
 
       <section className="mt-8 space-y-8">
@@ -306,7 +308,10 @@ export default function AccordionPage() {
           </h2>
           <ComponentPreview code={defaultCode}>
             <div className="flex w-full justify-center">
-              <Accordion defaultValue={["shipping"]} className="w-full max-w-13">
+              <Accordion
+                defaultValue={["shipping"]}
+                className="w-full max-w-13"
+              >
                 <AccordionItem value="shipping">
                   <AccordionTrigger>
                     Do you ship internationally?
