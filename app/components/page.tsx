@@ -1,7 +1,9 @@
 import Link from "next/link";
 
+import { JsonLd } from "@/components/seo/json-ld";
 import { components } from "@/lib/docs-nav";
-import { createPageMetadata } from "@/lib/seo";
+import { breadcrumbJsonLd, createPageMetadata } from "@/lib/seo";
+import { site } from "@/lib/site";
 
 export const metadata = createPageMetadata({
   title: "Components",
@@ -13,6 +15,12 @@ export const metadata = createPageMetadata({
 export default function ComponentsPage() {
   return (
     <>
+      <JsonLd
+        data={breadcrumbJsonLd([
+          { name: site.name, path: "/" },
+          { name: "Components", path: "/components" },
+        ])}
+      />
       <h1 className="text-3xl font-bold">Components</h1>
       <p className="mt-2 text-muted-foreground">
         Building blocks for your interface.

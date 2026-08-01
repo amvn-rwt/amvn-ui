@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 
-import { createPageMetadata } from "@/lib/seo";
+import { JsonLd } from "@/components/seo/json-ld";
+import { createPageMetadata, homeJsonLd } from "@/lib/seo";
 import { site } from "@/lib/site";
 
 export const metadata: Metadata = {
@@ -18,6 +19,7 @@ export const metadata: Metadata = {
 export default function Home() {
   return (
     <main className="w-full px-4 py-10 sm:px-6">
+      <JsonLd data={homeJsonLd()} />
       <div className="mx-auto flex w-full max-w-15 flex-col">
         <h1>
           <Link

@@ -9,8 +9,10 @@ import {
 
 import { ComponentPreview } from "@/components/docs/component-preview";
 import { SetDocsToc } from "@/components/docs/docs-toc";
+import { JsonLd } from "@/components/seo/json-ld";
 import { Button } from "@/components/ui/button";
-import { createPageMetadata } from "@/lib/seo";
+import { breadcrumbJsonLd, createPageMetadata } from "@/lib/seo";
+import { site } from "@/lib/site";
 
 export const metadata = createPageMetadata({
   title: "Button",
@@ -162,6 +164,13 @@ export default function Example() {
 export default function ButtonPage() {
   return (
     <>
+      <JsonLd
+        data={breadcrumbJsonLd([
+          { name: site.name, path: "/" },
+          { name: "Components", path: "/components" },
+          { name: "Button", path: "/components/button" },
+        ])}
+      />
       <SetDocsToc items={toc} />
 
       <h1 className="text-3xl font-bold">Button</h1>
