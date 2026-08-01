@@ -1,4 +1,11 @@
-import { RocketIcon } from "lucide-react";
+import {
+  ArrowRightIcon,
+  CoffeeIcon,
+  GhostIcon,
+  RocketIcon,
+  SparklesIcon,
+  WalletIcon,
+} from "lucide-react";
 
 import { ComponentPreview } from "@/components/docs/component-preview";
 import { SetDocsToc } from "@/components/docs/docs-toc";
@@ -12,16 +19,6 @@ const examples = [
   { title: "Danger", variant: "danger", label: "Delete The Bank Account" },
   { title: "Success", variant: "success", label: "Withdraw $10,000" },
 ] as const;
-
-const usageCode = `import { Button } from "@/components/ui/button"
-
-export default function Example() {
-  return (
-    <div className="flex h-8 w-full items-center justify-center">
-      <Button>Launch The Rocket</Button>
-    </div>
-  )
-}`;
 
 const iconCode = `import { RocketIcon } from "lucide-react"
 import { Button } from "@/components/ui/button"
@@ -45,7 +42,14 @@ export default function Example() {
   )
 }`;
 
-const withIconCode = `import { RocketIcon } from "lucide-react"
+const withIconCode = `import {
+  ArrowRightIcon,
+  CoffeeIcon,
+  GhostIcon,
+  RocketIcon,
+  SparklesIcon,
+  WalletIcon,
+} from "lucide-react"
 import { Button } from "@/components/ui/button"
 
 export default function Example() {
@@ -57,18 +61,28 @@ export default function Example() {
           Launch The Rocket
         </Button>
         <Button>
-          Launch The Rocket
-          <RocketIcon />
+          Withdraw $10,000
+          <WalletIcon />
         </Button>
       </div>
       <div className="flex items-center gap-3">
         <Button variant="secondary">
-          <RocketIcon />
-          Launch The Rocket
+          <CoffeeIcon />
+          Maybe Later
         </Button>
         <Button variant="secondary">
-          Launch The Rocket
-          <RocketIcon />
+          Learn More If You Want
+          <ArrowRightIcon />
+        </Button>
+      </div>
+      <div className="flex items-center gap-3">
+        <Button variant="ghost">
+          <GhostIcon />
+          I'm Barely Here
+        </Button>
+        <Button variant="ghost">
+          Make It Fancy
+          <SparklesIcon />
         </Button>
       </div>
     </div>
@@ -112,7 +126,6 @@ const props = [
 ] as const;
 
 const toc = [
-  { id: "usage", title: "Usage" },
   ...examples.map((example) => ({
     id: example.variant,
     title: example.title,
@@ -150,17 +163,6 @@ export default function ButtonPage() {
       </p>
 
       <section className="mt-8 space-y-8">
-        <div className="space-y-3">
-          <h2 id="usage" className="scroll-mt-10 text-lg font-medium">
-            Usage
-          </h2>
-          <ComponentPreview code={usageCode}>
-            <div className="flex h-8 w-full items-center justify-center">
-              <Button>Launch The Rocket</Button>
-            </div>
-          </ComponentPreview>
-        </div>
-
         {examples.map((example) => (
           <div key={example.variant} className="space-y-3">
             <h2
@@ -229,18 +231,28 @@ export default function ButtonPage() {
                   Launch The Rocket
                 </Button>
                 <Button>
-                  Launch The Rocket
-                  <RocketIcon />
+                  Withdraw $10,000
+                  <WalletIcon />
                 </Button>
               </div>
               <div className="flex flex-wrap items-center justify-center gap-3">
                 <Button variant="secondary">
-                  <RocketIcon />
-                  Launch The Rocket
+                  <CoffeeIcon />
+                  Maybe Later
                 </Button>
                 <Button variant="secondary">
-                  Launch The Rocket
-                  <RocketIcon />
+                  Learn More If You Want
+                  <ArrowRightIcon />
+                </Button>
+              </div>
+              <div className="flex flex-wrap items-center justify-center gap-3">
+                <Button variant="ghost">
+                  <GhostIcon />
+                  I'm Barely Here
+                </Button>
+                <Button variant="ghost">
+                  Make It Fancy
+                  <SparklesIcon />
                 </Button>
               </div>
             </div>
