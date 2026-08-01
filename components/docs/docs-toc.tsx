@@ -53,6 +53,46 @@ export function SetDocsToc({ items }: { items: TocItem[] }) {
 /** Right-rail "On this page" nav. Renders whatever the current page set via SetDocsToc. */
 export function DocsToc() {
   const { items } = useDocsTocContext();
+  const [activeId, setActiveId] = React.useState<string>("");
+
+  // Keep the highlight in sync with the section in view while scrolling.
+  React.useEffect(() => {
+    if (items.length === 0) {
+      setActiveId("");
+      return;
+    }
+
+    setActiveId(items[0]?.id ?? "");
+
+    const headings = items
+      .map((item) => document.getElementById(item.id))
+      .filter((element): element is HTMLElement => element !== null);
+
+    if (headings.length === 0) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const visible = entries
+          .filter((entry) => entry.isIntersecting)
+          .sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top);
+
+        if (visible[0]?.target.id) {
+          setActiveId(visible[0].target.id);
+        }
+      },
+      {
+        // Upper-middle of the viewport counts as the "current" section.
+        rootMargin: "-20% 0px -65% 0px",
+        threshold: 0,
+      },
+    );
+
+    for (const heading of headings) {
+      observer.observe(heading);
+    }
+
+    return () => observer.disconnect();
+  }, [items]);
 
   return (
     <aside className="sticky top-8 hidden h-[calc(100vh-var(--spacing-8))] w-64 shrink-0 overflow-y-auto xl:block">
@@ -62,19 +102,28 @@ export function DocsToc() {
             On this page
           </p>
           <ul className="space-y-0.5">
-            {items.map((item) => (
-              <li key={item.id}>
-                <a
-                  href={`#${item.id}`}
-                  className={cn(
-                    "block rounded-md px-2 py-1.5 text-sm text-muted-foreground transition-colors hover:text-foreground",
-                    (item.level ?? 2) === 3 && "pl-4",
-                  )}
-                >
-                  {item.title}
-                </a>
-              </li>
-            ))}
+            {items.map((item) => {
+              const isActive = activeId === item.id;
+
+              return (
+                <li key={item.id}>
+                  <a
+                    href={`#${item.id}`}
+                    aria-current={isActive ? "location" : undefined}
+                    onClick={() => setActiveId(item.id)}
+                    className={cn(
+                      "block rounded-md px-2 py-1.5 text-sm transition-colors hover:text-foreground",
+                      (item.level ?? 2) === 3 && "pl-4",
+                      isActive
+                        ? "text-foreground"
+                        : "text-muted-foreground",
+                    )}
+                  >
+                    {item.title}
+                  </a>
+                </li>
+              );
+            })}
           </ul>
         </nav>
       ) : null}
