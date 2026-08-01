@@ -1,5 +1,4 @@
-import Link from "next/link";
-
+import { ComponentCard } from "@/components/docs/component-card";
 import { JsonLd } from "@/components/seo/json-ld";
 import { components } from "@/lib/docs-nav";
 import { breadcrumbJsonLd, createPageMetadata } from "@/lib/seo";
@@ -26,15 +25,10 @@ export default function ComponentsPage() {
         Building blocks for your interface.
       </p>
 
-      <ul className="mt-8 space-y-3">
+      <ul className="mt-8 grid list-none gap-4 sm:grid-cols-2">
         {components.map((component) => (
           <li key={component.href}>
-            <Link
-              href={component.href}
-              className="font-medium underline-offset-4 hover:underline"
-            >
-              {component.title}
-            </Link>
+            <ComponentCard component={component} />
           </li>
         ))}
       </ul>

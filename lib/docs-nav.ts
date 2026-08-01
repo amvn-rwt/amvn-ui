@@ -8,10 +8,15 @@ export type DocsNavSection = {
   items: DocsNavItem[];
 };
 
-export const components: DocsNavItem[] = [
+const componentsUnsorted: DocsNavItem[] = [
   { title: "Button", href: "/components/button" },
   { title: "Accordion", href: "/components/accordion" },
 ];
+
+/** Alphabetically sorted — used by sidebar (after Overview) and the overview gallery. */
+export const components: DocsNavItem[] = [...componentsUnsorted].sort((a, b) =>
+  a.title.localeCompare(b.title),
+);
 
 export const docsNav: DocsNavSection[] = [
   {
