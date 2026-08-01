@@ -26,36 +26,38 @@ const defaultCode = `import {
 
 export default function Example() {
   return (
-    <Accordion defaultValue={["shipping"]} className="w-full max-w-13">
-      <AccordionItem value="shipping">
-        <AccordionTrigger>Do you ship internationally?</AccordionTrigger>
-        <AccordionContent>
-          Yes — we ship to 140 countries, as long as your customs form doesn't
-          say "definitely not a rocket".
-        </AccordionContent>
-      </AccordionItem>
-      <AccordionItem value="returns">
-        <AccordionTrigger>What's your return policy?</AccordionTrigger>
-        <AccordionContent>
-          30 days, no questions asked. Slightly burnt rocket fuel residue is
-          still considered "like new".
-        </AccordionContent>
-      </AccordionItem>
-      <AccordionItem value="warranty">
-        <AccordionTrigger>Is there a warranty?</AccordionTrigger>
-        <AccordionContent>
-          Lifetime coverage against spontaneous combustion. Atmospheric
-          re-entry scratches not included.
-        </AccordionContent>
-      </AccordionItem>
-      <AccordionItem value="support">
-        <AccordionTrigger>How do I reach support?</AccordionTrigger>
-        <AccordionContent>
-          Ping us anytime. Response times range from "instant" to "after we
-          land" depending on orbital position.
-        </AccordionContent>
-      </AccordionItem>
-    </Accordion>
+    <div className="flex w-full justify-center">
+      <Accordion defaultValue={["shipping"]} className="w-full max-w-13">
+        <AccordionItem value="shipping">
+          <AccordionTrigger>Do you ship internationally?</AccordionTrigger>
+          <AccordionContent>
+            Yes — we ship to 140 countries, as long as your customs form doesn't
+            say "definitely not a rocket".
+          </AccordionContent>
+        </AccordionItem>
+        <AccordionItem value="returns">
+          <AccordionTrigger>What's your return policy?</AccordionTrigger>
+          <AccordionContent>
+            30 days, no questions asked. Slightly burnt rocket fuel residue is
+            still considered "like new".
+          </AccordionContent>
+        </AccordionItem>
+        <AccordionItem value="warranty">
+          <AccordionTrigger>Is there a warranty?</AccordionTrigger>
+          <AccordionContent>
+            Lifetime coverage against spontaneous combustion. Atmospheric
+            re-entry scratches not included.
+          </AccordionContent>
+        </AccordionItem>
+        <AccordionItem value="support">
+          <AccordionTrigger>How do I reach support?</AccordionTrigger>
+          <AccordionContent>
+            Ping us anytime. Response times range from "instant" to "after we
+            land" depending on orbital position.
+          </AccordionContent>
+        </AccordionItem>
+      </Accordion>
+    </div>
   )
 }`;
 
@@ -68,36 +70,38 @@ const multipleCode = `import {
 
 export default function Example() {
   return (
-    <Accordion multiple defaultValue={["shipping"]} className="w-full max-w-13">
-      <AccordionItem value="shipping">
-        <AccordionTrigger>Do you ship internationally?</AccordionTrigger>
-        <AccordionContent>
-          Yes — we ship to 140 countries, as long as your customs form doesn't
-          say "definitely not a rocket".
-        </AccordionContent>
-      </AccordionItem>
-      <AccordionItem value="returns">
-        <AccordionTrigger>What's your return policy?</AccordionTrigger>
-        <AccordionContent>
-          30 days, no questions asked. Slightly burnt rocket fuel residue is
-          still considered "like new".
-        </AccordionContent>
-      </AccordionItem>
-      <AccordionItem value="warranty">
-        <AccordionTrigger>Is there a warranty?</AccordionTrigger>
-        <AccordionContent>
-          Lifetime coverage against spontaneous combustion. Atmospheric
-          re-entry scratches not included.
-        </AccordionContent>
-      </AccordionItem>
-      <AccordionItem value="support">
-        <AccordionTrigger>How do I reach support?</AccordionTrigger>
-        <AccordionContent>
-          Ping us anytime. Response times range from "instant" to "after we
-          land" depending on orbital position.
-        </AccordionContent>
-      </AccordionItem>
-    </Accordion>
+    <div className="flex w-full justify-center">
+      <Accordion multiple defaultValue={["shipping"]} className="w-full max-w-13">
+        <AccordionItem value="shipping">
+          <AccordionTrigger>Do you ship internationally?</AccordionTrigger>
+          <AccordionContent>
+            Yes — we ship to 140 countries, as long as your customs form doesn't
+            say "definitely not a rocket".
+          </AccordionContent>
+        </AccordionItem>
+        <AccordionItem value="returns">
+          <AccordionTrigger>What's your return policy?</AccordionTrigger>
+          <AccordionContent>
+            30 days, no questions asked. Slightly burnt rocket fuel residue is
+            still considered "like new".
+          </AccordionContent>
+        </AccordionItem>
+        <AccordionItem value="warranty">
+          <AccordionTrigger>Is there a warranty?</AccordionTrigger>
+          <AccordionContent>
+            Lifetime coverage against spontaneous combustion. Atmospheric
+            re-entry scratches not included.
+          </AccordionContent>
+        </AccordionItem>
+        <AccordionItem value="support">
+          <AccordionTrigger>How do I reach support?</AccordionTrigger>
+          <AccordionContent>
+            Ping us anytime. Response times range from "instant" to "after we
+            land" depending on orbital position.
+          </AccordionContent>
+        </AccordionItem>
+      </Accordion>
+    </div>
   )
 }`;
 
@@ -110,28 +114,30 @@ const disabledCode = `import {
 
 export default function Example() {
   return (
-    <Accordion defaultValue={["shipping"]} className="w-full max-w-13">
-      <AccordionItem value="shipping">
-        <AccordionTrigger>Do you ship internationally?</AccordionTrigger>
-        <AccordionContent>
-          Yes — we ship to 140 countries, as long as your customs form doesn't
-          say "definitely not a rocket".
-        </AccordionContent>
-      </AccordionItem>
-      <AccordionItem value="classified" disabled>
-        <AccordionTrigger>Where is the secret launch pad?</AccordionTrigger>
-        <AccordionContent>
-          Nice try. This one's classified until you clear the background check.
-        </AccordionContent>
-      </AccordionItem>
-      <AccordionItem value="support">
-        <AccordionTrigger>How do I reach support?</AccordionTrigger>
-        <AccordionContent>
-          Ping us anytime. Response times range from "instant" to "after we
-          land" depending on orbital position.
-        </AccordionContent>
-      </AccordionItem>
-    </Accordion>
+    <div className="flex w-full justify-center">
+      <Accordion defaultValue={["shipping"]} className="w-full max-w-13">
+        <AccordionItem value="shipping">
+          <AccordionTrigger>Do you ship internationally?</AccordionTrigger>
+          <AccordionContent>
+            Yes — we ship to 140 countries, as long as your customs form doesn't
+            say "definitely not a rocket".
+          </AccordionContent>
+        </AccordionItem>
+        <AccordionItem value="classified" disabled>
+          <AccordionTrigger>Where is the secret launch pad?</AccordionTrigger>
+          <AccordionContent>
+            Nice try. This one's classified until you clear the background check.
+          </AccordionContent>
+        </AccordionItem>
+        <AccordionItem value="support">
+          <AccordionTrigger>How do I reach support?</AccordionTrigger>
+          <AccordionContent>
+            Ping us anytime. Response times range from "instant" to "after we
+            land" depending on orbital position.
+          </AccordionContent>
+        </AccordionItem>
+      </Accordion>
+    </div>
   )
 }`;
 
@@ -144,36 +150,38 @@ const borderlessCode = `import {
 
 export default function Example() {
   return (
-    <Accordion bordered={false} defaultValue={["shipping"]} className="w-full max-w-13">
-      <AccordionItem value="shipping">
-        <AccordionTrigger>Do you ship internationally?</AccordionTrigger>
-        <AccordionContent>
-          Yes — we ship to 140 countries, as long as your customs form doesn't
-          say "definitely not a rocket".
-        </AccordionContent>
-      </AccordionItem>
-      <AccordionItem value="returns">
-        <AccordionTrigger>What's your return policy?</AccordionTrigger>
-        <AccordionContent>
-          30 days, no questions asked. Slightly burnt rocket fuel residue is
-          still considered "like new".
-        </AccordionContent>
-      </AccordionItem>
-      <AccordionItem value="warranty">
-        <AccordionTrigger>Is there a warranty?</AccordionTrigger>
-        <AccordionContent>
-          Lifetime coverage against spontaneous combustion. Atmospheric
-          re-entry scratches not included.
-        </AccordionContent>
-      </AccordionItem>
-      <AccordionItem value="support">
-        <AccordionTrigger>How do I reach support?</AccordionTrigger>
-        <AccordionContent>
-          Ping us anytime. Response times range from "instant" to "after we
-          land" depending on orbital position.
-        </AccordionContent>
-      </AccordionItem>
-    </Accordion>
+    <div className="flex w-full justify-center">
+      <Accordion bordered={false} defaultValue={["shipping"]} className="w-full max-w-13">
+        <AccordionItem value="shipping">
+          <AccordionTrigger>Do you ship internationally?</AccordionTrigger>
+          <AccordionContent>
+            Yes — we ship to 140 countries, as long as your customs form doesn't
+            say "definitely not a rocket".
+          </AccordionContent>
+        </AccordionItem>
+        <AccordionItem value="returns">
+          <AccordionTrigger>What's your return policy?</AccordionTrigger>
+          <AccordionContent>
+            30 days, no questions asked. Slightly burnt rocket fuel residue is
+            still considered "like new".
+          </AccordionContent>
+        </AccordionItem>
+        <AccordionItem value="warranty">
+          <AccordionTrigger>Is there a warranty?</AccordionTrigger>
+          <AccordionContent>
+            Lifetime coverage against spontaneous combustion. Atmospheric
+            re-entry scratches not included.
+          </AccordionContent>
+        </AccordionItem>
+        <AccordionItem value="support">
+          <AccordionTrigger>How do I reach support?</AccordionTrigger>
+          <AccordionContent>
+            Ping us anytime. Response times range from "instant" to "after we
+            land" depending on orbital position.
+          </AccordionContent>
+        </AccordionItem>
+      </Accordion>
+    </div>
   )
 }`;
 
@@ -243,7 +251,7 @@ function PropsTable({
   return (
     <div className="overflow-x-auto rounded-3xl border border-border">
       <table className="w-full min-w-14 text-left text-sm">
-        <thead className="border-b border-border bg-muted/50">
+        <thead className="border-b border-border bg-muted/muted">
           <tr>
             <th className="px-4 py-3 font-medium">Prop</th>
             <th className="px-4 py-3 font-medium">Type</th>
@@ -297,36 +305,43 @@ export default function AccordionPage() {
             Default
           </h2>
           <ComponentPreview code={defaultCode}>
-            <Accordion defaultValue={["shipping"]} className="w-full max-w-13">
-              <AccordionItem value="shipping">
-                <AccordionTrigger>Do you ship internationally?</AccordionTrigger>
-                <AccordionContent>
-                  Yes — we ship to 140 countries, as long as your customs form
-                  doesn&apos;t say &quot;definitely not a rocket&quot;.
-                </AccordionContent>
-              </AccordionItem>
-              <AccordionItem value="returns">
-                <AccordionTrigger>What&apos;s your return policy?</AccordionTrigger>
-                <AccordionContent>
-                  30 days, no questions asked. Slightly burnt rocket fuel residue
-                  is still considered &quot;like new&quot;.
-                </AccordionContent>
-              </AccordionItem>
-              <AccordionItem value="warranty">
-                <AccordionTrigger>Is there a warranty?</AccordionTrigger>
-                <AccordionContent>
-                  Lifetime coverage against spontaneous combustion. Atmospheric
-                  re-entry scratches not included.
-                </AccordionContent>
-              </AccordionItem>
-              <AccordionItem value="support">
-                <AccordionTrigger>How do I reach support?</AccordionTrigger>
-                <AccordionContent>
-                  Ping us anytime. Response times range from &quot;instant&quot;
-                  to &quot;after we land&quot; depending on orbital position.
-                </AccordionContent>
-              </AccordionItem>
-            </Accordion>
+            <div className="flex w-full justify-center">
+              <Accordion defaultValue={["shipping"]} className="w-full max-w-13">
+                <AccordionItem value="shipping">
+                  <AccordionTrigger>
+                    Do you ship internationally?
+                  </AccordionTrigger>
+                  <AccordionContent>
+                    Yes — we ship to 140 countries, as long as your customs form
+                    doesn&apos;t say &quot;definitely not a rocket&quot;.
+                  </AccordionContent>
+                </AccordionItem>
+                <AccordionItem value="returns">
+                  <AccordionTrigger>
+                    What&apos;s your return policy?
+                  </AccordionTrigger>
+                  <AccordionContent>
+                    30 days, no questions asked. Slightly burnt rocket fuel
+                    residue is still considered &quot;like new&quot;.
+                  </AccordionContent>
+                </AccordionItem>
+                <AccordionItem value="warranty">
+                  <AccordionTrigger>Is there a warranty?</AccordionTrigger>
+                  <AccordionContent>
+                    Lifetime coverage against spontaneous combustion.
+                    Atmospheric re-entry scratches not included.
+                  </AccordionContent>
+                </AccordionItem>
+                <AccordionItem value="support">
+                  <AccordionTrigger>How do I reach support?</AccordionTrigger>
+                  <AccordionContent>
+                    Ping us anytime. Response times range from
+                    &quot;instant&quot; to &quot;after we land&quot; depending
+                    on orbital position.
+                  </AccordionContent>
+                </AccordionItem>
+              </Accordion>
+            </div>
           </ComponentPreview>
         </div>
 
@@ -335,40 +350,47 @@ export default function AccordionPage() {
             Multiple
           </h2>
           <ComponentPreview code={multipleCode}>
-            <Accordion
-              multiple
-              defaultValue={["shipping"]}
-              className="w-full max-w-13"
-            >
-              <AccordionItem value="shipping">
-                <AccordionTrigger>Do you ship internationally?</AccordionTrigger>
-                <AccordionContent>
-                  Yes — we ship to 140 countries, as long as your customs form
-                  doesn&apos;t say &quot;definitely not a rocket&quot;.
-                </AccordionContent>
-              </AccordionItem>
-              <AccordionItem value="returns">
-                <AccordionTrigger>What&apos;s your return policy?</AccordionTrigger>
-                <AccordionContent>
-                  30 days, no questions asked. Slightly burnt rocket fuel residue
-                  is still considered &quot;like new&quot;.
-                </AccordionContent>
-              </AccordionItem>
-              <AccordionItem value="warranty">
-                <AccordionTrigger>Is there a warranty?</AccordionTrigger>
-                <AccordionContent>
-                  Lifetime coverage against spontaneous combustion. Atmospheric
-                  re-entry scratches not included.
-                </AccordionContent>
-              </AccordionItem>
-              <AccordionItem value="support">
-                <AccordionTrigger>How do I reach support?</AccordionTrigger>
-                <AccordionContent>
-                  Ping us anytime. Response times range from &quot;instant&quot;
-                  to &quot;after we land&quot; depending on orbital position.
-                </AccordionContent>
-              </AccordionItem>
-            </Accordion>
+            <div className="flex w-full justify-center">
+              <Accordion
+                multiple
+                defaultValue={["shipping"]}
+                className="w-full max-w-13"
+              >
+                <AccordionItem value="shipping">
+                  <AccordionTrigger>
+                    Do you ship internationally?
+                  </AccordionTrigger>
+                  <AccordionContent>
+                    Yes — we ship to 140 countries, as long as your customs form
+                    doesn&apos;t say &quot;definitely not a rocket&quot;.
+                  </AccordionContent>
+                </AccordionItem>
+                <AccordionItem value="returns">
+                  <AccordionTrigger>
+                    What&apos;s your return policy?
+                  </AccordionTrigger>
+                  <AccordionContent>
+                    30 days, no questions asked. Slightly burnt rocket fuel
+                    residue is still considered &quot;like new&quot;.
+                  </AccordionContent>
+                </AccordionItem>
+                <AccordionItem value="warranty">
+                  <AccordionTrigger>Is there a warranty?</AccordionTrigger>
+                  <AccordionContent>
+                    Lifetime coverage against spontaneous combustion.
+                    Atmospheric re-entry scratches not included.
+                  </AccordionContent>
+                </AccordionItem>
+                <AccordionItem value="support">
+                  <AccordionTrigger>How do I reach support?</AccordionTrigger>
+                  <AccordionContent>
+                    Ping us anytime. Response times range from
+                    &quot;instant&quot; to &quot;after we land&quot; depending
+                    on orbital position.
+                  </AccordionContent>
+                </AccordionItem>
+              </Accordion>
+            </div>
           </ComponentPreview>
         </div>
 
@@ -377,31 +399,39 @@ export default function AccordionPage() {
             Disabled
           </h2>
           <ComponentPreview code={disabledCode}>
-            <Accordion defaultValue={["shipping"]} className="w-full max-w-13">
-              <AccordionItem value="shipping">
-                <AccordionTrigger>Do you ship internationally?</AccordionTrigger>
-                <AccordionContent>
-                  Yes — we ship to 140 countries, as long as your customs form
-                  doesn&apos;t say &quot;definitely not a rocket&quot;.
-                </AccordionContent>
-              </AccordionItem>
-              <AccordionItem value="classified" disabled>
-                <AccordionTrigger>
-                  Where is the secret launch pad?
-                </AccordionTrigger>
-                <AccordionContent>
-                  Nice try. This one&apos;s classified until you clear the
-                  background check.
-                </AccordionContent>
-              </AccordionItem>
-              <AccordionItem value="support">
-                <AccordionTrigger>How do I reach support?</AccordionTrigger>
-                <AccordionContent>
-                  Ping us anytime. Response times range from &quot;instant&quot;
-                  to &quot;after we land&quot; depending on orbital position.
-                </AccordionContent>
-              </AccordionItem>
-            </Accordion>
+            <div className="flex w-full justify-center">
+              <Accordion
+                defaultValue={["shipping"]}
+                className="w-full max-w-13"
+              >
+                <AccordionItem value="shipping">
+                  <AccordionTrigger>
+                    Do you ship internationally?
+                  </AccordionTrigger>
+                  <AccordionContent>
+                    Yes — we ship to 140 countries, as long as your customs form
+                    doesn&apos;t say &quot;definitely not a rocket&quot;.
+                  </AccordionContent>
+                </AccordionItem>
+                <AccordionItem value="classified" disabled>
+                  <AccordionTrigger>
+                    Where is the secret launch pad?
+                  </AccordionTrigger>
+                  <AccordionContent>
+                    Nice try. This one&apos;s classified until you clear the
+                    background check.
+                  </AccordionContent>
+                </AccordionItem>
+                <AccordionItem value="support">
+                  <AccordionTrigger>How do I reach support?</AccordionTrigger>
+                  <AccordionContent>
+                    Ping us anytime. Response times range from
+                    &quot;instant&quot; to &quot;after we land&quot; depending
+                    on orbital position.
+                  </AccordionContent>
+                </AccordionItem>
+              </Accordion>
+            </div>
           </ComponentPreview>
         </div>
 
@@ -410,40 +440,47 @@ export default function AccordionPage() {
             Borderless
           </h2>
           <ComponentPreview code={borderlessCode}>
-            <Accordion
-              bordered={false}
-              defaultValue={["shipping"]}
-              className="w-full max-w-13"
-            >
-              <AccordionItem value="shipping">
-                <AccordionTrigger>Do you ship internationally?</AccordionTrigger>
-                <AccordionContent>
-                  Yes — we ship to 140 countries, as long as your customs form
-                  doesn&apos;t say &quot;definitely not a rocket&quot;.
-                </AccordionContent>
-              </AccordionItem>
-              <AccordionItem value="returns">
-                <AccordionTrigger>What&apos;s your return policy?</AccordionTrigger>
-                <AccordionContent>
-                  30 days, no questions asked. Slightly burnt rocket fuel residue
-                  is still considered &quot;like new&quot;.
-                </AccordionContent>
-              </AccordionItem>
-              <AccordionItem value="warranty">
-                <AccordionTrigger>Is there a warranty?</AccordionTrigger>
-                <AccordionContent>
-                  Lifetime coverage against spontaneous combustion. Atmospheric
-                  re-entry scratches not included.
-                </AccordionContent>
-              </AccordionItem>
-              <AccordionItem value="support">
-                <AccordionTrigger>How do I reach support?</AccordionTrigger>
-                <AccordionContent>
-                  Ping us anytime. Response times range from &quot;instant&quot;
-                  to &quot;after we land&quot; depending on orbital position.
-                </AccordionContent>
-              </AccordionItem>
-            </Accordion>
+            <div className="flex w-full justify-center">
+              <Accordion
+                bordered={false}
+                defaultValue={["shipping"]}
+                className="w-full max-w-13"
+              >
+                <AccordionItem value="shipping">
+                  <AccordionTrigger>
+                    Do you ship internationally?
+                  </AccordionTrigger>
+                  <AccordionContent>
+                    Yes — we ship to 140 countries, as long as your customs form
+                    doesn&apos;t say &quot;definitely not a rocket&quot;.
+                  </AccordionContent>
+                </AccordionItem>
+                <AccordionItem value="returns">
+                  <AccordionTrigger>
+                    What&apos;s your return policy?
+                  </AccordionTrigger>
+                  <AccordionContent>
+                    30 days, no questions asked. Slightly burnt rocket fuel
+                    residue is still considered &quot;like new&quot;.
+                  </AccordionContent>
+                </AccordionItem>
+                <AccordionItem value="warranty">
+                  <AccordionTrigger>Is there a warranty?</AccordionTrigger>
+                  <AccordionContent>
+                    Lifetime coverage against spontaneous combustion.
+                    Atmospheric re-entry scratches not included.
+                  </AccordionContent>
+                </AccordionItem>
+                <AccordionItem value="support">
+                  <AccordionTrigger>How do I reach support?</AccordionTrigger>
+                  <AccordionContent>
+                    Ping us anytime. Response times range from
+                    &quot;instant&quot; to &quot;after we land&quot; depending
+                    on orbital position.
+                  </AccordionContent>
+                </AccordionItem>
+              </Accordion>
+            </div>
           </ComponentPreview>
         </div>
 

@@ -55,11 +55,11 @@ function ComponentCard({ component, className }: ComponentCardProps) {
     <Link
       href={component.href}
       className={cn(
-        "group flex flex-col overflow-hidden rounded-3xl border border-border outline-none transition-colors hover:bg-muted/40 focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background",
+        "group flex flex-col overflow-hidden rounded-3xl border border-border outline-none transition-colors hover:bg-muted/disabled focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background",
         className,
       )}
     >
-      <div className="flex aspect-4/3 items-center justify-center overflow-hidden bg-muted/30 px-5 py-6">
+      <div className="flex aspect-4/3 items-center justify-center overflow-hidden bg-muted/faint px-5 py-6">
         <div className="pointer-events-none w-full select-none">{preview}</div>
       </div>
       <div className="border-t border-border px-4 py-3">

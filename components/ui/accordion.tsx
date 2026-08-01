@@ -42,7 +42,11 @@ function AccordionItem({ className, ...props }: AccordionPrimitive.Item.Props) {
     <AccordionPrimitive.Item
       data-slot="accordion-item"
       className={cn(
-        "transition-opacity duration-200 ease-out group-hover/accordion:opacity-40 hover:opacity-100!",
+        "transition-opacity duration-200 ease-out",
+        // Sibling mute — only interactive items brighten on their own hover.
+        "not-data-disabled:group-hover/accordion:opacity-disabled not-data-disabled:hover:opacity-100!",
+        // Disabled stays muted and never “wins” the hover highlight.
+        "data-disabled:cursor-not-allowed data-disabled:opacity-disabled",
         className,
       )}
       {...props}
@@ -66,7 +70,7 @@ function AccordionTrigger({
     <AccordionPrimitive.Header className="flex">
       <AccordionPrimitive.Trigger
         className={cn(
-          "flex flex-1 items-center justify-between gap-4 py-4 text-left text-sm font-medium text-foreground outline-none transition-colors focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background disabled:pointer-events-none disabled:opacity-50",
+          "flex flex-1 items-center justify-between gap-4 py-4 text-left text-sm font-medium text-foreground outline-none transition-colors focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background data-disabled:cursor-not-allowed data-disabled:text-muted-foreground disabled:pointer-events-none",
           className,
         )}
         {...props}

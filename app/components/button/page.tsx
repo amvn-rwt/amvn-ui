@@ -299,7 +299,7 @@ export default function ButtonPage() {
           </p>
           <div className="overflow-x-auto rounded-3xl border border-border">
             <table className="w-full min-w-14 text-left text-sm">
-              <thead className="border-b border-border bg-muted/50">
+              <thead className="border-b border-border bg-muted/muted">
                 <tr>
                   <th className="px-4 py-3 font-medium">Prop</th>
                   <th className="px-4 py-3 font-medium">Type</th>

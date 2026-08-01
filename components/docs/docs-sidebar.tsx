@@ -31,7 +31,7 @@ export function DocsSidebar() {
                           "block rounded-md px-2 py-1.5 text-sm outline-none transition-colors focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background",
                           isActive
                             ? "bg-muted text-foreground"
-                            : "text-muted-foreground hover:bg-muted/60 hover:text-foreground",
+                            : "text-muted-foreground hover:bg-muted/soft hover:text-foreground",
                         )}
                       >
                         {item.title}

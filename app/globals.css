@@ -69,6 +69,14 @@
   --text-2xl: 1.5rem; /* 24px */
   --text-3xl: 1.875rem; /* 30px */
   --text-4xl: 2.25rem; /* 36px */
+
+  /* Opacities — use via opacity-* or color/* modifiers (e.g. bg-muted/disabled) */
+  --opacity-faint: 30%; /* quiet surface tints (preview wells) */
+  --opacity-disabled: 40%; /* unavailable controls, de-emphasized siblings */
+  --opacity-muted: 50%; /* soft surfaces (table headers, code chrome) */
+  --opacity-soft: 60%; /* subtle hover fills */
+  --opacity-strong: 80%; /* stronger overlays / secondary hover */
+  --opacity-intense: 90%; /* near-solid hover tints */
 }
 
 .dark {
@@ -131,7 +139,7 @@ html {
   margin-right: 1.25rem;
   text-align: right;
   color: var(--muted-foreground);
-  opacity: 0.55;
+  opacity: var(--opacity-muted);
   user-select: none;
 }
 

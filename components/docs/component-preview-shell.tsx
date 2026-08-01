@@ -98,7 +98,7 @@ function ComponentPreviewShell({
         {children}
       </div>
 
-      <div className="relative border-t border-border bg-muted/90">
+      <div className="relative border-t border-border bg-muted/intense">
         <motion.div
           initial={false}
           animate={{ height: expanded ? expandedHeight : COLLAPSED_HEIGHT }}
@@ -122,7 +122,7 @@ function ComponentPreviewShell({
           initial={false}
           animate={{ opacity: expanded ? 0 : 1 }}
           transition={fadeTransition}
-          className="pointer-events-none absolute inset-x-0 top-0 z-10 bg-linear-to-t from-muted via-muted/80 to-transparent"
+          className="pointer-events-none absolute inset-x-0 top-0 z-10 bg-linear-to-t from-muted via-muted/strong to-transparent"
           style={{ height: COLLAPSED_HEIGHT }}
           aria-hidden="true"
         />
