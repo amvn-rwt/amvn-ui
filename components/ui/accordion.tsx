@@ -2,8 +2,16 @@
 
 import { Accordion as AccordionPrimitive } from "@base-ui/react/accordion";
 import { ChevronDownIcon } from "lucide-react";
+import { motion } from "motion/react";
 
 import { cn } from "@/lib/utils";
+
+const chevronSpring = {
+  type: "spring",
+  stiffness: 400,
+  damping: 22,
+  mass: 0.6,
+} as const;
 
 type AccordionProps = AccordionPrimitive.Root.Props & {
   /** Show dividers between items. @default true */
@@ -42,23 +50,41 @@ function AccordionItem({ className, ...props }: AccordionPrimitive.Item.Props) {
   );
 }
 
+type AccordionTriggerProps = Omit<
+  AccordionPrimitive.Trigger.Props,
+  "className" | "render"
+> & {
+  className?: string;
+};
+
 function AccordionTrigger({
   className,
   children,
   ...props
-}: AccordionPrimitive.Trigger.Props) {
+}: AccordionTriggerProps) {
   return (
     <AccordionPrimitive.Header className="flex">
       <AccordionPrimitive.Trigger
         className={cn(
-          "flex flex-1 items-center justify-between gap-4 py-4 text-left text-sm font-medium text-foreground outline-none transition-colors focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background disabled:pointer-events-none disabled:opacity-50 [&[data-panel-open]_svg]:rotate-180",
+          "flex flex-1 items-center justify-between gap-4 py-4 text-left text-sm font-medium text-foreground outline-none transition-colors focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background disabled:pointer-events-none disabled:opacity-50",
           className,
         )}
         {...props}
-      >
-        {children}
-        <ChevronDownIcon className="size-4 shrink-0 text-muted-foreground transition-transform duration-200" />
-      </AccordionPrimitive.Trigger>
+        render={(triggerProps, state) => (
+          <button {...triggerProps} type="button">
+            {children}
+            <motion.span
+              aria-hidden
+              className="inline-flex shrink-0"
+              initial={false}
+              animate={{ rotate: state.open ? 180 : 0 }}
+              transition={chevronSpring}
+            >
+              <ChevronDownIcon className="size-4 text-muted-foreground" />
+            </motion.span>
+          </button>
+        )}
+      />
     </AccordionPrimitive.Header>
   );
 }
@@ -71,6 +97,7 @@ function AccordionContent({
   return (
     <AccordionPrimitive.Panel
       className={cn(
+        // Base UI only awaits CSS transitions before unmounting on close.
         "h-(--accordion-panel-height) overflow-hidden text-sm text-muted-foreground transition-[height] duration-200 ease-out data-starting-style:h-0 data-ending-style:h-0",
         className,
       )}
@@ -82,4 +109,4 @@ function AccordionContent({
 }
 
 export { Accordion, AccordionItem, AccordionTrigger, AccordionContent };
-export type { AccordionProps };
+export type { AccordionProps, AccordionTriggerProps };
