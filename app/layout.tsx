@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import localFont from "next/font/local";
 
 import { ThemeProvider } from "@/components/theme-provider";
+import { site } from "@/lib/site";
 
 import "./globals.css";
 
@@ -23,8 +24,32 @@ const satoshi = localFont({
 });
 
 export const metadata: Metadata = {
-  title: "amvn.uı",
-  description: "Aman Rawat's UI library",
+  metadataBase: new URL(site.url),
+  title: {
+    default: site.title,
+    template: `%s | ${site.name}`,
+  },
+  description: site.description,
+  openGraph: {
+    type: "website",
+    locale: site.locale,
+    siteName: site.name,
+    title: site.title,
+    description: site.description,
+    url: "/",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: site.title,
+    description: site.description,
+  },
+  alternates: {
+    canonical: "/",
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
 };
 
 export default function RootLayout({
