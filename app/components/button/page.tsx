@@ -10,6 +10,14 @@ import {
 import { ComponentPreview } from "@/components/docs/component-preview";
 import { SetDocsToc } from "@/components/docs/docs-toc";
 import { Button } from "@/components/ui/button";
+import { createPageMetadata } from "@/lib/seo";
+
+export const metadata = createPageMetadata({
+  title: "Button",
+  description:
+    "Button component for amvn.ui — primary, secondary, outline, ghost, danger, and success variants built with Base UI and Tailwind CSS.",
+  path: "/components/button",
+});
 
 const examples = [
   { title: "Primary", variant: "primary", label: "Launch The Rocket" },

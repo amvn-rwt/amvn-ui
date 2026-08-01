@@ -1,6 +1,14 @@
 import Link from "next/link";
 
 import { components } from "@/lib/docs-nav";
+import { createPageMetadata } from "@/lib/seo";
+
+export const metadata = createPageMetadata({
+  title: "Components",
+  description:
+    "Browse amvn.ui components — accessible elemental React building blocks built with Base UI and Tailwind CSS.",
+  path: "/components",
+});
 
 export default function ComponentsPage() {
   return (

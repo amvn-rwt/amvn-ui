@@ -1,4 +1,19 @@
+import type { Metadata } from "next";
 import Link from "next/link";
+
+import { createPageMetadata } from "@/lib/seo";
+import { site } from "@/lib/site";
+
+export const metadata: Metadata = {
+  ...createPageMetadata({
+    title: site.title,
+    description: site.description,
+    path: "/",
+  }),
+  title: {
+    absolute: site.title,
+  },
+};
 
 export default function Home() {
   return (
