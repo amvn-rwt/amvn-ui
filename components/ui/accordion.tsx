@@ -52,7 +52,7 @@ function AccordionContent({
   return (
     <AccordionPrimitive.Panel
       className={cn(
-        "h-(--accordion-panel-height) overflow-hidden text-sm text-muted-foreground transition-[height] duration-200 ease-out data-starting-style:h-0 data-ending-style:h-0",
+        "h-[var(--accordion-panel-height)] overflow-hidden text-sm text-muted-foreground transition-[height] duration-200 ease-out data-[starting-style]:h-0 data-[ending-style]:h-0",
         className,
       )}
       {...props}

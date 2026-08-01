@@ -10,6 +10,7 @@ export type DocsNavSection = {
 
 export const components: DocsNavItem[] = [
   { title: "Button", href: "/components/button" },
+  { title: "Accordion", href: "/components/accordion" },
 ];
 
 export const docsNav: DocsNavSection[] = [
