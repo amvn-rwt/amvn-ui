@@ -38,9 +38,33 @@ function AccordionPreview() {
   );
 }
 
+// Static mockup, not a real AlertDialog — the card preview well is a
+// non-interactive snapshot, so there's no open state to trigger here.
+function AlertDialogPreview() {
+  return (
+    <div className="w-full max-w-48 rounded-lg border border-border bg-background p-4 text-left shadow-sm">
+      <p className="text-sm font-semibold text-foreground">
+        Discard flight log?
+      </p>
+      <p className="mt-1 text-xs text-muted-foreground">
+        This can&apos;t be undone once you leave orbit.
+      </p>
+      <div className="mt-3 flex justify-end gap-2">
+        <span className="rounded-full border border-border px-3 py-1 text-xs text-foreground">
+          Cancel
+        </span>
+        <span className="rounded-full bg-danger px-3 py-1 text-xs text-danger-foreground">
+          Discard
+        </span>
+      </div>
+    </div>
+  );
+}
+
 const previews: Record<string, ReactNode> = {
   "/components/button": <ButtonPreview />,
   "/components/accordion": <AccordionPreview />,
+  "/components/alert-dialog": <AlertDialogPreview />,
 };
 
 type ComponentCardProps = {
