@@ -1,5 +1,6 @@
 import { ComponentPreview } from "@/components/docs/component-preview";
 import { SetDocsToc } from "@/components/docs/docs-toc";
+import { InlineCode } from "@/components/docs/inline-code";
 import { JsonLd } from "@/components/seo/json-ld";
 import { Button } from "@/components/ui/button";
 import {
@@ -332,13 +333,8 @@ export default async function AlertDialogPage() {
         Unlike Dialog, it&apos;s always modal and clicking the backdrop
         won&apos;t close it, only pressing Escape or an explicit action will.
         It renders with{" "}
-        <code className="text-foreground text-sm bg-muted p-1 rounded">
-          role=&quot;alertdialog&quot;
-        </code>{" "}
-        instead of{" "}
-        <code className="text-foreground text-sm bg-muted p-1 rounded">
-          role=&quot;dialog&quot;
-        </code>
+        <InlineCode>role=&quot;alertdialog&quot;</InlineCode> instead of{" "}
+        <InlineCode>role=&quot;dialog&quot;</InlineCode>
         , so use it for actions that need a deliberate, explicit response
         rather than dismissable notices.
       </p>
@@ -396,9 +392,7 @@ export default async function AlertDialogPage() {
           </h2>
           <p className="text-sm text-muted-foreground">
             A handle from{" "}
-            <code className="text-foreground text-sm bg-muted p-1 rounded">
-              createAlertDialogHandle()
-            </code>{" "}
+            <InlineCode>createAlertDialogHandle()</InlineCode>{" "}
             connects a trigger to a dialog anywhere else in the tree, so
             neither has to be the other&apos;s descendant.
           </p>
@@ -414,9 +408,7 @@ export default async function AlertDialogPage() {
           <p className="text-sm text-muted-foreground">
             Several triggers can share one handle and dialog, each passing
             its own{" "}
-            <code className="text-foreground text-sm bg-muted p-1 rounded">
-              payload
-            </code>
+            <InlineCode>payload</InlineCode>
             . The dialog reads it back through a function child to render
             the copy for whichever action was pressed.
           </p>
@@ -472,13 +464,8 @@ export default async function AlertDialogPage() {
           <p className="text-sm text-muted-foreground">
             This covers the parts and props used above. For the full
             reference, including{" "}
-            <code className="text-foreground text-sm bg-muted p-1 rounded">
-              actionsRef
-            </code>
-            ,{" "}
-            <code className="text-foreground text-sm bg-muted p-1 rounded">
-              Root.ChangeEventDetails
-            </code>
+            <InlineCode>actionsRef</InlineCode>,{" "}
+            <InlineCode>Root.ChangeEventDetails</InlineCode>
             , CSS variables, and data attributes, see the{" "}
             <a
               href="https://base-ui.com/react/components/alert-dialog"

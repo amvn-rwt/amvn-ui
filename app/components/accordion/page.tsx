@@ -1,5 +1,6 @@
 import { ComponentPreview } from "@/components/docs/component-preview";
 import { SetDocsToc } from "@/components/docs/docs-toc";
+import { InlineCode } from "@/components/docs/inline-code";
 import { JsonLd } from "@/components/seo/json-ld";
 import {
   Accordion,
@@ -295,9 +296,7 @@ export default function AccordionPage() {
       <p className="mt-2 text-muted-foreground">
         A set of collapsible panels for FAQs and progressive disclosure.
         Accessible by default — Base UI handles{" "}
-        <code className="text-foreground text-sm bg-muted p-1 rounded">
-          aria-expanded
-        </code>
+        <InlineCode>aria-expanded</InlineCode>
         , heading semantics and keyboard navigation.
       </p>
 

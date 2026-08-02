@@ -36,7 +36,8 @@ function AlertDialogBackdrop({
     <AlertDialogPrimitive.Backdrop
       data-slot="alert-dialog-backdrop"
       className={cn(
-        "fixed inset-0 bg-black/20 transition-opacity data-ending-style:opacity-0 data-starting-style:opacity-0 dark:bg-black/muted",
+        // isolate + z-50 keep the overlay above preview chrome (e.g. View Code at z-20)
+        "fixed inset-0 z-50 isolate bg-black/20 transition-opacity data-ending-style:opacity-0 data-starting-style:opacity-0 dark:bg-black/muted",
         className,
       )}
       {...props}
@@ -52,7 +53,7 @@ function AlertDialogPopup({
     <AlertDialogPrimitive.Popup
       data-slot="alert-dialog-popup"
       className={cn(
-        "fixed top-1/2 left-1/2 w-full max-w-md -translate-x-1/2 -translate-y-1/2 rounded-lg border border-border bg-background p-6 shadow-lg transition-all max-h-[calc(100vh-3rem)] overflow-y-auto data-ending-style:scale-95 data-ending-style:opacity-0 data-starting-style:scale-95 data-starting-style:opacity-0",
+        "fixed top-1/2 left-1/2 z-50 w-full max-w-md -translate-x-1/2 -translate-y-1/2 rounded-4xl border border-border bg-background p-5 shadow-lg transition-all max-h-[calc(100vh-3rem)] overflow-y-auto data-ending-style:scale-95 data-ending-style:opacity-0 data-starting-style:scale-95 data-starting-style:opacity-0",
         className,
       )}
       {...props}
