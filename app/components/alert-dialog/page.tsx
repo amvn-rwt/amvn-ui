@@ -154,12 +154,12 @@ export default function Example() {
         <AlertDialogPopup>
           <AlertDialogTitle>Overwrite telemetry notes?</AlertDialogTitle>
           <AlertDialogDescription>
-            The previous draft is replaced. You can still export a copy
-            before confirming.
+            The previous draft is replaced if you continue. You can postpone
+            and come back later.
           </AlertDialogDescription>
           <div className="mt-6 flex items-center justify-between gap-2">
             <AlertDialogClose
-              render={<Button variant="ghost">Export Copy</Button>}
+              render={<Button variant="ghost">Remind me later</Button>}
             />
             <div className="flex gap-2">
               <AlertDialogClose
@@ -195,7 +195,7 @@ export default function Example() {
         render={<Button variant="danger">Scrub Launch</Button>}
       />
       <AlertDialogPortal>
-        <AlertDialogBackdrop className="backdrop-blur-sm" />
+        <AlertDialogBackdrop className="backdrop-blur-sm isolation-auto" />
         <AlertDialogPopup>
           <AlertDialogTitle>Scrub the launch?</AlertDialogTitle>
           <AlertDialogDescription>
@@ -395,10 +395,10 @@ const popupProps = [
 
 const toc = [
   { id: "default", title: "Default" },
+  { id: "anatomy", title: "Anatomy" },
   { id: "with-icon", title: "With icon" },
   { id: "with-tertiary-action", title: "With tertiary action" },
   { id: "with-blurred-backdrop", title: "With blurred backdrop" },
-  { id: "anatomy", title: "Anatomy" },
   { id: "detached-trigger", title: "Detached trigger" },
   { id: "payload", title: "Multiple triggers with payload" },
   { id: "props", title: "Props" },
@@ -499,6 +499,16 @@ export default async function AlertDialogPage() {
           </ComponentPreview>
         </div>
 
+        <div className="space-y-3">
+          <h2 id="anatomy" className="scroll-mt-10 text-lg font-medium">
+            Anatomy
+          </h2>
+          <div
+            className="overflow-x-auto rounded-3xl border border-border bg-muted/intense p-4 font-mono text-sm [&_pre]:m-0 [&_pre]:bg-transparent! [&_pre]:p-0"
+            dangerouslySetInnerHTML={{ __html: anatomyHtml }}
+          />
+        </div>
+
         <div className="space-y-4">
           <div className="space-y-2">
             <h2 id="with-icon" className="scroll-mt-10 text-lg font-medium">
@@ -577,12 +587,14 @@ export default async function AlertDialogPage() {
                       Overwrite telemetry notes?
                     </AlertDialogTitle>
                     <AlertDialogDescription>
-                      The previous draft is replaced. You can still export a
-                      copy before confirming.
+                      The previous draft is replaced if you continue. You can
+                      postpone and come back later.
                     </AlertDialogDescription>
                     <div className="mt-6 flex items-center justify-between gap-2">
                       <AlertDialogClose
-                        render={<Button variant="ghost">Export Copy</Button>}
+                        render={
+                          <Button variant="ghost">Remind me later</Button>
+                        }
                       />
                       <div className="flex gap-2">
                         <AlertDialogClose
@@ -611,8 +623,10 @@ export default async function AlertDialogPage() {
               With blurred backdrop
             </h2>
             <p className="text-base text-muted-foreground">
-              Pass a blur utility on the backdrop when you want the page
-              behind the dialog to soften.
+              Add{" "}
+              <InlineCode>backdrop-blur-sm</InlineCode> and{" "}
+              <InlineCode>isolation-auto</InlineCode> on the backdrop. The
+              second undoes the default isolate so blur can take effect.
             </p>
           </div>
           <ComponentPreview code={withBlurredBackdropCode}>
@@ -622,7 +636,7 @@ export default async function AlertDialogPage() {
                   render={<Button variant="danger">Scrub Launch</Button>}
                 />
                 <AlertDialogPortal>
-                  <AlertDialogBackdrop className="backdrop-blur-sm" />
+                  <AlertDialogBackdrop className="backdrop-blur-sm isolation-auto" />
                   <AlertDialogPopup>
                     <AlertDialogTitle>Scrub the launch?</AlertDialogTitle>
                     <AlertDialogDescription>
@@ -642,16 +656,6 @@ export default async function AlertDialogPage() {
               </AlertDialog>
             </div>
           </ComponentPreview>
-        </div>
-
-        <div className="space-y-3">
-          <h2 id="anatomy" className="scroll-mt-10 text-lg font-medium">
-            Anatomy
-          </h2>
-          <div
-            className="overflow-x-auto rounded-3xl border border-border bg-muted/intense p-4 font-mono text-sm [&_pre]:m-0 [&_pre]:bg-transparent! [&_pre]:p-0"
-            dangerouslySetInnerHTML={{ __html: anatomyHtml }}
-          />
         </div>
 
         <div className="space-y-4">
