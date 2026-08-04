@@ -1,3 +1,5 @@
+import { CircleAlertIcon } from "lucide-react";
+
 import { ComponentPreview } from "@/components/docs/component-preview";
 import { SetDocsToc } from "@/components/docs/docs-toc";
 import { InlineCode } from "@/components/docs/inline-code";
@@ -77,6 +79,132 @@ export default function Example() {
           <div className="mt-6 flex justify-end gap-2">
             <AlertDialogClose render={<Button variant="outline">Cancel</Button>} />
             <AlertDialogClose render={<Button variant="danger">Discard</Button>} />
+          </div>
+        </AlertDialogPopup>
+      </AlertDialogPortal>
+    </AlertDialog>
+  )
+}`;
+
+const withIconCode = `import { CircleAlertIcon } from "lucide-react"
+import { Button } from "@/components/ui/button"
+import {
+  AlertDialog,
+  AlertDialogBackdrop,
+  AlertDialogClose,
+  AlertDialogDescription,
+  AlertDialogPopup,
+  AlertDialogPortal,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from "@/components/ui/alert-dialog"
+
+export default function Example() {
+  return (
+    <AlertDialog>
+      <AlertDialogTrigger
+        render={<Button variant="danger">Purge Fuel Tank</Button>}
+      />
+      <AlertDialogPortal>
+        <AlertDialogBackdrop />
+        <AlertDialogPopup>
+          <div className="flex items-start gap-3">
+            <CircleAlertIcon
+              aria-hidden="true"
+              className="mt-0.5 size-5 shrink-0 text-danger"
+            />
+            <div>
+              <AlertDialogTitle>Purge the fuel tank?</AlertDialogTitle>
+              <AlertDialogDescription>
+                Every drop vents to atmosphere. Refueling takes another two
+                orbits.
+              </AlertDialogDescription>
+            </div>
+          </div>
+          <div className="mt-6 flex justify-end gap-2">
+            <AlertDialogClose render={<Button variant="outline">Cancel</Button>} />
+            <AlertDialogClose render={<Button variant="danger">Purge</Button>} />
+          </div>
+        </AlertDialogPopup>
+      </AlertDialogPortal>
+    </AlertDialog>
+  )
+}`;
+
+const withTertiaryCode = `import { Button } from "@/components/ui/button"
+import {
+  AlertDialog,
+  AlertDialogBackdrop,
+  AlertDialogClose,
+  AlertDialogDescription,
+  AlertDialogPopup,
+  AlertDialogPortal,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from "@/components/ui/alert-dialog"
+
+export default function Example() {
+  return (
+    <AlertDialog>
+      <AlertDialogTrigger
+        render={<Button variant="danger">Overwrite Telemetry</Button>}
+      />
+      <AlertDialogPortal>
+        <AlertDialogBackdrop />
+        <AlertDialogPopup>
+          <AlertDialogTitle>Overwrite telemetry notes?</AlertDialogTitle>
+          <AlertDialogDescription>
+            The previous draft is replaced. You can still export a copy
+            before confirming.
+          </AlertDialogDescription>
+          <div className="mt-6 flex items-center justify-between gap-2">
+            <AlertDialogClose
+              render={<Button variant="ghost">Export Copy</Button>}
+            />
+            <div className="flex gap-2">
+              <AlertDialogClose
+                render={<Button variant="outline">Cancel</Button>}
+              />
+              <AlertDialogClose
+                render={<Button variant="danger">Overwrite</Button>}
+              />
+            </div>
+          </div>
+        </AlertDialogPopup>
+      </AlertDialogPortal>
+    </AlertDialog>
+  )
+}`;
+
+const withBlurredBackdropCode = `import { Button } from "@/components/ui/button"
+import {
+  AlertDialog,
+  AlertDialogBackdrop,
+  AlertDialogClose,
+  AlertDialogDescription,
+  AlertDialogPopup,
+  AlertDialogPortal,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from "@/components/ui/alert-dialog"
+
+export default function Example() {
+  return (
+    <AlertDialog>
+      <AlertDialogTrigger
+        render={<Button variant="danger">Scrub Launch</Button>}
+      />
+      <AlertDialogPortal>
+        <AlertDialogBackdrop className="backdrop-blur-sm" />
+        <AlertDialogPopup>
+          <AlertDialogTitle>Scrub the launch?</AlertDialogTitle>
+          <AlertDialogDescription>
+            The window closes for this orbit. Ground control will need a new
+            clearance before the next attempt.
+          </AlertDialogDescription>
+          <div className="mt-6 flex justify-end gap-2">
+            <AlertDialogClose render={<Button variant="outline">Cancel</Button>} />
+            <AlertDialogClose render={<Button variant="danger">Scrub</Button>} />
           </div>
         </AlertDialogPopup>
       </AlertDialogPortal>
@@ -267,6 +395,9 @@ const popupProps = [
 
 const toc = [
   { id: "default", title: "Default" },
+  { id: "with-icon", title: "With icon" },
+  { id: "with-tertiary-action", title: "With tertiary action" },
+  { id: "with-blurred-backdrop", title: "With blurred backdrop" },
   { id: "anatomy", title: "Anatomy" },
   { id: "detached-trigger", title: "Detached trigger" },
   { id: "payload", title: "Multiple triggers with payload" },
@@ -359,6 +490,151 @@ export default async function AlertDialogPage() {
                       />
                       <AlertDialogClose
                         render={<Button variant="danger">Discard</Button>}
+                      />
+                    </div>
+                  </AlertDialogPopup>
+                </AlertDialogPortal>
+              </AlertDialog>
+            </div>
+          </ComponentPreview>
+        </div>
+
+        <div className="space-y-4">
+          <div className="space-y-2">
+            <h2 id="with-icon" className="scroll-mt-10 text-lg font-medium">
+              With icon
+            </h2>
+            <p className="text-base text-muted-foreground">
+              Compose a decorative icon beside the title when the action
+              needs a stronger visual cue. Keep severity in the title text
+              and hide the icon from assistive tech.
+            </p>
+          </div>
+          <ComponentPreview code={withIconCode}>
+            <div className="flex w-full items-center justify-center">
+              <AlertDialog>
+                <AlertDialogTrigger
+                  render={<Button variant="danger">Purge Fuel Tank</Button>}
+                />
+                <AlertDialogPortal>
+                  <AlertDialogBackdrop />
+                  <AlertDialogPopup>
+                    <div className="flex items-start gap-3">
+                      <CircleAlertIcon
+                        aria-hidden="true"
+                        className="mt-0.5 size-5 shrink-0 text-danger"
+                      />
+                      <div>
+                        <AlertDialogTitle>
+                          Purge the fuel tank?
+                        </AlertDialogTitle>
+                        <AlertDialogDescription>
+                          Every drop vents to atmosphere. Refueling takes
+                          another two orbits.
+                        </AlertDialogDescription>
+                      </div>
+                    </div>
+                    <div className="mt-6 flex justify-end gap-2">
+                      <AlertDialogClose
+                        render={<Button variant="outline">Cancel</Button>}
+                      />
+                      <AlertDialogClose
+                        render={<Button variant="danger">Purge</Button>}
+                      />
+                    </div>
+                  </AlertDialogPopup>
+                </AlertDialogPortal>
+              </AlertDialog>
+            </div>
+          </ComponentPreview>
+        </div>
+
+        <div className="space-y-4">
+          <div className="space-y-2">
+            <h2
+              id="with-tertiary-action"
+              className="scroll-mt-10 text-lg font-medium"
+            >
+              With tertiary action
+            </h2>
+            <p className="text-base text-muted-foreground">
+              Place an optional ghost action on the left. Keep Cancel and
+              the primary confirm grouped on the right.
+            </p>
+          </div>
+          <ComponentPreview code={withTertiaryCode}>
+            <div className="flex w-full items-center justify-center">
+              <AlertDialog>
+                <AlertDialogTrigger
+                  render={
+                    <Button variant="danger">Overwrite Telemetry</Button>
+                  }
+                />
+                <AlertDialogPortal>
+                  <AlertDialogBackdrop />
+                  <AlertDialogPopup>
+                    <AlertDialogTitle>
+                      Overwrite telemetry notes?
+                    </AlertDialogTitle>
+                    <AlertDialogDescription>
+                      The previous draft is replaced. You can still export a
+                      copy before confirming.
+                    </AlertDialogDescription>
+                    <div className="mt-6 flex items-center justify-between gap-2">
+                      <AlertDialogClose
+                        render={<Button variant="ghost">Export Copy</Button>}
+                      />
+                      <div className="flex gap-2">
+                        <AlertDialogClose
+                          render={<Button variant="outline">Cancel</Button>}
+                        />
+                        <AlertDialogClose
+                          render={
+                            <Button variant="danger">Overwrite</Button>
+                          }
+                        />
+                      </div>
+                    </div>
+                  </AlertDialogPopup>
+                </AlertDialogPortal>
+              </AlertDialog>
+            </div>
+          </ComponentPreview>
+        </div>
+
+        <div className="space-y-4">
+          <div className="space-y-2">
+            <h2
+              id="with-blurred-backdrop"
+              className="scroll-mt-10 text-lg font-medium"
+            >
+              With blurred backdrop
+            </h2>
+            <p className="text-base text-muted-foreground">
+              Pass a blur utility on the backdrop when you want the page
+              behind the dialog to soften.
+            </p>
+          </div>
+          <ComponentPreview code={withBlurredBackdropCode}>
+            <div className="flex w-full items-center justify-center">
+              <AlertDialog>
+                <AlertDialogTrigger
+                  render={<Button variant="danger">Scrub Launch</Button>}
+                />
+                <AlertDialogPortal>
+                  <AlertDialogBackdrop className="backdrop-blur-sm" />
+                  <AlertDialogPopup>
+                    <AlertDialogTitle>Scrub the launch?</AlertDialogTitle>
+                    <AlertDialogDescription>
+                      The window closes for this orbit. Ground control will
+                      need a new clearance before the next attempt.
+                    </AlertDialogDescription>
+                    <div className="mt-6 flex justify-end gap-2">
+                      <AlertDialogClose
+                        render={<Button variant="outline">Cancel</Button>}
+                      />
+                      <AlertDialogClose
+                        render={<Button variant="danger">Scrub</Button>}
                       />
                     </div>
                   </AlertDialogPopup>
