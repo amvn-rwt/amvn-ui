@@ -505,14 +505,14 @@ export default function AccordionPage() {
 
           <div className="space-y-3">
             <h3 className="text-base font-medium">AccordionTrigger</h3>
-            <p className="text-sm text-muted-foreground">
+            <p className="text-base text-muted-foreground">
               Extends native button attributes.
             </p>
           </div>
 
           <div className="space-y-3">
             <h3 className="text-base font-medium">AccordionContent</h3>
-            <p className="text-sm text-muted-foreground">
+            <p className="text-base text-muted-foreground">
               Extends native div attributes.
             </p>
           </div>

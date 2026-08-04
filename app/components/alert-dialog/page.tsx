@@ -390,7 +390,7 @@ export default async function AlertDialogPage() {
           >
             Detached trigger
           </h2>
-          <p className="text-sm text-muted-foreground">
+          <p className="text-base text-muted-foreground">
             A handle from{" "}
             <InlineCode>createAlertDialogHandle()</InlineCode>{" "}
             connects a trigger to a dialog anywhere else in the tree, so
@@ -405,7 +405,7 @@ export default async function AlertDialogPage() {
           <h2 id="payload" className="scroll-mt-10 text-lg font-medium">
             Multiple triggers with payload
           </h2>
-          <p className="text-sm text-muted-foreground">
+          <p className="text-base text-muted-foreground">
             Several triggers can share one handle and dialog, each passing
             its own{" "}
             <InlineCode>payload</InlineCode>
@@ -430,7 +430,7 @@ export default async function AlertDialogPage() {
           <div className="space-y-3">
             <h3 className="text-base font-medium">AlertDialogTrigger</h3>
             <PropsTable props={triggerProps} />
-            <p className="text-sm text-muted-foreground">
+            <p className="text-base text-muted-foreground">
               Also extends native button attributes.
             </p>
           </div>
@@ -442,26 +442,26 @@ export default async function AlertDialogPage() {
 
           <div className="space-y-3">
             <h3 className="text-base font-medium">AlertDialogTitle</h3>
-            <p className="text-sm text-muted-foreground">
+            <p className="text-base text-muted-foreground">
               Extends native heading attributes.
             </p>
           </div>
 
           <div className="space-y-3">
             <h3 className="text-base font-medium">AlertDialogDescription</h3>
-            <p className="text-sm text-muted-foreground">
+            <p className="text-base text-muted-foreground">
               Extends native paragraph attributes.
             </p>
           </div>
 
           <div className="space-y-3">
             <h3 className="text-base font-medium">AlertDialogClose</h3>
-            <p className="text-sm text-muted-foreground">
+            <p className="text-base text-muted-foreground">
               Extends native button attributes.
             </p>
           </div>
 
-          <p className="text-sm text-muted-foreground">
+          <p className="text-base text-muted-foreground">
             This covers the parts and props used above. For the full
             reference, including{" "}
             <InlineCode>actionsRef</InlineCode>,{" "}

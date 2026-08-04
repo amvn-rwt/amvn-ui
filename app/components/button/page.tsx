@@ -294,7 +294,7 @@ export default function ButtonPage() {
           <h2 id="props" className="scroll-mt-10 text-lg font-medium">
             Props
           </h2>
-          <p className="text-sm text-muted-foreground">
+          <p className="text-base text-muted-foreground">
             Extends native button attributes.
           </p>
           <div className="overflow-x-auto rounded-3xl border border-border">
