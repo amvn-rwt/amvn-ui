@@ -1,4 +1,10 @@
-import { CircleAlertIcon } from "lucide-react";
+import {
+  BanIcon,
+  CircleAlertIcon,
+  DropletsIcon,
+  FilePenLineIcon,
+  Trash2Icon,
+} from "lucide-react";
 
 import { ComponentPreview } from "@/components/docs/component-preview";
 import { SetDocsToc } from "@/components/docs/docs-toc";
@@ -51,7 +57,8 @@ const anatomyCode = `import {
   </AlertDialogPortal>
 </AlertDialog>`;
 
-const defaultCode = `import { Button } from "@/components/ui/button"
+const defaultCode = `import { Trash2Icon } from "lucide-react"
+import { Button } from "@/components/ui/button"
 import {
   AlertDialog,
   AlertDialogBackdrop,
@@ -67,7 +74,12 @@ export default function Example() {
   return (
     <AlertDialog>
       <AlertDialogTrigger
-        render={<Button variant="danger">Discard Flight Log</Button>}
+        render={
+          <Button variant="danger">
+            <Trash2Icon />
+            Discard Flight Log
+          </Button>
+        }
       />
       <AlertDialogPortal>
         <AlertDialogBackdrop />
@@ -86,7 +98,7 @@ export default function Example() {
   )
 }`;
 
-const withIconCode = `import { CircleAlertIcon } from "lucide-react"
+const withIconCode = `import { CircleAlertIcon, DropletsIcon } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import {
   AlertDialog,
@@ -103,7 +115,12 @@ export default function Example() {
   return (
     <AlertDialog>
       <AlertDialogTrigger
-        render={<Button variant="danger">Purge Fuel Tank</Button>}
+        render={
+          <Button variant="danger">
+            <DropletsIcon />
+            Purge Fuel Tank
+          </Button>
+        }
       />
       <AlertDialogPortal>
         <AlertDialogBackdrop />
@@ -131,7 +148,8 @@ export default function Example() {
   )
 }`;
 
-const withTertiaryCode = `import { Button } from "@/components/ui/button"
+const withTertiaryCode = `import { FilePenLineIcon } from "lucide-react"
+import { Button } from "@/components/ui/button"
 import {
   AlertDialog,
   AlertDialogBackdrop,
@@ -147,7 +165,12 @@ export default function Example() {
   return (
     <AlertDialog>
       <AlertDialogTrigger
-        render={<Button variant="danger">Overwrite Telemetry</Button>}
+        render={
+          <Button variant="danger">
+            <FilePenLineIcon />
+            Overwrite Telemetry
+          </Button>
+        }
       />
       <AlertDialogPortal>
         <AlertDialogBackdrop />
@@ -176,7 +199,8 @@ export default function Example() {
   )
 }`;
 
-const withBlurredBackdropCode = `import { Button } from "@/components/ui/button"
+const withBlurredBackdropCode = `import { BanIcon } from "lucide-react"
+import { Button } from "@/components/ui/button"
 import {
   AlertDialog,
   AlertDialogBackdrop,
@@ -192,7 +216,12 @@ export default function Example() {
   return (
     <AlertDialog>
       <AlertDialogTrigger
-        render={<Button variant="danger">Scrub Launch</Button>}
+        render={
+          <Button variant="danger">
+            <BanIcon />
+            Scrub Launch
+          </Button>
+        }
       />
       <AlertDialogPortal>
         <AlertDialogBackdrop className="backdrop-blur-sm isolation-auto" />
@@ -212,7 +241,8 @@ export default function Example() {
   )
 }`;
 
-const detachedTriggerCode = `import { Button } from "@/components/ui/button"
+const detachedTriggerCode = `import { OctagonXIcon } from "lucide-react"
+import { Button } from "@/components/ui/button"
 import {
   AlertDialog,
   AlertDialogBackdrop,
@@ -234,7 +264,12 @@ export default function Example() {
     <>
       <AlertDialogTrigger
         handle={handle}
-        render={<Button variant="danger">Abort Mission</Button>}
+        render={
+          <Button variant="danger">
+            <OctagonXIcon />
+            Abort Mission
+          </Button>
+        }
       />
       <AlertDialog handle={handle}>
         <AlertDialogPortal>
@@ -256,7 +291,12 @@ export default function Example() {
   )
 }`;
 
-const payloadCode = `import { Button } from "@/components/ui/button"
+const payloadCode = `import {
+  DropletsIcon,
+  LogOutIcon,
+  RocketIcon,
+} from "lucide-react"
+import { Button } from "@/components/ui/button"
 import {
   AlertDialog,
   AlertDialogBackdrop,
@@ -279,9 +319,10 @@ type ActionPayload = {
 // popup can render the right copy for whichever action was pressed.
 const handle = createAlertDialogHandle<ActionPayload>()
 
-const actions: { label: string; payload: ActionPayload }[] = [
+const actions = [
   {
     label: "Abort Launch",
+    icon: RocketIcon,
     payload: {
       title: "Abort the launch?",
       description:
@@ -291,6 +332,7 @@ const actions: { label: string; payload: ActionPayload }[] = [
   },
   {
     label: "Purge Fuel Tank",
+    icon: DropletsIcon,
     payload: {
       title: "Purge the fuel tank?",
       description: "Every drop vents to atmosphere. Refueling takes another two orbits.",
@@ -299,6 +341,7 @@ const actions: { label: string; payload: ActionPayload }[] = [
   },
   {
     label: "Sign Out Of Mission Control",
+    icon: LogOutIcon,
     payload: {
       title: "Sign out of mission control?",
       description: "Unsaved telemetry notes will be lost the moment you log off.",
@@ -310,14 +353,22 @@ const actions: { label: string; payload: ActionPayload }[] = [
 export default function Example() {
   return (
     <>
-      {actions.map((action) => (
-        <AlertDialogTrigger
-          key={action.label}
-          handle={handle}
-          payload={action.payload}
-          render={<Button variant="outline">{action.label}</Button>}
-        />
-      ))}
+      {actions.map((action) => {
+        const Icon = action.icon
+        return (
+          <AlertDialogTrigger
+            key={action.label}
+            handle={handle}
+            payload={action.payload}
+            render={
+              <Button variant="outline">
+                <Icon />
+                {action.label}
+              </Button>
+            }
+          />
+        )
+      })}
       <AlertDialog<ActionPayload> handle={handle}>
         {({ payload }) => (
           <AlertDialogPortal>
@@ -474,7 +525,12 @@ export default async function AlertDialogPage() {
             <div className="flex w-full items-center justify-center">
               <AlertDialog>
                 <AlertDialogTrigger
-                  render={<Button variant="danger">Discard Flight Log</Button>}
+                  render={
+                    <Button variant="danger">
+                      <Trash2Icon />
+                      Discard Flight Log
+                    </Button>
+                  }
                 />
                 <AlertDialogPortal>
                   <AlertDialogBackdrop />
@@ -524,7 +580,12 @@ export default async function AlertDialogPage() {
             <div className="flex w-full items-center justify-center">
               <AlertDialog>
                 <AlertDialogTrigger
-                  render={<Button variant="danger">Purge Fuel Tank</Button>}
+                  render={
+                    <Button variant="danger">
+                      <DropletsIcon />
+                      Purge Fuel Tank
+                    </Button>
+                  }
                 />
                 <AlertDialogPortal>
                   <AlertDialogBackdrop />
@@ -577,7 +638,10 @@ export default async function AlertDialogPage() {
               <AlertDialog>
                 <AlertDialogTrigger
                   render={
-                    <Button variant="danger">Overwrite Telemetry</Button>
+                    <Button variant="danger">
+                      <FilePenLineIcon />
+                      Overwrite Telemetry
+                    </Button>
                   }
                 />
                 <AlertDialogPortal>
@@ -633,7 +697,12 @@ export default async function AlertDialogPage() {
             <div className="flex w-full items-center justify-center">
               <AlertDialog>
                 <AlertDialogTrigger
-                  render={<Button variant="danger">Scrub Launch</Button>}
+                  render={
+                    <Button variant="danger">
+                      <BanIcon />
+                      Scrub Launch
+                    </Button>
+                  }
                 />
                 <AlertDialogPortal>
                   <AlertDialogBackdrop className="backdrop-blur-sm isolation-auto" />

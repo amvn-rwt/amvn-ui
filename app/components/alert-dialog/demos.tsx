@@ -1,5 +1,13 @@
 "use client";
 
+import {
+  DropletsIcon,
+  LogOutIcon,
+  OctagonXIcon,
+  RocketIcon,
+  type LucideIcon,
+} from "lucide-react";
+
 import { Button } from "@/components/ui/button";
 import {
   AlertDialog,
@@ -19,9 +27,14 @@ type ActionPayload = {
   confirmLabel: string;
 };
 
-const payloadActions: { label: string; payload: ActionPayload }[] = [
+const payloadActions: {
+  label: string;
+  icon: LucideIcon;
+  payload: ActionPayload;
+}[] = [
   {
     label: "Abort Launch",
+    icon: RocketIcon,
     payload: {
       title: "Abort the launch?",
       description:
@@ -31,6 +44,7 @@ const payloadActions: { label: string; payload: ActionPayload }[] = [
   },
   {
     label: "Purge Fuel Tank",
+    icon: DropletsIcon,
     payload: {
       title: "Purge the fuel tank?",
       description:
@@ -40,6 +54,7 @@ const payloadActions: { label: string; payload: ActionPayload }[] = [
   },
   {
     label: "Sign Out Of Mission Control",
+    icon: LogOutIcon,
     payload: {
       title: "Sign out of mission control?",
       description:
@@ -60,7 +75,12 @@ function DetachedTriggerDemo() {
     <div className="flex w-full items-center justify-center">
       <AlertDialogTrigger
         handle={detachedTriggerHandle}
-        render={<Button variant="danger">Abort Mission</Button>}
+        render={
+          <Button variant="danger">
+            <OctagonXIcon />
+            Abort Mission
+          </Button>
+        }
       />
       <AlertDialog handle={detachedTriggerHandle}>
         <AlertDialogPortal>
@@ -89,14 +109,22 @@ function DetachedTriggerDemo() {
 function PayloadDemo() {
   return (
     <div className="flex w-full flex-wrap items-center justify-center gap-3">
-      {payloadActions.map((action) => (
-        <AlertDialogTrigger
-          key={action.label}
-          handle={payloadHandle}
-          payload={action.payload}
-          render={<Button variant="outline">{action.label}</Button>}
-        />
-      ))}
+      {payloadActions.map((action) => {
+        const Icon = action.icon;
+        return (
+          <AlertDialogTrigger
+            key={action.label}
+            handle={payloadHandle}
+            payload={action.payload}
+            render={
+              <Button variant="outline">
+                <Icon />
+                {action.label}
+              </Button>
+            }
+          />
+        );
+      })}
       <AlertDialog<ActionPayload> handle={payloadHandle}>
         {({ payload }) => (
           <AlertDialogPortal>
