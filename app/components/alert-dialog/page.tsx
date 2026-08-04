@@ -717,20 +717,17 @@ export default async function AlertDialogPage() {
           </div>
 
           <p className="text-base text-muted-foreground">
-            This covers the parts and props used above. For the full
-            reference, including{" "}
-            <InlineCode>actionsRef</InlineCode>,{" "}
-            <InlineCode>Root.ChangeEventDetails</InlineCode>
-            , CSS variables, and data attributes, see the{" "}
+            This covers the parts used above. See the{" "}
             <a
               href="https://base-ui.com/react/components/alert-dialog"
               target="_blank"
               rel="noreferrer"
               className="text-foreground underline-offset-4 hover:underline"
             >
-              Base UI Alert Dialog documentation
-            </a>
-            .
+              Base UI Alert Dialog docs
+            </a>{" "}
+            for <InlineCode>actionsRef</InlineCode>
+            , event details, CSS variables and data attributes.
           </p>
         </div>
       </section>
