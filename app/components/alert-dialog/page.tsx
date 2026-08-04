@@ -256,12 +256,12 @@ const popupProps = [
   {
     name: "initialFocus",
     type: "boolean | RefObject | (openType) => boolean | HTMLElement | null | void",
-    defaultValue: "true",
+    defaultValue: "—",
   },
   {
     name: "finalFocus",
     type: "boolean | RefObject | (closeType) => boolean | HTMLElement | null | void",
-    defaultValue: "true",
+    defaultValue: "—",
   },
 ] as const;
 
