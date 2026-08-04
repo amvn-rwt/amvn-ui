@@ -1,8 +1,24 @@
 "use client";
 
 import { AlertDialog as AlertDialogPrimitive } from "@base-ui/react/alert-dialog";
+import { motion, type HTMLMotionProps } from "motion/react";
 
 import { cn } from "@/lib/utils";
+
+// Snappy enough to feel immediate, damped enough to avoid modal bounce.
+const popupSpring = {
+  type: "spring",
+  stiffness: 420,
+  damping: 28,
+  mass: 0.8,
+} as const;
+
+const backdropSpring = {
+  type: "spring",
+  stiffness: 500,
+  damping: 40,
+  mass: 0.8,
+} as const;
 
 function AlertDialog<Payload>(props: AlertDialogPrimitive.Root.Props<Payload>) {
   return <AlertDialogPrimitive.Root data-slot="alert-dialog" {...props} />;
@@ -37,10 +53,19 @@ function AlertDialogBackdrop({
       data-slot="alert-dialog-backdrop"
       className={cn(
         // isolate + z-50 keep the overlay above preview chrome (e.g. View Code at z-20)
-        "fixed inset-0 z-50 isolate bg-black/20 transition-opacity data-ending-style:opacity-0 data-starting-style:opacity-0 dark:bg-black/muted",
+        "fixed inset-0 z-50 isolate bg-black/20 dark:bg-black/muted",
         className,
       )}
       {...props}
+      render={(backdropProps, state) => (
+        <motion.div
+          {...(backdropProps as HTMLMotionProps<"div">)}
+          // Opacity stays in the animation so Base UI can await getAnimations() before unmount.
+          initial={{ opacity: 0 }}
+          animate={{ opacity: state.open ? 1 : 0 }}
+          transition={backdropSpring}
+        />
+      )}
     />
   );
 }
@@ -53,10 +78,24 @@ function AlertDialogPopup({
     <AlertDialogPrimitive.Popup
       data-slot="alert-dialog-popup"
       className={cn(
-        "fixed top-1/2 left-1/2 z-50 w-full max-w-md -translate-x-1/2 -translate-y-1/2 rounded-4xl border border-border bg-background p-5 shadow-lg transition-all max-h-[calc(100vh-3rem)] overflow-y-auto data-ending-style:scale-95 data-ending-style:opacity-0 data-starting-style:scale-95 data-starting-style:opacity-0",
+        // Centering uses Motion x/y so scale doesn't fight Tailwind translate transforms.
+        "fixed top-1/2 left-1/2 z-50 w-full max-w-md rounded-4xl border border-border bg-background p-5 shadow-lg max-h-[calc(100vh-3rem)] overflow-y-auto",
         className,
       )}
       {...props}
+      render={(popupProps, state) => (
+        <motion.div
+          {...(popupProps as HTMLMotionProps<"div">)}
+          initial={{ opacity: 0, scale: 0.95, x: "-50%", y: "-50%" }}
+          animate={{
+            opacity: state.open ? 1 : 0,
+            scale: state.open ? 1 : 0.95,
+            x: "-50%",
+            y: "-50%",
+          }}
+          transition={popupSpring}
+        />
+      )}
     />
   );
 }
