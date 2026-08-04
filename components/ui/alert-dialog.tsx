@@ -3,22 +3,8 @@
 import { AlertDialog as AlertDialogPrimitive } from "@base-ui/react/alert-dialog";
 import { motion, type HTMLMotionProps } from "motion/react";
 
+import { spring } from "@/lib/motion";
 import { cn } from "@/lib/utils";
-
-// Snappy enough to feel immediate, damped enough to avoid modal bounce.
-const popupSpring = {
-  type: "spring",
-  stiffness: 420,
-  damping: 28,
-  mass: 0.8,
-} as const;
-
-const backdropSpring = {
-  type: "spring",
-  stiffness: 500,
-  damping: 40,
-  mass: 0.8,
-} as const;
 
 function AlertDialog<Payload>(props: AlertDialogPrimitive.Root.Props<Payload>) {
   return <AlertDialogPrimitive.Root data-slot="alert-dialog" {...props} />;
@@ -63,7 +49,7 @@ function AlertDialogBackdrop({
           // Opacity stays in the animation so Base UI can await getAnimations() before unmount.
           initial={{ opacity: 0 }}
           animate={{ opacity: state.open ? 1 : 0 }}
-          transition={backdropSpring}
+          transition={spring.overlay}
         />
       )}
     />
@@ -93,7 +79,7 @@ function AlertDialogPopup({
             x: "-50%",
             y: "-50%",
           }}
-          transition={popupSpring}
+          transition={spring.panel}
         />
       )}
     />

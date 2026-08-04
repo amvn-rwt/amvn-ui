@@ -4,14 +4,8 @@ import { Accordion as AccordionPrimitive } from "@base-ui/react/accordion";
 import { ChevronDownIcon } from "lucide-react";
 import { motion } from "motion/react";
 
+import { spring } from "@/lib/motion";
 import { cn } from "@/lib/utils";
-
-const chevronSpring = {
-  type: "spring",
-  stiffness: 400,
-  damping: 22,
-  mass: 0.6,
-} as const;
 
 type AccordionProps = AccordionPrimitive.Root.Props & {
   /** Show dividers between items. @default true */
@@ -42,7 +36,7 @@ function AccordionItem({ className, ...props }: AccordionPrimitive.Item.Props) {
     <AccordionPrimitive.Item
       data-slot="accordion-item"
       className={cn(
-        "transition-opacity duration-200 ease-out",
+        "transition-opacity duration-normal ease-out",
         // Sibling mute — only interactive items brighten on their own hover.
         "not-data-disabled:group-hover/accordion:opacity-disabled not-data-disabled:hover:opacity-100!",
         // Disabled stays muted and never “wins” the hover highlight.
@@ -82,7 +76,7 @@ function AccordionTrigger({
               className="inline-flex shrink-0"
               initial={false}
               animate={{ rotate: state.open ? 180 : 0 }}
-              transition={chevronSpring}
+              transition={spring.micro}
             >
               <ChevronDownIcon className="size-4 text-muted-foreground" />
             </motion.span>
@@ -102,7 +96,7 @@ function AccordionContent({
     <AccordionPrimitive.Panel
       className={cn(
         // Base UI only awaits CSS transitions before unmounting on close.
-        "h-(--accordion-panel-height) overflow-hidden text-sm text-muted-foreground transition-[height] duration-200 ease-out data-starting-style:h-0 data-ending-style:h-0",
+        "h-(--accordion-panel-height) overflow-hidden text-sm text-muted-foreground transition-[height] duration-normal ease-out data-starting-style:h-0 data-ending-style:h-0",
         className,
       )}
       {...props}

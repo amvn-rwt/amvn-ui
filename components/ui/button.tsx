@@ -4,6 +4,7 @@ import { Button as ButtonPrimitive } from "@base-ui/react/button";
 import { cva, type VariantProps } from "class-variance-authority";
 import { motion } from "motion/react";
 
+import { spring } from "@/lib/motion";
 import { cn } from "@/lib/utils";
 
 const buttonVariants = cva(
@@ -33,13 +34,6 @@ const buttonVariants = cva(
   },
 );
 
-const pressSpring = {
-  type: "spring",
-  stiffness: 500,
-  damping: 18,
-  mass: 0.5,
-} as const;
-
 type ButtonProps = Omit<ButtonPrimitive.Props, "className" | "render"> &
   VariantProps<typeof buttonVariants> & {
     className?: string;
@@ -61,7 +55,7 @@ function Button({
         <motion.button
           whileHover={{ scale: 1.02 }}
           whileTap={{ scale: 0.96, y: 1 }}
-          transition={pressSpring}
+          transition={spring.press}
         />
       }
     />

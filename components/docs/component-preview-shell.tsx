@@ -5,6 +5,7 @@ import { CheckIcon, CopyIcon } from "lucide-react";
 import { motion } from "motion/react";
 
 import { Button } from "@/components/ui/button";
+import { spring, tween } from "@/lib/motion";
 import { cn } from "@/lib/utils";
 
 type ComponentPreviewShellProps = {
@@ -17,18 +18,6 @@ type ComponentPreviewShellProps = {
 
 const COLLAPSED_HEIGHT = 96;
 const EXPANDED_MAX_HEIGHT = 320; // 20rem — scroll beyond this
-
-const heightTransition = {
-  type: "spring",
-  stiffness: 380,
-  damping: 36,
-  mass: 0.8,
-} as const;
-
-const fadeTransition = {
-  duration: 0.2,
-  ease: [0.4, 0, 0.2, 1],
-} as const;
 
 function ComponentPreviewShell({
   children,
@@ -102,7 +91,7 @@ function ComponentPreviewShell({
         <motion.div
           initial={false}
           animate={{ height: expanded ? expandedHeight : COLLAPSED_HEIGHT }}
-          transition={heightTransition}
+          transition={spring.layout}
           className={cn(
             "outline-none",
             expanded && isScrollable ? "overflow-y-auto" : "overflow-hidden",
@@ -121,7 +110,7 @@ function ComponentPreviewShell({
         <motion.div
           initial={false}
           animate={{ opacity: expanded ? 0 : 1 }}
-          transition={fadeTransition}
+          transition={tween.fade}
           className="pointer-events-none absolute inset-x-0 top-0 z-10 bg-linear-to-t from-muted via-muted/strong to-transparent"
           style={{ height: COLLAPSED_HEIGHT }}
           aria-hidden="true"
@@ -130,7 +119,7 @@ function ComponentPreviewShell({
         <motion.div
           initial={false}
           animate={{ opacity: expanded ? 1 : 0 }}
-          transition={fadeTransition}
+          transition={tween.fade}
           className={cn(
             "absolute top-2 right-2 z-20",
             !expanded && "pointer-events-none",

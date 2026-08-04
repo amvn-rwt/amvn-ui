@@ -77,6 +77,11 @@
   --opacity-soft: 60%; /* subtle hover fills */
   --opacity-strong: 80%; /* stronger overlays / secondary hover */
   --opacity-intense: 90%; /* near-solid hover tints */
+
+  /* Durations — keep in sync with duration in lib/motion.ts */
+  --duration-fast: 150ms;
+  --duration-normal: 200ms;
+  --duration-slow: 300ms;
 }
 
 .dark {
