@@ -12,8 +12,7 @@ const buttonVariants = cva(
   {
     variants: {
       variant: {
-        primary:
-          "bg-primary text-primary-foreground hover:bg-primary/intense",
+        primary: "bg-primary text-primary-foreground hover:bg-primary/intense",
         secondary:
           "bg-secondary text-secondary-foreground hover:bg-secondary/strong",
         outline:
@@ -23,6 +22,7 @@ const buttonVariants = cva(
         success: "bg-success text-success-foreground hover:bg-success/intense",
       },
       size: {
+        sm: "h-5 px-2 text-xs",
         md: "h-6 px-3 text-sm",
         icon: "size-6",
       },

@@ -51,12 +51,12 @@ function AlertDialogPreview() {
         This can&apos;t be undone once you leave orbit.
       </p>
       <div className="mt-4 flex justify-end gap-2">
-        <span className="rounded-full border border-border px-3 py-1 text-xs text-foreground">
+        <Button variant="outline" size="sm">
           Cancel
-        </span>
-        <span className="rounded-full bg-danger px-3 py-1 text-xs text-danger-foreground">
+        </Button>
+        <Button variant="danger" size="sm">
           Discard
-        </span>
+        </Button>
       </div>
     </div>
   );
