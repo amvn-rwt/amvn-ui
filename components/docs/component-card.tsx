@@ -40,16 +40,17 @@ function AccordionPreview() {
 
 // Static mockup, not a real AlertDialog — the card preview well is a
 // non-interactive snapshot, so there's no open state to trigger here.
+// Mirrors AlertDialogPopup: rounded-4xl, border, shadow-lg, centered.
 function AlertDialogPreview() {
   return (
-    <div className="w-full max-w-48 rounded-lg border border-border bg-background p-4 text-left shadow-sm">
+    <div className="mx-auto w-full max-w-56 rounded-3xl border border-border bg-background p-4 text-left shadow-lg">
       <p className="text-sm font-semibold text-foreground">
         Discard flight log?
       </p>
-      <p className="mt-1 text-xs text-muted-foreground">
+      <p className="mt-1.5 text-xs text-muted-foreground">
         This can&apos;t be undone once you leave orbit.
       </p>
-      <div className="mt-3 flex justify-end gap-2">
+      <div className="mt-4 flex justify-end gap-2">
         <span className="rounded-full border border-border px-3 py-1 text-xs text-foreground">
           Cancel
         </span>
