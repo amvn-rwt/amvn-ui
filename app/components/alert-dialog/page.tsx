@@ -22,7 +22,7 @@ import { DetachedTriggerDemo, PayloadDemo } from "./demos";
 export const metadata = createPageMetadata({
   title: "Alert Dialog",
   description:
-    "Alert Dialog component for amvn.ui — a modal confirmation dialog that interrupts the user until they explicitly confirm or cancel, built with Base UI and Tailwind CSS.",
+    "Alert Dialog component for amvn.ui. A modal confirmation dialog that interrupts the user until they explicitly confirm or cancel. Built with Base UI and Tailwind CSS.",
   path: "/components/alert-dialog",
 });
 
@@ -97,7 +97,7 @@ import {
   createAlertDialogHandle,
 } from "@/components/ui/alert-dialog"
 
-// Created once, outside the component — connects the trigger to the
+// Created once outside the component. Connects the trigger to the
 // dialog without either one needing to be a descendant of the other.
 const handle = createAlertDialogHandle()
 
@@ -147,7 +147,7 @@ type ActionPayload = {
   confirmLabel: string
 }
 
-// One handle, one dialog — each trigger passes its own payload so the
+// One handle and one dialog. Each trigger passes its own payload so the
 // popup can render the right copy for whichever action was pressed.
 const handle = createAlertDialogHandle<ActionPayload>()
 
@@ -266,8 +266,8 @@ const popupProps = [
 ] as const;
 
 const toc = [
-  { id: "anatomy", title: "Anatomy" },
   { id: "default", title: "Default" },
+  { id: "anatomy", title: "Anatomy" },
   { id: "detached-trigger", title: "Detached trigger" },
   { id: "payload", title: "Multiple triggers with payload" },
   { id: "props", title: "Props" },
@@ -329,27 +329,12 @@ export default async function AlertDialogPage() {
 
       <h1 className="text-3xl font-bold">Alert Dialog</h1>
       <p className="mt-2 text-muted-foreground">
-        A modal dialog that interrupts the user and expects a confirmation.
-        Unlike Dialog, it&apos;s always modal and clicking the backdrop
-        won&apos;t close it, only pressing Escape or an explicit action will.
-        It renders with{" "}
-        <InlineCode>role=&quot;alertdialog&quot;</InlineCode> instead of{" "}
-        <InlineCode>role=&quot;dialog&quot;</InlineCode>
-        , so use it for actions that need a deliberate, explicit response
-        rather than dismissable notices.
+        A confirmation dialog that interrupts until the user accepts or
+        cancels. Backdrop clicks do not dismiss it. Only Escape or an
+        explicit action will.
       </p>
 
       <section className="mt-8 space-y-8">
-        <div className="space-y-3">
-          <h2 id="anatomy" className="scroll-mt-10 text-lg font-medium">
-            Anatomy
-          </h2>
-          <div
-            className="overflow-x-auto rounded-3xl border border-border bg-muted/intense p-4 font-mono text-sm [&_pre]:m-0 [&_pre]:bg-transparent! [&_pre]:p-0"
-            dangerouslySetInnerHTML={{ __html: anatomyHtml }}
-          />
-        </div>
-
         <div className="space-y-3">
           <h2 id="default" className="scroll-mt-10 text-lg font-medium">
             Default
@@ -384,34 +369,48 @@ export default async function AlertDialogPage() {
         </div>
 
         <div className="space-y-3">
-          <h2
-            id="detached-trigger"
-            className="scroll-mt-10 text-lg font-medium"
-          >
-            Detached trigger
+          <h2 id="anatomy" className="scroll-mt-10 text-lg font-medium">
+            Anatomy
           </h2>
-          <p className="text-base text-muted-foreground">
-            A handle from{" "}
-            <InlineCode>createAlertDialogHandle()</InlineCode>{" "}
-            connects a trigger to a dialog anywhere else in the tree, so
-            neither has to be the other&apos;s descendant.
-          </p>
+          <div
+            className="overflow-x-auto rounded-3xl border border-border bg-muted/intense p-4 font-mono text-sm [&_pre]:m-0 [&_pre]:bg-transparent! [&_pre]:p-0"
+            dangerouslySetInnerHTML={{ __html: anatomyHtml }}
+          />
+        </div>
+
+        <div className="space-y-4">
+          <div className="space-y-2">
+            <h2
+              id="detached-trigger"
+              className="scroll-mt-10 text-lg font-medium"
+            >
+              Detached trigger
+            </h2>
+            <p className="text-base text-muted-foreground">
+              A handle from{" "}
+              <InlineCode>createAlertDialogHandle()</InlineCode>{" "}
+              connects a trigger to a dialog anywhere else in the tree so
+              neither has to be the other&apos;s descendant.
+            </p>
+          </div>
           <ComponentPreview code={detachedTriggerCode}>
             <DetachedTriggerDemo />
           </ComponentPreview>
         </div>
 
-        <div className="space-y-3">
-          <h2 id="payload" className="scroll-mt-10 text-lg font-medium">
-            Multiple triggers with payload
-          </h2>
-          <p className="text-base text-muted-foreground">
-            Several triggers can share one handle and dialog, each passing
-            its own{" "}
-            <InlineCode>payload</InlineCode>
-            . The dialog reads it back through a function child to render
-            the copy for whichever action was pressed.
-          </p>
+        <div className="space-y-4">
+          <div className="space-y-2">
+            <h2 id="payload" className="scroll-mt-10 text-lg font-medium">
+              Multiple triggers with payload
+            </h2>
+            <p className="text-base text-muted-foreground">
+              Several triggers can share one handle and dialog. Each passes
+              its own{" "}
+              <InlineCode>payload</InlineCode>
+              . A function child reads it back so the dialog can render the
+              matching copy.
+            </p>
+          </div>
           <ComponentPreview code={payloadCode}>
             <PayloadDemo />
           </ComponentPreview>
@@ -430,35 +429,11 @@ export default async function AlertDialogPage() {
           <div className="space-y-3">
             <h3 className="text-base font-medium">AlertDialogTrigger</h3>
             <PropsTable props={triggerProps} />
-            <p className="text-base text-muted-foreground">
-              Also extends native button attributes.
-            </p>
           </div>
 
           <div className="space-y-3">
             <h3 className="text-base font-medium">AlertDialogPopup</h3>
             <PropsTable props={popupProps} />
-          </div>
-
-          <div className="space-y-3">
-            <h3 className="text-base font-medium">AlertDialogTitle</h3>
-            <p className="text-base text-muted-foreground">
-              Extends native heading attributes.
-            </p>
-          </div>
-
-          <div className="space-y-3">
-            <h3 className="text-base font-medium">AlertDialogDescription</h3>
-            <p className="text-base text-muted-foreground">
-              Extends native paragraph attributes.
-            </p>
-          </div>
-
-          <div className="space-y-3">
-            <h3 className="text-base font-medium">AlertDialogClose</h3>
-            <p className="text-base text-muted-foreground">
-              Extends native button attributes.
-            </p>
           </div>
 
           <p className="text-base text-muted-foreground">
@@ -471,7 +446,7 @@ export default async function AlertDialogPage() {
               href="https://base-ui.com/react/components/alert-dialog"
               target="_blank"
               rel="noreferrer"
-              className="text-foreground underline underline-offset-2 hover:no-underline"
+              className="text-foreground underline-offset-4 hover:underline"
             >
               Base UI Alert Dialog documentation
             </a>

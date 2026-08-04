@@ -1,0 +1,14 @@
+---
+description: Prose style for docs and user-facing copy
+globs: app/**/*.{tsx,ts},components/docs/**/*.{tsx,ts},lib/site.ts
+alwaysApply: false
+---
+
+# Docs prose
+
+When writing or editing user-facing copy (intros, section descriptions, demos, metadata descriptions):
+
+- Do not use em dashes (`—`) or en dashes (`–`). Prefer a period and a new sentence, or a colon when introducing a list or clarification.
+- Use commas only when grammar requires them (lists of three or more, or to prevent misreading). Prefer shorter sentences over comma-heavy clauses.
+- Prefer short sentences that scan easily. Cut filler.
+- Keep empty-value placeholders in props tables as `—` (UI convention, not prose).

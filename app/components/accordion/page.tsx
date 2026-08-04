@@ -14,7 +14,7 @@ import { site } from "@/lib/site";
 export const metadata = createPageMetadata({
   title: "Accordion",
   description:
-    "Accordion component for amvn.ui — collapsible FAQ-style panels built with Base UI and Tailwind CSS.",
+    "Accordion component for amvn.ui. Collapsible FAQ-style panels built with Base UI and Tailwind CSS.",
   path: "/components/accordion",
 });
 
@@ -32,7 +32,7 @@ export default function Example() {
         <AccordionItem value="shipping">
           <AccordionTrigger>Do you ship internationally?</AccordionTrigger>
           <AccordionContent>
-            Yes — we ship to 140 countries, as long as your customs form doesn't
+            Yes. We ship to 140 countries as long as your customs form doesn't
             say "definitely not a rocket".
           </AccordionContent>
         </AccordionItem>
@@ -76,7 +76,7 @@ export default function Example() {
         <AccordionItem value="shipping">
           <AccordionTrigger>Do you ship internationally?</AccordionTrigger>
           <AccordionContent>
-            Yes — we ship to 140 countries, as long as your customs form doesn't
+            Yes. We ship to 140 countries as long as your customs form doesn't
             say "definitely not a rocket".
           </AccordionContent>
         </AccordionItem>
@@ -120,7 +120,7 @@ export default function Example() {
         <AccordionItem value="shipping">
           <AccordionTrigger>Do you ship internationally?</AccordionTrigger>
           <AccordionContent>
-            Yes — we ship to 140 countries, as long as your customs form doesn't
+            Yes. We ship to 140 countries as long as your customs form doesn't
             say "definitely not a rocket".
           </AccordionContent>
         </AccordionItem>
@@ -156,7 +156,7 @@ export default function Example() {
         <AccordionItem value="shipping">
           <AccordionTrigger>Do you ship internationally?</AccordionTrigger>
           <AccordionContent>
-            Yes — we ship to 140 countries, as long as your customs form doesn't
+            Yes. We ship to 140 countries as long as your customs form doesn't
             say "definitely not a rocket".
           </AccordionContent>
         </AccordionItem>
@@ -295,7 +295,7 @@ export default function AccordionPage() {
       <h1 className="text-3xl font-bold">Accordion</h1>
       <p className="mt-2 text-muted-foreground">
         A set of collapsible panels for FAQs and progressive disclosure.
-        Accessible by default — Base UI handles{" "}
+        Accessible by default. Base UI handles{" "}
         <InlineCode>aria-expanded</InlineCode>
         , heading semantics and keyboard navigation.
       </p>
@@ -316,7 +316,7 @@ export default function AccordionPage() {
                     Do you ship internationally?
                   </AccordionTrigger>
                   <AccordionContent>
-                    Yes — we ship to 140 countries, as long as your customs form
+                    Yes. We ship to 140 countries as long as your customs form
                     doesn&apos;t say &quot;definitely not a rocket&quot;.
                   </AccordionContent>
                 </AccordionItem>
@@ -365,7 +365,7 @@ export default function AccordionPage() {
                     Do you ship internationally?
                   </AccordionTrigger>
                   <AccordionContent>
-                    Yes — we ship to 140 countries, as long as your customs form
+                    Yes. We ship to 140 countries as long as your customs form
                     doesn&apos;t say &quot;definitely not a rocket&quot;.
                   </AccordionContent>
                 </AccordionItem>
@@ -413,7 +413,7 @@ export default function AccordionPage() {
                     Do you ship internationally?
                   </AccordionTrigger>
                   <AccordionContent>
-                    Yes — we ship to 140 countries, as long as your customs form
+                    Yes. We ship to 140 countries as long as your customs form
                     doesn&apos;t say &quot;definitely not a rocket&quot;.
                   </AccordionContent>
                 </AccordionItem>
@@ -455,7 +455,7 @@ export default function AccordionPage() {
                     Do you ship internationally?
                   </AccordionTrigger>
                   <AccordionContent>
-                    Yes — we ship to 140 countries, as long as your customs form
+                    Yes. We ship to 140 countries as long as your customs form
                     doesn&apos;t say &quot;definitely not a rocket&quot;.
                   </AccordionContent>
                 </AccordionItem>
@@ -501,20 +501,6 @@ export default function AccordionPage() {
           <div className="space-y-3">
             <h3 className="text-base font-medium">AccordionItem</h3>
             <PropsTable props={itemProps} />
-          </div>
-
-          <div className="space-y-3">
-            <h3 className="text-base font-medium">AccordionTrigger</h3>
-            <p className="text-base text-muted-foreground">
-              Extends native button attributes.
-            </p>
-          </div>
-
-          <div className="space-y-3">
-            <h3 className="text-base font-medium">AccordionContent</h3>
-            <p className="text-base text-muted-foreground">
-              Extends native div attributes.
-            </p>
           </div>
         </div>
       </section>

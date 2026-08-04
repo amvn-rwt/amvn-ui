@@ -17,7 +17,7 @@ import { site } from "@/lib/site";
 export const metadata = createPageMetadata({
   title: "Button",
   description:
-    "Button component for amvn.ui — primary, secondary, outline, ghost, danger, and success variants built with Base UI and Tailwind CSS.",
+    "Button component for amvn.ui. Primary, secondary, outline, ghost, danger and success variants built with Base UI and Tailwind CSS.",
   path: "/components/button",
 });
 
@@ -294,9 +294,6 @@ export default function ButtonPage() {
           <h2 id="props" className="scroll-mt-10 text-lg font-medium">
             Props
           </h2>
-          <p className="text-base text-muted-foreground">
-            Extends native button attributes.
-          </p>
           <div className="overflow-x-auto rounded-3xl border border-border">
             <table className="w-full min-w-14 text-left text-sm">
               <thead className="border-b border-border bg-muted/muted">
