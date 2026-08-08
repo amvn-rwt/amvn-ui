@@ -94,10 +94,7 @@ function AutocompleteIcon({
   return (
     <AutocompletePrimitive.Icon
       data-slot="autocomplete-icon"
-      className={cn(
-        "inline-flex shrink-0 text-muted-foreground",
-        className,
-      )}
+      className={cn("inline-flex shrink-0 text-muted-foreground", className)}
       {...props}
       render={(iconProps) => (
         <motion.span
@@ -242,7 +239,7 @@ function AutocompleteItem({
     <AutocompletePrimitive.Item
       data-slot="autocomplete-item"
       className={cn(
-        "cursor-default select-none rounded-2xl px-3 py-2 text-sm outline-none data-highlighted:bg-muted data-disabled:pointer-events-none data-disabled:opacity-disabled",
+        "cursor-default select-none rounded-full px-3 py-2 text-sm outline-none data-highlighted:bg-muted data-disabled:pointer-events-none data-disabled:opacity-disabled",
         className,
       )}
       {...props}
@@ -297,7 +294,8 @@ function AutocompleteRow({
 }
 
 // Empty/Status must stay mounted for screen reader announcements — conditionally
-// render their children, not these elements.
+// render their children, not these elements. Pad only when content is present
+// so an empty root does not leave a gap above the list.
 function AutocompleteEmpty({
   className,
   ...props
@@ -305,7 +303,10 @@ function AutocompleteEmpty({
   return (
     <AutocompletePrimitive.Empty
       data-slot="autocomplete-empty"
-      className={cn("px-3 py-2 text-sm text-muted-foreground", className)}
+      className={cn(
+        "p-0 text-sm text-muted-foreground not-empty:px-3 not-empty:py-2",
+        className,
+      )}
       {...props}
     />
   );
@@ -318,7 +319,10 @@ function AutocompleteStatus({
   return (
     <AutocompletePrimitive.Status
       data-slot="autocomplete-status"
-      className={cn("px-3 py-2 text-sm text-muted-foreground", className)}
+      className={cn(
+        "p-0 text-sm text-muted-foreground not-empty:px-3 not-empty:py-2",
+        className,
+      )}
       {...props}
     />
   );

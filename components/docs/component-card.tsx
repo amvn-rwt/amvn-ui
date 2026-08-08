@@ -57,10 +57,30 @@ function AlertDialogPreview() {
   );
 }
 
+// Static mockup of an open autocomplete: input plus two suggestion rows.
+function AutocompletePreview() {
+  return (
+    <div className="mx-auto w-full max-w-48 text-left">
+      <div className="flex h-6 items-center rounded-full border border-border bg-background px-3 text-xs text-muted-foreground">
+        e.g. feature
+      </div>
+      <div className="mt-1 rounded-3xl border border-border bg-background p-1 px-1.25 shadow-lg">
+        <div className="rounded-full bg-muted px-3 py-2 text-xs text-foreground">
+          feature
+        </div>
+        <div className="rounded-full px-3 py-2 text-xs text-foreground">
+          fix
+        </div>
+      </div>
+    </div>
+  );
+}
+
 const previews: Record<string, ReactNode> = {
   "/components/button": <ButtonPreview />,
   "/components/accordion": <AccordionPreview />,
   "/components/alert-dialog": <AlertDialogPreview />,
+  "/components/autocomplete": <AutocompletePreview />,
 };
 
 type ComponentCardProps = {

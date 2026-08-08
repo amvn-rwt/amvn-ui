@@ -12,6 +12,7 @@ const componentsUnsorted: DocsNavItem[] = [
   { title: "Button", href: "/components/button" },
   { title: "Accordion", href: "/components/accordion" },
   { title: "Alert Dialog", href: "/components/alert-dialog" },
+  { title: "Autocomplete", href: "/components/autocomplete" },
 ];
 
 /** Alphabetically sorted — used by sidebar (after Overview) and the overview gallery. */
