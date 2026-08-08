@@ -2,186 +2,167 @@ import { ComponentPreview } from "@/components/docs/component-preview";
 import { SetDocsToc } from "@/components/docs/docs-toc";
 import { InlineCode } from "@/components/docs/inline-code";
 import { JsonLd } from "@/components/seo/json-ld";
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from "@/components/ui/accordion";
 import { breadcrumbJsonLd, createPageMetadata } from "@/lib/seo";
 import { site } from "@/lib/site";
+
+import {
+  BorderlessDemo,
+  DefaultDemo,
+  DisabledDemo,
+  MultipleDemo,
+} from "./demos";
 
 export const metadata = createPageMetadata({
   title: "Accordion",
   description:
-    "Accordion component for amvn.ui. Collapsible FAQ-style panels built with Base UI and Tailwind CSS.",
+    "Accordion for amvn.ui: collapsible FAQ-style panels built with Base UI and Tailwind CSS.",
   path: "/components/accordion",
 });
 
-const defaultCode = `import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from "@/components/ui/accordion"
+const defaultCode = `import { Accordion } from "@/components/ui/accordion"
 
 export default function Example() {
   return (
     <div className="flex w-full justify-center">
-      <Accordion defaultValue={["shipping"]} className="w-full max-w-13">
-        <AccordionItem value="shipping">
-          <AccordionTrigger>Do you ship internationally?</AccordionTrigger>
-          <AccordionContent>
+      <Accordion.Root defaultValue={["shipping"]} className="w-full max-w-13">
+        <Accordion.Item value="shipping">
+          <Accordion.Trigger>Do you ship internationally?</Accordion.Trigger>
+          <Accordion.Panel>
             Yes. We ship to 140 countries as long as your customs form doesn't
             say "definitely not a rocket".
-          </AccordionContent>
-        </AccordionItem>
-        <AccordionItem value="returns">
-          <AccordionTrigger>What's your return policy?</AccordionTrigger>
-          <AccordionContent>
+          </Accordion.Panel>
+        </Accordion.Item>
+        <Accordion.Item value="returns">
+          <Accordion.Trigger>What's your return policy?</Accordion.Trigger>
+          <Accordion.Panel>
             30 days, no questions asked. Slightly burnt rocket fuel residue is
             still considered "like new".
-          </AccordionContent>
-        </AccordionItem>
-        <AccordionItem value="warranty">
-          <AccordionTrigger>Is there a warranty?</AccordionTrigger>
-          <AccordionContent>
+          </Accordion.Panel>
+        </Accordion.Item>
+        <Accordion.Item value="warranty">
+          <Accordion.Trigger>Is there a warranty?</Accordion.Trigger>
+          <Accordion.Panel>
             Lifetime coverage against spontaneous combustion. Atmospheric
             re-entry scratches not included.
-          </AccordionContent>
-        </AccordionItem>
-        <AccordionItem value="support">
-          <AccordionTrigger>How do I reach support?</AccordionTrigger>
-          <AccordionContent>
+          </Accordion.Panel>
+        </Accordion.Item>
+        <Accordion.Item value="support">
+          <Accordion.Trigger>How do I reach support?</Accordion.Trigger>
+          <Accordion.Panel>
             Ping us anytime. Response times range from "instant" to "after we
             land" depending on orbital position.
-          </AccordionContent>
-        </AccordionItem>
-      </Accordion>
+          </Accordion.Panel>
+        </Accordion.Item>
+      </Accordion.Root>
     </div>
   )
 }`;
 
-const multipleCode = `import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from "@/components/ui/accordion"
+const multipleCode = `import { Accordion } from "@/components/ui/accordion"
 
 export default function Example() {
   return (
     <div className="flex w-full justify-center">
-      <Accordion multiple defaultValue={["shipping"]} className="w-full max-w-13">
-        <AccordionItem value="shipping">
-          <AccordionTrigger>Do you ship internationally?</AccordionTrigger>
-          <AccordionContent>
+      <Accordion.Root multiple defaultValue={["shipping"]} className="w-full max-w-13">
+        <Accordion.Item value="shipping">
+          <Accordion.Trigger>Do you ship internationally?</Accordion.Trigger>
+          <Accordion.Panel>
             Yes. We ship to 140 countries as long as your customs form doesn't
             say "definitely not a rocket".
-          </AccordionContent>
-        </AccordionItem>
-        <AccordionItem value="returns">
-          <AccordionTrigger>What's your return policy?</AccordionTrigger>
-          <AccordionContent>
+          </Accordion.Panel>
+        </Accordion.Item>
+        <Accordion.Item value="returns">
+          <Accordion.Trigger>What's your return policy?</Accordion.Trigger>
+          <Accordion.Panel>
             30 days, no questions asked. Slightly burnt rocket fuel residue is
             still considered "like new".
-          </AccordionContent>
-        </AccordionItem>
-        <AccordionItem value="warranty">
-          <AccordionTrigger>Is there a warranty?</AccordionTrigger>
-          <AccordionContent>
+          </Accordion.Panel>
+        </Accordion.Item>
+        <Accordion.Item value="warranty">
+          <Accordion.Trigger>Is there a warranty?</Accordion.Trigger>
+          <Accordion.Panel>
             Lifetime coverage against spontaneous combustion. Atmospheric
             re-entry scratches not included.
-          </AccordionContent>
-        </AccordionItem>
-        <AccordionItem value="support">
-          <AccordionTrigger>How do I reach support?</AccordionTrigger>
-          <AccordionContent>
+          </Accordion.Panel>
+        </Accordion.Item>
+        <Accordion.Item value="support">
+          <Accordion.Trigger>How do I reach support?</Accordion.Trigger>
+          <Accordion.Panel>
             Ping us anytime. Response times range from "instant" to "after we
             land" depending on orbital position.
-          </AccordionContent>
-        </AccordionItem>
-      </Accordion>
+          </Accordion.Panel>
+        </Accordion.Item>
+      </Accordion.Root>
     </div>
   )
 }`;
 
-const disabledCode = `import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from "@/components/ui/accordion"
+const disabledCode = `import { Accordion } from "@/components/ui/accordion"
 
 export default function Example() {
   return (
     <div className="flex w-full justify-center">
-      <Accordion defaultValue={["shipping"]} className="w-full max-w-13">
-        <AccordionItem value="shipping">
-          <AccordionTrigger>Do you ship internationally?</AccordionTrigger>
-          <AccordionContent>
+      <Accordion.Root defaultValue={["shipping"]} className="w-full max-w-13">
+        <Accordion.Item value="shipping">
+          <Accordion.Trigger>Do you ship internationally?</Accordion.Trigger>
+          <Accordion.Panel>
             Yes. We ship to 140 countries as long as your customs form doesn't
             say "definitely not a rocket".
-          </AccordionContent>
-        </AccordionItem>
-        <AccordionItem value="classified" disabled>
-          <AccordionTrigger>Where is the secret launch pad?</AccordionTrigger>
-          <AccordionContent>
+          </Accordion.Panel>
+        </Accordion.Item>
+        <Accordion.Item value="classified" disabled>
+          <Accordion.Trigger>Where is the secret launch pad?</Accordion.Trigger>
+          <Accordion.Panel>
             Nice try. This one's classified until you clear the background check.
-          </AccordionContent>
-        </AccordionItem>
-        <AccordionItem value="support">
-          <AccordionTrigger>How do I reach support?</AccordionTrigger>
-          <AccordionContent>
+          </Accordion.Panel>
+        </Accordion.Item>
+        <Accordion.Item value="support">
+          <Accordion.Trigger>How do I reach support?</Accordion.Trigger>
+          <Accordion.Panel>
             Ping us anytime. Response times range from "instant" to "after we
             land" depending on orbital position.
-          </AccordionContent>
-        </AccordionItem>
-      </Accordion>
+          </Accordion.Panel>
+        </Accordion.Item>
+      </Accordion.Root>
     </div>
   )
 }`;
 
-const borderlessCode = `import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from "@/components/ui/accordion"
+const borderlessCode = `import { Accordion } from "@/components/ui/accordion"
 
 export default function Example() {
   return (
     <div className="flex w-full justify-center">
-      <Accordion bordered={false} defaultValue={["shipping"]} className="w-full max-w-13">
-        <AccordionItem value="shipping">
-          <AccordionTrigger>Do you ship internationally?</AccordionTrigger>
-          <AccordionContent>
+      <Accordion.Root bordered={false} defaultValue={["shipping"]} className="w-full max-w-13">
+        <Accordion.Item value="shipping">
+          <Accordion.Trigger>Do you ship internationally?</Accordion.Trigger>
+          <Accordion.Panel>
             Yes. We ship to 140 countries as long as your customs form doesn't
             say "definitely not a rocket".
-          </AccordionContent>
-        </AccordionItem>
-        <AccordionItem value="returns">
-          <AccordionTrigger>What's your return policy?</AccordionTrigger>
-          <AccordionContent>
+          </Accordion.Panel>
+        </Accordion.Item>
+        <Accordion.Item value="returns">
+          <Accordion.Trigger>What's your return policy?</Accordion.Trigger>
+          <Accordion.Panel>
             30 days, no questions asked. Slightly burnt rocket fuel residue is
             still considered "like new".
-          </AccordionContent>
-        </AccordionItem>
-        <AccordionItem value="warranty">
-          <AccordionTrigger>Is there a warranty?</AccordionTrigger>
-          <AccordionContent>
+          </Accordion.Panel>
+        </Accordion.Item>
+        <Accordion.Item value="warranty">
+          <Accordion.Trigger>Is there a warranty?</Accordion.Trigger>
+          <Accordion.Panel>
             Lifetime coverage against spontaneous combustion. Atmospheric
             re-entry scratches not included.
-          </AccordionContent>
-        </AccordionItem>
-        <AccordionItem value="support">
-          <AccordionTrigger>How do I reach support?</AccordionTrigger>
-          <AccordionContent>
+          </Accordion.Panel>
+        </Accordion.Item>
+        <Accordion.Item value="support">
+          <Accordion.Trigger>How do I reach support?</Accordion.Trigger>
+          <Accordion.Panel>
             Ping us anytime. Response times range from "instant" to "after we
             land" depending on orbital position.
-          </AccordionContent>
-        </AccordionItem>
-      </Accordion>
+          </Accordion.Panel>
+        </Accordion.Item>
+      </Accordion.Root>
     </div>
   )
 }`;
@@ -294,8 +275,8 @@ export default function AccordionPage() {
 
       <h1 className="text-3xl font-bold">Accordion</h1>
       <p className="mt-2 text-muted-foreground">
-        A set of collapsible panels for FAQs and progressive disclosure.
-        Accessible by default. Base UI handles{" "}
+        A set of collapsible panels for FAQs and progressive disclosure,
+        accessible by default. Base UI handles{" "}
         <InlineCode>aria-expanded</InlineCode>
         , heading semantics and keyboard navigation.
       </p>
@@ -306,46 +287,7 @@ export default function AccordionPage() {
             Default
           </h2>
           <ComponentPreview code={defaultCode}>
-            <div className="flex w-full justify-center">
-              <Accordion
-                defaultValue={["shipping"]}
-                className="w-full max-w-13"
-              >
-                <AccordionItem value="shipping">
-                  <AccordionTrigger>
-                    Do you ship internationally?
-                  </AccordionTrigger>
-                  <AccordionContent>
-                    Yes. We ship to 140 countries as long as your customs form
-                    doesn&apos;t say &quot;definitely not a rocket&quot;.
-                  </AccordionContent>
-                </AccordionItem>
-                <AccordionItem value="returns">
-                  <AccordionTrigger>
-                    What&apos;s your return policy?
-                  </AccordionTrigger>
-                  <AccordionContent>
-                    30 days, no questions asked. Slightly burnt rocket fuel
-                    residue is still considered &quot;like new&quot;.
-                  </AccordionContent>
-                </AccordionItem>
-                <AccordionItem value="warranty">
-                  <AccordionTrigger>Is there a warranty?</AccordionTrigger>
-                  <AccordionContent>
-                    Lifetime coverage against spontaneous combustion.
-                    Atmospheric re-entry scratches not included.
-                  </AccordionContent>
-                </AccordionItem>
-                <AccordionItem value="support">
-                  <AccordionTrigger>How do I reach support?</AccordionTrigger>
-                  <AccordionContent>
-                    Ping us anytime. Response times range from
-                    &quot;instant&quot; to &quot;after we land&quot; depending
-                    on orbital position.
-                  </AccordionContent>
-                </AccordionItem>
-              </Accordion>
-            </div>
+            <DefaultDemo />
           </ComponentPreview>
         </div>
 
@@ -354,47 +296,7 @@ export default function AccordionPage() {
             Multiple
           </h2>
           <ComponentPreview code={multipleCode}>
-            <div className="flex w-full justify-center">
-              <Accordion
-                multiple
-                defaultValue={["shipping"]}
-                className="w-full max-w-13"
-              >
-                <AccordionItem value="shipping">
-                  <AccordionTrigger>
-                    Do you ship internationally?
-                  </AccordionTrigger>
-                  <AccordionContent>
-                    Yes. We ship to 140 countries as long as your customs form
-                    doesn&apos;t say &quot;definitely not a rocket&quot;.
-                  </AccordionContent>
-                </AccordionItem>
-                <AccordionItem value="returns">
-                  <AccordionTrigger>
-                    What&apos;s your return policy?
-                  </AccordionTrigger>
-                  <AccordionContent>
-                    30 days, no questions asked. Slightly burnt rocket fuel
-                    residue is still considered &quot;like new&quot;.
-                  </AccordionContent>
-                </AccordionItem>
-                <AccordionItem value="warranty">
-                  <AccordionTrigger>Is there a warranty?</AccordionTrigger>
-                  <AccordionContent>
-                    Lifetime coverage against spontaneous combustion.
-                    Atmospheric re-entry scratches not included.
-                  </AccordionContent>
-                </AccordionItem>
-                <AccordionItem value="support">
-                  <AccordionTrigger>How do I reach support?</AccordionTrigger>
-                  <AccordionContent>
-                    Ping us anytime. Response times range from
-                    &quot;instant&quot; to &quot;after we land&quot; depending
-                    on orbital position.
-                  </AccordionContent>
-                </AccordionItem>
-              </Accordion>
-            </div>
+            <MultipleDemo />
           </ComponentPreview>
         </div>
 
@@ -403,39 +305,7 @@ export default function AccordionPage() {
             Disabled
           </h2>
           <ComponentPreview code={disabledCode}>
-            <div className="flex w-full justify-center">
-              <Accordion
-                defaultValue={["shipping"]}
-                className="w-full max-w-13"
-              >
-                <AccordionItem value="shipping">
-                  <AccordionTrigger>
-                    Do you ship internationally?
-                  </AccordionTrigger>
-                  <AccordionContent>
-                    Yes. We ship to 140 countries as long as your customs form
-                    doesn&apos;t say &quot;definitely not a rocket&quot;.
-                  </AccordionContent>
-                </AccordionItem>
-                <AccordionItem value="classified" disabled>
-                  <AccordionTrigger>
-                    Where is the secret launch pad?
-                  </AccordionTrigger>
-                  <AccordionContent>
-                    Nice try. This one&apos;s classified until you clear the
-                    background check.
-                  </AccordionContent>
-                </AccordionItem>
-                <AccordionItem value="support">
-                  <AccordionTrigger>How do I reach support?</AccordionTrigger>
-                  <AccordionContent>
-                    Ping us anytime. Response times range from
-                    &quot;instant&quot; to &quot;after we land&quot; depending
-                    on orbital position.
-                  </AccordionContent>
-                </AccordionItem>
-              </Accordion>
-            </div>
+            <DisabledDemo />
           </ComponentPreview>
         </div>
 
@@ -444,47 +314,7 @@ export default function AccordionPage() {
             Borderless
           </h2>
           <ComponentPreview code={borderlessCode}>
-            <div className="flex w-full justify-center">
-              <Accordion
-                bordered={false}
-                defaultValue={["shipping"]}
-                className="w-full max-w-13"
-              >
-                <AccordionItem value="shipping">
-                  <AccordionTrigger>
-                    Do you ship internationally?
-                  </AccordionTrigger>
-                  <AccordionContent>
-                    Yes. We ship to 140 countries as long as your customs form
-                    doesn&apos;t say &quot;definitely not a rocket&quot;.
-                  </AccordionContent>
-                </AccordionItem>
-                <AccordionItem value="returns">
-                  <AccordionTrigger>
-                    What&apos;s your return policy?
-                  </AccordionTrigger>
-                  <AccordionContent>
-                    30 days, no questions asked. Slightly burnt rocket fuel
-                    residue is still considered &quot;like new&quot;.
-                  </AccordionContent>
-                </AccordionItem>
-                <AccordionItem value="warranty">
-                  <AccordionTrigger>Is there a warranty?</AccordionTrigger>
-                  <AccordionContent>
-                    Lifetime coverage against spontaneous combustion.
-                    Atmospheric re-entry scratches not included.
-                  </AccordionContent>
-                </AccordionItem>
-                <AccordionItem value="support">
-                  <AccordionTrigger>How do I reach support?</AccordionTrigger>
-                  <AccordionContent>
-                    Ping us anytime. Response times range from
-                    &quot;instant&quot; to &quot;after we land&quot; depending
-                    on orbital position.
-                  </AccordionContent>
-                </AccordionItem>
-              </Accordion>
-            </div>
+            <BorderlessDemo />
           </ComponentPreview>
         </div>
 
@@ -494,12 +324,12 @@ export default function AccordionPage() {
           </h2>
 
           <div className="space-y-3">
-            <h3 className="text-base font-medium">Accordion</h3>
+            <h3 className="text-base font-medium">Accordion.Root</h3>
             <PropsTable props={rootProps} />
           </div>
 
           <div className="space-y-3">
-            <h3 className="text-base font-medium">AccordionItem</h3>
+            <h3 className="text-base font-medium">Accordion.Item</h3>
             <PropsTable props={itemProps} />
           </div>
         </div>

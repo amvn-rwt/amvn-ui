@@ -1,79 +1,49 @@
-import {
-  BanIcon,
-  CircleAlertIcon,
-  DropletsIcon,
-  FilePenLineIcon,
-  Trash2Icon,
-} from "lucide-react";
-
 import { ComponentPreview } from "@/components/docs/component-preview";
 import { SetDocsToc } from "@/components/docs/docs-toc";
 import { InlineCode } from "@/components/docs/inline-code";
 import { JsonLd } from "@/components/seo/json-ld";
-import { Button } from "@/components/ui/button";
-import {
-  AlertDialog,
-  AlertDialogBackdrop,
-  AlertDialogClose,
-  AlertDialogDescription,
-  AlertDialogPopup,
-  AlertDialogPortal,
-  AlertDialogTitle,
-  AlertDialogTrigger,
-} from "@/components/ui/alert-dialog";
 import { highlightCode } from "@/lib/highlight-code";
 import { breadcrumbJsonLd, createPageMetadata } from "@/lib/seo";
 import { site } from "@/lib/site";
 
-import { DetachedTriggerDemo, PayloadDemo } from "./demos";
+import {
+  DefaultDemo,
+  DetachedTriggerDemo,
+  PayloadDemo,
+  WithBlurredBackdropDemo,
+  WithIconDemo,
+  WithTertiaryDemo,
+} from "./demos";
 
 export const metadata = createPageMetadata({
   title: "Alert Dialog",
   description:
-    "Alert Dialog component for amvn.ui. A modal confirmation dialog that interrupts the user until they explicitly confirm or cancel. Built with Base UI and Tailwind CSS.",
+    "Alert Dialog for amvn.ui: a modal confirmation dialog that interrupts until the user confirms or cancels, built with Base UI and Tailwind CSS.",
   path: "/components/alert-dialog",
 });
 
-const anatomyCode = `import {
-  AlertDialog,
-  AlertDialogBackdrop,
-  AlertDialogClose,
-  AlertDialogDescription,
-  AlertDialogPopup,
-  AlertDialogPortal,
-  AlertDialogTitle,
-  AlertDialogTrigger,
-} from "@/components/ui/alert-dialog"
+const anatomyCode = `import { AlertDialog } from "@/components/ui/alert-dialog"
 
-<AlertDialog>
-  <AlertDialogTrigger />
-  <AlertDialogPortal>
-    <AlertDialogBackdrop />
-    <AlertDialogPopup>
-      <AlertDialogTitle />
-      <AlertDialogDescription />
-      <AlertDialogClose />
-    </AlertDialogPopup>
-  </AlertDialogPortal>
-</AlertDialog>`;
+<AlertDialog.Root>
+  <AlertDialog.Trigger />
+  <AlertDialog.Portal>
+    <AlertDialog.Backdrop />
+    <AlertDialog.Popup>
+      <AlertDialog.Title />
+      <AlertDialog.Description />
+      <AlertDialog.Close />
+    </AlertDialog.Popup>
+  </AlertDialog.Portal>
+</AlertDialog.Root>`;
 
 const defaultCode = `import { Trash2Icon } from "lucide-react"
 import { Button } from "@/components/ui/button"
-import {
-  AlertDialog,
-  AlertDialogBackdrop,
-  AlertDialogClose,
-  AlertDialogDescription,
-  AlertDialogPopup,
-  AlertDialogPortal,
-  AlertDialogTitle,
-  AlertDialogTrigger,
-} from "@/components/ui/alert-dialog"
+import { AlertDialog } from "@/components/ui/alert-dialog"
 
 export default function Example() {
   return (
-    <AlertDialog>
-      <AlertDialogTrigger
+    <AlertDialog.Root>
+      <AlertDialog.Trigger
         render={
           <Button variant="danger">
             <Trash2Icon />
@@ -81,40 +51,31 @@ export default function Example() {
           </Button>
         }
       />
-      <AlertDialogPortal>
-        <AlertDialogBackdrop />
-        <AlertDialogPopup>
-          <AlertDialogTitle>Discard flight log?</AlertDialogTitle>
-          <AlertDialogDescription>
+      <AlertDialog.Portal>
+        <AlertDialog.Backdrop />
+        <AlertDialog.Popup>
+          <AlertDialog.Title>Discard flight log?</AlertDialog.Title>
+          <AlertDialog.Description>
             This mission data can't be recovered once you leave orbit.
-          </AlertDialogDescription>
+          </AlertDialog.Description>
           <div className="mt-6 flex justify-end gap-2">
-            <AlertDialogClose render={<Button variant="outline">Cancel</Button>} />
-            <AlertDialogClose render={<Button variant="danger">Discard</Button>} />
+            <AlertDialog.Close render={<Button variant="outline">Cancel</Button>} />
+            <AlertDialog.Close render={<Button variant="danger">Discard</Button>} />
           </div>
-        </AlertDialogPopup>
-      </AlertDialogPortal>
-    </AlertDialog>
+        </AlertDialog.Popup>
+      </AlertDialog.Portal>
+    </AlertDialog.Root>
   )
 }`;
 
 const withIconCode = `import { CircleAlertIcon, DropletsIcon } from "lucide-react"
 import { Button } from "@/components/ui/button"
-import {
-  AlertDialog,
-  AlertDialogBackdrop,
-  AlertDialogClose,
-  AlertDialogDescription,
-  AlertDialogPopup,
-  AlertDialogPortal,
-  AlertDialogTitle,
-  AlertDialogTrigger,
-} from "@/components/ui/alert-dialog"
+import { AlertDialog } from "@/components/ui/alert-dialog"
 
 export default function Example() {
   return (
-    <AlertDialog>
-      <AlertDialogTrigger
+    <AlertDialog.Root>
+      <AlertDialog.Trigger
         render={
           <Button variant="danger">
             <DropletsIcon />
@@ -122,49 +83,40 @@ export default function Example() {
           </Button>
         }
       />
-      <AlertDialogPortal>
-        <AlertDialogBackdrop />
-        <AlertDialogPopup>
+      <AlertDialog.Portal>
+        <AlertDialog.Backdrop />
+        <AlertDialog.Popup>
           <div className="flex items-start gap-3">
             <CircleAlertIcon
               aria-hidden="true"
               className="mt-0.5 size-5 shrink-0 text-danger"
             />
             <div>
-              <AlertDialogTitle>Purge the fuel tank?</AlertDialogTitle>
-              <AlertDialogDescription>
+              <AlertDialog.Title>Purge the fuel tank?</AlertDialog.Title>
+              <AlertDialog.Description>
                 Every drop vents to atmosphere. Refueling takes another two
                 orbits.
-              </AlertDialogDescription>
+              </AlertDialog.Description>
             </div>
           </div>
           <div className="mt-6 flex justify-end gap-2">
-            <AlertDialogClose render={<Button variant="outline">Cancel</Button>} />
-            <AlertDialogClose render={<Button variant="danger">Purge</Button>} />
+            <AlertDialog.Close render={<Button variant="outline">Cancel</Button>} />
+            <AlertDialog.Close render={<Button variant="danger">Purge</Button>} />
           </div>
-        </AlertDialogPopup>
-      </AlertDialogPortal>
-    </AlertDialog>
+        </AlertDialog.Popup>
+      </AlertDialog.Portal>
+    </AlertDialog.Root>
   )
 }`;
 
 const withTertiaryCode = `import { FilePenLineIcon } from "lucide-react"
 import { Button } from "@/components/ui/button"
-import {
-  AlertDialog,
-  AlertDialogBackdrop,
-  AlertDialogClose,
-  AlertDialogDescription,
-  AlertDialogPopup,
-  AlertDialogPortal,
-  AlertDialogTitle,
-  AlertDialogTrigger,
-} from "@/components/ui/alert-dialog"
+import { AlertDialog } from "@/components/ui/alert-dialog"
 
 export default function Example() {
   return (
-    <AlertDialog>
-      <AlertDialogTrigger
+    <AlertDialog.Root>
+      <AlertDialog.Trigger
         render={
           <Button variant="danger">
             <FilePenLineIcon />
@@ -172,50 +124,41 @@ export default function Example() {
           </Button>
         }
       />
-      <AlertDialogPortal>
-        <AlertDialogBackdrop />
-        <AlertDialogPopup>
-          <AlertDialogTitle>Overwrite telemetry notes?</AlertDialogTitle>
-          <AlertDialogDescription>
+      <AlertDialog.Portal>
+        <AlertDialog.Backdrop />
+        <AlertDialog.Popup>
+          <AlertDialog.Title>Overwrite telemetry notes?</AlertDialog.Title>
+          <AlertDialog.Description>
             The previous draft is replaced if you continue. You can postpone
             and come back later.
-          </AlertDialogDescription>
+          </AlertDialog.Description>
           <div className="mt-6 flex items-center justify-between gap-2">
-            <AlertDialogClose
+            <AlertDialog.Close
               render={<Button variant="ghost">Remind me later</Button>}
             />
             <div className="flex gap-2">
-              <AlertDialogClose
+              <AlertDialog.Close
                 render={<Button variant="outline">Cancel</Button>}
               />
-              <AlertDialogClose
+              <AlertDialog.Close
                 render={<Button variant="danger">Overwrite</Button>}
               />
             </div>
           </div>
-        </AlertDialogPopup>
-      </AlertDialogPortal>
-    </AlertDialog>
+        </AlertDialog.Popup>
+      </AlertDialog.Portal>
+    </AlertDialog.Root>
   )
 }`;
 
 const withBlurredBackdropCode = `import { BanIcon } from "lucide-react"
 import { Button } from "@/components/ui/button"
-import {
-  AlertDialog,
-  AlertDialogBackdrop,
-  AlertDialogClose,
-  AlertDialogDescription,
-  AlertDialogPopup,
-  AlertDialogPortal,
-  AlertDialogTitle,
-  AlertDialogTrigger,
-} from "@/components/ui/alert-dialog"
+import { AlertDialog } from "@/components/ui/alert-dialog"
 
 export default function Example() {
   return (
-    <AlertDialog>
-      <AlertDialogTrigger
+    <AlertDialog.Root>
+      <AlertDialog.Trigger
         render={
           <Button variant="danger">
             <BanIcon />
@@ -223,46 +166,36 @@ export default function Example() {
           </Button>
         }
       />
-      <AlertDialogPortal>
-        <AlertDialogBackdrop className="backdrop-blur-sm isolation-auto" />
-        <AlertDialogPopup>
-          <AlertDialogTitle>Scrub the launch?</AlertDialogTitle>
-          <AlertDialogDescription>
+      <AlertDialog.Portal>
+        <AlertDialog.Backdrop className="backdrop-blur-sm isolation-auto" />
+        <AlertDialog.Popup>
+          <AlertDialog.Title>Scrub the launch?</AlertDialog.Title>
+          <AlertDialog.Description>
             The window closes for this orbit. Ground control will need a new
             clearance before the next attempt.
-          </AlertDialogDescription>
+          </AlertDialog.Description>
           <div className="mt-6 flex justify-end gap-2">
-            <AlertDialogClose render={<Button variant="outline">Cancel</Button>} />
-            <AlertDialogClose render={<Button variant="danger">Scrub</Button>} />
+            <AlertDialog.Close render={<Button variant="outline">Cancel</Button>} />
+            <AlertDialog.Close render={<Button variant="danger">Scrub</Button>} />
           </div>
-        </AlertDialogPopup>
-      </AlertDialogPortal>
-    </AlertDialog>
+        </AlertDialog.Popup>
+      </AlertDialog.Portal>
+    </AlertDialog.Root>
   )
 }`;
 
 const detachedTriggerCode = `import { OctagonXIcon } from "lucide-react"
 import { Button } from "@/components/ui/button"
-import {
-  AlertDialog,
-  AlertDialogBackdrop,
-  AlertDialogClose,
-  AlertDialogDescription,
-  AlertDialogPopup,
-  AlertDialogPortal,
-  AlertDialogTitle,
-  AlertDialogTrigger,
-  createAlertDialogHandle,
-} from "@/components/ui/alert-dialog"
+import { AlertDialog } from "@/components/ui/alert-dialog"
 
 // Created once outside the component. Connects the trigger to the
 // dialog without either one needing to be a descendant of the other.
-const handle = createAlertDialogHandle()
+const handle = AlertDialog.createHandle()
 
 export default function Example() {
   return (
     <>
-      <AlertDialogTrigger
+      <AlertDialog.Trigger
         handle={handle}
         render={
           <Button variant="danger">
@@ -271,22 +204,22 @@ export default function Example() {
           </Button>
         }
       />
-      <AlertDialog handle={handle}>
-        <AlertDialogPortal>
-          <AlertDialogBackdrop />
-          <AlertDialogPopup>
-            <AlertDialogTitle>Abort the mission?</AlertDialogTitle>
-            <AlertDialogDescription>
+      <AlertDialog.Root handle={handle}>
+        <AlertDialog.Portal>
+          <AlertDialog.Backdrop />
+          <AlertDialog.Popup>
+            <AlertDialog.Title>Abort the mission?</AlertDialog.Title>
+            <AlertDialog.Description>
               The countdown stops immediately. Ground control will need a
               full resync before the next attempt.
-            </AlertDialogDescription>
+            </AlertDialog.Description>
             <div className="mt-6 flex justify-end gap-2">
-              <AlertDialogClose render={<Button variant="outline">Stand Down</Button>} />
-              <AlertDialogClose render={<Button variant="danger">Abort</Button>} />
+              <AlertDialog.Close render={<Button variant="outline">Stand Down</Button>} />
+              <AlertDialog.Close render={<Button variant="danger">Abort</Button>} />
             </div>
-          </AlertDialogPopup>
-        </AlertDialogPortal>
-      </AlertDialog>
+          </AlertDialog.Popup>
+        </AlertDialog.Portal>
+      </AlertDialog.Root>
     </>
   )
 }`;
@@ -297,17 +230,7 @@ const payloadCode = `import {
   RocketIcon,
 } from "lucide-react"
 import { Button } from "@/components/ui/button"
-import {
-  AlertDialog,
-  AlertDialogBackdrop,
-  AlertDialogClose,
-  AlertDialogDescription,
-  AlertDialogPopup,
-  AlertDialogPortal,
-  AlertDialogTitle,
-  AlertDialogTrigger,
-  createAlertDialogHandle,
-} from "@/components/ui/alert-dialog"
+import { AlertDialog } from "@/components/ui/alert-dialog"
 
 type ActionPayload = {
   title: string
@@ -317,7 +240,7 @@ type ActionPayload = {
 
 // One handle and one dialog. Each trigger passes its own payload so the
 // popup can render the right copy for whichever action was pressed.
-const handle = createAlertDialogHandle<ActionPayload>()
+const handle = AlertDialog.createHandle<ActionPayload>()
 
 const actions = [
   {
@@ -356,7 +279,7 @@ export default function Example() {
       {actions.map((action) => {
         const Icon = action.icon
         return (
-          <AlertDialogTrigger
+          <AlertDialog.Trigger
             key={action.label}
             handle={handle}
             payload={action.payload}
@@ -369,23 +292,23 @@ export default function Example() {
           />
         )
       })}
-      <AlertDialog<ActionPayload> handle={handle}>
+      <AlertDialog.Root<ActionPayload> handle={handle}>
         {({ payload }) => (
-          <AlertDialogPortal>
-            <AlertDialogBackdrop />
-            <AlertDialogPopup>
-              <AlertDialogTitle>{payload?.title}</AlertDialogTitle>
-              <AlertDialogDescription>{payload?.description}</AlertDialogDescription>
+          <AlertDialog.Portal>
+            <AlertDialog.Backdrop />
+            <AlertDialog.Popup>
+              <AlertDialog.Title>{payload?.title}</AlertDialog.Title>
+              <AlertDialog.Description>{payload?.description}</AlertDialog.Description>
               <div className="mt-6 flex justify-end gap-2">
-                <AlertDialogClose render={<Button variant="outline">Cancel</Button>} />
-                <AlertDialogClose
+                <AlertDialog.Close render={<Button variant="outline">Cancel</Button>} />
+                <AlertDialog.Close
                   render={<Button variant="danger">{payload?.confirmLabel}</Button>}
                 />
               </div>
-            </AlertDialogPopup>
-          </AlertDialogPortal>
+            </AlertDialog.Popup>
+          </AlertDialog.Portal>
         )}
-      </AlertDialog>
+      </AlertDialog.Root>
     </>
   )
 }`;
@@ -512,8 +435,8 @@ export default async function AlertDialogPage() {
       <h1 className="text-3xl font-bold">Alert Dialog</h1>
       <p className="mt-2 text-muted-foreground">
         A confirmation dialog that interrupts until the user accepts or
-        cancels. Backdrop clicks do not dismiss it. Only Escape or an
-        explicit action will.
+        cancels. Backdrop clicks do not dismiss it, and only Escape or an
+        explicit action closes it.
       </p>
 
       <section className="mt-8 space-y-8">
@@ -522,36 +445,7 @@ export default async function AlertDialogPage() {
             Default
           </h2>
           <ComponentPreview code={defaultCode}>
-            <div className="flex w-full items-center justify-center">
-              <AlertDialog>
-                <AlertDialogTrigger
-                  render={
-                    <Button variant="danger">
-                      <Trash2Icon />
-                      Discard Flight Log
-                    </Button>
-                  }
-                />
-                <AlertDialogPortal>
-                  <AlertDialogBackdrop />
-                  <AlertDialogPopup>
-                    <AlertDialogTitle>Discard flight log?</AlertDialogTitle>
-                    <AlertDialogDescription>
-                      This mission data can&apos;t be recovered once you
-                      leave orbit.
-                    </AlertDialogDescription>
-                    <div className="mt-6 flex justify-end gap-2">
-                      <AlertDialogClose
-                        render={<Button variant="outline">Cancel</Button>}
-                      />
-                      <AlertDialogClose
-                        render={<Button variant="danger">Discard</Button>}
-                      />
-                    </div>
-                  </AlertDialogPopup>
-                </AlertDialogPortal>
-              </AlertDialog>
-            </div>
+            <DefaultDemo />
           </ComponentPreview>
         </div>
 
@@ -577,46 +471,7 @@ export default async function AlertDialogPage() {
             </p>
           </div>
           <ComponentPreview code={withIconCode}>
-            <div className="flex w-full items-center justify-center">
-              <AlertDialog>
-                <AlertDialogTrigger
-                  render={
-                    <Button variant="danger">
-                      <DropletsIcon />
-                      Purge Fuel Tank
-                    </Button>
-                  }
-                />
-                <AlertDialogPortal>
-                  <AlertDialogBackdrop />
-                  <AlertDialogPopup>
-                    <div className="flex items-start gap-3">
-                      <CircleAlertIcon
-                        aria-hidden="true"
-                        className="mt-0.5 size-5 shrink-0 text-danger"
-                      />
-                      <div>
-                        <AlertDialogTitle>
-                          Purge the fuel tank?
-                        </AlertDialogTitle>
-                        <AlertDialogDescription>
-                          Every drop vents to atmosphere. Refueling takes
-                          another two orbits.
-                        </AlertDialogDescription>
-                      </div>
-                    </div>
-                    <div className="mt-6 flex justify-end gap-2">
-                      <AlertDialogClose
-                        render={<Button variant="outline">Cancel</Button>}
-                      />
-                      <AlertDialogClose
-                        render={<Button variant="danger">Purge</Button>}
-                      />
-                    </div>
-                  </AlertDialogPopup>
-                </AlertDialogPortal>
-              </AlertDialog>
-            </div>
+            <WithIconDemo />
           </ComponentPreview>
         </div>
 
@@ -629,52 +484,12 @@ export default async function AlertDialogPage() {
               With tertiary action
             </h2>
             <p className="text-base text-muted-foreground">
-              Place an optional ghost action on the left. Keep Cancel and
+              Place an optional ghost action on the left, and keep Cancel and
               the primary confirm grouped on the right.
             </p>
           </div>
           <ComponentPreview code={withTertiaryCode}>
-            <div className="flex w-full items-center justify-center">
-              <AlertDialog>
-                <AlertDialogTrigger
-                  render={
-                    <Button variant="danger">
-                      <FilePenLineIcon />
-                      Overwrite Telemetry
-                    </Button>
-                  }
-                />
-                <AlertDialogPortal>
-                  <AlertDialogBackdrop />
-                  <AlertDialogPopup>
-                    <AlertDialogTitle>
-                      Overwrite telemetry notes?
-                    </AlertDialogTitle>
-                    <AlertDialogDescription>
-                      The previous draft is replaced if you continue. You can
-                      postpone and come back later.
-                    </AlertDialogDescription>
-                    <div className="mt-6 flex items-center justify-between gap-2">
-                      <AlertDialogClose
-                        render={
-                          <Button variant="ghost">Remind me later</Button>
-                        }
-                      />
-                      <div className="flex gap-2">
-                        <AlertDialogClose
-                          render={<Button variant="outline">Cancel</Button>}
-                        />
-                        <AlertDialogClose
-                          render={
-                            <Button variant="danger">Overwrite</Button>
-                          }
-                        />
-                      </div>
-                    </div>
-                  </AlertDialogPopup>
-                </AlertDialogPortal>
-              </AlertDialog>
-            </div>
+            <WithTertiaryDemo />
           </ComponentPreview>
         </div>
 
@@ -689,41 +504,12 @@ export default async function AlertDialogPage() {
             <p className="text-base text-muted-foreground">
               Add{" "}
               <InlineCode>backdrop-blur-sm</InlineCode> and{" "}
-              <InlineCode>isolation-auto</InlineCode> on the backdrop. The
-              second undoes the default isolate so blur can take effect.
+              <InlineCode>isolation-auto</InlineCode> on the backdrop so the
+              second undoes the default isolate and blur can take effect.
             </p>
           </div>
           <ComponentPreview code={withBlurredBackdropCode}>
-            <div className="flex w-full items-center justify-center">
-              <AlertDialog>
-                <AlertDialogTrigger
-                  render={
-                    <Button variant="danger">
-                      <BanIcon />
-                      Scrub Launch
-                    </Button>
-                  }
-                />
-                <AlertDialogPortal>
-                  <AlertDialogBackdrop className="backdrop-blur-sm isolation-auto" />
-                  <AlertDialogPopup>
-                    <AlertDialogTitle>Scrub the launch?</AlertDialogTitle>
-                    <AlertDialogDescription>
-                      The window closes for this orbit. Ground control will
-                      need a new clearance before the next attempt.
-                    </AlertDialogDescription>
-                    <div className="mt-6 flex justify-end gap-2">
-                      <AlertDialogClose
-                        render={<Button variant="outline">Cancel</Button>}
-                      />
-                      <AlertDialogClose
-                        render={<Button variant="danger">Scrub</Button>}
-                      />
-                    </div>
-                  </AlertDialogPopup>
-                </AlertDialogPortal>
-              </AlertDialog>
-            </div>
+            <WithBlurredBackdropDemo />
           </ComponentPreview>
         </div>
 
@@ -737,7 +523,7 @@ export default async function AlertDialogPage() {
             </h2>
             <p className="text-base text-muted-foreground">
               A handle from{" "}
-              <InlineCode>createAlertDialogHandle()</InlineCode>{" "}
+              <InlineCode>AlertDialog.createHandle()</InlineCode>{" "}
               connects a trigger to a dialog anywhere else in the tree so
               neither has to be the other&apos;s descendant.
             </p>
@@ -753,7 +539,7 @@ export default async function AlertDialogPage() {
               Multiple triggers with payload
             </h2>
             <p className="text-base text-muted-foreground">
-              Several triggers can share one handle and dialog. Each passes
+              Several triggers can share one handle and dialog, each passing
               its own{" "}
               <InlineCode>payload</InlineCode>
               . A function child reads it back so the dialog can render the
@@ -771,17 +557,17 @@ export default async function AlertDialogPage() {
           </h2>
 
           <div className="space-y-3">
-            <h3 className="text-base font-medium">AlertDialog</h3>
+            <h3 className="text-base font-medium">AlertDialog.Root</h3>
             <PropsTable props={rootProps} />
           </div>
 
           <div className="space-y-3">
-            <h3 className="text-base font-medium">AlertDialogTrigger</h3>
+            <h3 className="text-base font-medium">AlertDialog.Trigger</h3>
             <PropsTable props={triggerProps} />
           </div>
 
           <div className="space-y-3">
-            <h3 className="text-base font-medium">AlertDialogPopup</h3>
+            <h3 className="text-base font-medium">AlertDialog.Popup</h3>
             <PropsTable props={popupProps} />
           </div>
 

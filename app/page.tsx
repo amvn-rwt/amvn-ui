@@ -33,7 +33,7 @@ export default function Home() {
           </Link>
         </h1>
         <p className="mt-2 text-muted-foreground">
-          Aman Rawat&apos;s UI library — accessible components built with Base UI
+          Aman Rawat&apos;s UI library: accessible components built with Base UI
           and Tailwind CSS.
         </p>
         <Link

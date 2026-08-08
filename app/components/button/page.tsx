@@ -17,7 +17,7 @@ import { site } from "@/lib/site";
 export const metadata = createPageMetadata({
   title: "Button",
   description:
-    "Button component for amvn.ui. Primary, secondary, outline, ghost, danger and success variants built with Base UI and Tailwind CSS.",
+    "Button for amvn.ui with primary, secondary, outline, ghost, danger and success variants, built with Base UI and Tailwind CSS.",
   path: "/components/button",
 });
 

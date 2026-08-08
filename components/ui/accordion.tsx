@@ -12,7 +12,7 @@ type AccordionProps = AccordionPrimitive.Root.Props & {
   bordered?: boolean;
 };
 
-function Accordion({
+function AccordionRoot({
   className,
   bordered = true,
   ...props
@@ -87,7 +87,7 @@ function AccordionTrigger({
   );
 }
 
-function AccordionContent({
+function AccordionPanel({
   className,
   children,
   ...props
@@ -106,5 +106,19 @@ function AccordionContent({
   );
 }
 
-export { Accordion, AccordionItem, AccordionTrigger, AccordionContent };
+const Accordion = Object.assign(AccordionRoot, {
+  Root: AccordionRoot,
+  Item: AccordionItem,
+  Trigger: AccordionTrigger,
+  Panel: AccordionPanel,
+});
+
+export {
+  Accordion,
+  AccordionRoot,
+  AccordionItem,
+  AccordionTrigger,
+  AccordionPanel,
+  AccordionPanel as AccordionContent,
+};
 export type { AccordionProps, AccordionTriggerProps };

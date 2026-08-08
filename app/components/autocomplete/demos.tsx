@@ -3,23 +3,7 @@
 import * as React from "react";
 import { SearchIcon } from "lucide-react";
 
-import {
-  Autocomplete,
-  AutocompleteClear,
-  AutocompleteCollection,
-  AutocompleteEmpty,
-  AutocompleteGroup,
-  AutocompleteGroupLabel,
-  AutocompleteInput,
-  AutocompleteInputGroup,
-  AutocompleteItem,
-  AutocompleteList,
-  AutocompletePortal,
-  AutocompletePopup,
-  AutocompletePositioner,
-  AutocompleteStatus,
-  useAutocompleteFilter,
-} from "@/components/ui/autocomplete";
+import { Autocomplete } from "@/components/ui/autocomplete";
 
 type Tag = {
   value: string;
@@ -68,26 +52,26 @@ const groupedTags: TagGroup[] = [
 function DefaultDemo() {
   return (
     <div className="flex w-full justify-center">
-      <Autocomplete items={tags}>
+      <Autocomplete.Root items={tags}>
         <label className="flex w-12 flex-col gap-1 text-sm font-medium text-foreground">
           Search tags
-          <AutocompleteInput placeholder="e.g. feature" />
+          <Autocomplete.Input placeholder="e.g. feature" />
         </label>
-        <AutocompletePortal>
-          <AutocompletePositioner>
-            <AutocompletePopup>
-              <AutocompleteEmpty>No tags found.</AutocompleteEmpty>
-              <AutocompleteList>
+        <Autocomplete.Portal>
+          <Autocomplete.Positioner>
+            <Autocomplete.Popup>
+              <Autocomplete.Empty>No tags found.</Autocomplete.Empty>
+              <Autocomplete.List>
                 {(tag: Tag) => (
-                  <AutocompleteItem key={tag.value} value={tag}>
+                  <Autocomplete.Item key={tag.value} value={tag}>
                     {tag.label}
-                  </AutocompleteItem>
+                  </Autocomplete.Item>
                 )}
-              </AutocompleteList>
-            </AutocompletePopup>
-          </AutocompletePositioner>
-        </AutocompletePortal>
-      </Autocomplete>
+              </Autocomplete.List>
+            </Autocomplete.Popup>
+          </Autocomplete.Positioner>
+        </Autocomplete.Portal>
+      </Autocomplete.Root>
     </div>
   );
 }
@@ -95,33 +79,33 @@ function DefaultDemo() {
 function InputGroupDemo() {
   return (
     <div className="flex w-full justify-center">
-      <Autocomplete items={tags}>
+      <Autocomplete.Root items={tags}>
         <label className="flex w-12 flex-col gap-1 text-sm font-medium text-foreground">
           Search tags
-          <AutocompleteInputGroup>
+          <Autocomplete.InputGroup>
             <SearchIcon
               className="size-4 shrink-0 text-muted-foreground"
               aria-hidden
             />
-            <AutocompleteInput placeholder="e.g. feature" />
-            <AutocompleteClear />
-          </AutocompleteInputGroup>
+            <Autocomplete.Input placeholder="e.g. feature" />
+            <Autocomplete.Clear />
+          </Autocomplete.InputGroup>
         </label>
-        <AutocompletePortal>
-          <AutocompletePositioner>
-            <AutocompletePopup>
-              <AutocompleteEmpty>No tags found.</AutocompleteEmpty>
-              <AutocompleteList>
+        <Autocomplete.Portal>
+          <Autocomplete.Positioner>
+            <Autocomplete.Popup>
+              <Autocomplete.Empty>No tags found.</Autocomplete.Empty>
+              <Autocomplete.List>
                 {(tag: Tag) => (
-                  <AutocompleteItem key={tag.value} value={tag}>
+                  <Autocomplete.Item key={tag.value} value={tag}>
                     {tag.label}
-                  </AutocompleteItem>
+                  </Autocomplete.Item>
                 )}
-              </AutocompleteList>
-            </AutocompletePopup>
-          </AutocompletePositioner>
-        </AutocompletePortal>
-      </Autocomplete>
+              </Autocomplete.List>
+            </Autocomplete.Popup>
+          </Autocomplete.Positioner>
+        </Autocomplete.Portal>
+      </Autocomplete.Root>
     </div>
   );
 }
@@ -129,37 +113,39 @@ function InputGroupDemo() {
 function GroupedDemo() {
   return (
     <div className="flex w-full justify-center">
-      <Autocomplete items={groupedTags}>
+      <Autocomplete.Root items={groupedTags}>
         <label className="flex w-12 flex-col gap-1 text-sm font-medium text-foreground">
           Select a tag
-          <AutocompleteInput placeholder="e.g. feature" />
+          <Autocomplete.Input placeholder="e.g. feature" />
         </label>
-        <AutocompletePortal>
-          <AutocompletePositioner>
-            <AutocompletePopup>
-              <AutocompleteEmpty>No tags found.</AutocompleteEmpty>
-              <AutocompleteList>
+        <Autocomplete.Portal>
+          <Autocomplete.Positioner>
+            <Autocomplete.Popup>
+              <Autocomplete.Empty>No tags found.</Autocomplete.Empty>
+              <Autocomplete.List>
                 {(group: TagGroup) => (
-                  <AutocompleteGroup
+                  <Autocomplete.Group
                     key={group.value}
                     items={group.items}
                     className="pb-1 last:pb-0"
                   >
-                    <AutocompleteGroupLabel>{group.value}</AutocompleteGroupLabel>
-                    <AutocompleteCollection>
+                    <Autocomplete.GroupLabel>
+                      {group.value}
+                    </Autocomplete.GroupLabel>
+                    <Autocomplete.Collection>
                       {(tag: Tag) => (
-                        <AutocompleteItem key={tag.value} value={tag}>
+                        <Autocomplete.Item key={tag.value} value={tag}>
                           {tag.label}
-                        </AutocompleteItem>
+                        </Autocomplete.Item>
                       )}
-                    </AutocompleteCollection>
-                  </AutocompleteGroup>
+                    </Autocomplete.Collection>
+                  </Autocomplete.Group>
                 )}
-              </AutocompleteList>
-            </AutocompletePopup>
-          </AutocompletePositioner>
-        </AutocompletePortal>
-      </Autocomplete>
+              </Autocomplete.List>
+            </Autocomplete.Popup>
+          </Autocomplete.Positioner>
+        </Autocomplete.Portal>
+      </Autocomplete.Root>
     </div>
   );
 }
@@ -167,26 +153,26 @@ function GroupedDemo() {
 function AutoHighlightDemo() {
   return (
     <div className="flex w-full justify-center">
-      <Autocomplete items={tags} autoHighlight>
+      <Autocomplete.Root items={tags} autoHighlight>
         <label className="flex w-12 flex-col gap-1 text-sm font-medium text-foreground">
           Auto highlight on type
-          <AutocompleteInput placeholder="e.g. feature" />
+          <Autocomplete.Input placeholder="e.g. feature" />
         </label>
-        <AutocompletePortal>
-          <AutocompletePositioner>
-            <AutocompletePopup>
-              <AutocompleteEmpty>No tags found.</AutocompleteEmpty>
-              <AutocompleteList>
+        <Autocomplete.Portal>
+          <Autocomplete.Positioner>
+            <Autocomplete.Popup>
+              <Autocomplete.Empty>No tags found.</Autocomplete.Empty>
+              <Autocomplete.List>
                 {(tag: Tag) => (
-                  <AutocompleteItem key={tag.value} value={tag}>
+                  <Autocomplete.Item key={tag.value} value={tag}>
                     {tag.label}
-                  </AutocompleteItem>
+                  </Autocomplete.Item>
                 )}
-              </AutocompleteList>
-            </AutocompletePopup>
-          </AutocompletePositioner>
-        </AutocompletePortal>
-      </Autocomplete>
+              </Autocomplete.List>
+            </Autocomplete.Popup>
+          </Autocomplete.Positioner>
+        </Autocomplete.Portal>
+      </Autocomplete.Root>
     </div>
   );
 }
@@ -195,32 +181,32 @@ function InlineDemo() {
   return (
     <div className="flex w-full justify-center">
       {/* mode="both" filters the list and fills the input from the highlighted item. */}
-      <Autocomplete items={tags} mode="both">
+      <Autocomplete.Root items={tags} mode="both">
         <label className="flex w-12 flex-col gap-1 text-sm font-medium text-foreground">
           Search tags
-          <AutocompleteInput placeholder="e.g. feature" />
+          <Autocomplete.Input placeholder="e.g. feature" />
         </label>
-        <AutocompletePortal>
-          <AutocompletePositioner className="data-empty:hidden">
-            <AutocompletePopup>
-              <AutocompleteList>
+        <Autocomplete.Portal>
+          <Autocomplete.Positioner className="data-empty:hidden">
+            <Autocomplete.Popup>
+              <Autocomplete.List>
                 {(tag: Tag) => (
-                  <AutocompleteItem key={tag.value} value={tag}>
+                  <Autocomplete.Item key={tag.value} value={tag}>
                     {tag.label}
-                  </AutocompleteItem>
+                  </Autocomplete.Item>
                 )}
-              </AutocompleteList>
-            </AutocompletePopup>
-          </AutocompletePositioner>
-        </AutocompletePortal>
-      </Autocomplete>
+              </Autocomplete.List>
+            </Autocomplete.Popup>
+          </Autocomplete.Positioner>
+        </Autocomplete.Portal>
+      </Autocomplete.Root>
     </div>
   );
 }
 
 function EmptyStatusDemo() {
   const [value, setValue] = React.useState("");
-  const { contains } = useAutocompleteFilter({ sensitivity: "base" });
+  const { contains } = Autocomplete.useFilter({ sensitivity: "base" });
 
   const trimmed = value.trim();
   const matchCount = trimmed
@@ -229,34 +215,34 @@ function EmptyStatusDemo() {
 
   return (
     <div className="flex w-full justify-center">
-      <Autocomplete items={tags} value={value} onValueChange={setValue}>
+      <Autocomplete.Root items={tags} value={value} onValueChange={setValue}>
         <label className="flex w-12 flex-col gap-1 text-sm font-medium text-foreground">
           Search tags
-          <AutocompleteInput placeholder="e.g. feature" />
+          <Autocomplete.Input placeholder="e.g. feature" />
         </label>
-        <AutocompletePortal>
-          <AutocompletePositioner>
-            <AutocompletePopup>
+        <Autocomplete.Portal>
+          <Autocomplete.Positioner>
+            <Autocomplete.Popup>
               {/* Keep Empty/Status mounted; swap children so screen readers still announce. */}
-              <AutocompleteStatus>
+              <Autocomplete.Status>
                 {matchCount > 0
                   ? `${matchCount} result${matchCount === 1 ? "" : "s"}`
                   : null}
-              </AutocompleteStatus>
-              <AutocompleteEmpty>
+              </Autocomplete.Status>
+              <Autocomplete.Empty>
                 {trimmed ? `No tags match "${value}".` : null}
-              </AutocompleteEmpty>
-              <AutocompleteList>
+              </Autocomplete.Empty>
+              <Autocomplete.List>
                 {(tag: Tag) => (
-                  <AutocompleteItem key={tag.value} value={tag}>
+                  <Autocomplete.Item key={tag.value} value={tag}>
                     {tag.label}
-                  </AutocompleteItem>
+                  </Autocomplete.Item>
                 )}
-              </AutocompleteList>
-            </AutocompletePopup>
-          </AutocompletePositioner>
-        </AutocompletePortal>
-      </Autocomplete>
+              </Autocomplete.List>
+            </Autocomplete.Popup>
+          </Autocomplete.Positioner>
+        </Autocomplete.Portal>
+      </Autocomplete.Root>
     </div>
   );
 }

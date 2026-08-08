@@ -10,7 +10,7 @@ import { cn } from "@/lib/utils";
 
 const AutocompleteOpenContext = React.createContext(false);
 
-function Autocomplete<ItemValue>(
+function AutocompleteRoot<ItemValue>(
   props: AutocompletePrimitive.Root.Props<ItemValue>,
 ) {
   // Root is overloaded for flat vs grouped `items`; cast keeps the public generic API.
@@ -340,8 +340,35 @@ function AutocompleteSeparator({
 const useAutocompleteFilter = AutocompletePrimitive.useFilter;
 const useAutocompleteFilteredItems = AutocompletePrimitive.useFilteredItems;
 
+const Autocomplete = Object.assign(AutocompleteRoot, {
+  Root: AutocompleteRoot,
+  Input: AutocompleteInput,
+  InputGroup: AutocompleteInputGroup,
+  Icon: AutocompleteIcon,
+  Clear: AutocompleteClear,
+  Trigger: AutocompleteTrigger,
+  Value: AutocompleteValue,
+  Portal: AutocompletePortal,
+  Backdrop: AutocompleteBackdrop,
+  Positioner: AutocompletePositioner,
+  Popup: AutocompletePopup,
+  Arrow: AutocompleteArrow,
+  List: AutocompleteList,
+  Item: AutocompleteItem,
+  Group: AutocompleteGroup,
+  GroupLabel: AutocompleteGroupLabel,
+  Collection: AutocompleteCollection,
+  Row: AutocompleteRow,
+  Empty: AutocompleteEmpty,
+  Status: AutocompleteStatus,
+  Separator: AutocompleteSeparator,
+  useFilter: useAutocompleteFilter,
+  useFilteredItems: useAutocompleteFilteredItems,
+});
+
 export {
   Autocomplete,
+  AutocompleteRoot,
   AutocompleteInput,
   AutocompleteInputGroup,
   AutocompleteIcon,

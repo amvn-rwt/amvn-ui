@@ -7,7 +7,7 @@ import { site } from "@/lib/site";
 export const metadata = createPageMetadata({
   title: "Components",
   description:
-    "Browse amvn.ui components. Accessible elemental React building blocks built with Base UI and Tailwind CSS.",
+    "Browse amvn.ui components: accessible elemental React building blocks built with Base UI and Tailwind CSS.",
   path: "/components",
 });
 

@@ -8,9 +8,9 @@ function getSiteUrl() {
 
 export const site = {
   name: "amvn.uı",
-  title: "amvn.ui — accessible elemental components",
+  title: "amvn.ui: accessible elemental components",
   description:
-    "Aman Rawat's UI library — accessible elemental components built with Base UI and Tailwind CSS.",
+    "Aman Rawat's UI library: accessible elemental components built with Base UI and Tailwind CSS.",
   url: getSiteUrl(),
   locale: "en_US",
   creator: "Aman Rawat",

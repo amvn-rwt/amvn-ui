@@ -1,19 +1,14 @@
 "use client";
 
-import * as React from "react";
 import { MoonIcon, SunIcon } from "lucide-react";
-import { useTheme } from "next-themes";
+import { useHydrated, useTheme } from "@wrksz/themes/client";
 
 import { Button } from "@/components/ui/button";
 import { playSound } from "@/lib/sounds";
 
 export function ThemeToggle() {
   const { resolvedTheme, setTheme } = useTheme();
-  const [mounted, setMounted] = React.useState(false);
-
-  React.useEffect(() => {
-    setMounted(true);
-  }, []);
+  const mounted = useHydrated();
 
   const isDark = resolvedTheme === "dark";
 

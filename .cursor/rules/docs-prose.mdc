@@ -6,9 +6,31 @@ alwaysApply: false
 
 # Docs prose
 
-When writing or editing user-facing copy (intros, section descriptions, demos, metadata descriptions):
+Applies to all user-facing copy in scope: page intros, section leads, guideline bullets, metadata descriptions, homepage blurbs, and demo labels. Write once to this standard. Do not leave choppy drafts and patch one page later.
+
+## Rules
 
 - Do not use em dashes (`—`) or en dashes (`–`). Prefer a period and a new sentence, or a colon when introducing a list or clarification.
 - Use commas only when grammar requires them (lists of three or more, or to prevent misreading). Prefer shorter sentences over comma-heavy clauses.
 - Prefer short sentences that scan easily. Cut filler.
+- Do not write staccato prose. Related ideas belong in one sentence, or in a colon-led list. Never stack several one-clause sentences that all describe the same thing. Two sentences are fine when they carry distinct thoughts.
 - Keep empty-value placeholders in props tables as `—` (UI convention, not prose).
+
+## Staccato check
+
+Before shipping copy, read it aloud. If it sounds like a telegram (period, period, period), combine related clauses.
+
+```text
+❌ An input that suggests options as you type. Keep free-form text in the field. Suggestions stay optional.
+✅ An input that suggests options as you type while keeping free-form text in the field. Suggestions stay optional.
+
+❌ mode maps to aria-autocomplete. list filters only. both filters and fills the input. inline fills without filtering. none does neither.
+✅ mode maps to aria-autocomplete: list filters only, both filters and fills the input, inline fills without filtering, and none does neither.
+
+❌ Alert Dialog component for amvn.ui. A modal confirmation dialog that interrupts the user. Built with Base UI and Tailwind CSS.
+✅ Alert Dialog for amvn.ui: a modal confirmation dialog that interrupts until the user confirms or cancels, built with Base UI and Tailwind CSS.
+
+✅ Compose a decorative icon beside the title when the action needs a stronger visual cue. Keep severity in the title text and hide the icon from assistive tech.
+```
+
+The last example is fine: two sentences, two distinct jobs.

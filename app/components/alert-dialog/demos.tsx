@@ -1,25 +1,19 @@
 "use client";
 
 import {
+  BanIcon,
+  CircleAlertIcon,
   DropletsIcon,
+  FilePenLineIcon,
   LogOutIcon,
   OctagonXIcon,
   RocketIcon,
+  Trash2Icon,
   type LucideIcon,
 } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
-import {
-  AlertDialog,
-  AlertDialogBackdrop,
-  AlertDialogClose,
-  AlertDialogDescription,
-  AlertDialogPopup,
-  AlertDialogPortal,
-  AlertDialogTitle,
-  AlertDialogTrigger,
-  createAlertDialogHandle,
-} from "@/components/ui/alert-dialog";
+import { AlertDialog } from "@/components/ui/alert-dialog";
 
 type ActionPayload = {
   title: string;
@@ -64,16 +58,168 @@ const payloadActions: {
   },
 ];
 
-// createAlertDialogHandle() is client-only, so these live demos (and their
+// AlertDialog.createHandle() is client-only, so these live demos (and their
 // module-scope handles) live in a client component, separate from the
 // server-rendered docs page shell.
-const detachedTriggerHandle = createAlertDialogHandle();
-const payloadHandle = createAlertDialogHandle<ActionPayload>();
+const detachedTriggerHandle = AlertDialog.createHandle();
+const payloadHandle = AlertDialog.createHandle<ActionPayload>();
+
+function DefaultDemo() {
+  return (
+    <div className="flex w-full items-center justify-center">
+      <AlertDialog.Root>
+        <AlertDialog.Trigger
+          render={
+            <Button variant="danger">
+              <Trash2Icon />
+              Discard Flight Log
+            </Button>
+          }
+        />
+        <AlertDialog.Portal>
+          <AlertDialog.Backdrop />
+          <AlertDialog.Popup>
+            <AlertDialog.Title>Discard flight log?</AlertDialog.Title>
+            <AlertDialog.Description>
+              This mission data can&apos;t be recovered once you leave orbit.
+            </AlertDialog.Description>
+            <div className="mt-6 flex justify-end gap-2">
+              <AlertDialog.Close
+                render={<Button variant="outline">Cancel</Button>}
+              />
+              <AlertDialog.Close
+                render={<Button variant="danger">Discard</Button>}
+              />
+            </div>
+          </AlertDialog.Popup>
+        </AlertDialog.Portal>
+      </AlertDialog.Root>
+    </div>
+  );
+}
+
+function WithIconDemo() {
+  return (
+    <div className="flex w-full items-center justify-center">
+      <AlertDialog.Root>
+        <AlertDialog.Trigger
+          render={
+            <Button variant="danger">
+              <DropletsIcon />
+              Purge Fuel Tank
+            </Button>
+          }
+        />
+        <AlertDialog.Portal>
+          <AlertDialog.Backdrop />
+          <AlertDialog.Popup>
+            <div className="flex items-start gap-3">
+              <CircleAlertIcon
+                aria-hidden="true"
+                className="mt-0.5 size-5 shrink-0 text-danger"
+              />
+              <div>
+                <AlertDialog.Title>Purge the fuel tank?</AlertDialog.Title>
+                <AlertDialog.Description>
+                  Every drop vents to atmosphere. Refueling takes another two
+                  orbits.
+                </AlertDialog.Description>
+              </div>
+            </div>
+            <div className="mt-6 flex justify-end gap-2">
+              <AlertDialog.Close
+                render={<Button variant="outline">Cancel</Button>}
+              />
+              <AlertDialog.Close
+                render={<Button variant="danger">Purge</Button>}
+              />
+            </div>
+          </AlertDialog.Popup>
+        </AlertDialog.Portal>
+      </AlertDialog.Root>
+    </div>
+  );
+}
+
+function WithTertiaryDemo() {
+  return (
+    <div className="flex w-full items-center justify-center">
+      <AlertDialog.Root>
+        <AlertDialog.Trigger
+          render={
+            <Button variant="danger">
+              <FilePenLineIcon />
+              Overwrite Telemetry
+            </Button>
+          }
+        />
+        <AlertDialog.Portal>
+          <AlertDialog.Backdrop />
+          <AlertDialog.Popup>
+            <AlertDialog.Title>Overwrite telemetry notes?</AlertDialog.Title>
+            <AlertDialog.Description>
+              The previous draft is replaced if you continue. You can postpone
+              and come back later.
+            </AlertDialog.Description>
+            <div className="mt-6 flex items-center justify-between gap-2">
+              <AlertDialog.Close
+                render={<Button variant="ghost">Remind me later</Button>}
+              />
+              <div className="flex gap-2">
+                <AlertDialog.Close
+                  render={<Button variant="outline">Cancel</Button>}
+                />
+                <AlertDialog.Close
+                  render={<Button variant="danger">Overwrite</Button>}
+                />
+              </div>
+            </div>
+          </AlertDialog.Popup>
+        </AlertDialog.Portal>
+      </AlertDialog.Root>
+    </div>
+  );
+}
+
+function WithBlurredBackdropDemo() {
+  return (
+    <div className="flex w-full items-center justify-center">
+      <AlertDialog.Root>
+        <AlertDialog.Trigger
+          render={
+            <Button variant="danger">
+              <BanIcon />
+              Scrub Launch
+            </Button>
+          }
+        />
+        <AlertDialog.Portal>
+          <AlertDialog.Backdrop className="backdrop-blur-sm isolation-auto" />
+          <AlertDialog.Popup>
+            <AlertDialog.Title>Scrub the launch?</AlertDialog.Title>
+            <AlertDialog.Description>
+              The window closes for this orbit. Ground control will need a new
+              clearance before the next attempt.
+            </AlertDialog.Description>
+            <div className="mt-6 flex justify-end gap-2">
+              <AlertDialog.Close
+                render={<Button variant="outline">Cancel</Button>}
+              />
+              <AlertDialog.Close
+                render={<Button variant="danger">Scrub</Button>}
+              />
+            </div>
+          </AlertDialog.Popup>
+        </AlertDialog.Portal>
+      </AlertDialog.Root>
+    </div>
+  );
+}
 
 function DetachedTriggerDemo() {
   return (
     <div className="flex w-full items-center justify-center">
-      <AlertDialogTrigger
+      <AlertDialog.Trigger
         handle={detachedTriggerHandle}
         render={
           <Button variant="danger">
@@ -82,26 +228,26 @@ function DetachedTriggerDemo() {
           </Button>
         }
       />
-      <AlertDialog handle={detachedTriggerHandle}>
-        <AlertDialogPortal>
-          <AlertDialogBackdrop />
-          <AlertDialogPopup>
-            <AlertDialogTitle>Abort the mission?</AlertDialogTitle>
-            <AlertDialogDescription>
-              The countdown stops immediately. Ground control will need a
-              full resync before the next attempt.
-            </AlertDialogDescription>
+      <AlertDialog.Root handle={detachedTriggerHandle}>
+        <AlertDialog.Portal>
+          <AlertDialog.Backdrop />
+          <AlertDialog.Popup>
+            <AlertDialog.Title>Abort the mission?</AlertDialog.Title>
+            <AlertDialog.Description>
+              The countdown stops immediately. Ground control will need a full
+              resync before the next attempt.
+            </AlertDialog.Description>
             <div className="mt-6 flex justify-end gap-2">
-              <AlertDialogClose
+              <AlertDialog.Close
                 render={<Button variant="outline">Stand Down</Button>}
               />
-              <AlertDialogClose
+              <AlertDialog.Close
                 render={<Button variant="danger">Abort</Button>}
               />
             </div>
-          </AlertDialogPopup>
-        </AlertDialogPortal>
-      </AlertDialog>
+          </AlertDialog.Popup>
+        </AlertDialog.Portal>
+      </AlertDialog.Root>
     </div>
   );
 }
@@ -112,7 +258,7 @@ function PayloadDemo() {
       {payloadActions.map((action) => {
         const Icon = action.icon;
         return (
-          <AlertDialogTrigger
+          <AlertDialog.Trigger
             key={action.label}
             handle={payloadHandle}
             payload={action.payload}
@@ -125,31 +271,38 @@ function PayloadDemo() {
           />
         );
       })}
-      <AlertDialog<ActionPayload> handle={payloadHandle}>
+      <AlertDialog.Root<ActionPayload> handle={payloadHandle}>
         {({ payload }) => (
-          <AlertDialogPortal>
-            <AlertDialogBackdrop />
-            <AlertDialogPopup>
-              <AlertDialogTitle>{payload?.title}</AlertDialogTitle>
-              <AlertDialogDescription>
+          <AlertDialog.Portal>
+            <AlertDialog.Backdrop />
+            <AlertDialog.Popup>
+              <AlertDialog.Title>{payload?.title}</AlertDialog.Title>
+              <AlertDialog.Description>
                 {payload?.description}
-              </AlertDialogDescription>
+              </AlertDialog.Description>
               <div className="mt-6 flex justify-end gap-2">
-                <AlertDialogClose
+                <AlertDialog.Close
                   render={<Button variant="outline">Cancel</Button>}
                 />
-                <AlertDialogClose
+                <AlertDialog.Close
                   render={
                     <Button variant="danger">{payload?.confirmLabel}</Button>
                   }
                 />
               </div>
-            </AlertDialogPopup>
-          </AlertDialogPortal>
+            </AlertDialog.Popup>
+          </AlertDialog.Portal>
         )}
-      </AlertDialog>
+      </AlertDialog.Root>
     </div>
   );
 }
 
-export { DetachedTriggerDemo, PayloadDemo };
+export {
+  DefaultDemo,
+  WithIconDemo,
+  WithTertiaryDemo,
+  WithBlurredBackdropDemo,
+  DetachedTriggerDemo,
+  PayloadDemo,
+};

@@ -5,7 +5,7 @@ import { ImageResponse } from "next/og";
 
 import { site } from "@/lib/site";
 
-export const alt = `${site.name} — accessible elemental components`;
+export const alt = `${site.name}: accessible elemental components`;
 export const size = {
   width: 1200,
   height: 630,
@@ -75,7 +75,7 @@ export default async function Image() {
             maxWidth: 880,
           }}
         >
-          {"Aman Rawat's UI library — accessible components built with Base UI and Tailwind CSS."}
+          {"Aman Rawat's UI library: accessible components built with Base UI and Tailwind CSS."}
         </div>
       </div>
     ),

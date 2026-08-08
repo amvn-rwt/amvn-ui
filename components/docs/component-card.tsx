@@ -3,12 +3,7 @@
 import type { ReactNode } from "react";
 import Link from "next/link";
 
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from "@/components/ui/accordion";
+import { Accordion } from "@/components/ui/accordion";
 import { Button } from "@/components/ui/button";
 import type { DocsNavItem } from "@/lib/docs-nav";
 import { cn } from "@/lib/utils";
@@ -25,22 +20,22 @@ function ButtonPreview() {
 
 function AccordionPreview() {
   return (
-    <Accordion defaultValue={["shipping"]} className="w-full text-left">
-      <AccordionItem value="shipping">
-        <AccordionTrigger className="py-2.5">Shipping</AccordionTrigger>
-        <AccordionContent>We ship worldwide.</AccordionContent>
-      </AccordionItem>
-      <AccordionItem value="returns">
-        <AccordionTrigger className="py-2.5">Returns</AccordionTrigger>
-        <AccordionContent>30 days, no questions asked.</AccordionContent>
-      </AccordionItem>
-    </Accordion>
+    <Accordion.Root defaultValue={["shipping"]} className="w-full text-left">
+      <Accordion.Item value="shipping">
+        <Accordion.Trigger className="py-2.5">Shipping</Accordion.Trigger>
+        <Accordion.Panel>We ship worldwide.</Accordion.Panel>
+      </Accordion.Item>
+      <Accordion.Item value="returns">
+        <Accordion.Trigger className="py-2.5">Returns</Accordion.Trigger>
+        <Accordion.Panel>30 days, no questions asked.</Accordion.Panel>
+      </Accordion.Item>
+    </Accordion.Root>
   );
 }
 
 // Static mockup, not a real AlertDialog — the card preview well is a
 // non-interactive snapshot, so there's no open state to trigger here.
-// Mirrors AlertDialogPopup: rounded-4xl, border, shadow-lg, centered.
+// Mirrors AlertDialog.Popup: rounded-4xl, border, shadow-lg, centered.
 function AlertDialogPreview() {
   return (
     <div className="mx-auto w-full max-w-56 rounded-3xl border border-border bg-background p-4 text-left shadow-lg">

@@ -6,7 +6,9 @@ import { motion, type HTMLMotionProps } from "motion/react";
 import { spring } from "@/lib/motion";
 import { cn } from "@/lib/utils";
 
-function AlertDialog<Payload>(props: AlertDialogPrimitive.Root.Props<Payload>) {
+function AlertDialogRoot<Payload>(
+  props: AlertDialogPrimitive.Root.Props<Payload>,
+) {
   return <AlertDialogPrimitive.Root data-slot="alert-dialog" {...props} />;
 }
 
@@ -114,8 +116,21 @@ function AlertDialogDescription({
 
 const createAlertDialogHandle = AlertDialogPrimitive.createHandle;
 
+const AlertDialog = Object.assign(AlertDialogRoot, {
+  Root: AlertDialogRoot,
+  Trigger: AlertDialogTrigger,
+  Close: AlertDialogClose,
+  Portal: AlertDialogPortal,
+  Backdrop: AlertDialogBackdrop,
+  Popup: AlertDialogPopup,
+  Title: AlertDialogTitle,
+  Description: AlertDialogDescription,
+  createHandle: createAlertDialogHandle,
+});
+
 export {
   AlertDialog,
+  AlertDialogRoot,
   AlertDialogTrigger,
   AlertDialogClose,
   AlertDialogPortal,
