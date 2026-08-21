@@ -5,64 +5,30 @@ import { SearchIcon } from "lucide-react";
 
 import { Autocomplete } from "@/components/ui/autocomplete";
 
-type Tag = {
-  value: string;
-  label: string;
-};
-
-type TagGroup = {
-  value: string;
-  items: Tag[];
-};
-
-// Base UI treats `{ value, label }` as a first-class item shape, so demos can
-// skip `itemToStringValue` and still filter/display against `label`.
-const tags: Tag[] = [
-  { value: "feature", label: "feature" },
-  { value: "fix", label: "fix" },
-  { value: "bug", label: "bug" },
-  { value: "docs", label: "docs" },
-  { value: "internal", label: "internal" },
-  { value: "mobile", label: "mobile" },
-  { value: "accordion", label: "component: accordion" },
-  { value: "alert-dialog", label: "component: alert dialog" },
-  { value: "autocomplete", label: "component: autocomplete" },
-  { value: "avatar", label: "component: avatar" },
-  { value: "button", label: "component: button" },
-  { value: "checkbox", label: "component: checkbox" },
-  { value: "combobox", label: "component: combobox" },
-  { value: "dialog", label: "component: dialog" },
-  { value: "menu", label: "component: menu" },
-  { value: "select", label: "component: select" },
-  { value: "tabs", label: "component: tabs" },
-  { value: "tooltip", label: "component: tooltip" },
-];
-
-const groupedTags: TagGroup[] = [
-  {
-    value: "Type",
-    items: tags.filter((tag) => !tag.label.startsWith("component:")),
-  },
-  {
-    value: "Component",
-    items: tags.filter((tag) => tag.label.startsWith("component:")),
-  },
-];
+// Each demo's data and JSX mirror the matching code string on the docs page.
+// The outer centering div is preview chrome only and is not in those snippets.
 
 function DefaultDemo() {
+  const tags = [
+    { value: "rocket", label: "Rocket" },
+    { value: "orbit-bike", label: "Orbit Bike" },
+    { value: "lunar-car", label: "Lunar Car" },
+    { value: "telemetry", label: "Telemetry" },
+  ];
+
   return (
     <div className="flex w-full justify-center">
       <Autocomplete.Root items={tags}>
-        <label className="flex w-12 flex-col gap-1 text-sm font-medium text-foreground">
-          Search tags
-          <Autocomplete.Input placeholder="e.g. feature" />
+        <label className="flex w-12 flex-col gap-1 text-sm font-medium">
+          Search the hangar
+          <Autocomplete.Input placeholder="E.g. rocket" />
         </label>
         <Autocomplete.Portal>
           <Autocomplete.Positioner>
             <Autocomplete.Popup>
-              <Autocomplete.Empty>No tags found.</Autocomplete.Empty>
+              <Autocomplete.Empty>Nothing in the hangar matches.</Autocomplete.Empty>
               <Autocomplete.List>
-                {(tag: Tag) => (
+                {(tag) => (
                   <Autocomplete.Item key={tag.value} value={tag}>
                     {tag.label}
                   </Autocomplete.Item>
@@ -77,26 +43,32 @@ function DefaultDemo() {
 }
 
 function InputGroupDemo() {
+  const tags = [
+    { value: "rocket", label: "Rocket" },
+    { value: "orbit-bike", label: "Orbit Bike" },
+    { value: "lunar-car", label: "Lunar Car" },
+  ];
+
   return (
     <div className="flex w-full justify-center">
       <Autocomplete.Root items={tags}>
-        <label className="flex w-12 flex-col gap-1 text-sm font-medium text-foreground">
-          Search tags
+        <label className="flex w-12 flex-col gap-1 text-sm font-medium">
+          Search the hangar
           <Autocomplete.InputGroup>
             <SearchIcon
               className="size-4 shrink-0 text-muted-foreground"
               aria-hidden
             />
-            <Autocomplete.Input placeholder="e.g. feature" />
+            <Autocomplete.Input placeholder="E.g. rocket" />
             <Autocomplete.Clear />
           </Autocomplete.InputGroup>
         </label>
         <Autocomplete.Portal>
           <Autocomplete.Positioner>
             <Autocomplete.Popup>
-              <Autocomplete.Empty>No tags found.</Autocomplete.Empty>
+              <Autocomplete.Empty>Nothing in the hangar matches.</Autocomplete.Empty>
               <Autocomplete.List>
-                {(tag: Tag) => (
+                {(tag) => (
                   <Autocomplete.Item key={tag.value} value={tag}>
                     {tag.label}
                   </Autocomplete.Item>
@@ -111,19 +83,40 @@ function InputGroupDemo() {
 }
 
 function GroupedDemo() {
+  // Groups are objects with an items array. Extra fields like value
+  // become the group label when you render GroupLabel.
+  const groupedTags = [
+    {
+      value: "Vehicles",
+      items: [
+        { value: "rocket", label: "Rocket" },
+        { value: "orbit-bike", label: "Orbit Bike" },
+        { value: "lunar-car", label: "Lunar Car" },
+      ],
+    },
+    {
+      value: "Systems",
+      items: [
+        { value: "telemetry", label: "Telemetry" },
+        { value: "fuel-tank", label: "Fuel Tank" },
+        { value: "ground-control", label: "Ground Control" },
+      ],
+    },
+  ];
+
   return (
     <div className="flex w-full justify-center">
       <Autocomplete.Root items={groupedTags}>
-        <label className="flex w-12 flex-col gap-1 text-sm font-medium text-foreground">
-          Select a tag
-          <Autocomplete.Input placeholder="e.g. feature" />
+        <label className="flex w-12 flex-col gap-1 text-sm font-medium">
+          Pick a mission asset
+          <Autocomplete.Input placeholder="E.g. rocket" />
         </label>
         <Autocomplete.Portal>
           <Autocomplete.Positioner>
             <Autocomplete.Popup>
-              <Autocomplete.Empty>No tags found.</Autocomplete.Empty>
+              <Autocomplete.Empty>No mission assets found.</Autocomplete.Empty>
               <Autocomplete.List>
-                {(group: TagGroup) => (
+                {(group) => (
                   <Autocomplete.Group
                     key={group.value}
                     items={group.items}
@@ -133,7 +126,7 @@ function GroupedDemo() {
                       {group.value}
                     </Autocomplete.GroupLabel>
                     <Autocomplete.Collection>
-                      {(tag: Tag) => (
+                      {(tag) => (
                         <Autocomplete.Item key={tag.value} value={tag}>
                           {tag.label}
                         </Autocomplete.Item>
@@ -151,19 +144,25 @@ function GroupedDemo() {
 }
 
 function AutoHighlightDemo() {
+  const tags = [
+    { value: "rocket", label: "Rocket" },
+    { value: "orbit-bike", label: "Orbit Bike" },
+    { value: "lunar-car", label: "Lunar Car" },
+  ];
+
   return (
     <div className="flex w-full justify-center">
       <Autocomplete.Root items={tags} autoHighlight>
-        <label className="flex w-12 flex-col gap-1 text-sm font-medium text-foreground">
+        <label className="flex w-12 flex-col gap-1 text-sm font-medium">
           Auto highlight on type
-          <Autocomplete.Input placeholder="e.g. feature" />
+          <Autocomplete.Input placeholder="E.g. rocket" />
         </label>
         <Autocomplete.Portal>
           <Autocomplete.Positioner>
             <Autocomplete.Popup>
-              <Autocomplete.Empty>No tags found.</Autocomplete.Empty>
+              <Autocomplete.Empty>Nothing in the hangar matches.</Autocomplete.Empty>
               <Autocomplete.List>
-                {(tag: Tag) => (
+                {(tag) => (
                   <Autocomplete.Item key={tag.value} value={tag}>
                     {tag.label}
                   </Autocomplete.Item>
@@ -178,19 +177,25 @@ function AutoHighlightDemo() {
 }
 
 function InlineDemo() {
+  const tags = [
+    { value: "rocket", label: "Rocket" },
+    { value: "orbit-bike", label: "Orbit Bike" },
+    { value: "lunar-car", label: "Lunar Car" },
+  ];
+
   return (
     <div className="flex w-full justify-center">
       {/* mode="both" filters the list and fills the input from the highlighted item. */}
       <Autocomplete.Root items={tags} mode="both">
-        <label className="flex w-12 flex-col gap-1 text-sm font-medium text-foreground">
-          Search tags
-          <Autocomplete.Input placeholder="e.g. feature" />
+        <label className="flex w-12 flex-col gap-1 text-sm font-medium">
+          Search the hangar
+          <Autocomplete.Input placeholder="E.g. rocket" />
         </label>
         <Autocomplete.Portal>
           <Autocomplete.Positioner className="data-empty:hidden">
             <Autocomplete.Popup>
               <Autocomplete.List>
-                {(tag: Tag) => (
+                {(tag) => (
                   <Autocomplete.Item key={tag.value} value={tag}>
                     {tag.label}
                   </Autocomplete.Item>
@@ -205,6 +210,12 @@ function InlineDemo() {
 }
 
 function EmptyStatusDemo() {
+  const tags = [
+    { value: "rocket", label: "Rocket" },
+    { value: "orbit-bike", label: "Orbit Bike" },
+    { value: "lunar-car", label: "Lunar Car" },
+  ];
+
   const [value, setValue] = React.useState("");
   const { contains } = Autocomplete.useFilter({ sensitivity: "base" });
 
@@ -216,9 +227,9 @@ function EmptyStatusDemo() {
   return (
     <div className="flex w-full justify-center">
       <Autocomplete.Root items={tags} value={value} onValueChange={setValue}>
-        <label className="flex w-12 flex-col gap-1 text-sm font-medium text-foreground">
-          Search tags
-          <Autocomplete.Input placeholder="e.g. feature" />
+        <label className="flex w-12 flex-col gap-1 text-sm font-medium">
+          Search the hangar
+          <Autocomplete.Input placeholder="E.g. rocket" />
         </label>
         <Autocomplete.Portal>
           <Autocomplete.Positioner>
@@ -230,10 +241,10 @@ function EmptyStatusDemo() {
                   : null}
               </Autocomplete.Status>
               <Autocomplete.Empty>
-                {trimmed ? `No tags match "${value}".` : null}
+                {trimmed ? `"${value}" is not cleared for launch.` : null}
               </Autocomplete.Empty>
               <Autocomplete.List>
-                {(tag: Tag) => (
+                {(tag) => (
                   <Autocomplete.Item key={tag.value} value={tag}>
                     {tag.label}
                   </Autocomplete.Item>

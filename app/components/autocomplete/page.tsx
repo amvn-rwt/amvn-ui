@@ -63,23 +63,23 @@ const anatomyCode = `import { Autocomplete } from "@/components/ui/autocomplete"
 const defaultCode = `import { Autocomplete } from "@/components/ui/autocomplete"
 
 const tags = [
-  { value: "feature", label: "feature" },
-  { value: "fix", label: "fix" },
-  { value: "bug", label: "bug" },
-  { value: "docs", label: "docs" },
+  { value: "rocket", label: "Rocket" },
+  { value: "orbit-bike", label: "Orbit Bike" },
+  { value: "lunar-car", label: "Lunar Car" },
+  { value: "telemetry", label: "Telemetry" },
 ]
 
 export default function Example() {
   return (
     <Autocomplete.Root items={tags}>
       <label className="flex w-12 flex-col gap-1 text-sm font-medium">
-        Search tags
-        <Autocomplete.Input placeholder="e.g. feature" />
+        Search the hangar
+        <Autocomplete.Input placeholder="E.g. rocket" />
       </label>
       <Autocomplete.Portal>
         <Autocomplete.Positioner>
           <Autocomplete.Popup>
-            <Autocomplete.Empty>No tags found.</Autocomplete.Empty>
+            <Autocomplete.Empty>Nothing in the hangar matches.</Autocomplete.Empty>
             <Autocomplete.List>
               {(tag) => (
                 <Autocomplete.Item key={tag.value} value={tag}>
@@ -98,29 +98,29 @@ const inputGroupCode = `import { SearchIcon } from "lucide-react"
 import { Autocomplete } from "@/components/ui/autocomplete"
 
 const tags = [
-  { value: "feature", label: "feature" },
-  { value: "fix", label: "fix" },
-  { value: "bug", label: "bug" },
+  { value: "rocket", label: "Rocket" },
+  { value: "orbit-bike", label: "Orbit Bike" },
+  { value: "lunar-car", label: "Lunar Car" },
 ]
 
 export default function Example() {
   return (
     <Autocomplete.Root items={tags}>
       <label className="flex w-12 flex-col gap-1 text-sm font-medium">
-        Search tags
+        Search the hangar
         <Autocomplete.InputGroup>
           <SearchIcon
             className="size-4 shrink-0 text-muted-foreground"
             aria-hidden
           />
-          <Autocomplete.Input placeholder="e.g. feature" />
+          <Autocomplete.Input placeholder="E.g. rocket" />
           <Autocomplete.Clear />
         </Autocomplete.InputGroup>
       </label>
       <Autocomplete.Portal>
         <Autocomplete.Positioner>
           <Autocomplete.Popup>
-            <Autocomplete.Empty>No tags found.</Autocomplete.Empty>
+            <Autocomplete.Empty>Nothing in the hangar matches.</Autocomplete.Empty>
             <Autocomplete.List>
               {(tag) => (
                 <Autocomplete.Item key={tag.value} value={tag}>
@@ -141,17 +141,19 @@ const groupedCode = `import { Autocomplete } from "@/components/ui/autocomplete"
 // become the group label when you render GroupLabel.
 const groupedTags = [
   {
-    value: "Type",
+    value: "Vehicles",
     items: [
-      { value: "feature", label: "feature" },
-      { value: "fix", label: "fix" },
+      { value: "rocket", label: "Rocket" },
+      { value: "orbit-bike", label: "Orbit Bike" },
+      { value: "lunar-car", label: "Lunar Car" },
     ],
   },
   {
-    value: "Component",
+    value: "Systems",
     items: [
-      { value: "button", label: "component: button" },
-      { value: "dialog", label: "component: dialog" },
+      { value: "telemetry", label: "Telemetry" },
+      { value: "fuel-tank", label: "Fuel Tank" },
+      { value: "ground-control", label: "Ground Control" },
     ],
   },
 ]
@@ -160,13 +162,13 @@ export default function Example() {
   return (
     <Autocomplete.Root items={groupedTags}>
       <label className="flex w-12 flex-col gap-1 text-sm font-medium">
-        Select a tag
-        <Autocomplete.Input placeholder="e.g. feature" />
+        Pick a mission asset
+        <Autocomplete.Input placeholder="E.g. rocket" />
       </label>
       <Autocomplete.Portal>
         <Autocomplete.Positioner>
           <Autocomplete.Popup>
-            <Autocomplete.Empty>No tags found.</Autocomplete.Empty>
+            <Autocomplete.Empty>No mission assets found.</Autocomplete.Empty>
             <Autocomplete.List>
               {(group) => (
                 <Autocomplete.Group
@@ -195,9 +197,9 @@ export default function Example() {
 const autoHighlightCode = `import { Autocomplete } from "@/components/ui/autocomplete"
 
 const tags = [
-  { value: "feature", label: "feature" },
-  { value: "fix", label: "fix" },
-  { value: "bug", label: "bug" },
+  { value: "rocket", label: "Rocket" },
+  { value: "orbit-bike", label: "Orbit Bike" },
+  { value: "lunar-car", label: "Lunar Car" },
 ]
 
 export default function Example() {
@@ -205,12 +207,12 @@ export default function Example() {
     <Autocomplete.Root items={tags} autoHighlight>
       <label className="flex w-12 flex-col gap-1 text-sm font-medium">
         Auto highlight on type
-        <Autocomplete.Input placeholder="e.g. feature" />
+        <Autocomplete.Input placeholder="E.g. rocket" />
       </label>
       <Autocomplete.Portal>
         <Autocomplete.Positioner>
           <Autocomplete.Popup>
-            <Autocomplete.Empty>No tags found.</Autocomplete.Empty>
+            <Autocomplete.Empty>Nothing in the hangar matches.</Autocomplete.Empty>
             <Autocomplete.List>
               {(tag) => (
                 <Autocomplete.Item key={tag.value} value={tag}>
@@ -228,9 +230,9 @@ export default function Example() {
 const inlineCode = `import { Autocomplete } from "@/components/ui/autocomplete"
 
 const tags = [
-  { value: "feature", label: "feature" },
-  { value: "fix", label: "fix" },
-  { value: "bug", label: "bug" },
+  { value: "rocket", label: "Rocket" },
+  { value: "orbit-bike", label: "Orbit Bike" },
+  { value: "lunar-car", label: "Lunar Car" },
 ]
 
 export default function Example() {
@@ -238,8 +240,8 @@ export default function Example() {
     // mode="both" filters the list and fills the input from the highlighted item.
     <Autocomplete.Root items={tags} mode="both">
       <label className="flex w-12 flex-col gap-1 text-sm font-medium">
-        Search tags
-        <Autocomplete.Input placeholder="e.g. feature" />
+        Search the hangar
+        <Autocomplete.Input placeholder="E.g. rocket" />
       </label>
       <Autocomplete.Portal>
         <Autocomplete.Positioner className="data-empty:hidden">
@@ -262,9 +264,9 @@ const emptyStatusCode = `import * as React from "react"
 import { Autocomplete } from "@/components/ui/autocomplete"
 
 const tags = [
-  { value: "feature", label: "feature" },
-  { value: "fix", label: "fix" },
-  { value: "bug", label: "bug" },
+  { value: "rocket", label: "Rocket" },
+  { value: "orbit-bike", label: "Orbit Bike" },
+  { value: "lunar-car", label: "Lunar Car" },
 ]
 
 export default function Example() {
@@ -279,8 +281,8 @@ export default function Example() {
   return (
     <Autocomplete.Root items={tags} value={value} onValueChange={setValue}>
       <label className="flex w-12 flex-col gap-1 text-sm font-medium">
-        Search tags
-        <Autocomplete.Input placeholder="e.g. feature" />
+        Search the hangar
+        <Autocomplete.Input placeholder="E.g. rocket" />
       </label>
       <Autocomplete.Portal>
         <Autocomplete.Positioner>
@@ -292,7 +294,7 @@ export default function Example() {
                 : null}
             </Autocomplete.Status>
             <Autocomplete.Empty>
-              {trimmed ? \`No tags match "\${value}".\` : null}
+              {trimmed ? \`"\${value}" is not cleared for launch.\` : null}
             </Autocomplete.Empty>
             <Autocomplete.List>
               {(tag) => (
@@ -732,13 +734,13 @@ export default async function AutocompletePage() {
               Inline autocomplete
             </h2>
             <p className="text-base text-muted-foreground">
-              <InlineCode>mode</InlineCode> maps to{" "}
-              <InlineCode>aria-autocomplete</InlineCode>
-              : <InlineCode>list</InlineCode> filters only,{" "}
-              <InlineCode>both</InlineCode> filters and fills the input from
-              the highlighted item, <InlineCode>inline</InlineCode> fills
-              without filtering, and <InlineCode>none</InlineCode> does
-              neither.
+              With <InlineCode>mode=&quot;both&quot;</InlineCode>, the list still
+              filters as you type, and arrowing through options also fills the
+              input with the highlighted label. Set{" "}
+              <InlineCode>mode</InlineCode> to{" "}
+              <InlineCode>list</InlineCode> to filter without filling,{" "}
+              <InlineCode>inline</InlineCode> to fill without filtering, or{" "}
+              <InlineCode>none</InlineCode> for neither.
             </p>
           </div>
           <ComponentPreview code={inlineCode}>
