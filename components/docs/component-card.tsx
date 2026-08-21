@@ -61,7 +61,7 @@ function AlertDialogPreview() {
 function AutocompletePreview() {
   return (
     <div className="mx-auto w-full max-w-48 text-left">
-      <div className="flex h-6 items-center rounded-full border border-border bg-muted/faint px-3 text-xs text-muted-foreground">
+      <div className="flex h-6 items-center rounded-full border border-border bg-muted/faint px-3 py-4.5 text-xs text-muted-foreground">
         E.g. rocket
       </div>
       <div className="mt-1 rounded-3xl border border-border bg-background p-1 px-1.25 shadow-lg">
