@@ -13,6 +13,7 @@ import {
   GroupedDemo,
   InlineDemo,
   InputGroupDemo,
+  Command,
 } from "./demos";
 
 export const metadata = createPageMetadata({
@@ -310,6 +311,102 @@ export default function Example() {
   )
 }`;
 
+const commandCode = `import {
+  CompassIcon,
+  RadioIcon,
+  RocketIcon,
+  SearchIcon,
+  SparklesIcon,
+} from "lucide-react"
+import { Autocomplete } from "@/components/ui/autocomplete"
+
+const missionItems = [
+  {
+    value: "orbital-launch",
+    label: "Orbital Launch",
+    description: "Stage 1 separation sequence",
+    icon: RocketIcon,
+    badge: "active",
+  },
+  {
+    value: "deep-space-relay",
+    label: "Deep Space Relay",
+    description: "Laser telemetry uplink",
+    icon: RadioIcon,
+    badge: "online",
+  },
+  {
+    value: "star-tracker",
+    label: "Star Tracker",
+    description: "Inertial celestial navigation",
+    icon: CompassIcon,
+  },
+  {
+    value: "ai-copilot",
+    label: "AI Flight Assistant",
+    description: "Autonomous maneuver engine",
+    icon: SparklesIcon,
+    badge: "new",
+  },
+]
+
+export default function Example() {
+  return (
+    <Autocomplete.Root items={missionItems}>
+      <label className="flex w-full max-w-sm flex-col gap-2 text-sm font-medium">
+        Command Search
+        <Autocomplete.InputGroup>
+          <SearchIcon className="size-4 text-muted-foreground" aria-hidden />
+          <Autocomplete.Input placeholder="Search commands or telemetry..." />
+          <Autocomplete.Clear />
+        </Autocomplete.InputGroup>
+      </label>
+
+      <Autocomplete.Portal>
+        <Autocomplete.Positioner sideOffset={6}>
+          <Autocomplete.Popup className="w-(--anchor-width) min-w-72">
+            <Autocomplete.Empty className="px-3 py-2 text-sm text-muted-foreground">
+              No matching telemetry command found.
+            </Autocomplete.Empty>
+
+            <Autocomplete.List>
+              {(item) => {
+                const Icon = item.icon
+                return (
+                  <Autocomplete.Item
+                    key={item.value}
+                    value={item}
+                    className="flex items-center justify-between gap-3 px-3 py-2.5"
+                  >
+                    <div className="flex min-w-0 items-center gap-2.5">
+                      <div className="flex size-7 shrink-0 items-center justify-center rounded-full bg-muted/faint text-muted-foreground">
+                        <Icon className="size-3.5" />
+                      </div>
+                      <div className="flex min-w-0 flex-col">
+                        <span className="truncate text-sm font-medium text-foreground">
+                          {item.label}
+                        </span>
+                        <span className="truncate text-xs text-muted-foreground">
+                          {item.description}
+                        </span>
+                      </div>
+                    </div>
+                    {item.badge && (
+                      <span className="rounded-full bg-muted px-2 py-0.5 text-[10px] font-medium text-muted-foreground">
+                        {item.badge}
+                      </span>
+                    )}
+                  </Autocomplete.Item>
+                )
+              }}
+            </Autocomplete.List>
+          </Autocomplete.Popup>
+        </Autocomplete.Positioner>
+      </Autocomplete.Portal>
+    </Autocomplete.Root>
+  )
+}`;
+
 const rootProps = [
   {
     name: "items",
@@ -548,6 +645,7 @@ const toc = [
   { id: "auto-highlight", title: "Auto highlight" },
   { id: "inline", title: "Inline autocomplete" },
   { id: "empty-status", title: "Empty state and status" },
+  { id: "command", title: "Command palette" },
   { id: "props", title: "Props" },
 ];
 
@@ -644,9 +742,8 @@ export default async function AutocompletePage() {
               <span className="font-medium text-foreground">
                 Give it an accessible name
               </span>{" "}
-              by wrapping the input in a{" "}
-              <InlineCode>{"<label>"}</InlineCode>
-              , or use Field when you add forms later.
+              by wrapping the input in a <InlineCode>{"<label>"}</InlineCode>,
+              or use Field when you add forms later.
             </li>
           </ul>
           <p className="text-base text-muted-foreground">
@@ -680,8 +777,8 @@ export default async function AutocompletePage() {
             </h2>
             <p className="text-base text-muted-foreground">
               Put a search icon and clear control inside{" "}
-              <InlineCode>Autocomplete.InputGroup</InlineCode>
-              , which shares one focus ring with the input.
+              <InlineCode>Autocomplete.InputGroup</InlineCode>, which shares one
+              focus ring with the input.
             </p>
           </div>
           <ComponentPreview code={inputGroupCode}>
@@ -696,10 +793,8 @@ export default async function AutocompletePage() {
             </h2>
             <p className="text-base text-muted-foreground">
               Pass groups shaped like{" "}
-              <InlineCode>{"{ value, items: [] }"}</InlineCode>
-              , and render each with{" "}
-              <InlineCode>Autocomplete.Group</InlineCode>
-              , a label, and{" "}
+              <InlineCode>{"{ value, items: [] }"}</InlineCode>, and render each
+              with <InlineCode>Autocomplete.Group</InlineCode>, a label, and{" "}
               <InlineCode>Autocomplete.Collection</InlineCode> for its items.
             </p>
           </div>
@@ -734,13 +829,12 @@ export default async function AutocompletePage() {
               Inline autocomplete
             </h2>
             <p className="text-base text-muted-foreground">
-              With <InlineCode>mode=&quot;both&quot;</InlineCode>, the list still
-              filters as you type, and arrowing through options also fills the
-              input with the highlighted label. Set{" "}
-              <InlineCode>mode</InlineCode> to{" "}
-              <InlineCode>list</InlineCode> to filter without filling,{" "}
-              <InlineCode>inline</InlineCode> to fill without filtering, or{" "}
-              <InlineCode>none</InlineCode> for neither.
+              With <InlineCode>mode=&quot;both&quot;</InlineCode>, the list
+              still filters as you type, and arrowing through options also fills
+              the input with the highlighted label. Set{" "}
+              <InlineCode>mode</InlineCode> to <InlineCode>list</InlineCode> to
+              filter without filling, <InlineCode>inline</InlineCode> to fill
+              without filtering, or <InlineCode>none</InlineCode> for neither.
             </p>
           </div>
           <ComponentPreview code={inlineCode}>
@@ -762,6 +856,22 @@ export default async function AutocompletePage() {
           </div>
           <ComponentPreview code={emptyStatusCode}>
             <EmptyStatusDemo />
+          </ComponentPreview>
+        </div>
+
+        <div className="space-y-4">
+          <div className="space-y-2">
+            <h2 id="command" className="scroll-mt-10 text-lg font-medium">
+              Command palette
+            </h2>
+            <p className="text-base text-muted-foreground">
+              Rich items work well for command pickers: pair a leading icon with
+              a title and description, and add a trailing badge when an action
+              needs extra context.
+            </p>
+          </div>
+          <ComponentPreview code={commandCode}>
+            <Command />
           </ComponentPreview>
         </div>
 
@@ -822,11 +932,10 @@ export default async function AutocompletePage() {
             >
               Base UI Autocomplete docs
             </a>{" "}
-            for <InlineCode>Backdrop</InlineCode>
-            , <InlineCode>Arrow</InlineCode>
-            , <InlineCode>Row</InlineCode>
-            , <InlineCode>Value</InlineCode>
-            , event detail reasons, and every data attribute and CSS variable.
+            for <InlineCode>Backdrop</InlineCode>,{" "}
+            <InlineCode>Arrow</InlineCode>, <InlineCode>Row</InlineCode>,{" "}
+            <InlineCode>Value</InlineCode>, event detail reasons, and every data
+            attribute and CSS variable.
           </p>
         </div>
       </section>

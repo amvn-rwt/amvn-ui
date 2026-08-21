@@ -1,7 +1,13 @@
 "use client";
 
 import * as React from "react";
-import { SearchIcon } from "lucide-react";
+import {
+  CompassIcon,
+  RadioIcon,
+  RocketIcon,
+  SearchIcon,
+  SparklesIcon,
+} from "lucide-react";
 
 import { Autocomplete } from "@/components/ui/autocomplete";
 
@@ -264,6 +270,95 @@ function EmptyStatusDemo() {
   );
 }
 
+function Command() {
+  const missionItems = [
+    {
+      value: "orbital-launch",
+      label: "Orbital Launch",
+      description: "Stage 1 separation sequence",
+      icon: RocketIcon,
+      badge: "active",
+    },
+    {
+      value: "deep-space-relay",
+      label: "Deep Space Relay",
+      description: "Laser telemetry uplink",
+      icon: RadioIcon,
+      badge: "online",
+    },
+    {
+      value: "star-tracker",
+      label: "Star Tracker",
+      description: "Inertial celestial navigation",
+      icon: CompassIcon,
+    },
+    {
+      value: "ai-copilot",
+      label: "AI Flight Assistant",
+      description: "Autonomous maneuver engine",
+      icon: SparklesIcon,
+      badge: "new",
+    },
+  ];
+
+  return (
+    <div className="flex w-full justify-center">
+      <Autocomplete.Root items={missionItems}>
+        <label className="flex w-full max-w-sm flex-col gap-2 text-sm font-medium">
+          Command Search
+          <Autocomplete.InputGroup>
+            <SearchIcon className="size-4 text-muted-foreground" aria-hidden />
+            <Autocomplete.Input placeholder="Search commands or telemetry..." />
+            <Autocomplete.Clear />
+          </Autocomplete.InputGroup>
+        </label>
+
+        <Autocomplete.Portal>
+          <Autocomplete.Positioner sideOffset={6}>
+            <Autocomplete.Popup className="w-(--anchor-width) min-w-72">
+              <Autocomplete.Empty className="px-3 py-2 text-sm text-muted-foreground">
+                No matching telemetry command found.
+              </Autocomplete.Empty>
+
+              <Autocomplete.List>
+                {(item) => {
+                  const Icon = item.icon;
+                  return (
+                    <Autocomplete.Item
+                      key={item.value}
+                      value={item}
+                      className="flex items-center justify-between gap-3 px-3 py-2.5"
+                    >
+                      <div className="flex items-center gap-2.5 min-w-0">
+                        <div className="flex size-7 shrink-0 items-center justify-center rounded-full bg-muted/faint text-muted-foreground">
+                          <Icon className="size-3.5" />
+                        </div>
+                        <div className="flex flex-col min-w-0">
+                          <span className="truncate text-sm font-medium text-foreground">
+                            {item.label}
+                          </span>
+                          <span className="truncate text-xs text-muted-foreground">
+                            {item.description}
+                          </span>
+                        </div>
+                      </div>
+                      {item.badge && (
+                        <span className="rounded-full bg-muted px-2 py-0.5 text-[10px] font-medium text-muted-foreground">
+                          {item.badge}
+                        </span>
+                      )}
+                    </Autocomplete.Item>
+                  );
+                }}
+              </Autocomplete.List>
+            </Autocomplete.Popup>
+          </Autocomplete.Positioner>
+        </Autocomplete.Portal>
+      </Autocomplete.Root>
+    </div>
+  );
+}
+
 export {
   DefaultDemo,
   InputGroupDemo,
@@ -271,4 +366,5 @@ export {
   AutoHighlightDemo,
   InlineDemo,
   EmptyStatusDemo,
+  Command,
 };
