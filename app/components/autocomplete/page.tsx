@@ -72,7 +72,7 @@ const tags = [
 export default function Example() {
   return (
     <Autocomplete.Root items={tags}>
-      <label className="flex w-12 flex-col gap-1 text-sm font-medium">
+      <label className="flex w-12 flex-col gap-2 text-sm font-medium">
         Search the hangar
         <Autocomplete.Input placeholder="E.g. rocket" />
       </label>
@@ -106,7 +106,7 @@ const tags = [
 export default function Example() {
   return (
     <Autocomplete.Root items={tags}>
-      <label className="flex w-12 flex-col gap-1 text-sm font-medium">
+      <label className="flex w-12 flex-col gap-2 text-sm font-medium">
         Search the hangar
         <Autocomplete.InputGroup>
           <SearchIcon
@@ -161,7 +161,7 @@ const groupedTags = [
 export default function Example() {
   return (
     <Autocomplete.Root items={groupedTags}>
-      <label className="flex w-12 flex-col gap-1 text-sm font-medium">
+      <label className="flex w-12 flex-col gap-2 text-sm font-medium">
         Pick a mission asset
         <Autocomplete.Input placeholder="E.g. rocket" />
       </label>
@@ -205,7 +205,7 @@ const tags = [
 export default function Example() {
   return (
     <Autocomplete.Root items={tags} autoHighlight>
-      <label className="flex w-12 flex-col gap-1 text-sm font-medium">
+      <label className="flex w-12 flex-col gap-2 text-sm font-medium">
         Auto highlight on type
         <Autocomplete.Input placeholder="E.g. rocket" />
       </label>
@@ -239,7 +239,7 @@ export default function Example() {
   return (
     // mode="both" filters the list and fills the input from the highlighted item.
     <Autocomplete.Root items={tags} mode="both">
-      <label className="flex w-12 flex-col gap-1 text-sm font-medium">
+      <label className="flex w-12 flex-col gap-2 text-sm font-medium">
         Search the hangar
         <Autocomplete.Input placeholder="E.g. rocket" />
       </label>
@@ -280,7 +280,7 @@ export default function Example() {
 
   return (
     <Autocomplete.Root items={tags} value={value} onValueChange={setValue}>
-      <label className="flex w-12 flex-col gap-1 text-sm font-medium">
+      <label className="flex w-12 flex-col gap-2 text-sm font-medium">
         Search the hangar
         <Autocomplete.Input placeholder="E.g. rocket" />
       </label>

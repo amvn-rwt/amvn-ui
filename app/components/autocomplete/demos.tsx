@@ -19,14 +19,16 @@ function DefaultDemo() {
   return (
     <div className="flex w-full justify-center">
       <Autocomplete.Root items={tags}>
-        <label className="flex w-12 flex-col gap-1 text-sm font-medium">
+        <label className="flex w-12 flex-col gap-2 text-sm font-medium">
           Search the hangar
           <Autocomplete.Input placeholder="E.g. rocket" />
         </label>
         <Autocomplete.Portal>
           <Autocomplete.Positioner>
             <Autocomplete.Popup>
-              <Autocomplete.Empty>Nothing in the hangar matches.</Autocomplete.Empty>
+              <Autocomplete.Empty>
+                Nothing in the hangar matches.
+              </Autocomplete.Empty>
               <Autocomplete.List>
                 {(tag) => (
                   <Autocomplete.Item key={tag.value} value={tag}>
@@ -52,7 +54,7 @@ function InputGroupDemo() {
   return (
     <div className="flex w-full justify-center">
       <Autocomplete.Root items={tags}>
-        <label className="flex w-12 flex-col gap-1 text-sm font-medium">
+        <label className="flex w-12 flex-col gap-2 text-sm font-medium">
           Search the hangar
           <Autocomplete.InputGroup>
             <SearchIcon
@@ -66,7 +68,9 @@ function InputGroupDemo() {
         <Autocomplete.Portal>
           <Autocomplete.Positioner>
             <Autocomplete.Popup>
-              <Autocomplete.Empty>Nothing in the hangar matches.</Autocomplete.Empty>
+              <Autocomplete.Empty>
+                Nothing in the hangar matches.
+              </Autocomplete.Empty>
               <Autocomplete.List>
                 {(tag) => (
                   <Autocomplete.Item key={tag.value} value={tag}>
@@ -107,7 +111,7 @@ function GroupedDemo() {
   return (
     <div className="flex w-full justify-center">
       <Autocomplete.Root items={groupedTags}>
-        <label className="flex w-12 flex-col gap-1 text-sm font-medium">
+        <label className="flex w-12 flex-col gap-2 text-sm font-medium">
           Pick a mission asset
           <Autocomplete.Input placeholder="E.g. rocket" />
         </label>
@@ -153,14 +157,16 @@ function AutoHighlightDemo() {
   return (
     <div className="flex w-full justify-center">
       <Autocomplete.Root items={tags} autoHighlight>
-        <label className="flex w-12 flex-col gap-1 text-sm font-medium">
+        <label className="flex w-12 flex-col gap-2 text-sm font-medium">
           Auto highlight on type
           <Autocomplete.Input placeholder="E.g. rocket" />
         </label>
         <Autocomplete.Portal>
           <Autocomplete.Positioner>
             <Autocomplete.Popup>
-              <Autocomplete.Empty>Nothing in the hangar matches.</Autocomplete.Empty>
+              <Autocomplete.Empty>
+                Nothing in the hangar matches.
+              </Autocomplete.Empty>
               <Autocomplete.List>
                 {(tag) => (
                   <Autocomplete.Item key={tag.value} value={tag}>
@@ -187,7 +193,7 @@ function InlineDemo() {
     <div className="flex w-full justify-center">
       {/* mode="both" filters the list and fills the input from the highlighted item. */}
       <Autocomplete.Root items={tags} mode="both">
-        <label className="flex w-12 flex-col gap-1 text-sm font-medium">
+        <label className="flex w-12 flex-col gap-2 text-sm font-medium">
           Search the hangar
           <Autocomplete.Input placeholder="E.g. rocket" />
         </label>
@@ -227,7 +233,7 @@ function EmptyStatusDemo() {
   return (
     <div className="flex w-full justify-center">
       <Autocomplete.Root items={tags} value={value} onValueChange={setValue}>
-        <label className="flex w-12 flex-col gap-1 text-sm font-medium">
+        <label className="flex w-12 flex-col gap-2 text-sm font-medium">
           Search the hangar
           <Autocomplete.Input placeholder="E.g. rocket" />
         </label>
