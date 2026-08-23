@@ -316,7 +316,7 @@ function Command() {
         <Autocomplete.Portal>
           <Autocomplete.Positioner sideOffset={6}>
             <Autocomplete.Popup className="w-(--anchor-width) min-w-72">
-              <Autocomplete.Empty className="px-3 py-2 text-sm text-muted-foreground">
+              <Autocomplete.Empty>
                 No matching telemetry command found.
               </Autocomplete.Empty>
 
@@ -330,8 +330,8 @@ function Command() {
                       className="flex items-center justify-between gap-3 px-3 py-2.5"
                     >
                       <div className="flex items-center gap-2.5 min-w-0">
-                        <div className="flex size-7 shrink-0 items-center justify-center rounded-full bg-muted/faint text-muted-foreground">
-                          <Icon className="size-3.5" />
+                        <div className="flex size-7 shrink-0 items-center justify-center rounded-full bg-muted/faint text-info">
+                          <Icon className="size-4.5" />
                         </div>
                         <div className="flex flex-col min-w-0">
                           <span className="truncate text-sm font-medium text-foreground">
