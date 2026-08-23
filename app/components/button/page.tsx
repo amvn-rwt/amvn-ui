@@ -9,6 +9,7 @@ import {
 
 import { ComponentPreview } from "@/components/docs/component-preview";
 import { SetDocsToc } from "@/components/docs/docs-toc";
+import { InlineCode } from "@/components/docs/inline-code";
 import { JsonLd } from "@/components/seo/json-ld";
 import { Button } from "@/components/ui/button";
 import { breadcrumbJsonLd, createPageMetadata } from "@/lib/seo";
@@ -133,6 +134,16 @@ const props = [
     type: '"button" | "submit" | "reset"',
     defaultValue: '"button"',
   },
+  {
+    name: "focusableWhenDisabled",
+    type: "boolean",
+    defaultValue: "false",
+  },
+  {
+    name: "nativeButton",
+    type: "boolean",
+    defaultValue: "true",
+  },
 ] as const;
 
 const toc = [
@@ -143,6 +154,7 @@ const toc = [
   { id: "icon", title: "Icon" },
   { id: "with-icon", title: "With Icon" },
   { id: "disabled", title: "Disabled" },
+  { id: "guidelines", title: "Usage guidelines" },
   { id: "props", title: "Props" },
 ];
 
@@ -288,6 +300,38 @@ export default function ButtonPage() {
               </Button>
             </div>
           </ComponentPreview>
+        </div>
+
+        <div className="space-y-3">
+          <h2 id="guidelines" className="scroll-mt-10 text-lg font-medium">
+            Usage guidelines
+          </h2>
+          <ul className="list-disc space-y-2 pl-5 text-base text-muted-foreground">
+            <li>
+              <span className="font-medium text-foreground">
+                Form submissions
+              </span>{" "}
+              Button defaults to <InlineCode>type="button"</InlineCode>, so set{" "}
+              <InlineCode>type="submit"</InlineCode> when it should submit a
+              parent form.
+            </li>
+            <li>
+              <span className="font-medium text-foreground">
+                Loading buttons
+              </span>{" "}
+              During async submission, pair <InlineCode>disabled</InlineCode>{" "}
+              with <InlineCode>focusableWhenDisabled</InlineCode> so focus stays
+              on the button instead of jumping elsewhere in the tab order.
+            </li>
+            <li>
+              <span className="font-medium text-foreground">
+                Links vs. buttons
+              </span>{" "}
+              Navigation belongs on a native <InlineCode>{"<a>"}</InlineCode>{" "}
+              with an <InlineCode>href</InlineCode>. Do not wrap links in
+              Button: links and buttons carry different accessibility semantics.
+            </li>
+          </ul>
         </div>
 
         <div className="space-y-3">
