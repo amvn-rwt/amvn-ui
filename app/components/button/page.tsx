@@ -88,7 +88,7 @@ export default function Example() {
       <div className="flex items-center gap-3">
         <Button variant="ghost">
           <GhostIcon />
-          I'm Barely Here
+          I&apos;m Barely Here
         </Button>
         <Button variant="ghost">
           Make It Fancy
@@ -265,7 +265,7 @@ export default function ButtonPage() {
               <div className="flex flex-wrap items-center justify-center gap-3">
                 <Button variant="ghost">
                   <GhostIcon />
-                  I'm Barely Here
+                  I&apos;m Barely Here
                 </Button>
                 <Button variant="ghost">
                   Make It Fancy
