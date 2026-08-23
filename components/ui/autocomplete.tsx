@@ -207,7 +207,7 @@ function AutocompleteArrow({
     <AutocompletePrimitive.Arrow
       data-slot="autocomplete-arrow"
       className={cn(
-        "size-2.5 rotate-45 rounded-[2px] border border-border bg-background",
+        "size-2.5 rotate-45 rounded-xs border border-border bg-background",
         className,
       )}
       {...props}
@@ -239,7 +239,7 @@ function AutocompleteItem({
     <AutocompletePrimitive.Item
       data-slot="autocomplete-item"
       className={cn(
-        "cursor-default select-none rounded-full px-3 py-2 text-sm outline-none data-highlighted:bg-muted data-disabled:pointer-events-none data-disabled:opacity-disabled",
+        "cursor-default select-none rounded-xl px-3 py-2 text-sm outline-none data-highlighted:bg-muted data-disabled:pointer-events-none data-disabled:opacity-disabled",
         className,
       )}
       {...props}
