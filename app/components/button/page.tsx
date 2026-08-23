@@ -154,7 +154,7 @@ const toc = [
   { id: "icon", title: "Icon" },
   { id: "with-icon", title: "With Icon" },
   { id: "disabled", title: "Disabled" },
-  { id: "guidelines", title: "Usage guidelines" },
+  { id: "guidelines", title: "Usage Guidelines" },
   { id: "props", title: "Props" },
 ];
 
@@ -304,7 +304,7 @@ export default function ButtonPage() {
 
         <div className="space-y-3">
           <h2 id="guidelines" className="scroll-mt-10 text-lg font-medium">
-            Usage guidelines
+            Usage Guidelines
           </h2>
           <ul className="list-disc space-y-2 pl-5 text-base text-muted-foreground">
             <li>

@@ -541,7 +541,7 @@ const filteredItemsHookProps = [
 
 const toc = [
   { id: "default", title: "Default" },
-  { id: "guidelines", title: "Usage guidelines" },
+  { id: "guidelines", title: "Usage Guidelines" },
   { id: "anatomy", title: "Anatomy" },
   { id: "input-group", title: "With icon and clear button" },
   { id: "grouped", title: "Grouped items" },
@@ -623,7 +623,7 @@ export default async function AutocompletePage() {
 
         <div className="space-y-3">
           <h2 id="guidelines" className="scroll-mt-10 text-lg font-medium">
-            Usage guidelines
+            Usage Guidelines
           </h2>
           <ul className="list-disc space-y-2 pl-5 text-base text-muted-foreground">
             <li>
