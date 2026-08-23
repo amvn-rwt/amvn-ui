@@ -7,8 +7,9 @@ import { motion } from "motion/react";
 import { spring } from "@/lib/motion";
 import { cn } from "@/lib/utils";
 
+// Variants for the Button component
 const buttonVariants = cva(
-  "inline-flex shrink-0 items-center rounded-full justify-center gap-2 font-medium whitespace-nowrap transition-colors outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background disabled:pointer-events-none disabled:opacity-disabled [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-3.5",
+  "inline-flex shrink-0 items-center rounded-full justify-center gap-2 font-medium whitespace-nowrap transition-colors outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background disabled:pointer-events-none disabled:opacity-disabled data-disabled:pointer-events-none data-disabled:opacity-disabled [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-3.5",
   {
     variants: {
       variant: {
@@ -34,6 +35,7 @@ const buttonVariants = cva(
   },
 );
 
+// Props for the Button component
 type ButtonProps = Omit<ButtonPrimitive.Props, "className" | "render"> &
   VariantProps<typeof buttonVariants> & {
     className?: string;
