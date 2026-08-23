@@ -120,7 +120,7 @@ const props = [
   },
   {
     name: "size",
-    type: '"md" | "icon"',
+    type: '"sm" | "md" | "icon"',
     defaultValue: '"md"',
   },
   {
