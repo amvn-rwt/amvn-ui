@@ -13,7 +13,6 @@ import {
   GroupedDemo,
   InlineDemo,
   InputGroupDemo,
-  Command,
 } from "./demos";
 
 export const metadata = createPageMetadata({
@@ -311,102 +310,6 @@ export default function Example() {
   )
 }`;
 
-const commandCode = `import {
-  CompassIcon,
-  RadioIcon,
-  RocketIcon,
-  SearchIcon,
-  SparklesIcon,
-} from "lucide-react"
-import { Autocomplete } from "@/components/ui/autocomplete"
-
-const missionItems = [
-  {
-    value: "orbital-launch",
-    label: "Orbital Launch",
-    description: "Stage 1 separation sequence",
-    icon: RocketIcon,
-    badge: "active",
-  },
-  {
-    value: "deep-space-relay",
-    label: "Deep Space Relay",
-    description: "Laser telemetry uplink",
-    icon: RadioIcon,
-    badge: "online",
-  },
-  {
-    value: "star-tracker",
-    label: "Star Tracker",
-    description: "Inertial celestial navigation",
-    icon: CompassIcon,
-  },
-  {
-    value: "ai-copilot",
-    label: "AI Flight Assistant",
-    description: "Autonomous maneuver engine",
-    icon: SparklesIcon,
-    badge: "new",
-  },
-]
-
-export default function Example() {
-  return (
-    <Autocomplete.Root items={missionItems}>
-      <label className="flex w-full max-w-sm flex-col gap-2 text-sm font-medium">
-        Command Search
-        <Autocomplete.InputGroup>
-          <SearchIcon className="size-4 text-muted-foreground" aria-hidden />
-          <Autocomplete.Input placeholder="Search commands or telemetry..." />
-          <Autocomplete.Clear />
-        </Autocomplete.InputGroup>
-      </label>
-
-      <Autocomplete.Portal>
-        <Autocomplete.Positioner sideOffset={6}>
-          <Autocomplete.Popup className="w-(--anchor-width) min-w-72">
-            <Autocomplete.Empty>
-              No matching telemetry command found.
-            </Autocomplete.Empty>
-
-            <Autocomplete.List>
-              {(item) => {
-                const Icon = item.icon
-                return (
-                  <Autocomplete.Item
-                    key={item.value}
-                    value={item}
-                    className="flex items-center justify-between gap-3 px-3 py-2.5"
-                  >
-                    <div className="flex min-w-0 items-center gap-2.5">
-                      <div className="flex size-7 shrink-0 items-center justify-center rounded-full bg-muted/faint text-info">
-                        <Icon className="size-3.5" />
-                      </div>
-                      <div className="flex min-w-0 flex-col">
-                        <span className="truncate text-sm font-medium text-foreground">
-                          {item.label}
-                        </span>
-                        <span className="truncate text-xs text-muted-foreground">
-                          {item.description}
-                        </span>
-                      </div>
-                    </div>
-                    {item.badge && (
-                      <span className="rounded-full bg-muted px-2 py-0.5 text-[10px] font-medium text-muted-foreground">
-                        {item.badge}
-                      </span>
-                    )}
-                  </Autocomplete.Item>
-                )
-              }}
-            </Autocomplete.List>
-          </Autocomplete.Popup>
-        </Autocomplete.Positioner>
-      </Autocomplete.Portal>
-    </Autocomplete.Root>
-  )
-}`;
-
 const rootProps = [
   {
     name: "items",
@@ -645,7 +548,6 @@ const toc = [
   { id: "auto-highlight", title: "Auto highlight" },
   { id: "inline", title: "Inline autocomplete" },
   { id: "empty-status", title: "Empty state and status" },
-  { id: "command", title: "Command palette" },
   { id: "props", title: "Props" },
 ];
 
@@ -730,13 +632,6 @@ export default async function AutocompletePage() {
               </span>{" "}
               Use Combobox instead: Autocomplete keeps free-form text, and
               suggestions are optional.
-            </li>
-            <li>
-              <span className="font-medium text-foreground">
-                Command pickers work here
-              </span>
-              : the input can filter actions inside the popup, and clicking an
-              item runs that action.
             </li>
             <li>
               <span className="font-medium text-foreground">
@@ -856,22 +751,6 @@ export default async function AutocompletePage() {
           </div>
           <ComponentPreview code={emptyStatusCode}>
             <EmptyStatusDemo />
-          </ComponentPreview>
-        </div>
-
-        <div className="space-y-4">
-          <div className="space-y-2">
-            <h2 id="command" className="scroll-mt-10 text-lg font-medium">
-              Command palette
-            </h2>
-            <p className="text-base text-muted-foreground">
-              Rich items work well for command pickers: pair a leading icon with
-              a title and description, and add a trailing badge when an action
-              needs extra context.
-            </p>
-          </div>
-          <ComponentPreview code={commandCode}>
-            <Command />
           </ComponentPreview>
         </div>
 
