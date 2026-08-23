@@ -64,8 +64,8 @@ import { Button } from "@/components/ui/button"
 
 export default function Example() {
   return (
-    <div className="flex h-8 w-full flex-col items-center justify-center gap-3">
-      <div className="flex items-center gap-3">
+    <div className="flex w-full flex-col items-center justify-center gap-3">
+      <div className="flex flex-wrap items-center justify-center gap-3">
         <Button>
           <RocketIcon />
           Launch The Rocket
@@ -75,7 +75,7 @@ export default function Example() {
           <WalletIcon />
         </Button>
       </div>
-      <div className="flex items-center gap-3">
+      <div className="flex flex-wrap items-center justify-center gap-3">
         <Button variant="secondary">
           <CoffeeIcon />
           Maybe Later
@@ -85,7 +85,7 @@ export default function Example() {
           <ArrowRightIcon />
         </Button>
       </div>
-      <div className="flex items-center gap-3">
+      <div className="flex flex-wrap items-center justify-center gap-3">
         <Button variant="ghost">
           <GhostIcon />
           I&apos;m Barely Here
