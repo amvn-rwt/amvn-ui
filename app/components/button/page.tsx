@@ -339,7 +339,7 @@ export default function ButtonPage() {
             Props
           </h2>
           <div className="overflow-x-auto rounded-3xl border border-border">
-            <table className="w-full min-w-14 text-left text-sm">
+            <table className="w-full min-w-14 text-left text-sm [&_td]:align-top [&_th]:align-top">
               <thead className="border-b border-border bg-muted/muted">
                 <tr>
                   <th className="px-4 py-3 font-medium">Prop</th>
