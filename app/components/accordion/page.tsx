@@ -2,6 +2,7 @@ import { ComponentPreview } from "@/components/docs/component-preview";
 import { SetDocsToc } from "@/components/docs/docs-toc";
 import { InlineCode } from "@/components/docs/inline-code";
 import { JsonLd } from "@/components/seo/json-ld";
+import { highlightCode } from "@/lib/highlight-code";
 import { breadcrumbJsonLd, createPageMetadata } from "@/lib/seo";
 import { site } from "@/lib/site";
 
@@ -18,6 +19,15 @@ export const metadata = createPageMetadata({
     "Accordion for amvn.ui: collapsible FAQ-style panels built with Base UI and Tailwind CSS.",
   path: "/components/accordion",
 });
+
+const anatomyCode = `import { Accordion } from "@/components/ui/accordion"
+
+<Accordion.Root>
+  <Accordion.Item>
+    <Accordion.Trigger />
+    <Accordion.Panel />
+  </Accordion.Item>
+</Accordion.Root>`;
 
 const defaultCode = `import { Accordion } from "@/components/ui/accordion"
 
@@ -215,6 +225,7 @@ const itemProps = [
 
 const toc = [
   { id: "default", title: "Default" },
+  { id: "anatomy", title: "Anatomy" },
   { id: "multiple", title: "Multiple" },
   { id: "disabled", title: "Disabled" },
   { id: "borderless", title: "Borderless" },
@@ -261,7 +272,9 @@ function PropsTable({
   );
 }
 
-export default function AccordionPage() {
+export default async function AccordionPage() {
+  const anatomyHtml = await highlightCode(anatomyCode);
+
   return (
     <>
       <JsonLd
@@ -289,6 +302,16 @@ export default function AccordionPage() {
           <ComponentPreview code={defaultCode}>
             <DefaultDemo />
           </ComponentPreview>
+        </div>
+
+        <div className="space-y-3">
+          <h2 id="anatomy" className="scroll-mt-10 text-lg font-medium">
+            Anatomy
+          </h2>
+          <div
+            className="overflow-x-auto rounded-3xl border border-border bg-muted/intense p-4 font-mono text-sm [&_pre]:m-0 [&_pre]:bg-transparent! [&_pre]:p-0"
+            dangerouslySetInnerHTML={{ __html: anatomyHtml }}
+          />
         </div>
 
         <div className="space-y-3">
