@@ -61,8 +61,9 @@ function AccordionTrigger({
   ...props
 }: AccordionTriggerProps) {
   return (
-    <AccordionPrimitive.Header className="flex">
+    <AccordionPrimitive.Header className="flex" data-slot="accordion-header">
       <AccordionPrimitive.Trigger
+        data-slot="accordion-trigger"
         className={cn(
           "flex flex-1 items-center justify-between gap-4 py-4 text-left text-sm font-medium text-foreground outline-none transition-colors focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background data-disabled:pointer-events-none data-disabled:cursor-not-allowed data-disabled:text-muted-foreground",
           className,
@@ -94,6 +95,7 @@ function AccordionPanel({
 }: AccordionPrimitive.Panel.Props) {
   return (
     <AccordionPrimitive.Panel
+      data-slot="accordion-panel"
       className={cn(
         // Base UI only awaits CSS transitions before unmounting on close.
         "h-(--accordion-panel-height) overflow-hidden text-sm text-muted-foreground transition-[height] duration-normal ease-out data-starting-style:h-0 data-ending-style:h-0",
