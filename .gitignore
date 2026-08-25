@@ -10,6 +10,9 @@
 !.yarn/releases
 !.yarn/versions
 
+# agent skills (install locally with npx skills)
+.agents/
+
 # testing
 /coverage
 

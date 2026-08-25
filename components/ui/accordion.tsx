@@ -113,12 +113,5 @@ const Accordion = Object.assign(AccordionRoot, {
   Panel: AccordionPanel,
 });
 
-export {
-  Accordion,
-  AccordionRoot,
-  AccordionItem,
-  AccordionTrigger,
-  AccordionPanel,
-  AccordionPanel as AccordionContent,
-};
+export { Accordion };
 export type { AccordionProps, AccordionTriggerProps };

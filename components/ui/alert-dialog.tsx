@@ -128,15 +128,4 @@ const AlertDialog = Object.assign(AlertDialogRoot, {
   createHandle: createAlertDialogHandle,
 });
 
-export {
-  AlertDialog,
-  AlertDialogRoot,
-  AlertDialogTrigger,
-  AlertDialogClose,
-  AlertDialogPortal,
-  AlertDialogBackdrop,
-  AlertDialogPopup,
-  AlertDialogTitle,
-  AlertDialogDescription,
-  createAlertDialogHandle,
-};
+export { AlertDialog };

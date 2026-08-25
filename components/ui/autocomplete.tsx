@@ -370,29 +370,4 @@ const Autocomplete = Object.assign(AutocompleteRoot, {
   useFilteredItems: useAutocompleteFilteredItems,
 });
 
-export {
-  Autocomplete,
-  AutocompleteRoot,
-  AutocompleteInput,
-  AutocompleteInputGroup,
-  AutocompleteIcon,
-  AutocompleteClear,
-  AutocompleteTrigger,
-  AutocompleteValue,
-  AutocompletePortal,
-  AutocompleteBackdrop,
-  AutocompletePositioner,
-  AutocompletePopup,
-  AutocompleteArrow,
-  AutocompleteList,
-  AutocompleteItem,
-  AutocompleteGroup,
-  AutocompleteGroupLabel,
-  AutocompleteCollection,
-  AutocompleteRow,
-  AutocompleteEmpty,
-  AutocompleteStatus,
-  AutocompleteSeparator,
-  useAutocompleteFilter,
-  useAutocompleteFilteredItems,
-};
+export { Autocomplete };
