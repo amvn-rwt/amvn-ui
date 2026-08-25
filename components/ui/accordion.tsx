@@ -37,8 +37,8 @@ function AccordionItem({ className, ...props }: AccordionPrimitive.Item.Props) {
       data-slot="accordion-item"
       className={cn(
         "transition-opacity duration-normal ease-out",
-        // Sibling mute — only interactive items brighten on their own hover.
-        "not-data-disabled:group-hover/accordion:opacity-disabled not-data-disabled:hover:opacity-100!",
+        // Sibling mute — dim collapsed items on accordion hover; open items stay readable.
+        "not-data-disabled:not-data-open:group-hover/accordion:opacity-disabled not-data-disabled:hover:opacity-100!",
         // Disabled stays muted and never “wins” the hover highlight.
         "data-disabled:cursor-not-allowed data-disabled:opacity-disabled",
         className,
