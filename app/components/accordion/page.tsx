@@ -208,6 +208,16 @@ const rootProps = [
     type: "boolean",
     defaultValue: "false",
   },
+  {
+    name: "hiddenUntilFound",
+    type: "boolean",
+    defaultValue: "false",
+  },
+  {
+    name: "keepMounted",
+    type: "boolean",
+    defaultValue: "false",
+  },
 ] as const;
 
 const itemProps = [
@@ -217,7 +227,38 @@ const itemProps = [
     defaultValue: "auto-generated",
   },
   {
+    name: "onOpenChange",
+    type: "(open: boolean, eventDetails) => void",
+    defaultValue: "—",
+  },
+  {
     name: "disabled",
+    type: "boolean",
+    defaultValue: "false",
+  },
+] as const;
+
+const triggerProps = [
+  {
+    name: "className",
+    type: "string",
+    defaultValue: "—",
+  },
+  {
+    name: "nativeButton",
+    type: "boolean",
+    defaultValue: "true",
+  },
+] as const;
+
+const panelProps = [
+  {
+    name: "keepMounted",
+    type: "boolean",
+    defaultValue: "false",
+  },
+  {
+    name: "hiddenUntilFound",
     type: "boolean",
     defaultValue: "false",
   },
@@ -355,6 +396,30 @@ export default async function AccordionPage() {
             <h3 className="text-base font-medium">Accordion.Item</h3>
             <PropsTable props={itemProps} />
           </div>
+
+          <div className="space-y-3">
+            <h3 className="text-base font-medium">Accordion.Trigger</h3>
+            <PropsTable props={triggerProps} />
+          </div>
+
+          <div className="space-y-3">
+            <h3 className="text-base font-medium">Accordion.Panel</h3>
+            <PropsTable props={panelProps} />
+          </div>
+
+          <p className="text-base text-muted-foreground">
+            This covers the parts used above. See the{" "}
+            <a
+              href="https://base-ui.com/react/components/accordion"
+              target="_blank"
+              rel="noreferrer"
+              className="text-foreground underline-offset-4 hover:underline"
+            >
+              Base UI Accordion docs
+            </a>{" "}
+            for <InlineCode>render</InlineCode>, event details, CSS variables
+            and data attributes.
+          </p>
         </div>
       </section>
     </>
