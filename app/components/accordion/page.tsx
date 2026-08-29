@@ -340,6 +340,11 @@ export default async function AccordionPage() {
           <h2 id="default" className="scroll-mt-10 text-lg font-medium">
             Default
           </h2>
+          <p className="text-base text-muted-foreground">
+            Only one panel stays open at a time. Pass an array to{" "}
+            <InlineCode>defaultValue</InlineCode> to set the initially expanded
+            item.
+          </p>
           <ComponentPreview code={defaultCode}>
             <DefaultDemo />
           </ComponentPreview>
@@ -349,6 +354,11 @@ export default async function AccordionPage() {
           <h2 id="anatomy" className="scroll-mt-10 text-lg font-medium">
             Anatomy
           </h2>
+          <p className="text-base text-muted-foreground">
+            Each <InlineCode>Accordion.Item</InlineCode> wraps a trigger and
+            panel. Set <InlineCode>value</InlineCode> on every item when you
+            control which panels are open.
+          </p>
           <div
             className="overflow-x-auto rounded-3xl border border-border bg-muted/intense p-4 font-mono text-sm [&_pre]:m-0 [&_pre]:bg-transparent! [&_pre]:p-0"
             dangerouslySetInnerHTML={{ __html: anatomyHtml }}
@@ -359,6 +369,11 @@ export default async function AccordionPage() {
           <h2 id="multiple" className="scroll-mt-10 text-lg font-medium">
             Multiple
           </h2>
+          <p className="text-base text-muted-foreground">
+            Pass <InlineCode>multiple</InlineCode> so several panels can stay
+            open together. Use this when readers compare answers across items
+            instead of reading them one at a time.
+          </p>
           <ComponentPreview code={multipleCode}>
             <MultipleDemo />
           </ComponentPreview>
@@ -368,6 +383,11 @@ export default async function AccordionPage() {
           <h2 id="disabled" className="scroll-mt-10 text-lg font-medium">
             Disabled
           </h2>
+          <p className="text-base text-muted-foreground">
+            Set <InlineCode>disabled</InlineCode> on an item to block
+            expansion while keeping the label visible. Use it for sections that
+            are unavailable or require permission.
+          </p>
           <ComponentPreview code={disabledCode}>
             <DisabledDemo />
           </ComponentPreview>
@@ -377,6 +397,12 @@ export default async function AccordionPage() {
           <h2 id="borderless" className="scroll-mt-10 text-lg font-medium">
             Borderless
           </h2>
+          <p className="text-base text-muted-foreground">
+            Pass <InlineCode>bordered={"{false}"}</InlineCode> on{" "}
+            <InlineCode>Accordion.Root</InlineCode> to drop dividers between
+            items when the accordion already sits inside a card or list with its
+            own separation.
+          </p>
           <ComponentPreview code={borderlessCode}>
             <BorderlessDemo />
           </ComponentPreview>
