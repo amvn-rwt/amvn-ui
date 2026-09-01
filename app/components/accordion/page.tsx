@@ -345,7 +345,7 @@ export default async function AccordionPage() {
             <InlineCode>defaultValue</InlineCode> to set the initially expanded
             item.
           </p>
-          <ComponentPreview code={defaultCode}>
+          <ComponentPreview code={defaultCode} previewClassName="p-5 sm:p-8">
             <DefaultDemo />
           </ComponentPreview>
         </div>
@@ -374,7 +374,7 @@ export default async function AccordionPage() {
             open together. Use this when readers compare answers across items
             instead of reading them one at a time.
           </p>
-          <ComponentPreview code={multipleCode}>
+          <ComponentPreview code={multipleCode} previewClassName="p-5 sm:p-8">
             <MultipleDemo />
           </ComponentPreview>
         </div>
@@ -388,7 +388,7 @@ export default async function AccordionPage() {
             expansion while keeping the label visible. Use it for sections that
             are unavailable or require permission.
           </p>
-          <ComponentPreview code={disabledCode}>
+          <ComponentPreview code={disabledCode} previewClassName="p-5 sm:p-8">
             <DisabledDemo />
           </ComponentPreview>
         </div>
@@ -403,7 +403,7 @@ export default async function AccordionPage() {
             items when the accordion already sits inside a card or list with its
             own separation.
           </p>
-          <ComponentPreview code={borderlessCode}>
+          <ComponentPreview code={borderlessCode} previewClassName="p-5 sm:p-8">
             <BorderlessDemo />
           </ComponentPreview>
         </div>
