@@ -40,7 +40,7 @@ function AccordionItem({ className, ...props }: AccordionPrimitive.Item.Props) {
         // Sibling mute — dim collapsed items on accordion hover; open items stay readable.
         "not-data-disabled:not-data-open:group-hover/accordion:opacity-disabled not-data-disabled:hover:opacity-100!",
         // Disabled stays muted and never “wins” the hover highlight.
-        "data-disabled:cursor-not-allowed data-disabled:opacity-disabled",
+        "data-disabled:opacity-disabled",
         className,
       )}
       {...props}
@@ -65,7 +65,7 @@ function AccordionTrigger({
       <AccordionPrimitive.Trigger
         data-slot="accordion-trigger"
         className={cn(
-          "flex flex-1 items-center justify-between gap-4 py-4 text-left text-sm font-medium text-foreground outline-none transition-colors focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background data-disabled:pointer-events-none data-disabled:cursor-not-allowed data-disabled:text-muted-foreground",
+          "flex flex-1 items-center justify-between gap-4 py-4 text-left text-sm font-medium text-foreground outline-none transition-colors focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background data-disabled:pointer-events-none data-disabled:text-muted-foreground",
           className,
         )}
         {...props}
