@@ -59,7 +59,7 @@ export default function Example() {
             This mission data can't be recovered once you leave orbit.
           </AlertDialog.Description>
           <div className="mt-6 flex justify-end gap-2">
-            <AlertDialog.Close render={<Button variant="outline">Cancel</Button>} />
+            <AlertDialog.Close render={<Button variant="secondary">Cancel</Button>} />
             <AlertDialog.Close render={<Button variant="danger">Discard</Button>} />
           </div>
         </AlertDialog.Popup>
@@ -100,7 +100,7 @@ export default function Example() {
             </div>
           </div>
           <div className="mt-6 flex justify-end gap-2">
-            <AlertDialog.Close render={<Button variant="outline">Cancel</Button>} />
+            <AlertDialog.Close render={<Button variant="secondary">Cancel</Button>} />
             <AlertDialog.Close render={<Button variant="danger">Purge</Button>} />
           </div>
         </AlertDialog.Popup>
@@ -134,11 +134,11 @@ export default function Example() {
           </AlertDialog.Description>
           <div className="mt-6 flex items-center justify-between gap-2">
             <AlertDialog.Close
-              render={<Button variant="ghost">Remind me later</Button>}
+              render={<Button variant="outline">Remind me later</Button>}
             />
             <div className="flex gap-2">
               <AlertDialog.Close
-                render={<Button variant="outline">Cancel</Button>}
+                render={<Button variant="secondary">Cancel</Button>}
               />
               <AlertDialog.Close
                 render={<Button variant="danger">Overwrite</Button>}
@@ -175,7 +175,7 @@ export default function Example() {
             clearance before the next attempt.
           </AlertDialog.Description>
           <div className="mt-6 flex justify-end gap-2">
-            <AlertDialog.Close render={<Button variant="outline">Cancel</Button>} />
+            <AlertDialog.Close render={<Button variant="secondary">Cancel</Button>} />
             <AlertDialog.Close render={<Button variant="danger">Scrub</Button>} />
           </div>
         </AlertDialog.Popup>
@@ -214,7 +214,7 @@ export default function Example() {
               full resync before the next attempt.
             </AlertDialog.Description>
             <div className="mt-6 flex justify-end gap-2">
-              <AlertDialog.Close render={<Button variant="outline">Stand Down</Button>} />
+              <AlertDialog.Close render={<Button variant="secondary">Stand Down</Button>} />
               <AlertDialog.Close render={<Button variant="danger">Abort</Button>} />
             </div>
           </AlertDialog.Popup>
@@ -300,7 +300,7 @@ export default function Example() {
               <AlertDialog.Title>{payload?.title}</AlertDialog.Title>
               <AlertDialog.Description>{payload?.description}</AlertDialog.Description>
               <div className="mt-6 flex justify-end gap-2">
-                <AlertDialog.Close render={<Button variant="outline">Cancel</Button>} />
+                <AlertDialog.Close render={<Button variant="secondary">Cancel</Button>} />
                 <AlertDialog.Close
                   render={<Button variant="danger">{payload?.confirmLabel}</Button>}
                 />
@@ -375,6 +375,7 @@ const toc = [
   { id: "with-blurred-backdrop", title: "With blurred backdrop" },
   { id: "detached-trigger", title: "Detached trigger" },
   { id: "payload", title: "Multiple triggers with payload" },
+  { id: "guidelines", title: "Usage Guidelines" },
   { id: "props", title: "Props" },
 ];
 
@@ -484,7 +485,7 @@ export default async function AlertDialogPage() {
               With tertiary action
             </h2>
             <p className="text-base text-muted-foreground">
-              Place an optional ghost action on the left, and keep Cancel and
+              Place an optional outline action on the left, and keep Cancel and
               the primary confirm grouped on the right.
             </p>
           </div>
@@ -549,6 +550,33 @@ export default async function AlertDialogPage() {
           <ComponentPreview code={payloadCode}>
             <PayloadDemo />
           </ComponentPreview>
+        </div>
+
+        <div className="space-y-3">
+          <h2 id="guidelines" className="scroll-mt-10 text-lg font-medium">
+            Usage Guidelines
+          </h2>
+          <ul className="list-disc space-y-2 pl-5 text-base text-muted-foreground">
+            <li>
+              <span className="font-medium text-foreground">
+                Alert Dialog vs. Dialog
+              </span>{" "}
+              Use Alert Dialog exclusively for urgent, interrupting confirmations where a deliberate choice is required. Backdrop clicks are intentionally ignored. For general content or forms, use a standard Dialog.
+            </li>
+            <li>
+              <span className="font-medium text-foreground">
+                Initial focus on safe actions
+              </span>{" "}
+              To prevent accidental data loss from an errant <InlineCode>Enter</InlineCode> keypress, focus should land on the safest action (e.g., Cancel) when the dialog opens. Because Cancel is placed first in the DOM in these examples, focus lands there naturally. Use the <InlineCode>initialFocus</InlineCode> prop if your layout requires a different order.
+            </li>
+            <li>
+              <span className="font-medium text-foreground">
+                Required descriptions
+              </span>{" "}
+              Always include <InlineCode>AlertDialog.Title</InlineCode> and{" "}
+              <InlineCode>AlertDialog.Description</InlineCode>. These wire automatically to <InlineCode>aria-labelledby</InlineCode> and <InlineCode>aria-describedby</InlineCode> so assistive technologies immediately announce the stakes of the action.
+            </li>
+          </ul>
         </div>
 
         <div className="space-y-6">

@@ -85,7 +85,7 @@ function DefaultDemo() {
             </AlertDialog.Description>
             <div className="mt-6 flex justify-end gap-2">
               <AlertDialog.Close
-                render={<Button variant="outline">Cancel</Button>}
+                render={<Button variant="secondary">Cancel</Button>}
               />
               <AlertDialog.Close
                 render={<Button variant="danger">Discard</Button>}
@@ -128,7 +128,7 @@ function WithIconDemo() {
             </div>
             <div className="mt-6 flex justify-end gap-2">
               <AlertDialog.Close
-                render={<Button variant="outline">Cancel</Button>}
+                render={<Button variant="secondary">Cancel</Button>}
               />
               <AlertDialog.Close
                 render={<Button variant="danger">Purge</Button>}
@@ -163,11 +163,11 @@ function WithTertiaryDemo() {
             </AlertDialog.Description>
             <div className="mt-6 flex items-center justify-between gap-2">
               <AlertDialog.Close
-                render={<Button variant="ghost">Remind me later</Button>}
+                render={<Button variant="outline">Remind me later</Button>}
               />
               <div className="flex gap-2">
                 <AlertDialog.Close
-                  render={<Button variant="outline">Cancel</Button>}
+                  render={<Button variant="secondary">Cancel</Button>}
                 />
                 <AlertDialog.Close
                   render={<Button variant="danger">Overwrite</Button>}
@@ -203,7 +203,7 @@ function WithBlurredBackdropDemo() {
             </AlertDialog.Description>
             <div className="mt-6 flex justify-end gap-2">
               <AlertDialog.Close
-                render={<Button variant="outline">Cancel</Button>}
+                render={<Button variant="secondary">Cancel</Button>}
               />
               <AlertDialog.Close
                 render={<Button variant="danger">Scrub</Button>}
@@ -239,7 +239,7 @@ function DetachedTriggerDemo() {
             </AlertDialog.Description>
             <div className="mt-6 flex justify-end gap-2">
               <AlertDialog.Close
-                render={<Button variant="outline">Stand Down</Button>}
+                render={<Button variant="secondary">Stand Down</Button>}
               />
               <AlertDialog.Close
                 render={<Button variant="danger">Abort</Button>}
@@ -282,7 +282,7 @@ function PayloadDemo() {
               </AlertDialog.Description>
               <div className="mt-6 flex justify-end gap-2">
                 <AlertDialog.Close
-                  render={<Button variant="outline">Cancel</Button>}
+                  render={<Button variant="secondary">Cancel</Button>}
                 />
                 <AlertDialog.Close
                   render={
