@@ -8,8 +8,6 @@ import { motion, type HTMLMotionProps } from "motion/react";
 import { spring } from "@/lib/motion";
 import { cn } from "@/lib/utils";
 
-const AutocompleteOpenContext = React.createContext(false);
-
 function AutocompleteRoot<ItemValue>(
   props: AutocompletePrimitive.Root.Props<ItemValue>,
 ) {
@@ -40,33 +38,16 @@ function AutocompleteInput({
 
 function AutocompleteInputGroup({
   className,
-  children,
-  render,
   ...props
 }: AutocompletePrimitive.InputGroup.Props) {
   return (
     <AutocompletePrimitive.InputGroup
       data-slot="autocomplete-input-group"
       className={cn(
-        "flex h-6 w-full min-w-0 items-center gap-1 rounded-full border border-border bg-muted/faint px-3 py-4.5 focus-within:ring-2 focus-within:ring-ring focus-within:ring-offset-2 focus-within:ring-offset-background data-disabled:opacity-disabled",
+        "group/autocomplete-group flex h-6 w-full min-w-0 items-center gap-1 rounded-full border border-border bg-muted/faint px-3 py-4.5 focus-within:ring-2 focus-within:ring-ring focus-within:ring-offset-2 focus-within:ring-offset-background data-disabled:opacity-disabled",
         "**:data-[slot=autocomplete-input]:h-auto **:data-[slot=autocomplete-input]:flex-1 **:data-[slot=autocomplete-input]:border-0 **:data-[slot=autocomplete-input]:bg-transparent **:data-[slot=autocomplete-input]:px-1 **:data-[slot=autocomplete-input]:shadow-none **:data-[slot=autocomplete-input]:focus-visible:ring-0 **:data-[slot=autocomplete-input]:focus-visible:ring-offset-0",
         className,
       )}
-      render={(groupProps, state) => {
-        const content =
-          typeof render === "function" ? (
-            render(groupProps, state)
-          ) : render ? (
-            React.cloneElement(render as React.ReactElement, groupProps)
-          ) : (
-            <div {...groupProps}>{children}</div>
-          );
-        return (
-          <AutocompleteOpenContext.Provider value={state.open}>
-            {content}
-          </AutocompleteOpenContext.Provider>
-        );
-      }}
       {...props}
     />
   );
@@ -75,35 +56,19 @@ function AutocompleteInputGroup({
 function AutocompleteTrigger({
   className,
   children,
-  render,
   ...props
 }: AutocompletePrimitive.Trigger.Props) {
   return (
     <AutocompletePrimitive.Trigger
       data-slot="autocomplete-trigger"
       className={cn(
-        "inline-flex size-4 shrink-0 items-center justify-center rounded-full text-muted-foreground outline-none hover:text-foreground focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background data-disabled:pointer-events-none data-disabled:opacity-disabled data-popup-open:text-foreground",
+        "group/autocomplete-trigger inline-flex size-4 shrink-0 items-center justify-center rounded-full text-muted-foreground outline-none hover:text-foreground focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background data-disabled:pointer-events-none data-disabled:opacity-disabled data-popup-open:text-foreground",
         className,
       )}
-      render={(triggerProps, state) => {
-        const content =
-          typeof render === "function" ? (
-            render(triggerProps, state)
-          ) : render ? (
-            React.cloneElement(render as React.ReactElement, triggerProps)
-          ) : (
-            <button {...triggerProps} type="button">
-              {children}
-            </button>
-          );
-        return (
-          <AutocompleteOpenContext.Provider value={state.open}>
-            {content}
-          </AutocompleteOpenContext.Provider>
-        );
-      }}
       {...props}
-    />
+    >
+      {children}
+    </AutocompletePrimitive.Trigger>
   );
 }
 
@@ -112,25 +77,17 @@ function AutocompleteIcon({
   children,
   ...props
 }: AutocompletePrimitive.Icon.Props) {
-  const open = React.useContext(AutocompleteOpenContext);
-
   return (
     <AutocompletePrimitive.Icon
       data-slot="autocomplete-icon"
-      className={cn("inline-flex shrink-0 text-muted-foreground", className)}
-      {...props}
-      render={(iconProps) => (
-        <motion.span
-          {...(iconProps as HTMLMotionProps<"span">)}
-          aria-hidden="true"
-          initial={false}
-          animate={{ rotate: open ? 180 : 0 }}
-          transition={spring.micro}
-        >
-          {children ?? <ChevronDownIcon className="size-4" />}
-        </motion.span>
+      className={cn(
+        "inline-flex shrink-0 text-muted-foreground transition-transform duration-fast group-data-popup-open/autocomplete-group:rotate-180 group-data-popup-open/autocomplete-trigger:rotate-180",
+        className,
       )}
-    />
+      {...props}
+    >
+      {children ?? <ChevronDownIcon className="size-4" />}
+    </AutocompletePrimitive.Icon>
   );
 }
 
@@ -200,7 +157,6 @@ function AutocompletePositioner({
 
 function AutocompletePopup({
   className,
-  render,
   ...props
 }: AutocompletePrimitive.Popup.Props) {
   return (
@@ -210,31 +166,23 @@ function AutocompletePopup({
         "w-(--anchor-width) max-w-(--available-width) rounded-3xl border border-border bg-background p-1 shadow-lg",
         className,
       )}
-      render={(popupProps, state) => {
-        if (typeof render === "function") {
-          return render(popupProps, state);
-        }
-        if (render) {
-          return React.cloneElement(render as React.ReactElement, popupProps);
-        }
-        return (
-          <motion.div
-            {...(popupProps as HTMLMotionProps<"div">)}
-            style={{
-              ...(popupProps.style as React.CSSProperties | undefined),
-              transformOrigin: "var(--transform-origin)",
-            }}
-            // Opacity/scale stay in the animation so Base UI can await getAnimations() before unmount.
-            initial={{ opacity: 0, scale: 0.95 }}
-            animate={{
-              opacity: state.open ? 1 : 0,
-              scale: state.open ? 1 : 0.95,
-            }}
-            transition={spring.panel}
-          />
-        );
-      }}
       {...props}
+      render={(popupProps, state) => (
+        <motion.div
+          {...(popupProps as HTMLMotionProps<"div">)}
+          style={{
+            ...(popupProps.style as React.CSSProperties | undefined),
+            transformOrigin: "var(--transform-origin)",
+          }}
+          // Opacity/scale stay in the animation so Base UI can await getAnimations() before unmount.
+          initial={{ opacity: 0, scale: 0.95 }}
+          animate={{
+            opacity: state.open ? 1 : 0,
+            scale: state.open ? 1 : 0.95,
+          }}
+          transition={spring.panel}
+        />
+      )}
     />
   );
 }
