@@ -363,7 +363,7 @@ function AsyncDemo() {
   return (
     <div className="flex w-full justify-center">
       <Autocomplete.Root
-        // Disable built-in filtering — results come from the server.
+        // Disable built-in filtering; results come from the server.
         filter={null}
         filteredItems={filteredItems}
         items={ALL_TAGS}

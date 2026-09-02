@@ -116,4 +116,4 @@ const Accordion = Object.assign(AccordionRoot, {
 });
 
 export { Accordion };
-export type { AccordionProps, AccordionTriggerProps };
+

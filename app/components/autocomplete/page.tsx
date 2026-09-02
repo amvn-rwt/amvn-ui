@@ -414,7 +414,7 @@ export default function Example() {
 
   return (
     <Autocomplete.Root
-      // Pass filter={null} to disable built-in filtering — your filteredItems drive the list.
+      // Pass filter={null} to disable built-in filtering; your filteredItems drive the list.
       filter={null}
       filteredItems={filteredItems}
       items={ALL_TAGS}
@@ -457,31 +457,31 @@ const rootProps = [
   {
     name: "items",
     type: "ItemValue[] | { items: any[] }[]",
-    defaultValue: "—",
+    defaultValue: "-",
     description: "Flat array of item values, or grouped array where each entry has an items array.",
   },
   {
     name: "value",
     type: "string",
-    defaultValue: "—",
+    defaultValue: "-",
     description: "Controlled text value of the input. Use with onValueChange.",
   },
   {
     name: "defaultValue",
     type: "string",
-    defaultValue: "—",
-    description: "Uncontrolled initial text value.",
+    defaultValue: "-",
+    description: "Initial text value when uncontrolled.",
   },
   {
     name: "onValueChange",
     type: "(value: string, eventDetails) => void",
-    defaultValue: "—",
-    description: "Called when the input text changes. For object items the string is produced by itemToStringValue.",
+    defaultValue: "-",
+    description: "Callback fired when the input text changes. When items are objects, this receives the string produced by itemToStringValue.",
   },
   {
     name: "open",
     type: "boolean",
-    defaultValue: "—",
+    defaultValue: "-",
     description: "Controlled open state of the popup.",
   },
   {
@@ -493,122 +493,122 @@ const rootProps = [
   {
     name: "onOpenChange",
     type: "(open: boolean, eventDetails) => void",
-    defaultValue: "—",
-    description: "Called when the popup opens or closes.",
+    defaultValue: "-",
+    description: "Callback fired when the popup opens or closes.",
   },
   {
     name: "mode",
     type: "'list' | 'both' | 'inline' | 'none'",
     defaultValue: "'list'",
-    description: "Controls filtering and inline fill. 'list' filters only. 'both' filters and fills input from the highlighted item. 'inline' fills without filtering. 'none' does neither.",
+    description: "Controls filtering and inline completion. 'list' filters items. 'both' filters and previews the highlighted label in the input. 'inline' previews without filtering. 'none' disables both.",
   },
   {
     name: "autoHighlight",
     type: "boolean | 'always'",
     defaultValue: "false",
-    description: "Highlight the first matching item automatically. Use 'always' when the list is always visible (e.g. inside a dialog).",
+    description: "Automatically highlights the first matching item. Use 'always' when the list remains permanently visible.",
   },
   {
     name: "keepHighlight",
     type: "boolean",
     defaultValue: "false",
-    description: "Keep the current highlight when the query changes instead of resetting it.",
+    description: "Preserves the active highlight when the query text changes.",
   },
   {
     name: "highlightItemOnHover",
     type: "boolean",
     defaultValue: "true",
-    description: "Highlight items on mouse hover. Disable if you prefer keyboard-only highlight.",
+    description: "Highlights items on pointer hover. Set to false to limit highlight changes to keyboard navigation.",
   },
   {
     name: "filter",
     type: "((itemValue, query, itemToString?) => boolean) | null",
-    defaultValue: "—",
-    description: "Custom filter function. Pass null to disable built-in filtering entirely — required for async/server-side search.",
+    defaultValue: "-",
+    description: "Custom filter function. Pass null to disable built-in filtering, which is required for async or server-side search.",
   },
   {
     name: "filteredItems",
     type: "any[] | Group[]",
-    defaultValue: "—",
-    description: "Externally filtered items. Use with filter={null} for async search — set this from your server results instead of letting the component filter.",
+    defaultValue: "-",
+    description: "Externally filtered items array. Use alongside filter={null} when queries are resolved by an API.",
   },
   {
     name: "itemToStringValue",
     type: "(itemValue: ItemValue) => string",
-    defaultValue: "—",
-    description: "Converts an item object to the string shown in the input on selection. Required when items are objects, not plain strings.",
+    defaultValue: "-",
+    description: "Converts an item object to the text string displayed in the input. Not required if your objects use { value, label } structure.",
   },
   {
     name: "limit",
     type: "number",
     defaultValue: "-1",
-    description: "Maximum number of items shown in the list. -1 means unlimited.",
+    description: "Maximum number of visible items. Set to -1 for unlimited.",
   },
   {
     name: "grid",
     type: "boolean",
     defaultValue: "false",
-    description: "Enable grid navigation (horizontal + vertical arrow keys). Use with Autocomplete.Row to lay items in a grid.",
+    description: "Enables two-dimensional arrow key navigation when items are arranged in rows and columns.",
   },
   {
     name: "inline",
     type: "boolean",
     defaultValue: "false",
-    description: "Render the list inline instead of inside a portal popup.",
+    description: "Renders the suggestions list directly in the document flow instead of a floating popup.",
   },
   {
     name: "virtualized",
     type: "boolean",
     defaultValue: "false",
-    description: "Enable virtual scrolling for very large lists (thousands of items). Requires fixed item heights.",
+    description: "Enables virtual scrolling for large data sets.",
   },
   {
     name: "openOnInputClick",
     type: "boolean",
     defaultValue: "false",
-    description: "Open the popup when the input is clicked, even if it is empty.",
+    description: "Opens the suggestions menu when clicking the input, even before typing.",
   },
   {
     name: "loopFocus",
     type: "boolean",
     defaultValue: "true",
-    description: "Wrap focus from last item back to first (and vice versa) when navigating with arrow keys.",
+    description: "Cycles keyboard navigation from the last item back to the first, and vice versa.",
   },
   {
     name: "modal",
     type: "boolean",
     defaultValue: "false",
-    description: "Trap focus inside the popup, making it behave like a modal dialog.",
+    description: "Traps focus inside the popup while open, similar to a dialog.",
   },
   {
     name: "submitOnItemClick",
     type: "boolean",
     defaultValue: "false",
-    description: "Submit the nearest parent form automatically when an item is selected.",
+    description: "Submits the parent form immediately when an item is selected.",
   },
   {
     name: "name",
     type: "string",
-    defaultValue: "—",
-    description: "Name of the hidden input submitted with a form.",
+    defaultValue: "-",
+    description: "Form control name for the input.",
   },
   {
     name: "disabled",
     type: "boolean",
     defaultValue: "false",
-    description: "Disable the entire autocomplete field.",
+    description: "Disables interaction with the autocomplete.",
   },
   {
     name: "readOnly",
     type: "boolean",
     defaultValue: "false",
-    description: "Make the input read-only — popup still opens but the value cannot be changed.",
+    description: "Makes the field read-only. The suggestions popup still opens, but the text cannot be modified.",
   },
   {
     name: "required",
     type: "boolean",
     defaultValue: "false",
-    description: "Mark the field as required for form validation.",
+    description: "Marks the input as required for HTML5 form validation.",
   },
 ] as const;
 
@@ -621,7 +621,7 @@ const inputProps = [
   {
     name: "placeholder",
     type: "string",
-    defaultValue: "—",
+    defaultValue: "-",
   },
 ] as const;
 
@@ -639,12 +639,12 @@ const itemProps = [
   {
     name: "onClick",
     type: "(event) => void",
-    defaultValue: "—",
+    defaultValue: "-",
   },
   {
     name: "index",
     type: "number",
-    defaultValue: "—",
+    defaultValue: "-",
   },
 ] as const;
 
@@ -652,7 +652,7 @@ const listProps = [
   {
     name: "children",
     type: "ReactNode | ((item: any, index: number) => ReactNode)",
-    defaultValue: "—",
+    defaultValue: "-",
   },
 ] as const;
 
@@ -660,7 +660,7 @@ const groupProps = [
   {
     name: "items",
     type: "any[]",
-    defaultValue: "—",
+    defaultValue: "-",
   },
 ] as const;
 
@@ -696,7 +696,7 @@ const filterHookProps = [
   {
     name: "options",
     type: "AutocompleteFilterOptions",
-    defaultValue: "—",
+    defaultValue: "-",
   },
 ] as const;
 
@@ -704,8 +704,8 @@ const filteredItemsHookProps = [
   {
     name: "(no parameters)",
     type: "returns T[]",
-    defaultValue: "—",
-    description: "Returns the currently visible item array after filtering is applied. Useful for computing match counts outside the component (see the Empty state and status demo).",
+    defaultValue: "-",
+    description: "Returns the current array of visible items after filtering. Helpful for computing match counts or display badges outside the list.",
   },
 ] as const;
 
@@ -789,8 +789,9 @@ export default async function AutocompletePage() {
 
       <h1 className="text-3xl font-bold">Autocomplete</h1>
       <p className="mt-2 text-muted-foreground">
-        An input that suggests options as you type while keeping free-form text
-        in the field. Suggestions stay optional.
+        A text input with suggestions that filter as you type. Unlike a select
+        or combobox, autocomplete accepts freeform text and treats suggestions
+        as quick shortcuts.
       </p>
 
       <section className="mt-8 space-y-8">
@@ -810,66 +811,68 @@ export default async function AutocompletePage() {
           <ul className="list-disc space-y-2 pl-5 text-base text-muted-foreground">
             <li>
               <span className="font-medium text-foreground">
-                Need a remembered selection?
+                Autocomplete vs. Combobox:
               </span>{" "}
-              Use Combobox instead. Autocomplete keeps free-form text in the
-              field and suggestions are always optional — the user can type
-              anything.
+              Use Autocomplete when the user can type anything and suggestions
+              are strictly optional shortcuts. Use Combobox when the user must
+              pick from a predefined set of options or when you need to track a
+              separate selected ID.
             </li>
             <li>
               <span className="font-medium text-foreground">
-                Give it an accessible name
+                Accessible labels:
               </span>{" "}
-              by wrapping the input in a <InlineCode>{"<label>"}</InlineCode>.
-              Never leave the input unlabelled.
+              Always associate the input with an accessible name by wrapping it
+              in a <InlineCode>{"<label>"}</InlineCode> or providing an{" "}
+              <InlineCode>aria-label</InlineCode>.
             </li>
             <li>
               <span className="font-medium text-foreground">
-                Keyboard navigation
+                Keyboard controls:
               </span>{" "}
-              is built in. <InlineCode>↓ / ↑</InlineCode> move through items,{" "}
-              <InlineCode>Enter</InlineCode> selects,{" "}
-              <InlineCode>Escape</InlineCode> closes the popup,{" "}
-              <InlineCode>Tab</InlineCode> closes and moves focus. Looping
-              wraps from last to first item by default.
+              Use <InlineCode>↓ / ↑</InlineCode> to move highlight through
+              items, <InlineCode>Enter</InlineCode> to choose the active item,{" "}
+              <InlineCode>Escape</InlineCode> to dismiss the popup, and{" "}
+              <InlineCode>Tab</InlineCode> to close the menu and advance focus.
             </li>
             <li>
               <span className="font-medium text-foreground">
-                Object items need itemToStringValue
+                Working with object arrays:
               </span>{" "}
-              when the value you want in the input on selection is not the
-              whole object. For example, if items are{" "}
-              <InlineCode>{"{ value, label }"}"</InlineCode> objects, pass{" "}
-              <InlineCode>{"itemToStringValue={(item) => item.label}"}</InlineCode>{" "}
-              so the label fills the input instead of{" "}
-              <InlineCode>[object Object]</InlineCode>.
+              If your items are objects with{" "}
+              <InlineCode>{"{ value, label }"}</InlineCode>, the component
+              automatically uses the label. If your data uses custom keys like{" "}
+              <InlineCode>{"{ id, title }"}</InlineCode>, pass{" "}
+              <InlineCode>{"itemToStringValue={(item) => item.title}"}</InlineCode>{" "}
+              so the selected item writes cleanly into the input.
             </li>
             <li>
               <span className="font-medium text-foreground">
-                Async / server-side filtering
+                Async and remote search:
               </span>{" "}
-              — pass <InlineCode>filter={"{null}"}</InlineCode> to turn off
-              built-in filtering, then supply{" "}
-              <InlineCode>filteredItems</InlineCode> from your debounced fetch.
-              Use <InlineCode>Autocomplete.Status</InlineCode> to announce
-              loading state to screen readers.
+              Set <InlineCode>filter={"{null}"}</InlineCode> to disable internal
+              filtering, then pass your debounced search results to{" "}
+              <InlineCode>filteredItems</InlineCode>. Use{" "}
+              <InlineCode>Autocomplete.Status</InlineCode> to announce loading
+              states or match counts to assistive technologies.
             </li>
             <li>
               <span className="font-medium text-foreground">
-                Custom filter logic
+                Custom matching:
               </span>{" "}
-              — pass a function to <InlineCode>filter</InlineCode> to replace
-              the default starts-with / contains matching. The function receives
-              the item value, the current query string, and an optional{" "}
-              <InlineCode>itemToString</InlineCode> helper.
+              Pass a custom function to <InlineCode>filter</InlineCode> if you
+              need fuzzy matching, multi-word matching, or custom accent
+              folding.
             </li>
             <li>
               <span className="font-medium text-foreground">
-                Keep Empty and Status always mounted
+                Always keep Empty and Status mounted:
               </span>{" "}
-              — conditionally render their <em>children</em>, not the elements
-              themselves, so screen reader live regions remain in the DOM and
-              announcements fire correctly.
+              Conditionally render the children inside{" "}
+              <InlineCode>Autocomplete.Empty</InlineCode> and{" "}
+              <InlineCode>Autocomplete.Status</InlineCode>, not the component
+              elements themselves. This keeps the ARIA live region registered
+              in the DOM so screen readers announce changes.
             </li>
           </ul>
           <p className="text-base text-muted-foreground">

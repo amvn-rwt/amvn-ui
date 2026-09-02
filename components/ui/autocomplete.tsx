@@ -40,6 +40,8 @@ function AutocompleteInput({
 
 function AutocompleteInputGroup({
   className,
+  children,
+  render,
   ...props
 }: AutocompletePrimitive.InputGroup.Props) {
   return (
@@ -50,12 +52,22 @@ function AutocompleteInputGroup({
         "**:data-[slot=autocomplete-input]:h-auto **:data-[slot=autocomplete-input]:flex-1 **:data-[slot=autocomplete-input]:border-0 **:data-[slot=autocomplete-input]:bg-transparent **:data-[slot=autocomplete-input]:px-1 **:data-[slot=autocomplete-input]:shadow-none **:data-[slot=autocomplete-input]:focus-visible:ring-0 **:data-[slot=autocomplete-input]:focus-visible:ring-offset-0",
         className,
       )}
+      render={(groupProps, state) => {
+        const content =
+          typeof render === "function" ? (
+            render(groupProps, state)
+          ) : render ? (
+            React.cloneElement(render as React.ReactElement, groupProps)
+          ) : (
+            <div {...groupProps}>{children}</div>
+          );
+        return (
+          <AutocompleteOpenContext.Provider value={state.open}>
+            {content}
+          </AutocompleteOpenContext.Provider>
+        );
+      }}
       {...props}
-      render={(groupProps, state) => (
-        <AutocompleteOpenContext.Provider value={state.open}>
-          <div {...groupProps} />
-        </AutocompleteOpenContext.Provider>
-      )}
     />
   );
 }
@@ -63,6 +75,7 @@ function AutocompleteInputGroup({
 function AutocompleteTrigger({
   className,
   children,
+  render,
   ...props
 }: AutocompletePrimitive.Trigger.Props) {
   return (
@@ -72,14 +85,24 @@ function AutocompleteTrigger({
         "inline-flex size-4 shrink-0 items-center justify-center rounded-full text-muted-foreground outline-none hover:text-foreground focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background data-disabled:pointer-events-none data-disabled:opacity-disabled data-popup-open:text-foreground",
         className,
       )}
+      render={(triggerProps, state) => {
+        const content =
+          typeof render === "function" ? (
+            render(triggerProps, state)
+          ) : render ? (
+            React.cloneElement(render as React.ReactElement, triggerProps)
+          ) : (
+            <button {...triggerProps} type="button">
+              {children}
+            </button>
+          );
+        return (
+          <AutocompleteOpenContext.Provider value={state.open}>
+            {content}
+          </AutocompleteOpenContext.Provider>
+        );
+      }}
       {...props}
-      render={(triggerProps, state) => (
-        <AutocompleteOpenContext.Provider value={state.open}>
-          <button {...triggerProps} type="button">
-            {children}
-          </button>
-        </AutocompleteOpenContext.Provider>
-      )}
     />
   );
 }
@@ -99,6 +122,7 @@ function AutocompleteIcon({
       render={(iconProps) => (
         <motion.span
           {...(iconProps as HTMLMotionProps<"span">)}
+          aria-hidden="true"
           initial={false}
           animate={{ rotate: open ? 180 : 0 }}
           transition={spring.micro}
@@ -113,11 +137,13 @@ function AutocompleteIcon({
 function AutocompleteClear({
   className,
   children,
+  "aria-label": ariaLabel = "Clear selection",
   ...props
 }: AutocompletePrimitive.Clear.Props) {
   return (
     <AutocompletePrimitive.Clear
       data-slot="autocomplete-clear"
+      aria-label={ariaLabel}
       className={cn(
         "inline-flex size-4 shrink-0 items-center justify-center rounded-full text-muted-foreground outline-none transition-[color,opacity] duration-fast hover:text-foreground focus-visible:ring-2 focus-visible:ring-ring data-disabled:pointer-events-none data-disabled:opacity-disabled data-starting-style:opacity-0 data-ending-style:opacity-0",
         className,
@@ -174,6 +200,7 @@ function AutocompletePositioner({
 
 function AutocompletePopup({
   className,
+  render,
   ...props
 }: AutocompletePrimitive.Popup.Props) {
   return (
@@ -183,23 +210,31 @@ function AutocompletePopup({
         "w-(--anchor-width) max-w-(--available-width) rounded-3xl border border-border bg-background p-1 shadow-lg",
         className,
       )}
+      render={(popupProps, state) => {
+        if (typeof render === "function") {
+          return render(popupProps, state);
+        }
+        if (render) {
+          return React.cloneElement(render as React.ReactElement, popupProps);
+        }
+        return (
+          <motion.div
+            {...(popupProps as HTMLMotionProps<"div">)}
+            style={{
+              ...(popupProps.style as React.CSSProperties | undefined),
+              transformOrigin: "var(--transform-origin)",
+            }}
+            // Opacity/scale stay in the animation so Base UI can await getAnimations() before unmount.
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{
+              opacity: state.open ? 1 : 0,
+              scale: state.open ? 1 : 0.95,
+            }}
+            transition={spring.panel}
+          />
+        );
+      }}
       {...props}
-      render={(popupProps, state) => (
-        <motion.div
-          {...(popupProps as HTMLMotionProps<"div">)}
-          style={{
-            ...(popupProps.style as React.CSSProperties | undefined),
-            transformOrigin: "var(--transform-origin)",
-          }}
-          // Opacity/scale stay in the animation so Base UI can await getAnimations() before unmount.
-          initial={{ opacity: 0, scale: 0.95 }}
-          animate={{
-            opacity: state.open ? 1 : 0,
-            scale: state.open ? 1 : 0.95,
-          }}
-          transition={spring.panel}
-        />
-      )}
     />
   );
 }
@@ -303,7 +338,7 @@ function AutocompleteRow({
   );
 }
 
-// Empty/Status must stay mounted for screen reader announcements — conditionally
+// Empty and Status must stay mounted for screen reader announcements. Conditionally
 // render their children, not these elements. Pad only when content is present
 // so an empty root does not leave a gap above the list.
 function AutocompleteEmpty({
@@ -381,3 +416,4 @@ const Autocomplete = Object.assign(AutocompleteRoot, {
 });
 
 export { Autocomplete };
+
