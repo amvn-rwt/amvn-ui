@@ -130,7 +130,12 @@ function AutocompleteClear({
 }
 
 function AutocompleteValue(props: AutocompletePrimitive.Value.Props) {
-  return <AutocompletePrimitive.Value {...props} />;
+  return (
+    <AutocompletePrimitive.Value
+      data-slot="autocomplete-value"
+      {...props}
+    />
+  );
 }
 
 function AutocompletePortal(props: AutocompletePrimitive.Portal.Props) {
@@ -277,7 +282,12 @@ function AutocompleteGroupLabel({
 }
 
 function AutocompleteCollection(props: AutocompletePrimitive.Collection.Props) {
-  return <AutocompletePrimitive.Collection {...props} />;
+  return (
+    <AutocompletePrimitive.Collection
+      data-slot="autocomplete-collection"
+      {...props}
+    />
+  );
 }
 
 function AutocompleteRow({

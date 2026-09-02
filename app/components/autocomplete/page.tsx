@@ -7,8 +7,10 @@ import { breadcrumbJsonLd, createPageMetadata } from "@/lib/seo";
 import { site } from "@/lib/site";
 
 import {
+  AsyncDemo,
   AutoHighlightDemo,
   DefaultDemo,
+  DisabledDemo,
   EmptyStatusDemo,
   GroupedDemo,
   InlineDemo,
@@ -72,7 +74,7 @@ const tags = [
 export default function Example() {
   return (
     <Autocomplete.Root items={tags}>
-      <label className="flex w-12 flex-col gap-2 text-sm font-medium">
+      <label className="flex w-64 flex-col gap-2 text-sm font-medium">
         Search the hangar
         <Autocomplete.Input placeholder="E.g. rocket" />
       </label>
@@ -106,7 +108,7 @@ const tags = [
 export default function Example() {
   return (
     <Autocomplete.Root items={tags}>
-      <label className="flex w-12 flex-col gap-2 text-sm font-medium">
+      <label className="flex w-64 flex-col gap-2 text-sm font-medium">
         Search the hangar
         <Autocomplete.InputGroup>
           <SearchIcon
@@ -161,7 +163,7 @@ const groupedTags = [
 export default function Example() {
   return (
     <Autocomplete.Root items={groupedTags}>
-      <label className="flex w-12 flex-col gap-2 text-sm font-medium">
+      <label className="flex w-64 flex-col gap-2 text-sm font-medium">
         Pick a mission asset
         <Autocomplete.Input placeholder="E.g. rocket" />
       </label>
@@ -205,7 +207,7 @@ const tags = [
 export default function Example() {
   return (
     <Autocomplete.Root items={tags} autoHighlight>
-      <label className="flex w-12 flex-col gap-2 text-sm font-medium">
+      <label className="flex w-64 flex-col gap-2 text-sm font-medium">
         Auto highlight on type
         <Autocomplete.Input placeholder="E.g. rocket" />
       </label>
@@ -239,7 +241,7 @@ export default function Example() {
   return (
     // mode="both" filters the list and fills the input from the highlighted item.
     <Autocomplete.Root items={tags} mode="both">
-      <label className="flex w-12 flex-col gap-2 text-sm font-medium">
+      <label className="flex w-64 flex-col gap-2 text-sm font-medium">
         Search the hangar
         <Autocomplete.Input placeholder="E.g. rocket" />
       </label>
@@ -280,7 +282,7 @@ export default function Example() {
 
   return (
     <Autocomplete.Root items={tags} value={value} onValueChange={setValue}>
-      <label className="flex w-12 flex-col gap-2 text-sm font-medium">
+      <label className="flex w-64 flex-col gap-2 text-sm font-medium">
         Search the hangar
         <Autocomplete.Input placeholder="E.g. rocket" />
       </label>
@@ -310,136 +312,303 @@ export default function Example() {
   )
 }`;
 
+const disabledCode = `import { Autocomplete } from "@/components/ui/autocomplete"
+
+const tags = [
+  { value: "rocket", label: "Rocket" },
+  { value: "orbit-bike", label: "Orbit Bike" },
+  { value: "classified", label: "Secret Payload", disabled: true },
+  { value: "lunar-car", label: "Lunar Car" },
+]
+
+export default function Example() {
+  return (
+    <div className="flex w-full flex-col items-center gap-6">
+      {/* Disable a single item by passing disabled to Autocomplete.Item */}
+      <Autocomplete.Root items={tags}>
+        <label className="flex w-64 flex-col gap-2 text-sm font-medium">
+          Per-item disabled
+          <Autocomplete.Input placeholder="E.g. rocket" />
+        </label>
+        <Autocomplete.Portal>
+          <Autocomplete.Positioner>
+            <Autocomplete.Popup>
+              <Autocomplete.Empty>Nothing found.</Autocomplete.Empty>
+              <Autocomplete.List>
+                {(tag) => (
+                  <Autocomplete.Item
+                    key={tag.value}
+                    value={tag}
+                    disabled={tag.disabled}
+                  >
+                    {tag.label}
+                  </Autocomplete.Item>
+                )}
+              </Autocomplete.List>
+            </Autocomplete.Popup>
+          </Autocomplete.Positioner>
+        </Autocomplete.Portal>
+      </Autocomplete.Root>
+
+      {/* Disable the whole field with disabled on Root */}
+      <Autocomplete.Root items={tags} disabled>
+        <label className="flex w-64 flex-col gap-2 text-sm font-medium">
+          Fully disabled
+          <Autocomplete.Input placeholder="E.g. rocket" />
+        </label>
+        <Autocomplete.Portal>
+          <Autocomplete.Positioner>
+            <Autocomplete.Popup>
+              <Autocomplete.List>
+                {(tag) => (
+                  <Autocomplete.Item key={tag.value} value={tag}>
+                    {tag.label}
+                  </Autocomplete.Item>
+                )}
+              </Autocomplete.List>
+            </Autocomplete.Popup>
+          </Autocomplete.Positioner>
+        </Autocomplete.Portal>
+      </Autocomplete.Root>
+    </div>
+  )
+}`;
+
+const asyncCode = `import * as React from "react"
+import { SearchIcon } from "lucide-react"
+import { Autocomplete } from "@/components/ui/autocomplete"
+
+const ALL_TAGS = [
+  { value: "rocket", label: "Rocket" },
+  { value: "orbit-bike", label: "Orbit Bike" },
+  { value: "lunar-car", label: "Lunar Car" },
+  { value: "telemetry", label: "Telemetry" },
+  { value: "fuel-tank", label: "Fuel Tank" },
+  { value: "ground-control", label: "Ground Control" },
+]
+
+export default function Example() {
+  const [inputValue, setInputValue] = React.useState("")
+  const [filteredItems, setFilteredItems] = React.useState(ALL_TAGS)
+  const [loading, setLoading] = React.useState(false)
+  const timerRef = React.useRef<ReturnType<typeof setTimeout>>(undefined)
+
+  function handleValueChange(value: string) {
+    setInputValue(value)
+    clearTimeout(timerRef.current)
+    if (!value.trim()) {
+      setFilteredItems(ALL_TAGS)
+      setLoading(false)
+      return
+    }
+    setLoading(true)
+    // Simulate a remote fetch with a 400 ms debounce.
+    timerRef.current = setTimeout(() => {
+      const lower = value.toLowerCase()
+      setFilteredItems(ALL_TAGS.filter((t) => t.label.toLowerCase().includes(lower)))
+      setLoading(false)
+    }, 400)
+  }
+
+  React.useEffect(() => () => clearTimeout(timerRef.current), [])
+
+  return (
+    <Autocomplete.Root
+      // Pass filter={null} to disable built-in filtering — your filteredItems drive the list.
+      filter={null}
+      filteredItems={filteredItems}
+      items={ALL_TAGS}
+      value={inputValue}
+      onValueChange={handleValueChange}
+    >
+      <label className="flex w-64 flex-col gap-2 text-sm font-medium">
+        Search the hangar (async)
+        <Autocomplete.InputGroup>
+          <SearchIcon className="size-4 shrink-0 text-muted-foreground" aria-hidden />
+          <Autocomplete.Input placeholder="E.g. rocket" />
+          <Autocomplete.Clear />
+        </Autocomplete.InputGroup>
+      </label>
+      <Autocomplete.Portal>
+        <Autocomplete.Positioner>
+          <Autocomplete.Popup>
+            {/* Status is always mounted so screen readers announce changes. */}
+            <Autocomplete.Status>
+              {loading ? "Searching…" : null}
+            </Autocomplete.Status>
+            <Autocomplete.Empty>
+              {!loading && inputValue.trim() ? "No results found." : null}
+            </Autocomplete.Empty>
+            <Autocomplete.List>
+              {(tag) => (
+                <Autocomplete.Item key={tag.value} value={tag}>
+                  {tag.label}
+                </Autocomplete.Item>
+              )}
+            </Autocomplete.List>
+          </Autocomplete.Popup>
+        </Autocomplete.Positioner>
+      </Autocomplete.Portal>
+    </Autocomplete.Root>
+  )
+}`;
+
 const rootProps = [
   {
     name: "items",
     type: "ItemValue[] | { items: any[] }[]",
     defaultValue: "—",
+    description: "Flat array of item values, or grouped array where each entry has an items array.",
   },
   {
     name: "value",
-    type: "string | number | string[]",
+    type: "string",
     defaultValue: "—",
+    description: "Controlled text value of the input. Use with onValueChange.",
   },
   {
     name: "defaultValue",
-    type: "string | number | string[]",
+    type: "string",
     defaultValue: "—",
+    description: "Uncontrolled initial text value.",
   },
   {
     name: "onValueChange",
     type: "(value: string, eventDetails) => void",
     defaultValue: "—",
+    description: "Called when the input text changes. For object items the string is produced by itemToStringValue.",
   },
   {
     name: "open",
     type: "boolean",
     defaultValue: "—",
+    description: "Controlled open state of the popup.",
   },
   {
     name: "defaultOpen",
     type: "boolean",
     defaultValue: "false",
+    description: "Whether the popup starts open in uncontrolled mode.",
   },
   {
     name: "onOpenChange",
     type: "(open: boolean, eventDetails) => void",
     defaultValue: "—",
+    description: "Called when the popup opens or closes.",
   },
   {
     name: "mode",
     type: "'list' | 'both' | 'inline' | 'none'",
     defaultValue: "'list'",
+    description: "Controls filtering and inline fill. 'list' filters only. 'both' filters and fills input from the highlighted item. 'inline' fills without filtering. 'none' does neither.",
   },
   {
     name: "autoHighlight",
     type: "boolean | 'always'",
     defaultValue: "false",
+    description: "Highlight the first matching item automatically. Use 'always' when the list is always visible (e.g. inside a dialog).",
   },
   {
     name: "keepHighlight",
     type: "boolean",
     defaultValue: "false",
+    description: "Keep the current highlight when the query changes instead of resetting it.",
   },
   {
     name: "highlightItemOnHover",
     type: "boolean",
     defaultValue: "true",
+    description: "Highlight items on mouse hover. Disable if you prefer keyboard-only highlight.",
   },
   {
     name: "filter",
     type: "((itemValue, query, itemToString?) => boolean) | null",
     defaultValue: "—",
+    description: "Custom filter function. Pass null to disable built-in filtering entirely — required for async/server-side search.",
   },
   {
     name: "filteredItems",
     type: "any[] | Group[]",
     defaultValue: "—",
+    description: "Externally filtered items. Use with filter={null} for async search — set this from your server results instead of letting the component filter.",
   },
   {
     name: "itemToStringValue",
     type: "(itemValue: ItemValue) => string",
     defaultValue: "—",
+    description: "Converts an item object to the string shown in the input on selection. Required when items are objects, not plain strings.",
   },
   {
     name: "limit",
     type: "number",
     defaultValue: "-1",
+    description: "Maximum number of items shown in the list. -1 means unlimited.",
   },
   {
     name: "grid",
     type: "boolean",
     defaultValue: "false",
+    description: "Enable grid navigation (horizontal + vertical arrow keys). Use with Autocomplete.Row to lay items in a grid.",
   },
   {
     name: "inline",
     type: "boolean",
     defaultValue: "false",
+    description: "Render the list inline instead of inside a portal popup.",
   },
   {
     name: "virtualized",
     type: "boolean",
     defaultValue: "false",
+    description: "Enable virtual scrolling for very large lists (thousands of items). Requires fixed item heights.",
   },
   {
     name: "openOnInputClick",
     type: "boolean",
     defaultValue: "false",
+    description: "Open the popup when the input is clicked, even if it is empty.",
   },
   {
     name: "loopFocus",
     type: "boolean",
     defaultValue: "true",
+    description: "Wrap focus from last item back to first (and vice versa) when navigating with arrow keys.",
   },
   {
     name: "modal",
     type: "boolean",
     defaultValue: "false",
+    description: "Trap focus inside the popup, making it behave like a modal dialog.",
   },
   {
     name: "submitOnItemClick",
     type: "boolean",
     defaultValue: "false",
+    description: "Submit the nearest parent form automatically when an item is selected.",
   },
   {
     name: "name",
     type: "string",
     defaultValue: "—",
+    description: "Name of the hidden input submitted with a form.",
   },
   {
     name: "disabled",
     type: "boolean",
     defaultValue: "false",
+    description: "Disable the entire autocomplete field.",
   },
   {
     name: "readOnly",
     type: "boolean",
     defaultValue: "false",
+    description: "Make the input read-only — popup still opens but the value cannot be changed.",
   },
   {
     name: "required",
     type: "boolean",
     defaultValue: "false",
+    description: "Mark the field as required for form validation.",
   },
 ] as const;
 
@@ -536,6 +705,7 @@ const filteredItemsHookProps = [
     name: "(no parameters)",
     type: "returns T[]",
     defaultValue: "—",
+    description: "Returns the currently visible item array after filtering is applied. Useful for computing match counts outside the component (see the Empty state and status demo).",
   },
 ] as const;
 
@@ -548,6 +718,8 @@ const toc = [
   { id: "auto-highlight", title: "Auto highlight" },
   { id: "inline", title: "Inline autocomplete" },
   { id: "empty-status", title: "Empty state and status" },
+  { id: "disabled", title: "Disabled" },
+  { id: "async", title: "Async suggestions" },
   { id: "props", title: "Props" },
 ];
 
@@ -558,16 +730,21 @@ function PropsTable({
     name: string;
     type: string;
     defaultValue: string;
+    description?: string;
   }[];
 }) {
+  const hasDescriptions = props.some((p) => p.description);
   return (
     <div className="overflow-x-auto rounded-3xl border border-border">
-      <table className="w-full min-w-14 text-left text-sm">
+      <table className="w-full min-w-14 text-left text-sm [&_td]:align-top [&_th]:align-top">
         <thead className="border-b border-border bg-muted/muted">
           <tr>
             <th className="px-4 py-3 font-medium">Prop</th>
             <th className="px-4 py-3 font-medium">Type</th>
             <th className="px-4 py-3 font-medium">Default</th>
+            {hasDescriptions && (
+              <th className="px-4 py-3 font-medium">Description</th>
+            )}
           </tr>
         </thead>
         <tbody>
@@ -583,6 +760,11 @@ function PropsTable({
               <td className="px-4 py-3 font-mono text-sm text-muted-foreground">
                 {prop.defaultValue}
               </td>
+              {hasDescriptions && (
+                <td className="px-4 py-3 text-sm text-muted-foreground">
+                  {prop.description ?? ""}
+                </td>
+              )}
             </tr>
           ))}
         </tbody>
@@ -630,15 +812,64 @@ export default async function AutocompletePage() {
               <span className="font-medium text-foreground">
                 Need a remembered selection?
               </span>{" "}
-              Use Combobox instead: Autocomplete keeps free-form text, and
-              suggestions are optional.
+              Use Combobox instead. Autocomplete keeps free-form text in the
+              field and suggestions are always optional — the user can type
+              anything.
             </li>
             <li>
               <span className="font-medium text-foreground">
                 Give it an accessible name
               </span>{" "}
-              by wrapping the input in a <InlineCode>{"<label>"}</InlineCode>,
-              or use Field when you add forms later.
+              by wrapping the input in a <InlineCode>{"<label>"}</InlineCode>.
+              Never leave the input unlabelled.
+            </li>
+            <li>
+              <span className="font-medium text-foreground">
+                Keyboard navigation
+              </span>{" "}
+              is built in. <InlineCode>↓ / ↑</InlineCode> move through items,{" "}
+              <InlineCode>Enter</InlineCode> selects,{" "}
+              <InlineCode>Escape</InlineCode> closes the popup,{" "}
+              <InlineCode>Tab</InlineCode> closes and moves focus. Looping
+              wraps from last to first item by default.
+            </li>
+            <li>
+              <span className="font-medium text-foreground">
+                Object items need itemToStringValue
+              </span>{" "}
+              when the value you want in the input on selection is not the
+              whole object. For example, if items are{" "}
+              <InlineCode>{"{ value, label }"}"</InlineCode> objects, pass{" "}
+              <InlineCode>{"itemToStringValue={(item) => item.label}"}</InlineCode>{" "}
+              so the label fills the input instead of{" "}
+              <InlineCode>[object Object]</InlineCode>.
+            </li>
+            <li>
+              <span className="font-medium text-foreground">
+                Async / server-side filtering
+              </span>{" "}
+              — pass <InlineCode>filter={"{null}"}</InlineCode> to turn off
+              built-in filtering, then supply{" "}
+              <InlineCode>filteredItems</InlineCode> from your debounced fetch.
+              Use <InlineCode>Autocomplete.Status</InlineCode> to announce
+              loading state to screen readers.
+            </li>
+            <li>
+              <span className="font-medium text-foreground">
+                Custom filter logic
+              </span>{" "}
+              — pass a function to <InlineCode>filter</InlineCode> to replace
+              the default starts-with / contains matching. The function receives
+              the item value, the current query string, and an optional{" "}
+              <InlineCode>itemToString</InlineCode> helper.
+            </li>
+            <li>
+              <span className="font-medium text-foreground">
+                Keep Empty and Status always mounted
+              </span>{" "}
+              — conditionally render their <em>children</em>, not the elements
+              themselves, so screen reader live regions remain in the DOM and
+              announcements fire correctly.
             </li>
           </ul>
           <p className="text-base text-muted-foreground">
@@ -751,6 +982,43 @@ export default async function AutocompletePage() {
           </div>
           <ComponentPreview code={emptyStatusCode}>
             <EmptyStatusDemo />
+          </ComponentPreview>
+        </div>
+
+        <div className="space-y-4">
+          <div className="space-y-2">
+            <h2 id="disabled" className="scroll-mt-10 text-lg font-medium">
+              Disabled
+            </h2>
+            <p className="text-base text-muted-foreground">
+              Pass <InlineCode>disabled</InlineCode> on{" "}
+              <InlineCode>Autocomplete.Root</InlineCode> to disable the entire
+              field. Pass <InlineCode>disabled</InlineCode> on an individual{" "}
+              <InlineCode>Autocomplete.Item</InlineCode> to block that option
+              while keeping the field active.
+            </p>
+          </div>
+          <ComponentPreview code={disabledCode}>
+            <DisabledDemo />
+          </ComponentPreview>
+        </div>
+
+        <div className="space-y-4">
+          <div className="space-y-2">
+            <h2 id="async" className="scroll-mt-10 text-lg font-medium">
+              Async suggestions
+            </h2>
+            <p className="text-base text-muted-foreground">
+              For server-side search, pass{" "}
+              <InlineCode>filter={"{null}"}</InlineCode> to disable built-in
+              filtering and supply <InlineCode>filteredItems</InlineCode> from
+              your debounced fetch. Use{" "}
+              <InlineCode>Autocomplete.Status</InlineCode> to announce the
+              loading state to screen readers while results are in flight.
+            </p>
+          </div>
+          <ComponentPreview code={asyncCode}>
+            <AsyncDemo />
           </ComponentPreview>
         </div>
 
