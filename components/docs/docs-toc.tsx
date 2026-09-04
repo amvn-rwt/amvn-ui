@@ -50,19 +50,27 @@ export function SetDocsToc({ items }: { items: TocItem[] }) {
   return null;
 }
 
-/** Right-rail "On this page" nav. Renders whatever the current page set via SetDocsToc. */
-export function DocsToc() {
-  const { items } = useDocsTocContext();
-  const [activeId, setActiveId] = React.useState<string>("");
+/**
+ * If the previously active heading is no longer in the list (page changed),
+ * fall back to the first heading instead of pointing at nothing.
+ */
+function resolveActiveId(activeId: string, items: TocItem[]): string {
+  const isStillValid = items.some((item) => item.id === activeId);
+  if (isStillValid) return activeId;
+  return items[0]?.id ?? "";
+}
 
-  // Keep the highlight in sync with the section in view while scrolling.
+/**
+ * Tracks which heading is current as the user scrolls, using an
+ * IntersectionObserver over the headings named in `items`.
+ */
+function useActiveHeading(items: TocItem[]): string {
+  const [activeId, setActiveId] = React.useState("");
+
   React.useEffect(() => {
     if (items.length === 0) {
-      setActiveId("");
       return;
     }
-
-    setActiveId(items[0]?.id ?? "");
 
     const headings = items
       .map((item) => document.getElementById(item.id))
@@ -94,39 +102,50 @@ export function DocsToc() {
     return () => observer.disconnect();
   }, [items]);
 
+  return resolveActiveId(activeId, items);
+}
+
+const tocLinkBaseStyles =
+  "block rounded-md px-2 py-1.5 text-sm outline-none transition-colors hover:text-foreground focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background";
+
+/** Right-rail "On this page" nav. Renders whatever the current page set via SetDocsToc. */
+export function DocsToc() {
+  const { items } = useDocsTocContext();
+  const activeId = useActiveHeading(items);
+
+  if (items.length === 0) {
+    return null;
+  }
+
   return (
     <aside className="sticky top-8 hidden h-[calc(100vh-var(--spacing-8))] w-64 shrink-0 overflow-y-auto xl:block">
-      {items.length > 0 ? (
-        <nav className="px-4 py-8" aria-label="On this page">
-          <p className="mb-3 px-2 text-sm font-medium tracking-wide">
-            On this page
-          </p>
-          <ul className="space-y-0.5">
-            {items.map((item) => {
-              const isActive = activeId === item.id;
+      <nav className="px-4 py-8" aria-label="On this page">
+        <p className="mb-3 px-2 text-sm font-medium tracking-wide">
+          On this page
+        </p>
+        <ul className="space-y-0.5">
+          {items.map((item) => {
+            const isActive = activeId === item.id;
+            const isSubheading = (item.level ?? 2) === 3;
 
-              return (
-                <li key={item.id}>
-                  <a
-                    href={`#${item.id}`}
-                    aria-current={isActive ? "location" : undefined}
-                    onClick={() => setActiveId(item.id)}
-                    className={cn(
-                      "block rounded-md px-2 py-1.5 text-sm outline-none transition-colors hover:text-foreground focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background",
-                      (item.level ?? 2) === 3 && "pl-4",
-                      isActive
-                        ? "text-foreground"
-                        : "text-muted-foreground",
-                    )}
-                  >
-                    {item.title}
-                  </a>
-                </li>
-              );
-            })}
-          </ul>
-        </nav>
-      ) : null}
+            return (
+              <li key={item.id}>
+                <a
+                  href={`#${item.id}`}
+                  aria-current={isActive ? "location" : undefined}
+                  className={cn(
+                    tocLinkBaseStyles,
+                    isSubheading && "pl-4",
+                    isActive ? "text-foreground" : "text-muted-foreground",
+                  )}
+                >
+                  {item.title}
+                </a>
+              </li>
+            );
+          })}
+        </ul>
+      </nav>
     </aside>
   );
 }
