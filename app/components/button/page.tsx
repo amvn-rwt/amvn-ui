@@ -311,8 +311,8 @@ export default function ButtonPage() {
               <span className="font-medium text-foreground">
                 Form submissions
               </span>{" "}
-              Button defaults to <InlineCode>type="button"</InlineCode>, so set{" "}
-              <InlineCode>type="submit"</InlineCode> when it should submit a
+              Button defaults to <InlineCode>type=&quot;button&quot;</InlineCode>, so set{" "}
+              <InlineCode>type=&quot;submit&quot;</InlineCode> when it should submit a
               parent form.
             </li>
             <li>
