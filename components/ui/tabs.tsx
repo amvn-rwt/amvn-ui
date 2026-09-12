@@ -61,8 +61,10 @@ function TabsPanel({ className, ...props }: TabsPrimitive.Panel.Props) {
     <TabsPrimitive.Panel
       data-slot="tabs-panel"
       className={cn(
+        // Same grid cell as siblings so enter/exit can overlap during transition.
         "col-start-1 row-start-2 w-full text-sm text-muted-foreground outline-none transition-[opacity,translate] duration-normal ease-out",
         "focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background",
+        // Base UI sets starting/ending + activation-direction; CSS handles the rest.
         "data-starting-style:opacity-0 data-ending-style:opacity-0",
         "motion-safe:data-starting-style:data-[activation-direction=left]:translate-x-[-10%]",
         "motion-safe:data-starting-style:data-[activation-direction=right]:translate-x-[10%]",
