@@ -1,0 +1,27 @@
+---
+description: Library components wrap Base UI. Style only. Never add custom JS behavior.
+globs: components/ui/**/*.{ts,tsx}
+alwaysApply: false
+---
+
+# Styling wrappers, not behavior
+
+This is a component library. Consumers import these files. Every hook, observer, and DOM walk we ship becomes their runtime cost and their bug surface.
+
+**Behavior comes from Base UI. We only add styling.**
+
+Wrap `@base-ui/react/*` primitives, forward their props, and style with Tailwind (`className`, `cn`, CVA). Use Base UI state attributes (`data-open`, `data-active`, `data-starting-style`) and CSS variables it already sets (`--active-tab-width`, `--accordion-panel-height`). Visual motion is styling: CSS transitions, or Motion through the primitive's `render` prop.
+
+Do not reimplement interaction, layout, or lifecycle in the wrapper.
+
+```tsx
+// BAD: measuring/syncing in the wrapper
+useLayoutEffect(() => { /* ResizeObserver, getBoundingClientRect… */ }, [children]);
+
+// GOOD: style the primitive; Base UI owns behavior
+<TabsPrimitive.Indicator className="absolute bottom-0 h-0.5 w-(--active-tab-width) translate-x-(--active-tab-left)" {...props} />
+```
+
+Forbidden in `components/ui`: `useState` / `useEffect` / `useLayoutEffect` for measuring or syncing; `cloneNode`, `ResizeObserver`, `MutationObserver`, `getBoundingClientRect` loops; custom open/selected/active state; click or keyboard handlers that duplicate Base UI; imperative DOM mutation.
+
+If Base UI cannot do it, do not invent it here. Use its API, solve it with CSS, or leave the limitation.

@@ -1,0 +1,15 @@
+# Heavy / low-signal for indexing (agent can still open if needed)
+package-lock.json
+*.tsbuildinfo
+next-env.d.ts
+
+# Binary / font assets
+app/fonts/
+public/audio/
+*.mp3
+*.woff2
+*.ttf
+*.otf
+
+# Local notes
+.local/

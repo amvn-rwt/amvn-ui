@@ -4,90 +4,51 @@ import { Tabs as TabsPrimitive } from "@base-ui/react/tabs";
 
 import { cn } from "@/lib/utils";
 
-// ---------------------------------------------------------------------------
-// Root
-// ---------------------------------------------------------------------------
-
 function TabsRoot({ className, ...props }: TabsPrimitive.Root.Props) {
   return (
     <TabsPrimitive.Root
       data-slot="tabs"
-      className={cn("flex flex-col", className)}
+      className={cn("grid grid-cols-1 grid-rows-[auto_auto] gap-4", className)}
       {...props}
     />
   );
 }
-
-// ---------------------------------------------------------------------------
-// List — the tab button row
-// ---------------------------------------------------------------------------
 
 function TabsList({ className, ...props }: TabsPrimitive.List.Props) {
   return (
     <TabsPrimitive.List
       data-slot="tabs-list"
       className={cn(
-        // Relative so the Indicator can use absolute positioning within it.
-        "relative flex items-end gap-0.5",
+        "relative isolate col-start-1 row-start-1 flex items-end border-b border-border",
         className,
       )}
       {...props}
     />
   );
 }
-
-// ---------------------------------------------------------------------------
-// Tab — individual trigger button
-// ---------------------------------------------------------------------------
 
 function Tab({ className, ...props }: TabsPrimitive.Tab.Props) {
   return (
     <TabsPrimitive.Tab
       data-slot="tabs-tab"
       className={cn(
-        // Layout
-        "relative flex h-7 shrink-0 items-center justify-center gap-2 px-3",
-        // Typography
-        "text-sm font-medium whitespace-nowrap select-none",
-        // Colors — muted by default, foreground when active
-        "text-muted-foreground transition-colors duration-fast",
+        "relative flex h-6 shrink-0 items-center justify-center gap-2 px-3 text-sm font-medium whitespace-nowrap text-muted-foreground select-none outline-none transition-colors duration-fast",
         "data-active:text-foreground",
-        // Disabled
         "data-disabled:pointer-events-none data-disabled:opacity-disabled",
-        // Focus ring — consistent with our other components
-        "outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background",
+        "focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background",
         className,
       )}
       {...props}
     />
   );
 }
-
-// ---------------------------------------------------------------------------
-// Indicator — the sliding active-tab highlight
-//
-// Base UI injects CSS custom properties onto this element:
-//   --active-tab-left   translateX target
-//   --active-tab-width  width target
-//
-// A CSS transition on `translate` + `width` is the right tool here:
-// it is hardware-accelerated, interruptible mid-animation, and requires
-// no JavaScript. We match our `--duration-normal` timing token.
-// ---------------------------------------------------------------------------
 
 function TabsIndicator({ className, ...props }: TabsPrimitive.Indicator.Props) {
   return (
     <TabsPrimitive.Indicator
       data-slot="tabs-indicator"
       className={cn(
-        // Positioned under all tabs in the list
-        "absolute bottom-0 left-0 -z-10",
-        // Height matches a 2px underline
-        "h-0.5 w-(--active-tab-width)",
-        // Slide to the active tab position
-        "translate-x-(--active-tab-left)",
-        // Smooth transition — interruptible CSS, no JS overhead
-        "bg-foreground transition-[translate,width] duration-normal ease-out",
+        "absolute bottom-0 left-0 -z-10 h-0.5 w-(--active-tab-width) translate-x-(--active-tab-left) bg-foreground transition-[translate,width] duration-normal ease-out",
         className,
       )}
       {...props}
@@ -95,37 +56,18 @@ function TabsIndicator({ className, ...props }: TabsPrimitive.Indicator.Props) {
   );
 }
 
-// ---------------------------------------------------------------------------
-// Panel — the content area shown when the corresponding Tab is active
-//
-// Directional slide + fade on activation:
-//   data-activation-direction=left  → panel slides in from the left (−10%)
-//   data-activation-direction=right → panel slides in from the right (+10%)
-// `data-starting-style` / `data-ending-style` are set by Base UI to trigger
-// the CSS transitions at the correct moments (entry / exit).
-// `motion-safe:` ensures transforms are suppressed for users who prefer
-// reduced motion while preserving the opacity fade.
-// ---------------------------------------------------------------------------
-
 function TabsPanel({ className, ...props }: TabsPrimitive.Panel.Props) {
   return (
     <TabsPrimitive.Panel
       data-slot="tabs-panel"
       className={cn(
-        // Focus ring
-        "outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background",
-        // Transitions — opacity fast, translate slower (more spatial feel)
-        "transition-[opacity,translate] duration-normal ease-out",
-        // Hidden panels use `[hidden]` attribute from Base UI
-        "[[hidden]]:hidden",
-        // --- Entry (data-starting-style) ---
-        "data-starting-style:opacity-0",
-        "motion-safe:data-starting-style:data-[activation-direction=left]:-translate-x-2",
-        "motion-safe:data-starting-style:data-[activation-direction=right]:translate-x-2",
-        // --- Exit (data-ending-style) ---
-        "data-ending-style:opacity-0",
-        "motion-safe:data-ending-style:data-[activation-direction=left]:translate-x-2",
-        "motion-safe:data-ending-style:data-[activation-direction=right]:-translate-x-2",
+        "col-start-1 row-start-2 w-full text-sm text-muted-foreground outline-none transition-[opacity,translate] duration-normal ease-out",
+        "focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background",
+        "data-starting-style:opacity-0 data-ending-style:opacity-0",
+        "motion-safe:data-starting-style:data-[activation-direction=left]:translate-x-[-10%]",
+        "motion-safe:data-starting-style:data-[activation-direction=right]:translate-x-[10%]",
+        "motion-safe:data-ending-style:data-[activation-direction=left]:translate-x-[10%]",
+        "motion-safe:data-ending-style:data-[activation-direction=right]:translate-x-[-10%]",
         className,
       )}
       {...props}
