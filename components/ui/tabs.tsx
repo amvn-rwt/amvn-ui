@@ -46,7 +46,7 @@ function Tab({ className, ...props }: TabsPrimitive.Tab.Props) {
       data-slot="tabs-tab"
       className={cn(
         // Layout
-        "relative flex h-9 shrink-0 items-center justify-center gap-2 px-3",
+        "relative flex h-7 shrink-0 items-center justify-center gap-2 px-3",
         // Typography
         "text-sm font-medium whitespace-nowrap select-none",
         // Colors — muted by default, foreground when active
