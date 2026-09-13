@@ -18,9 +18,9 @@ export const metadata: Metadata = {
 
 export default function Home() {
   return (
-    <main className="w-full px-4 py-10 sm:px-6">
+    <main className="w-full px-4 py-32 sm:px-8">
       <JsonLd data={homeJsonLd()} />
-      <div className="mx-auto flex w-full max-w-15 flex-col">
+      <div className="mx-auto flex w-full max-w-160 flex-col">
         <h1>
           <Link
             href="/"
@@ -38,7 +38,7 @@ export default function Home() {
         </p>
         <Link
           href="/components"
-          className="mt-8 text-sm font-medium underline-offset-4 hover:underline"
+          className="mt-16 text-sm font-medium underline-offset-4 hover:underline"
         >
           Browse Components
         </Link>
