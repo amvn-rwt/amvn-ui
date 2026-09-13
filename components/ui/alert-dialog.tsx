@@ -40,16 +40,15 @@ function AlertDialogBackdrop({
     <AlertDialogPrimitive.Backdrop
       data-slot="alert-dialog-backdrop"
       className={cn(
-        // isolate + z-50 keep the overlay above preview chrome (e.g. View Code at z-20).
-        // dark: uses /strong (80%) — the only overlay token in the opacity scale.
-        "fixed inset-0 z-50 isolate bg-black/20 dark:bg-black/strong",
+        // Above preview chrome (View Code is z-20).
+        "fixed inset-0 z-50 isolate bg-overlay",
         className,
       )}
       {...props}
       render={(backdropProps, state) => (
         <motion.div
           {...(backdropProps as HTMLMotionProps<"div">)}
-          // Opacity stays in the animation so Base UI can await getAnimations() before unmount.
+          // Animate opacity so Base UI can await getAnimations() before unmount.
           initial={{ opacity: 0 }}
           animate={{ opacity: state.open ? 1 : 0 }}
           transition={spring.overlay}
@@ -67,7 +66,7 @@ function AlertDialogPopup({
     <AlertDialogPrimitive.Popup
       data-slot="alert-dialog-popup"
       className={cn(
-        // Centering uses Motion x/y so scale doesn't fight Tailwind translate transforms.
+        // Motion x/y centers — avoids fighting Tailwind translate with scale.
         "fixed top-1/2 left-1/2 z-50 w-full max-w-md rounded-4xl border border-border bg-background p-5 shadow-lg max-h-[calc(100vh-3rem)] overflow-y-auto",
         className,
       )}

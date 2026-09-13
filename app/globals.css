@@ -18,6 +18,7 @@
   --info: oklch(52% 0.17 52);
   --border: oklch(88% 0.003 106.423);
   --ring: oklch(55% 0.004 49.25);
+  --overlay: oklch(0% 0 0 / 20%);
   --radius: 0.5rem;
 }
 
@@ -37,6 +38,7 @@
   --color-info: var(--info);
   --color-border: var(--border);
   --color-ring: var(--ring);
+  --color-overlay: var(--overlay);
   --radius-sm: calc(var(--radius) - 0.125rem);
   --radius-md: var(--radius);
   --radius-lg: calc(var(--radius) + 0.125rem);
@@ -84,7 +86,7 @@
   --opacity-disabled: 40%; /* unavailable controls, de-emphasized siblings */
   --opacity-muted: 50%; /* soft surfaces (table headers, code chrome) */
   --opacity-soft: 60%; /* subtle hover fills */
-  --opacity-strong: 80%; /* stronger overlays / secondary hover */
+  --opacity-strong: 80%; /* secondary hover / stronger surface tints */
   --opacity-intense: 90%; /* near-solid hover tints */
 
   /* Durations — keep in sync with duration in lib/motion.ts */
@@ -110,6 +112,7 @@
   --info-foreground: oklch(98.5% 0.001 106.423);
   --border: oklch(30% 0.004 49.25);
   --ring: oklch(65% 0.003 106.423);
+  --overlay: oklch(0% 0 0 / 80%);
 }
 
 body {
