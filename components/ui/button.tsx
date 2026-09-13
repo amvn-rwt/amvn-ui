@@ -2,6 +2,7 @@
 
 import { Button as ButtonPrimitive } from "@base-ui/react/button";
 import { cva, type VariantProps } from "class-variance-authority";
+import { Loader2Icon } from "lucide-react";
 import { motion } from "motion/react";
 
 import { spring } from "@/lib/motion";
@@ -35,29 +36,44 @@ const buttonVariants = cva(
 );
 
 type ButtonProps = Omit<ButtonPrimitive.Props, "render"> &
-  VariantProps<typeof buttonVariants>;
+  VariantProps<typeof buttonVariants> & {
+    loading?: boolean;
+  };
 
 function Button({
   className,
   variant,
   size,
   type = "button",
+  loading = false,
+  disabled,
+  focusableWhenDisabled,
+  children,
   ...props
 }: ButtonProps) {
+  const isDisabled = Boolean(disabled || loading);
+
   return (
     <ButtonPrimitive
       data-slot="button"
+      data-loading={loading ? "" : undefined}
       type={type}
       className={cn(buttonVariants({ variant, size }), className)}
       {...props}
+      disabled={isDisabled}
+      focusableWhenDisabled={focusableWhenDisabled ?? loading}
+      aria-busy={loading || undefined}
       render={
         <motion.button
-          whileHover={{ scale: 1.02 }}
-          whileTap={{ scale: 0.96, y: 1 }}
+          whileHover={isDisabled ? undefined : { scale: 1.02 }}
+          whileTap={isDisabled ? undefined : { scale: 0.96, y: 1 }}
           transition={spring.press}
         />
       }
-    />
+    >
+      {loading ? <Loader2Icon className="animate-spin" aria-hidden /> : null}
+      {size === "icon" && loading ? null : children}
+    </ButtonPrimitive>
   );
 }
 

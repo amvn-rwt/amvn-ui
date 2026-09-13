@@ -113,6 +113,19 @@ export default function Example() {
   )
 }`;
 
+const loadingCode = `import { Button } from "@/components/ui/button"
+
+export default function Example() {
+  return (
+    <div className="flex h-8 w-full items-center justify-center gap-3">
+      <Button loading>Saving</Button>
+      <Button variant="secondary" loading>
+        Uploading
+      </Button>
+    </div>
+  )
+}`;
+
 const props = [
   {
     name: "variant",
@@ -123,6 +136,11 @@ const props = [
     name: "size",
     type: '"sm" | "md" | "icon"',
     defaultValue: '"md"',
+  },
+  {
+    name: "loading",
+    type: "boolean",
+    defaultValue: "false",
   },
   {
     name: "disabled",
@@ -154,6 +172,7 @@ const toc = [
   { id: "icon", title: "Icon" },
   { id: "with-icon", title: "With Icon" },
   { id: "disabled", title: "Disabled" },
+  { id: "loading", title: "Loading" },
   { id: "guidelines", title: "Usage Guidelines" },
   { id: "props", title: "Props" },
 ];
@@ -303,6 +322,20 @@ export default function ButtonPage() {
         </div>
 
         <div className="space-y-3">
+          <h2 id="loading" className="scroll-mt-10 text-lg font-medium">
+            Loading
+          </h2>
+          <ComponentPreview code={loadingCode}>
+            <div className="flex h-8 w-full flex-wrap items-center justify-center gap-3">
+              <Button loading>Saving</Button>
+              <Button variant="secondary" loading>
+                Uploading
+              </Button>
+            </div>
+          </ComponentPreview>
+        </div>
+
+        <div className="space-y-3">
           <h2 id="guidelines" className="scroll-mt-10 text-lg font-medium">
             Usage Guidelines
           </h2>
@@ -319,9 +352,9 @@ export default function ButtonPage() {
               <span className="font-medium text-foreground">
                 Loading buttons
               </span>{" "}
-              During async submission, pair <InlineCode>disabled</InlineCode>{" "}
-              with <InlineCode>focusableWhenDisabled</InlineCode> so focus stays
-              on the button instead of jumping elsewhere in the tab order.
+              Set <InlineCode>loading</InlineCode> during async work. The button
+              shows a spinner, disables interaction, sets{" "}
+              <InlineCode>aria-busy</InlineCode>, and stays focusable by default.
             </li>
             <li>
               <span className="font-medium text-foreground">
