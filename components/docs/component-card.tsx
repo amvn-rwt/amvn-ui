@@ -58,17 +58,18 @@ function AlertDialogPreview() {
 }
 
 // Static mockup of an open autocomplete: input plus two suggestion rows.
+// Mirrors Input, Popup (sideOffset 6), and Item styles from the real component.
 function AutocompletePreview() {
   return (
     <div className="mx-auto w-full max-w-48 text-left">
-      <div className="flex h-6 items-center rounded-full border border-border bg-muted/faint px-3 py-4.5 text-xs text-muted-foreground">
+      <div className="flex h-8 items-center rounded-full border border-border bg-muted/faint px-3 text-sm text-muted-foreground">
         E.g. rocket
       </div>
-      <div className="mt-1 rounded-3xl border border-border bg-background p-1 px-1.25 shadow-lg">
-        <div className="rounded-full bg-muted px-3 py-2 text-xs text-foreground">
+      <div className="mt-1.5 rounded-xl border border-border bg-background p-1 shadow-lg">
+        <div className="flex h-8 items-center rounded-xl bg-muted px-3 text-sm">
           Rocket
         </div>
-        <div className="rounded-full px-3 py-2 text-xs text-foreground">
+        <div className="flex h-8 items-center rounded-xl px-3 text-sm">
           Orbit Bike
         </div>
       </div>
