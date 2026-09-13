@@ -160,7 +160,7 @@ function AutocompletePopup({
     <AutocompletePrimitive.Popup
       data-slot="autocomplete-popup"
       className={cn(
-        "w-(--anchor-width) max-w-(--available-width) rounded-3xl border border-border bg-background p-1 shadow-lg",
+        "w-(--anchor-width) max-w-(--available-width) rounded-xl border border-border bg-background p-1 shadow-lg",
         className,
       )}
       {...props}
@@ -171,7 +171,6 @@ function AutocompletePopup({
             ...(popupProps.style as React.CSSProperties | undefined),
             transformOrigin: "var(--transform-origin)",
           }}
-          // Opacity/scale stay in the animation so Base UI can await getAnimations() before unmount.
           initial={{ opacity: 0, scale: 0.95 }}
           animate={{
             opacity: state.open ? 1 : 0,
@@ -224,7 +223,7 @@ function AutocompleteItem({
     <AutocompletePrimitive.Item
       data-slot="autocomplete-item"
       className={cn(
-        "cursor-default select-none rounded-xl px-3 py-2 text-sm outline-none data-highlighted:bg-muted data-disabled:pointer-events-none data-disabled:opacity-disabled",
+        "flex h-8 cursor-default select-none items-center rounded-xl px-3 text-sm outline-none data-highlighted:bg-muted data-disabled:pointer-events-none data-disabled:opacity-disabled",
         className,
       )}
       {...props}
