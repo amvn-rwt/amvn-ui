@@ -83,7 +83,7 @@ function ComponentPreviewShell({
         className,
       )}
     >
-      <div className={cn("bg-background p-8", previewClassName)}>
+      <div className={cn("bg-background p-16", previewClassName)}>
         {children}
       </div>
 
@@ -100,7 +100,7 @@ function ComponentPreviewShell({
           <div
             ref={contentRef}
             className={cn(
-              "overflow-x-auto p-4 pb-8 font-mono text-sm outline-none [&_pre]:m-0 [&_pre]:bg-transparent! [&_pre]:p-0",
+              "overflow-x-auto p-4 pb-16 font-mono text-sm outline-none [&_pre]:m-0 [&_pre]:bg-transparent! [&_pre]:p-0",
               !expanded && "pointer-events-none select-none",
             )}
             dangerouslySetInnerHTML={{ __html: highlightedHtml }}
