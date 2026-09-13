@@ -67,7 +67,7 @@ function AlertDialogPopup({
       data-slot="alert-dialog-popup"
       className={cn(
         // Motion x/y centers — avoids fighting Tailwind translate with scale.
-        "fixed top-1/2 left-1/2 z-50 w-full max-w-md rounded-4xl border border-border bg-background p-5 shadow-lg max-h-[calc(100vh-3rem)] overflow-y-auto",
+        "fixed top-1/2 left-1/2 z-50 w-full max-w-md rounded-4xl border border-border bg-background p-6 shadow-lg max-h-[calc(100vh-3rem)] overflow-y-auto",
         className,
       )}
       {...props}
