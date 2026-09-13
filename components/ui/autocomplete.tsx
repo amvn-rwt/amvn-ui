@@ -28,7 +28,7 @@ function AutocompleteInput({
     <AutocompletePrimitive.Input
       data-slot="autocomplete-input"
       className={cn(
-        "h-6 w-full min-w-0 rounded-full border border-border bg-muted/faint px-3 py-4.5 text-sm text-foreground outline-none placeholder:text-muted-foreground focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background data-disabled:opacity-disabled",
+        "h-8 w-full min-w-0 rounded-full border border-border bg-muted/faint px-3 text-sm text-foreground outline-none placeholder:text-muted-foreground focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background data-disabled:opacity-disabled",
         className,
       )}
       {...props}
@@ -44,8 +44,8 @@ function AutocompleteInputGroup({
     <AutocompletePrimitive.InputGroup
       data-slot="autocomplete-input-group"
       className={cn(
-        "group/autocomplete-group flex h-6 w-full min-w-0 items-center gap-1 rounded-full border border-border bg-muted/faint px-3 py-4.5 focus-within:ring-2 focus-within:ring-ring focus-within:ring-offset-2 focus-within:ring-offset-background data-disabled:opacity-disabled",
-        "**:data-[slot=autocomplete-input]:h-auto **:data-[slot=autocomplete-input]:flex-1 **:data-[slot=autocomplete-input]:border-0 **:data-[slot=autocomplete-input]:bg-transparent **:data-[slot=autocomplete-input]:px-1 **:data-[slot=autocomplete-input]:shadow-none **:data-[slot=autocomplete-input]:focus-visible:ring-0 **:data-[slot=autocomplete-input]:focus-visible:ring-offset-0",
+        "group/autocomplete-group flex h-8 w-full min-w-0 items-center gap-1 rounded-full border border-border bg-muted/faint px-3 focus-within:ring-2 focus-within:ring-ring focus-within:ring-offset-2 focus-within:ring-offset-background data-disabled:opacity-disabled",
+        "**:data-[slot=autocomplete-input]:h-auto **:data-[slot=autocomplete-input]:flex-1 **:data-[slot=autocomplete-input]:border-0 **:data-[slot=autocomplete-input]:bg-transparent **:data-[slot=autocomplete-input]:px-1 **:data-[slot=autocomplete-input]:focus-visible:ring-0 **:data-[slot=autocomplete-input]:focus-visible:ring-offset-0",
         className,
       )}
       {...props}
@@ -114,10 +114,7 @@ function AutocompleteClear({
 
 function AutocompleteValue(props: AutocompletePrimitive.Value.Props) {
   return (
-    <AutocompletePrimitive.Value
-      data-slot="autocomplete-value"
-      {...props}
-    />
+    <AutocompletePrimitive.Value data-slot="autocomplete-value" {...props} />
   );
 }
 
@@ -242,7 +239,7 @@ function AutocompleteGroup({
   return (
     <AutocompletePrimitive.Group
       data-slot="autocomplete-group"
-      className={cn(className)}
+      className={className}
       {...props}
     />
   );
@@ -364,4 +361,3 @@ const Autocomplete = Object.assign(AutocompleteRoot, {
 });
 
 export { Autocomplete };
-
