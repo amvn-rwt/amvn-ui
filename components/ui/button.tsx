@@ -5,7 +5,7 @@ import { cva, type VariantProps } from "class-variance-authority";
 import { Loader2Icon } from "lucide-react";
 import { motion } from "motion/react";
 
-import { spring } from "@/lib/motion";
+import { usePressMotion } from "@/lib/use-motion";
 import { cn } from "@/lib/utils";
 
 const buttonVariants = cva(
@@ -52,6 +52,7 @@ function Button({
   ...props
 }: ButtonProps) {
   const isDisabled = Boolean(disabled || loading);
+  const press = usePressMotion(isDisabled);
 
   return (
     <ButtonPrimitive
@@ -65,9 +66,9 @@ function Button({
       aria-busy={loading || undefined}
       render={
         <motion.button
-          whileHover={isDisabled ? undefined : { scale: 1.02 }}
-          whileTap={isDisabled ? undefined : { scale: 0.96, y: 1 }}
-          transition={spring.press}
+          whileHover={press.whileHover}
+          whileTap={press.whileTap}
+          transition={press.transition}
         />
       }
     >

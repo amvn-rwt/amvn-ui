@@ -1,10 +1,11 @@
 "use client";
 
+import * as React from "react";
 import { Accordion as AccordionPrimitive } from "@base-ui/react/accordion";
 import { ChevronDownIcon } from "lucide-react";
 import { motion } from "motion/react";
 
-import { spring } from "@/lib/motion";
+import { useIconRotateMotion } from "@/lib/use-motion";
 import { cn } from "@/lib/utils";
 
 type AccordionProps = AccordionPrimitive.Root.Props & {
@@ -70,21 +71,42 @@ function AccordionTrigger({
         )}
         {...props}
         render={(triggerProps, state) => (
-          <button {...triggerProps} type="button">
+          <AccordionTriggerButton
+            triggerProps={triggerProps}
+            open={state.open}
+          >
             {children}
-            <motion.span
-              aria-hidden
-              className="inline-flex shrink-0"
-              initial={false}
-              animate={{ rotate: state.open ? 180 : 0 }}
-              transition={spring.micro}
-            >
-              <ChevronDownIcon className="size-4 text-muted-foreground" />
-            </motion.span>
-          </button>
+          </AccordionTriggerButton>
         )}
       />
     </AccordionPrimitive.Header>
+  );
+}
+
+function AccordionTriggerButton({
+  triggerProps,
+  open,
+  children,
+}: {
+  triggerProps: React.ButtonHTMLAttributes<HTMLButtonElement>;
+  open: boolean;
+  children: React.ReactNode;
+}) {
+  const icon = useIconRotateMotion(open);
+
+  return (
+    <button {...triggerProps} type="button">
+      {children}
+      <motion.span
+        aria-hidden
+        className="inline-flex shrink-0"
+        initial={false}
+        animate={icon.animate}
+        transition={icon.transition}
+      >
+        <ChevronDownIcon className="size-4 text-muted-foreground" />
+      </motion.span>
+    </button>
   );
 }
 

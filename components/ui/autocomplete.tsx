@@ -5,7 +5,7 @@ import { Autocomplete as AutocompletePrimitive } from "@base-ui/react/autocomple
 import { ChevronDownIcon, XIcon } from "lucide-react";
 import { motion, type HTMLMotionProps } from "motion/react";
 
-import { spring } from "@/lib/motion";
+import { usePanelMotion } from "@/lib/use-motion";
 import { cn } from "@/lib/utils";
 
 function AutocompleteRoot<ItemValue>(
@@ -165,20 +165,31 @@ function AutocompletePopup({
       )}
       {...props}
       render={(popupProps, state) => (
-        <motion.div
-          {...(popupProps as HTMLMotionProps<"div">)}
-          style={{
-            ...(popupProps.style as React.CSSProperties | undefined),
-            transformOrigin: "var(--transform-origin)",
-          }}
-          initial={{ opacity: 0, scale: 0.95 }}
-          animate={{
-            opacity: state.open ? 1 : 0,
-            scale: state.open ? 1 : 0.95,
-          }}
-          transition={spring.panel}
-        />
+        <AutocompletePopupMotion popupProps={popupProps} open={state.open} />
       )}
+    />
+  );
+}
+
+function AutocompletePopupMotion({
+  popupProps,
+  open,
+}: {
+  popupProps: React.HTMLAttributes<HTMLDivElement>;
+  open: boolean;
+}) {
+  const panel = usePanelMotion(open);
+
+  return (
+    <motion.div
+      {...(popupProps as HTMLMotionProps<"div">)}
+      style={{
+        ...(popupProps.style as React.CSSProperties | undefined),
+        transformOrigin: "var(--transform-origin)",
+      }}
+      initial={panel.initial}
+      animate={panel.animate}
+      transition={panel.transition}
     />
   );
 }

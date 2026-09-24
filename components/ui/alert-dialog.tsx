@@ -1,9 +1,10 @@
 "use client";
 
+import * as React from "react";
 import { AlertDialog as AlertDialogPrimitive } from "@base-ui/react/alert-dialog";
 import { motion, type HTMLMotionProps } from "motion/react";
 
-import { spring } from "@/lib/motion";
+import { useOverlayMotion, usePanelMotion } from "@/lib/use-motion";
 import { cn } from "@/lib/utils";
 
 function AlertDialogRoot<Payload>(
@@ -46,14 +47,31 @@ function AlertDialogBackdrop({
       )}
       {...props}
       render={(backdropProps, state) => (
-        <motion.div
-          {...(backdropProps as HTMLMotionProps<"div">)}
-          // Animate opacity so Base UI can await getAnimations() before unmount.
-          initial={{ opacity: 0 }}
-          animate={{ opacity: state.open ? 1 : 0 }}
-          transition={spring.overlay}
+        <AlertDialogBackdropMotion
+          backdropProps={backdropProps}
+          open={state.open}
         />
       )}
+    />
+  );
+}
+
+function AlertDialogBackdropMotion({
+  backdropProps,
+  open,
+}: {
+  backdropProps: React.HTMLAttributes<HTMLDivElement>;
+  open: boolean;
+}) {
+  const overlay = useOverlayMotion(open);
+
+  return (
+    <motion.div
+      {...(backdropProps as HTMLMotionProps<"div">)}
+      // Animate opacity so Base UI can await getAnimations() before unmount.
+      initial={overlay.initial}
+      animate={overlay.animate}
+      transition={overlay.transition}
     />
   );
 }
@@ -72,18 +90,27 @@ function AlertDialogPopup({
       )}
       {...props}
       render={(popupProps, state) => (
-        <motion.div
-          {...(popupProps as HTMLMotionProps<"div">)}
-          initial={{ opacity: 0, scale: 0.95, x: "-50%", y: "-50%" }}
-          animate={{
-            opacity: state.open ? 1 : 0,
-            scale: state.open ? 1 : 0.95,
-            x: "-50%",
-            y: "-50%",
-          }}
-          transition={spring.panel}
-        />
+        <AlertDialogPopupMotion popupProps={popupProps} open={state.open} />
       )}
+    />
+  );
+}
+
+function AlertDialogPopupMotion({
+  popupProps,
+  open,
+}: {
+  popupProps: React.HTMLAttributes<HTMLDivElement>;
+  open: boolean;
+}) {
+  const panel = usePanelMotion(open, { center: true });
+
+  return (
+    <motion.div
+      {...(popupProps as HTMLMotionProps<"div">)}
+      initial={panel.initial}
+      animate={panel.animate}
+      transition={panel.transition}
     />
   );
 }
