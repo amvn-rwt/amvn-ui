@@ -46,24 +46,6 @@
 }
 
 @theme {
-  /* Spacing */
-  --spacing-1: 0.25rem; /* 4px */
-  --spacing-2: 0.5rem; /* 8px */
-  --spacing-3: 0.75rem; /* 12px */
-  --spacing-4: 1rem; /* 16px */
-  --spacing-5: 1.5rem; /* 24px */
-  --spacing-6: 2rem; /* 32px */
-  --spacing-7: 3rem; /* 48px */
-  --spacing-8: 4rem; /* 64px */
-  --spacing-9: 6rem; /* 96px */
-  --spacing-10: 8rem; /* 128px */
-  --spacing-11: 12rem; /* 192px */
-  --spacing-12: 16rem; /* 256px */
-  --spacing-13: 24rem; /* 384px */
-  --spacing-14: 32rem; /* 512px */
-  --spacing-15: 40rem; /* 640px */
-  --spacing-16: 48rem; /* 768px */
-
   /* Radii */
   --radius-xs: 0.125rem; /* 2px */
   --radius-sm: 0.25rem; /* 4px */
