@@ -49,16 +49,22 @@ function AccordionItem({ className, ...props }: AccordionPrimitive.Item.Props) {
   );
 }
 
+type AccordionIndicator =
+  | React.ReactNode
+  | ((open: boolean) => React.ReactNode);
+
 type AccordionTriggerProps = Omit<
   AccordionPrimitive.Trigger.Props,
   "className" | "render"
 > & {
   className?: string;
+  indicator?: AccordionIndicator;
 };
 
 function AccordionTrigger({
   className,
   children,
+  indicator,
   ...props
 }: AccordionTriggerProps) {
   return (
@@ -74,6 +80,7 @@ function AccordionTrigger({
           <AccordionTriggerButton
             triggerProps={triggerProps}
             open={state.open}
+            indicator={indicator}
           >
             {children}
           </AccordionTriggerButton>
@@ -86,27 +93,42 @@ function AccordionTrigger({
 function AccordionTriggerButton({
   triggerProps,
   open,
+  indicator,
   children,
 }: {
   triggerProps: React.ButtonHTMLAttributes<HTMLButtonElement>;
   open: boolean;
+  indicator?: AccordionIndicator;
   children: React.ReactNode;
 }) {
-  const icon = useIconRotateMotion(open);
+  const resolved =
+    indicator === undefined
+      ? <AccordionDefaultIndicator open={open} />
+      : typeof indicator === "function"
+        ? indicator(open)
+        : indicator;
 
   return (
     <button {...triggerProps} type="button">
       {children}
-      <motion.span
-        aria-hidden
-        className="inline-flex shrink-0"
-        initial={false}
-        animate={icon.animate}
-        transition={icon.transition}
-      >
-        <ChevronDownIcon className="size-4 text-muted-foreground" />
-      </motion.span>
+      {resolved}
     </button>
+  );
+}
+
+function AccordionDefaultIndicator({ open }: { open: boolean }) {
+  const icon = useIconRotateMotion(open);
+
+  return (
+    <motion.span
+      aria-hidden
+      className="inline-flex shrink-0"
+      initial={false}
+      animate={icon.animate}
+      transition={icon.transition}
+    >
+      <ChevronDownIcon className="size-4 text-muted-foreground" />
+    </motion.span>
   );
 }
 
@@ -138,4 +160,4 @@ const Accordion = Object.assign(AccordionRoot, {
 });
 
 export { Accordion };
-
+export type { AccordionIndicator };

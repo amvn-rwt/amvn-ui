@@ -8,6 +8,7 @@ import { site } from "@/lib/site";
 
 import {
   BorderlessDemo,
+  CustomIndicatorDemo,
   DefaultDemo,
   DisabledDemo,
   MultipleDemo,
@@ -177,6 +178,70 @@ export default function Example() {
   )
 }`;
 
+const customIndicatorCode = `import { PlusIcon } from "lucide-react"
+import { motion } from "motion/react"
+import { Accordion } from "@/components/ui/accordion"
+import { spring } from "@/lib/motion"
+
+function plusIndicator(open: boolean) {
+  return (
+    <motion.span
+      aria-hidden
+      className="inline-flex shrink-0"
+      initial={false}
+      animate={{ rotate: open ? 45 : 0 }}
+      transition={spring.micro}
+    >
+      <PlusIcon className="size-4 text-muted-foreground" />
+    </motion.span>
+  )
+}
+
+export default function Example() {
+  return (
+    <div className="flex w-full justify-center">
+      <Accordion.Root defaultValue={["shipping"]} className="w-full max-w-96">
+        <Accordion.Item value="shipping">
+          <Accordion.Trigger indicator={plusIndicator}>
+            Do you ship internationally?
+          </Accordion.Trigger>
+          <Accordion.Panel>
+            Yes. We ship to 140 countries as long as your customs form doesn't
+            say "definitely not a rocket".
+          </Accordion.Panel>
+        </Accordion.Item>
+        <Accordion.Item value="returns">
+          <Accordion.Trigger indicator={plusIndicator}>
+            What's your return policy?
+          </Accordion.Trigger>
+          <Accordion.Panel>
+            30 days, no questions asked. Slightly burnt rocket fuel residue is
+            still considered "like new".
+          </Accordion.Panel>
+        </Accordion.Item>
+        <Accordion.Item value="warranty">
+          <Accordion.Trigger indicator={null}>
+            Is there a warranty?
+          </Accordion.Trigger>
+          <Accordion.Panel>
+            Lifetime coverage against spontaneous combustion. Atmospheric
+            re-entry scratches not included.
+          </Accordion.Panel>
+        </Accordion.Item>
+        <Accordion.Item value="support">
+          <Accordion.Trigger indicator={plusIndicator}>
+            How do I reach support?
+          </Accordion.Trigger>
+          <Accordion.Panel>
+            Ping us anytime. Response times range from "instant" to "after we
+            land" depending on orbital position.
+          </Accordion.Panel>
+        </Accordion.Item>
+      </Accordion.Root>
+    </div>
+  )
+}`;
+
 const rootProps = [
   {
     name: "bordered",
@@ -240,6 +305,11 @@ const itemProps = [
 
 const triggerProps = [
   {
+    name: "indicator",
+    type: "ReactNode | ((open: boolean) => ReactNode)",
+    defaultValue: "chevron",
+  },
+  {
     name: "className",
     type: "string",
     defaultValue: "—",
@@ -270,6 +340,7 @@ const toc = [
   { id: "multiple", title: "Multiple" },
   { id: "disabled", title: "Disabled" },
   { id: "borderless", title: "Borderless" },
+  { id: "custom-indicator", title: "Custom indicator" },
   { id: "props", title: "Props" },
 ];
 
@@ -284,7 +355,7 @@ function PropsTable({
 }) {
   return (
     <div className="overflow-x-auto rounded-3xl border border-border">
-      <table className="w-full min-w-[32rem] text-left text-sm">
+      <table className="w-full min-w-lg text-left text-sm">
         <thead className="border-b border-border bg-muted/muted">
           <tr>
             <th className="px-4 py-3 font-medium">Prop</th>
@@ -331,8 +402,8 @@ export default async function AccordionPage() {
       <p className="mt-2 text-muted-foreground">
         A set of collapsible panels for FAQs and progressive disclosure,
         accessible by default. Base UI handles{" "}
-        <InlineCode>aria-expanded</InlineCode>
-        , heading semantics and keyboard navigation.
+        <InlineCode>aria-expanded</InlineCode>, heading semantics and keyboard
+        navigation.
       </p>
 
       <section className="mt-16 space-y-16">
@@ -384,9 +455,9 @@ export default async function AccordionPage() {
             Disabled
           </h2>
           <p className="text-base text-muted-foreground">
-            Set <InlineCode>disabled</InlineCode> on an item to block
-            expansion while keeping the label visible. Use it for sections that
-            are unavailable or require permission.
+            Set <InlineCode>disabled</InlineCode> on an item to block expansion
+            while keeping the label visible. Use it for sections that are
+            unavailable or require permission.
           </p>
           <ComponentPreview code={disabledCode} previewClassName="p-6 sm:p-16">
             <DisabledDemo />
@@ -403,8 +474,32 @@ export default async function AccordionPage() {
             items when the accordion already sits inside a card or list with its
             own separation.
           </p>
-          <ComponentPreview code={borderlessCode} previewClassName="p-6 sm:p-16">
+          <ComponentPreview
+            code={borderlessCode}
+            previewClassName="p-6 sm:p-16"
+          >
             <BorderlessDemo />
+          </ComponentPreview>
+        </div>
+
+        <div className="space-y-3">
+          <h2
+            id="custom-indicator"
+            className="scroll-mt-32 text-lg font-medium"
+          >
+            Custom indicator
+          </h2>
+          <p className="text-base text-muted-foreground">
+            Pass <InlineCode>indicator</InlineCode> to replace the default
+            chevron. Use a function that receives <InlineCode>open</InlineCode>{" "}
+            when the icon should react to expand and collapse. Pass{" "}
+            <InlineCode>null</InlineCode> to hide it.
+          </p>
+          <ComponentPreview
+            code={customIndicatorCode}
+            previewClassName="p-6 sm:p-16"
+          >
+            <CustomIndicatorDemo />
           </ComponentPreview>
         </div>
 
