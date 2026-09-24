@@ -79,18 +79,20 @@ function DefaultDemo() {
         <AlertDialog.Portal>
           <AlertDialog.Backdrop />
           <AlertDialog.Popup>
-            <AlertDialog.Title>Discard flight log?</AlertDialog.Title>
-            <AlertDialog.Description>
-              This mission data can&apos;t be recovered once you leave orbit.
-            </AlertDialog.Description>
-            <div className="mt-8 flex justify-end gap-2">
+            <AlertDialog.Header>
+              <AlertDialog.Title>Discard flight log?</AlertDialog.Title>
+              <AlertDialog.Description>
+                This mission data can&apos;t be recovered once you leave orbit.
+              </AlertDialog.Description>
+            </AlertDialog.Header>
+            <AlertDialog.Footer>
               <AlertDialog.Close
                 render={<Button variant="secondary">Cancel</Button>}
               />
               <AlertDialog.Close
                 render={<Button variant="danger">Discard</Button>}
               />
-            </div>
+            </AlertDialog.Footer>
           </AlertDialog.Popup>
         </AlertDialog.Portal>
       </AlertDialog.Root>
@@ -118,22 +120,22 @@ function WithIconDemo() {
                 aria-hidden="true"
                 className="mt-0.5 size-6 shrink-0 text-danger"
               />
-              <div>
+              <AlertDialog.Header>
                 <AlertDialog.Title>Purge the fuel tank?</AlertDialog.Title>
                 <AlertDialog.Description>
                   Every drop vents to atmosphere. Refueling takes another two
                   orbits.
                 </AlertDialog.Description>
-              </div>
+              </AlertDialog.Header>
             </div>
-            <div className="mt-8 flex justify-end gap-2">
+            <AlertDialog.Footer>
               <AlertDialog.Close
                 render={<Button variant="secondary">Cancel</Button>}
               />
               <AlertDialog.Close
                 render={<Button variant="danger">Purge</Button>}
               />
-            </div>
+            </AlertDialog.Footer>
           </AlertDialog.Popup>
         </AlertDialog.Portal>
       </AlertDialog.Root>
@@ -156,12 +158,14 @@ function WithTertiaryDemo() {
         <AlertDialog.Portal>
           <AlertDialog.Backdrop />
           <AlertDialog.Popup>
-            <AlertDialog.Title>Overwrite telemetry notes?</AlertDialog.Title>
-            <AlertDialog.Description>
-              The previous draft is replaced if you continue. You can postpone
-              and come back later.
-            </AlertDialog.Description>
-            <div className="mt-8 flex items-center justify-between gap-2">
+            <AlertDialog.Header>
+              <AlertDialog.Title>Overwrite telemetry notes?</AlertDialog.Title>
+              <AlertDialog.Description>
+                The previous draft is replaced if you continue. You can postpone
+                and come back later.
+              </AlertDialog.Description>
+            </AlertDialog.Header>
+            <AlertDialog.Footer className="items-center justify-between">
               <AlertDialog.Close
                 render={<Button variant="outline">Remind me later</Button>}
               />
@@ -173,7 +177,7 @@ function WithTertiaryDemo() {
                   render={<Button variant="danger">Overwrite</Button>}
                 />
               </div>
-            </div>
+            </AlertDialog.Footer>
           </AlertDialog.Popup>
         </AlertDialog.Portal>
       </AlertDialog.Root>
@@ -196,19 +200,21 @@ function WithBlurredBackdropDemo() {
         <AlertDialog.Portal>
           <AlertDialog.Backdrop className="backdrop-blur-sm isolation-auto" />
           <AlertDialog.Popup>
-            <AlertDialog.Title>Scrub the launch?</AlertDialog.Title>
-            <AlertDialog.Description>
-              The window closes for this orbit. Ground control will need a new
-              clearance before the next attempt.
-            </AlertDialog.Description>
-            <div className="mt-8 flex justify-end gap-2">
+            <AlertDialog.Header>
+              <AlertDialog.Title>Scrub the launch?</AlertDialog.Title>
+              <AlertDialog.Description>
+                The window closes for this orbit. Ground control will need a new
+                clearance before the next attempt.
+              </AlertDialog.Description>
+            </AlertDialog.Header>
+            <AlertDialog.Footer>
               <AlertDialog.Close
                 render={<Button variant="secondary">Cancel</Button>}
               />
               <AlertDialog.Close
                 render={<Button variant="danger">Scrub</Button>}
               />
-            </div>
+            </AlertDialog.Footer>
           </AlertDialog.Popup>
         </AlertDialog.Portal>
       </AlertDialog.Root>
@@ -232,19 +238,21 @@ function DetachedTriggerDemo() {
         <AlertDialog.Portal>
           <AlertDialog.Backdrop />
           <AlertDialog.Popup>
-            <AlertDialog.Title>Abort the mission?</AlertDialog.Title>
-            <AlertDialog.Description>
-              The countdown stops immediately. Ground control will need a full
-              resync before the next attempt.
-            </AlertDialog.Description>
-            <div className="mt-8 flex justify-end gap-2">
+            <AlertDialog.Header>
+              <AlertDialog.Title>Abort the mission?</AlertDialog.Title>
+              <AlertDialog.Description>
+                The countdown stops immediately. Ground control will need a full
+                resync before the next attempt.
+              </AlertDialog.Description>
+            </AlertDialog.Header>
+            <AlertDialog.Footer>
               <AlertDialog.Close
                 render={<Button variant="secondary">Stand Down</Button>}
               />
               <AlertDialog.Close
                 render={<Button variant="danger">Abort</Button>}
               />
-            </div>
+            </AlertDialog.Footer>
           </AlertDialog.Popup>
         </AlertDialog.Portal>
       </AlertDialog.Root>
@@ -276,11 +284,13 @@ function PayloadDemo() {
           <AlertDialog.Portal>
             <AlertDialog.Backdrop />
             <AlertDialog.Popup>
-              <AlertDialog.Title>{payload?.title}</AlertDialog.Title>
-              <AlertDialog.Description>
-                {payload?.description}
-              </AlertDialog.Description>
-              <div className="mt-8 flex justify-end gap-2">
+              <AlertDialog.Header>
+                <AlertDialog.Title>{payload?.title}</AlertDialog.Title>
+                <AlertDialog.Description>
+                  {payload?.description}
+                </AlertDialog.Description>
+              </AlertDialog.Header>
+              <AlertDialog.Footer>
                 <AlertDialog.Close
                   render={<Button variant="secondary">Cancel</Button>}
                 />
@@ -289,7 +299,7 @@ function PayloadDemo() {
                     <Button variant="danger">{payload?.confirmLabel}</Button>
                   }
                 />
-              </div>
+              </AlertDialog.Footer>
             </AlertDialog.Popup>
           </AlertDialog.Portal>
         )}

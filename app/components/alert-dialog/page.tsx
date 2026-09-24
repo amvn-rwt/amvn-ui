@@ -29,9 +29,13 @@ const anatomyCode = `import { AlertDialog } from "@/components/ui/alert-dialog"
   <AlertDialog.Portal>
     <AlertDialog.Backdrop />
     <AlertDialog.Popup>
-      <AlertDialog.Title />
-      <AlertDialog.Description />
-      <AlertDialog.Close />
+      <AlertDialog.Header>
+        <AlertDialog.Title />
+        <AlertDialog.Description />
+      </AlertDialog.Header>
+      <AlertDialog.Footer>
+        <AlertDialog.Close />
+      </AlertDialog.Footer>
     </AlertDialog.Popup>
   </AlertDialog.Portal>
 </AlertDialog.Root>`;
@@ -54,14 +58,16 @@ export default function Example() {
       <AlertDialog.Portal>
         <AlertDialog.Backdrop />
         <AlertDialog.Popup>
-          <AlertDialog.Title>Discard flight log?</AlertDialog.Title>
-          <AlertDialog.Description>
-            This mission data can't be recovered once you leave orbit.
-          </AlertDialog.Description>
-          <div className="mt-8 flex justify-end gap-2">
+          <AlertDialog.Header>
+            <AlertDialog.Title>Discard flight log?</AlertDialog.Title>
+            <AlertDialog.Description>
+              This mission data can't be recovered once you leave orbit.
+            </AlertDialog.Description>
+          </AlertDialog.Header>
+          <AlertDialog.Footer>
             <AlertDialog.Close render={<Button variant="secondary">Cancel</Button>} />
             <AlertDialog.Close render={<Button variant="danger">Discard</Button>} />
-          </div>
+          </AlertDialog.Footer>
         </AlertDialog.Popup>
       </AlertDialog.Portal>
     </AlertDialog.Root>
@@ -91,18 +97,18 @@ export default function Example() {
               aria-hidden="true"
               className="mt-0.5 size-6 shrink-0 text-danger"
             />
-            <div>
+            <AlertDialog.Header>
               <AlertDialog.Title>Purge the fuel tank?</AlertDialog.Title>
               <AlertDialog.Description>
                 Every drop vents to atmosphere. Refueling takes another two
                 orbits.
               </AlertDialog.Description>
-            </div>
+            </AlertDialog.Header>
           </div>
-          <div className="mt-8 flex justify-end gap-2">
+          <AlertDialog.Footer>
             <AlertDialog.Close render={<Button variant="secondary">Cancel</Button>} />
             <AlertDialog.Close render={<Button variant="danger">Purge</Button>} />
-          </div>
+          </AlertDialog.Footer>
         </AlertDialog.Popup>
       </AlertDialog.Portal>
     </AlertDialog.Root>
@@ -127,12 +133,14 @@ export default function Example() {
       <AlertDialog.Portal>
         <AlertDialog.Backdrop />
         <AlertDialog.Popup>
-          <AlertDialog.Title>Overwrite telemetry notes?</AlertDialog.Title>
-          <AlertDialog.Description>
-            The previous draft is replaced if you continue. You can postpone
-            and come back later.
-          </AlertDialog.Description>
-          <div className="mt-8 flex items-center justify-between gap-2">
+          <AlertDialog.Header>
+            <AlertDialog.Title>Overwrite telemetry notes?</AlertDialog.Title>
+            <AlertDialog.Description>
+              The previous draft is replaced if you continue. You can postpone
+              and come back later.
+            </AlertDialog.Description>
+          </AlertDialog.Header>
+          <AlertDialog.Footer className="items-center justify-between">
             <AlertDialog.Close
               render={<Button variant="outline">Remind me later</Button>}
             />
@@ -144,7 +152,7 @@ export default function Example() {
                 render={<Button variant="danger">Overwrite</Button>}
               />
             </div>
-          </div>
+          </AlertDialog.Footer>
         </AlertDialog.Popup>
       </AlertDialog.Portal>
     </AlertDialog.Root>
@@ -169,15 +177,17 @@ export default function Example() {
       <AlertDialog.Portal>
         <AlertDialog.Backdrop className="backdrop-blur-sm isolation-auto" />
         <AlertDialog.Popup>
-          <AlertDialog.Title>Scrub the launch?</AlertDialog.Title>
-          <AlertDialog.Description>
-            The window closes for this orbit. Ground control will need a new
-            clearance before the next attempt.
-          </AlertDialog.Description>
-          <div className="mt-8 flex justify-end gap-2">
+          <AlertDialog.Header>
+            <AlertDialog.Title>Scrub the launch?</AlertDialog.Title>
+            <AlertDialog.Description>
+              The window closes for this orbit. Ground control will need a new
+              clearance before the next attempt.
+            </AlertDialog.Description>
+          </AlertDialog.Header>
+          <AlertDialog.Footer>
             <AlertDialog.Close render={<Button variant="secondary">Cancel</Button>} />
             <AlertDialog.Close render={<Button variant="danger">Scrub</Button>} />
-          </div>
+          </AlertDialog.Footer>
         </AlertDialog.Popup>
       </AlertDialog.Portal>
     </AlertDialog.Root>
@@ -208,15 +218,17 @@ export default function Example() {
         <AlertDialog.Portal>
           <AlertDialog.Backdrop />
           <AlertDialog.Popup>
-            <AlertDialog.Title>Abort the mission?</AlertDialog.Title>
-            <AlertDialog.Description>
-              The countdown stops immediately. Ground control will need a
-              full resync before the next attempt.
-            </AlertDialog.Description>
-            <div className="mt-8 flex justify-end gap-2">
+            <AlertDialog.Header>
+              <AlertDialog.Title>Abort the mission?</AlertDialog.Title>
+              <AlertDialog.Description>
+                The countdown stops immediately. Ground control will need a
+                full resync before the next attempt.
+              </AlertDialog.Description>
+            </AlertDialog.Header>
+            <AlertDialog.Footer>
               <AlertDialog.Close render={<Button variant="secondary">Stand Down</Button>} />
               <AlertDialog.Close render={<Button variant="danger">Abort</Button>} />
-            </div>
+            </AlertDialog.Footer>
           </AlertDialog.Popup>
         </AlertDialog.Portal>
       </AlertDialog.Root>
@@ -297,14 +309,16 @@ export default function Example() {
           <AlertDialog.Portal>
             <AlertDialog.Backdrop />
             <AlertDialog.Popup>
-              <AlertDialog.Title>{payload?.title}</AlertDialog.Title>
-              <AlertDialog.Description>{payload?.description}</AlertDialog.Description>
-              <div className="mt-8 flex justify-end gap-2">
+              <AlertDialog.Header>
+                <AlertDialog.Title>{payload?.title}</AlertDialog.Title>
+                <AlertDialog.Description>{payload?.description}</AlertDialog.Description>
+              </AlertDialog.Header>
+              <AlertDialog.Footer>
                 <AlertDialog.Close render={<Button variant="secondary">Cancel</Button>} />
                 <AlertDialog.Close
                   render={<Button variant="danger">{payload?.confirmLabel}</Button>}
                 />
-              </div>
+              </AlertDialog.Footer>
             </AlertDialog.Popup>
           </AlertDialog.Portal>
         )}
@@ -390,7 +404,7 @@ function PropsTable({
 }) {
   return (
     <div className="overflow-x-auto rounded-3xl border border-border">
-      <table className="w-full min-w-[32rem] text-left text-sm">
+      <table className="w-full min-w-lg text-left text-sm">
         <thead className="border-b border-border bg-muted/muted">
           <tr>
             <th className="px-4 py-3 font-medium">Prop</th>
@@ -435,9 +449,9 @@ export default async function AlertDialogPage() {
 
       <h1 className="text-3xl font-bold">Alert Dialog</h1>
       <p className="mt-2 text-muted-foreground">
-        A confirmation dialog that interrupts until the user accepts or
-        cancels. Backdrop clicks do not dismiss it, and only Escape or an
-        explicit action closes it.
+        A confirmation dialog that interrupts until the user accepts or cancels.
+        Backdrop clicks do not dismiss it, and only Escape or an explicit action
+        closes it.
       </p>
 
       <section className="mt-16 space-y-16">
@@ -466,9 +480,9 @@ export default async function AlertDialogPage() {
               With icon
             </h2>
             <p className="text-base text-muted-foreground">
-              Compose a decorative icon beside the title when the action
-              needs a stronger visual cue. Keep severity in the title text
-              and hide the icon from assistive tech.
+              Compose a decorative icon beside the title when the action needs a
+              stronger visual cue. Keep severity in the title text and hide the
+              icon from assistive tech.
             </p>
           </div>
           <ComponentPreview code={withIconCode}>
@@ -503,8 +517,7 @@ export default async function AlertDialogPage() {
               With blurred backdrop
             </h2>
             <p className="text-base text-muted-foreground">
-              Add{" "}
-              <InlineCode>backdrop-blur-sm</InlineCode> and{" "}
+              Add <InlineCode>backdrop-blur-sm</InlineCode> and{" "}
               <InlineCode>isolation-auto</InlineCode> on the backdrop so the
               second undoes the default isolate and blur can take effect.
             </p>
@@ -523,8 +536,7 @@ export default async function AlertDialogPage() {
               Detached trigger
             </h2>
             <p className="text-base text-muted-foreground">
-              A handle from{" "}
-              <InlineCode>AlertDialog.createHandle()</InlineCode>{" "}
+              A handle from <InlineCode>AlertDialog.createHandle()</InlineCode>{" "}
               connects a trigger to a dialog anywhere else in the tree so
               neither has to be the other&apos;s descendant.
             </p>
@@ -540,11 +552,9 @@ export default async function AlertDialogPage() {
               Multiple triggers with payload
             </h2>
             <p className="text-base text-muted-foreground">
-              Several triggers can share one handle and dialog, each passing
-              its own{" "}
-              <InlineCode>payload</InlineCode>
-              . A function child reads it back so the dialog can render the
-              matching copy.
+              Several triggers can share one handle and dialog, each passing its
+              own <InlineCode>payload</InlineCode>. A function child reads it
+              back so the dialog can render the matching copy.
             </p>
           </div>
           <ComponentPreview code={payloadCode}>
@@ -561,20 +571,31 @@ export default async function AlertDialogPage() {
               <span className="font-medium text-foreground">
                 Alert Dialog vs. Dialog
               </span>{" "}
-              Use Alert Dialog exclusively for urgent, interrupting confirmations where a deliberate choice is required. Backdrop clicks are intentionally ignored. For general content or forms, use a standard Dialog.
+              Use Alert Dialog exclusively for urgent, interrupting
+              confirmations where a deliberate choice is required. Backdrop
+              clicks are intentionally ignored. For general content or forms,
+              use a standard Dialog.
             </li>
             <li>
               <span className="font-medium text-foreground">
                 Initial focus on safe actions
               </span>{" "}
-              To prevent accidental data loss from an errant <InlineCode>Enter</InlineCode> keypress, focus should land on the safest action (e.g., Cancel) when the dialog opens. Because Cancel is placed first in the DOM in these examples, focus lands there naturally. Use the <InlineCode>initialFocus</InlineCode> prop if your layout requires a different order.
+              To prevent accidental data loss from an errant{" "}
+              <InlineCode>Enter</InlineCode> keypress, focus should land on the
+              safest action (e.g., Cancel) when the dialog opens. Because Cancel
+              is placed first in the DOM in these examples, focus lands there
+              naturally. Use the <InlineCode>initialFocus</InlineCode> prop if
+              your layout requires a different order.
             </li>
             <li>
               <span className="font-medium text-foreground">
                 Required descriptions
               </span>{" "}
               Always include <InlineCode>AlertDialog.Title</InlineCode> and{" "}
-              <InlineCode>AlertDialog.Description</InlineCode>. These wire automatically to <InlineCode>aria-labelledby</InlineCode> and <InlineCode>aria-describedby</InlineCode> so assistive technologies immediately announce the stakes of the action.
+              <InlineCode>AlertDialog.Description</InlineCode>. These wire
+              automatically to <InlineCode>aria-labelledby</InlineCode> and{" "}
+              <InlineCode>aria-describedby</InlineCode> so assistive
+              technologies immediately announce the stakes of the action.
             </li>
           </ul>
         </div>
@@ -609,8 +630,8 @@ export default async function AlertDialogPage() {
             >
               Base UI Alert Dialog docs
             </a>{" "}
-            for <InlineCode>actionsRef</InlineCode>
-            , event details, CSS variables and data attributes.
+            for <InlineCode>actionsRef</InlineCode>, event details, CSS
+            variables and data attributes.
           </p>
         </div>
       </section>

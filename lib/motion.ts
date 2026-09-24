@@ -28,10 +28,6 @@ type ReducedMotionInput = {
   reducedMotion: boolean;
 };
 
-/**
- * Opacity-only overlay targets. Keeps a short fade under reduced motion
- * (comprehension), never introduces transform.
- */
 export function createOverlayMotion({
   open,
   reducedMotion,
@@ -45,16 +41,10 @@ export function createOverlayMotion({
 
 type PanelMotionInput = ReducedMotionInput & {
   open: boolean;
-  /** Closed scale when motion is allowed. @default 0.95 */
   fromScale?: number;
-  /** Fixed dialogs centered with Motion x/y (not Tailwind translate). */
   center?: boolean;
 };
 
-/**
- * Enter/exit for popups and dialogs.
- * Reduced motion: opacity fade only; scale stays at 1 (no shrink flash).
- */
 export function createPanelMotion({
   open,
   reducedMotion,
@@ -79,10 +69,6 @@ type PressMotionInput = ReducedMotionInput & {
   disabled?: boolean;
 };
 
-/**
- * Hover/press scale feedback. Returns undefined gesture targets when reduced
- * or disabled so Motion skips them entirely.
- */
 export function createPressMotion({
   reducedMotion,
   disabled = false,
@@ -106,7 +92,6 @@ type IconRotateMotionInput = ReducedMotionInput & {
   open: boolean;
 };
 
-/** Chevron / icon rotate. Instant under reduced motion. */
 export function createIconRotateMotion({
   open,
   reducedMotion,

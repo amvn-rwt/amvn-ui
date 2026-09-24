@@ -115,6 +115,32 @@ function AlertDialogPopupMotion({
   );
 }
 
+function AlertDialogHeader({
+  className,
+  ...props
+}: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="alert-dialog-header"
+      className={cn("flex flex-col", className)}
+      {...props}
+    />
+  );
+}
+
+function AlertDialogFooter({
+  className,
+  ...props
+}: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="alert-dialog-footer"
+      className={cn("mt-8 flex justify-end gap-2", className)}
+      {...props}
+    />
+  );
+}
+
 function AlertDialogTitle({
   className,
   ...props
@@ -150,6 +176,8 @@ const AlertDialog = Object.assign(AlertDialogRoot, {
   Portal: AlertDialogPortal,
   Backdrop: AlertDialogBackdrop,
   Popup: AlertDialogPopup,
+  Header: AlertDialogHeader,
+  Footer: AlertDialogFooter,
   Title: AlertDialogTitle,
   Description: AlertDialogDescription,
   createHandle: createAlertDialogHandle,
