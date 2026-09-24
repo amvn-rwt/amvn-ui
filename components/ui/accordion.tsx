@@ -142,7 +142,7 @@ function AccordionPanel({
       data-slot="accordion-panel"
       className={cn(
         // Base UI only awaits CSS transitions before unmounting on close.
-        "h-(--accordion-panel-height) overflow-hidden text-sm text-muted-foreground transition-[height] duration-normal ease-out data-starting-style:h-0 data-ending-style:h-0",
+        "h-(--accordion-panel-height) overflow-hidden text-sm text-muted-foreground transition-[height] duration-normal ease-out motion-reduce:transition-none data-starting-style:h-0 data-ending-style:h-0",
         className,
       )}
       {...props}
