@@ -5,7 +5,7 @@ import { Accordion } from "@/components/ui/accordion";
 function DefaultDemo() {
   return (
     <div className="flex w-full justify-center">
-      <Accordion.Root defaultValue={["shipping"]} className="w-full max-w-13">
+      <Accordion.Root defaultValue={["shipping"]} className="w-full max-w-96">
         <Accordion.Item value="shipping">
           <Accordion.Trigger>Do you ship internationally?</Accordion.Trigger>
           <Accordion.Panel>
@@ -45,7 +45,7 @@ function MultipleDemo() {
       <Accordion.Root
         multiple
         defaultValue={["shipping"]}
-        className="w-full max-w-13"
+        className="w-full max-w-96"
       >
         <Accordion.Item value="shipping">
           <Accordion.Trigger>Do you ship internationally?</Accordion.Trigger>
@@ -83,7 +83,7 @@ function MultipleDemo() {
 function DisabledDemo() {
   return (
     <div className="flex w-full justify-center">
-      <Accordion.Root defaultValue={["shipping"]} className="w-full max-w-13">
+      <Accordion.Root defaultValue={["shipping"]} className="w-full max-w-96">
         <Accordion.Item value="shipping">
           <Accordion.Trigger>Do you ship internationally?</Accordion.Trigger>
           <Accordion.Panel>
@@ -118,7 +118,7 @@ function BorderlessDemo() {
       <Accordion.Root
         bordered={false}
         defaultValue={["shipping"]}
-        className="w-full max-w-13"
+        className="w-full max-w-96"
       >
         <Accordion.Item value="shipping">
           <Accordion.Trigger>Do you ship internationally?</Accordion.Trigger>

@@ -12,13 +12,13 @@ function DefaultDemo() {
           <Tabs.Tab value="crew">Crew</Tabs.Tab>
           <Tabs.Indicator />
         </Tabs.List>
-        <Tabs.Panel value="flight" className="min-h-8">
+        <Tabs.Panel value="flight" className="min-h-16">
           Mission elapsed time: 14 days, 6 hours, 42 minutes. All nominal.
         </Tabs.Panel>
-        <Tabs.Panel value="systems" className="min-h-8">
+        <Tabs.Panel value="systems" className="min-h-16">
           Oxygen: 98% · Power: 94% · Thermal: nominal · Propulsion: standby.
         </Tabs.Panel>
-        <Tabs.Panel value="crew" className="min-h-8">
+        <Tabs.Panel value="crew" className="min-h-16">
           3 crew members active. Sleep cycles staggered. Morale: high.
         </Tabs.Panel>
       </Tabs.Root>
@@ -38,10 +38,10 @@ function DisabledDemo() {
           <Tabs.Tab value="crew">Crew</Tabs.Tab>
           <Tabs.Indicator />
         </Tabs.List>
-        <Tabs.Panel value="flight" className="min-h-8">
+        <Tabs.Panel value="flight" className="min-h-16">
           Mission elapsed time: 14 days, 6 hours, 42 minutes. All nominal.
         </Tabs.Panel>
-        <Tabs.Panel value="crew" className="min-h-8">
+        <Tabs.Panel value="crew" className="min-h-16">
           3 crew members active. Sleep cycles staggered. Morale: high.
         </Tabs.Panel>
       </Tabs.Root>

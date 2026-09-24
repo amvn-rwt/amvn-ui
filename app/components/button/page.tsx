@@ -36,7 +36,7 @@ import { Button } from "@/components/ui/button"
 
 export default function Example() {
   return (
-    <div className="flex h-8 w-full items-center justify-center gap-3">
+    <div className="flex h-16 w-full items-center justify-center gap-3">
       <Button variant="primary" size="icon" aria-label="Launch the rocket">
         <RocketIcon />
       </Button>
@@ -104,7 +104,7 @@ const disabledCode = `import { Button } from "@/components/ui/button"
 
 export default function Example() {
   return (
-    <div className="flex h-8 w-full items-center justify-center gap-3">
+    <div className="flex h-16 w-full items-center justify-center gap-3">
       <Button disabled>Maybe Later</Button>
       <Button variant="danger" disabled>
         Delete The Bank Account
@@ -117,7 +117,7 @@ const loadingCode = `import { Button } from "@/components/ui/button"
 
 export default function Example() {
   return (
-    <div className="flex h-8 w-full items-center justify-center gap-3">
+    <div className="flex h-16 w-full items-center justify-center gap-3">
       <Button loading>Saving</Button>
       <Button variant="secondary" loading>
         Uploading
@@ -185,7 +185,7 @@ function exampleCode(
 
 export default function Example() {
   return (
-    <div className="flex h-8 w-full items-center justify-center">
+    <div className="flex h-16 w-full items-center justify-center">
       <Button variant="${variant}">${label}</Button>
     </div>
   )
@@ -210,19 +210,19 @@ export default function ButtonPage() {
         styled button.
       </p>
 
-      <section className="mt-8 space-y-8">
+      <section className="mt-16 space-y-16">
         {examples.map((example) => (
           <div key={example.variant} className="space-y-3">
             <h2
               id={example.variant}
-              className="scroll-mt-10 text-lg font-medium"
+              className="scroll-mt-32 text-lg font-medium"
             >
               {example.title}
             </h2>
             <ComponentPreview
               code={exampleCode(example.variant, example.label)}
             >
-              <div className="flex h-8 w-full items-center justify-center">
+              <div className="flex h-16 w-full items-center justify-center">
                 <Button variant={example.variant}>{example.label}</Button>
               </div>
             </ComponentPreview>
@@ -230,11 +230,11 @@ export default function ButtonPage() {
         ))}
 
         <div className="space-y-3">
-          <h2 id="icon" className="scroll-mt-10 text-lg font-medium">
+          <h2 id="icon" className="scroll-mt-32 text-lg font-medium">
             Icon
           </h2>
           <ComponentPreview code={iconCode}>
-            <div className="flex h-8 w-full items-center justify-center gap-3">
+            <div className="flex h-16 w-full items-center justify-center gap-3">
               <Button
                 variant="primary"
                 size="icon"
@@ -268,7 +268,7 @@ export default function ButtonPage() {
         </div>
 
         <div className="space-y-3">
-          <h2 id="with-icon" className="scroll-mt-10 text-lg font-medium">
+          <h2 id="with-icon" className="scroll-mt-32 text-lg font-medium">
             With Icon
           </h2>
           <ComponentPreview code={withIconCode}>
@@ -308,11 +308,11 @@ export default function ButtonPage() {
         </div>
 
         <div className="space-y-3">
-          <h2 id="disabled" className="scroll-mt-10 text-lg font-medium">
+          <h2 id="disabled" className="scroll-mt-32 text-lg font-medium">
             Disabled
           </h2>
           <ComponentPreview code={disabledCode}>
-            <div className="flex h-8 w-full flex-wrap items-center justify-center gap-3">
+            <div className="flex h-16 w-full flex-wrap items-center justify-center gap-3">
               <Button disabled>Maybe Later</Button>
               <Button variant="danger" disabled>
                 Delete The Bank Account
@@ -322,11 +322,11 @@ export default function ButtonPage() {
         </div>
 
         <div className="space-y-3">
-          <h2 id="loading" className="scroll-mt-10 text-lg font-medium">
+          <h2 id="loading" className="scroll-mt-32 text-lg font-medium">
             Loading
           </h2>
           <ComponentPreview code={loadingCode}>
-            <div className="flex h-8 w-full flex-wrap items-center justify-center gap-3">
+            <div className="flex h-16 w-full flex-wrap items-center justify-center gap-3">
               <Button loading>Saving</Button>
               <Button variant="secondary" loading>
                 Uploading
@@ -336,10 +336,10 @@ export default function ButtonPage() {
         </div>
 
         <div className="space-y-3">
-          <h2 id="guidelines" className="scroll-mt-10 text-lg font-medium">
+          <h2 id="guidelines" className="scroll-mt-32 text-lg font-medium">
             Usage Guidelines
           </h2>
-          <ul className="list-disc space-y-2 pl-5 text-base text-muted-foreground">
+          <ul className="list-disc space-y-2 pl-6 text-base text-muted-foreground">
             <li>
               <span className="font-medium text-foreground">
                 Form submissions
@@ -368,11 +368,11 @@ export default function ButtonPage() {
         </div>
 
         <div className="space-y-3">
-          <h2 id="props" className="scroll-mt-10 text-lg font-medium">
+          <h2 id="props" className="scroll-mt-32 text-lg font-medium">
             Props
           </h2>
           <div className="overflow-x-auto rounded-3xl border border-border">
-            <table className="w-full min-w-14 text-left text-sm [&_td]:align-top [&_th]:align-top">
+            <table className="w-full min-w-[32rem] text-left text-sm [&_td]:align-top [&_th]:align-top">
               <thead className="border-b border-border bg-muted/muted">
                 <tr>
                   <th className="px-4 py-3 font-medium">Prop</th>

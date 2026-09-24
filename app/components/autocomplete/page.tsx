@@ -323,7 +323,7 @@ const tags = [
 
 export default function Example() {
   return (
-    <div className="flex w-full flex-col items-center gap-6">
+    <div className="flex w-full flex-col items-center gap-8">
       {/* Disable a single item by passing disabled to Autocomplete.Item */}
       <Autocomplete.Root items={tags}>
         <label className="flex w-64 flex-col gap-2 text-sm font-medium">
@@ -736,7 +736,7 @@ function PropsTable({
   const hasDescriptions = props.some((p) => p.description);
   return (
     <div className="overflow-x-auto rounded-3xl border border-border">
-      <table className="w-full min-w-14 text-left text-sm [&_td]:align-top [&_th]:align-top">
+      <table className="w-full min-w-[32rem] text-left text-sm [&_td]:align-top [&_th]:align-top">
         <thead className="border-b border-border bg-muted/muted">
           <tr>
             <th className="px-4 py-3 font-medium">Prop</th>
@@ -794,9 +794,9 @@ export default async function AutocompletePage() {
         as quick shortcuts.
       </p>
 
-      <section className="mt-8 space-y-8">
+      <section className="mt-16 space-y-16">
         <div className="space-y-3">
-          <h2 id="default" className="scroll-mt-10 text-lg font-medium">
+          <h2 id="default" className="scroll-mt-32 text-lg font-medium">
             Default
           </h2>
           <ComponentPreview code={defaultCode}>
@@ -805,10 +805,10 @@ export default async function AutocompletePage() {
         </div>
 
         <div className="space-y-3">
-          <h2 id="guidelines" className="scroll-mt-10 text-lg font-medium">
+          <h2 id="guidelines" className="scroll-mt-32 text-lg font-medium">
             Usage Guidelines
           </h2>
-          <ul className="list-disc space-y-2 pl-5 text-base text-muted-foreground">
+          <ul className="list-disc space-y-2 pl-6 text-base text-muted-foreground">
             <li>
               <span className="font-medium text-foreground">
                 Autocomplete vs. Combobox:
@@ -890,7 +890,7 @@ export default async function AutocompletePage() {
         </div>
 
         <div className="space-y-3">
-          <h2 id="anatomy" className="scroll-mt-10 text-lg font-medium">
+          <h2 id="anatomy" className="scroll-mt-32 text-lg font-medium">
             Anatomy
           </h2>
           <div
@@ -901,7 +901,7 @@ export default async function AutocompletePage() {
 
         <div className="space-y-4">
           <div className="space-y-2">
-            <h2 id="input-group" className="scroll-mt-10 text-lg font-medium">
+            <h2 id="input-group" className="scroll-mt-32 text-lg font-medium">
               With icon and clear button
             </h2>
             <p className="text-base text-muted-foreground">
@@ -917,7 +917,7 @@ export default async function AutocompletePage() {
 
         <div className="space-y-4">
           <div className="space-y-2">
-            <h2 id="grouped" className="scroll-mt-10 text-lg font-medium">
+            <h2 id="grouped" className="scroll-mt-32 text-lg font-medium">
               Grouped items
             </h2>
             <p className="text-base text-muted-foreground">
@@ -936,7 +936,7 @@ export default async function AutocompletePage() {
           <div className="space-y-2">
             <h2
               id="auto-highlight"
-              className="scroll-mt-10 text-lg font-medium"
+              className="scroll-mt-32 text-lg font-medium"
             >
               Auto highlight
             </h2>
@@ -954,7 +954,7 @@ export default async function AutocompletePage() {
 
         <div className="space-y-4">
           <div className="space-y-2">
-            <h2 id="inline" className="scroll-mt-10 text-lg font-medium">
+            <h2 id="inline" className="scroll-mt-32 text-lg font-medium">
               Inline autocomplete
             </h2>
             <p className="text-base text-muted-foreground">
@@ -973,7 +973,7 @@ export default async function AutocompletePage() {
 
         <div className="space-y-4">
           <div className="space-y-2">
-            <h2 id="empty-status" className="scroll-mt-10 text-lg font-medium">
+            <h2 id="empty-status" className="scroll-mt-32 text-lg font-medium">
               Empty state and status
             </h2>
             <p className="text-base text-muted-foreground">
@@ -990,7 +990,7 @@ export default async function AutocompletePage() {
 
         <div className="space-y-4">
           <div className="space-y-2">
-            <h2 id="disabled" className="scroll-mt-10 text-lg font-medium">
+            <h2 id="disabled" className="scroll-mt-32 text-lg font-medium">
               Disabled
             </h2>
             <p className="text-base text-muted-foreground">
@@ -1008,7 +1008,7 @@ export default async function AutocompletePage() {
 
         <div className="space-y-4">
           <div className="space-y-2">
-            <h2 id="async" className="scroll-mt-10 text-lg font-medium">
+            <h2 id="async" className="scroll-mt-32 text-lg font-medium">
               Async suggestions
             </h2>
             <p className="text-base text-muted-foreground">
@@ -1025,8 +1025,8 @@ export default async function AutocompletePage() {
           </ComponentPreview>
         </div>
 
-        <div className="space-y-6">
-          <h2 id="props" className="scroll-mt-10 text-lg font-medium">
+        <div className="space-y-8">
+          <h2 id="props" className="scroll-mt-32 text-lg font-medium">
             Props
           </h2>
 

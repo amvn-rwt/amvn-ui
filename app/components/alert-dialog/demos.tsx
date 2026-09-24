@@ -83,7 +83,7 @@ function DefaultDemo() {
             <AlertDialog.Description>
               This mission data can&apos;t be recovered once you leave orbit.
             </AlertDialog.Description>
-            <div className="mt-6 flex justify-end gap-2">
+            <div className="mt-8 flex justify-end gap-2">
               <AlertDialog.Close
                 render={<Button variant="secondary">Cancel</Button>}
               />
@@ -116,7 +116,7 @@ function WithIconDemo() {
             <div className="flex items-start gap-3">
               <CircleAlertIcon
                 aria-hidden="true"
-                className="mt-0.5 size-5 shrink-0 text-danger"
+                className="mt-0.5 size-6 shrink-0 text-danger"
               />
               <div>
                 <AlertDialog.Title>Purge the fuel tank?</AlertDialog.Title>
@@ -126,7 +126,7 @@ function WithIconDemo() {
                 </AlertDialog.Description>
               </div>
             </div>
-            <div className="mt-6 flex justify-end gap-2">
+            <div className="mt-8 flex justify-end gap-2">
               <AlertDialog.Close
                 render={<Button variant="secondary">Cancel</Button>}
               />
@@ -161,7 +161,7 @@ function WithTertiaryDemo() {
               The previous draft is replaced if you continue. You can postpone
               and come back later.
             </AlertDialog.Description>
-            <div className="mt-6 flex items-center justify-between gap-2">
+            <div className="mt-8 flex items-center justify-between gap-2">
               <AlertDialog.Close
                 render={<Button variant="outline">Remind me later</Button>}
               />
@@ -201,7 +201,7 @@ function WithBlurredBackdropDemo() {
               The window closes for this orbit. Ground control will need a new
               clearance before the next attempt.
             </AlertDialog.Description>
-            <div className="mt-6 flex justify-end gap-2">
+            <div className="mt-8 flex justify-end gap-2">
               <AlertDialog.Close
                 render={<Button variant="secondary">Cancel</Button>}
               />
@@ -237,7 +237,7 @@ function DetachedTriggerDemo() {
               The countdown stops immediately. Ground control will need a full
               resync before the next attempt.
             </AlertDialog.Description>
-            <div className="mt-6 flex justify-end gap-2">
+            <div className="mt-8 flex justify-end gap-2">
               <AlertDialog.Close
                 render={<Button variant="secondary">Stand Down</Button>}
               />
@@ -280,7 +280,7 @@ function PayloadDemo() {
               <AlertDialog.Description>
                 {payload?.description}
               </AlertDialog.Description>
-              <div className="mt-6 flex justify-end gap-2">
+              <div className="mt-8 flex justify-end gap-2">
                 <AlertDialog.Close
                   render={<Button variant="secondary">Cancel</Button>}
                 />

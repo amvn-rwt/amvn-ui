@@ -25,7 +25,7 @@ export default function ComponentsPage() {
         Building blocks for your interface.
       </p>
 
-      <ul className="mt-8 grid list-none gap-4 sm:grid-cols-2">
+      <ul className="mt-16 grid list-none gap-4 sm:grid-cols-2">
         {components.map((component) => (
           <li key={component.href}>
             <ComponentCard component={component} />

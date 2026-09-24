@@ -34,7 +34,7 @@ const defaultCode = `import { Accordion } from "@/components/ui/accordion"
 export default function Example() {
   return (
     <div className="flex w-full justify-center">
-      <Accordion.Root defaultValue={["shipping"]} className="w-full max-w-13">
+      <Accordion.Root defaultValue={["shipping"]} className="w-full max-w-96">
         <Accordion.Item value="shipping">
           <Accordion.Trigger>Do you ship internationally?</Accordion.Trigger>
           <Accordion.Panel>
@@ -73,7 +73,7 @@ const multipleCode = `import { Accordion } from "@/components/ui/accordion"
 export default function Example() {
   return (
     <div className="flex w-full justify-center">
-      <Accordion.Root multiple defaultValue={["shipping"]} className="w-full max-w-13">
+      <Accordion.Root multiple defaultValue={["shipping"]} className="w-full max-w-96">
         <Accordion.Item value="shipping">
           <Accordion.Trigger>Do you ship internationally?</Accordion.Trigger>
           <Accordion.Panel>
@@ -112,7 +112,7 @@ const disabledCode = `import { Accordion } from "@/components/ui/accordion"
 export default function Example() {
   return (
     <div className="flex w-full justify-center">
-      <Accordion.Root defaultValue={["shipping"]} className="w-full max-w-13">
+      <Accordion.Root defaultValue={["shipping"]} className="w-full max-w-96">
         <Accordion.Item value="shipping">
           <Accordion.Trigger>Do you ship internationally?</Accordion.Trigger>
           <Accordion.Panel>
@@ -143,7 +143,7 @@ const borderlessCode = `import { Accordion } from "@/components/ui/accordion"
 export default function Example() {
   return (
     <div className="flex w-full justify-center">
-      <Accordion.Root bordered={false} defaultValue={["shipping"]} className="w-full max-w-13">
+      <Accordion.Root bordered={false} defaultValue={["shipping"]} className="w-full max-w-96">
         <Accordion.Item value="shipping">
           <Accordion.Trigger>Do you ship internationally?</Accordion.Trigger>
           <Accordion.Panel>
@@ -284,7 +284,7 @@ function PropsTable({
 }) {
   return (
     <div className="overflow-x-auto rounded-3xl border border-border">
-      <table className="w-full min-w-14 text-left text-sm">
+      <table className="w-full min-w-[32rem] text-left text-sm">
         <thead className="border-b border-border bg-muted/muted">
           <tr>
             <th className="px-4 py-3 font-medium">Prop</th>
@@ -335,9 +335,9 @@ export default async function AccordionPage() {
         , heading semantics and keyboard navigation.
       </p>
 
-      <section className="mt-8 space-y-8">
+      <section className="mt-16 space-y-16">
         <div className="space-y-3">
-          <h2 id="default" className="scroll-mt-10 text-lg font-medium">
+          <h2 id="default" className="scroll-mt-32 text-lg font-medium">
             Default
           </h2>
           <p className="text-base text-muted-foreground">
@@ -345,13 +345,13 @@ export default async function AccordionPage() {
             <InlineCode>defaultValue</InlineCode> to set the initially expanded
             item.
           </p>
-          <ComponentPreview code={defaultCode} previewClassName="p-5 sm:p-8">
+          <ComponentPreview code={defaultCode} previewClassName="p-6 sm:p-16">
             <DefaultDemo />
           </ComponentPreview>
         </div>
 
         <div className="space-y-3">
-          <h2 id="anatomy" className="scroll-mt-10 text-lg font-medium">
+          <h2 id="anatomy" className="scroll-mt-32 text-lg font-medium">
             Anatomy
           </h2>
           <p className="text-base text-muted-foreground">
@@ -366,7 +366,7 @@ export default async function AccordionPage() {
         </div>
 
         <div className="space-y-3">
-          <h2 id="multiple" className="scroll-mt-10 text-lg font-medium">
+          <h2 id="multiple" className="scroll-mt-32 text-lg font-medium">
             Multiple
           </h2>
           <p className="text-base text-muted-foreground">
@@ -374,13 +374,13 @@ export default async function AccordionPage() {
             open together. Use this when readers compare answers across items
             instead of reading them one at a time.
           </p>
-          <ComponentPreview code={multipleCode} previewClassName="p-5 sm:p-8">
+          <ComponentPreview code={multipleCode} previewClassName="p-6 sm:p-16">
             <MultipleDemo />
           </ComponentPreview>
         </div>
 
         <div className="space-y-3">
-          <h2 id="disabled" className="scroll-mt-10 text-lg font-medium">
+          <h2 id="disabled" className="scroll-mt-32 text-lg font-medium">
             Disabled
           </h2>
           <p className="text-base text-muted-foreground">
@@ -388,13 +388,13 @@ export default async function AccordionPage() {
             expansion while keeping the label visible. Use it for sections that
             are unavailable or require permission.
           </p>
-          <ComponentPreview code={disabledCode} previewClassName="p-5 sm:p-8">
+          <ComponentPreview code={disabledCode} previewClassName="p-6 sm:p-16">
             <DisabledDemo />
           </ComponentPreview>
         </div>
 
         <div className="space-y-3">
-          <h2 id="borderless" className="scroll-mt-10 text-lg font-medium">
+          <h2 id="borderless" className="scroll-mt-32 text-lg font-medium">
             Borderless
           </h2>
           <p className="text-base text-muted-foreground">
@@ -403,13 +403,13 @@ export default async function AccordionPage() {
             items when the accordion already sits inside a card or list with its
             own separation.
           </p>
-          <ComponentPreview code={borderlessCode} previewClassName="p-5 sm:p-8">
+          <ComponentPreview code={borderlessCode} previewClassName="p-6 sm:p-16">
             <BorderlessDemo />
           </ComponentPreview>
         </div>
 
-        <div className="space-y-6">
-          <h2 id="props" className="scroll-mt-10 text-lg font-medium">
+        <div className="space-y-8">
+          <h2 id="props" className="scroll-mt-32 text-lg font-medium">
             Props
           </h2>
 

@@ -58,7 +58,7 @@ export default function Example() {
           <AlertDialog.Description>
             This mission data can't be recovered once you leave orbit.
           </AlertDialog.Description>
-          <div className="mt-6 flex justify-end gap-2">
+          <div className="mt-8 flex justify-end gap-2">
             <AlertDialog.Close render={<Button variant="secondary">Cancel</Button>} />
             <AlertDialog.Close render={<Button variant="danger">Discard</Button>} />
           </div>
@@ -89,7 +89,7 @@ export default function Example() {
           <div className="flex items-start gap-3">
             <CircleAlertIcon
               aria-hidden="true"
-              className="mt-0.5 size-5 shrink-0 text-danger"
+              className="mt-0.5 size-6 shrink-0 text-danger"
             />
             <div>
               <AlertDialog.Title>Purge the fuel tank?</AlertDialog.Title>
@@ -99,7 +99,7 @@ export default function Example() {
               </AlertDialog.Description>
             </div>
           </div>
-          <div className="mt-6 flex justify-end gap-2">
+          <div className="mt-8 flex justify-end gap-2">
             <AlertDialog.Close render={<Button variant="secondary">Cancel</Button>} />
             <AlertDialog.Close render={<Button variant="danger">Purge</Button>} />
           </div>
@@ -132,7 +132,7 @@ export default function Example() {
             The previous draft is replaced if you continue. You can postpone
             and come back later.
           </AlertDialog.Description>
-          <div className="mt-6 flex items-center justify-between gap-2">
+          <div className="mt-8 flex items-center justify-between gap-2">
             <AlertDialog.Close
               render={<Button variant="outline">Remind me later</Button>}
             />
@@ -174,7 +174,7 @@ export default function Example() {
             The window closes for this orbit. Ground control will need a new
             clearance before the next attempt.
           </AlertDialog.Description>
-          <div className="mt-6 flex justify-end gap-2">
+          <div className="mt-8 flex justify-end gap-2">
             <AlertDialog.Close render={<Button variant="secondary">Cancel</Button>} />
             <AlertDialog.Close render={<Button variant="danger">Scrub</Button>} />
           </div>
@@ -213,7 +213,7 @@ export default function Example() {
               The countdown stops immediately. Ground control will need a
               full resync before the next attempt.
             </AlertDialog.Description>
-            <div className="mt-6 flex justify-end gap-2">
+            <div className="mt-8 flex justify-end gap-2">
               <AlertDialog.Close render={<Button variant="secondary">Stand Down</Button>} />
               <AlertDialog.Close render={<Button variant="danger">Abort</Button>} />
             </div>
@@ -299,7 +299,7 @@ export default function Example() {
             <AlertDialog.Popup>
               <AlertDialog.Title>{payload?.title}</AlertDialog.Title>
               <AlertDialog.Description>{payload?.description}</AlertDialog.Description>
-              <div className="mt-6 flex justify-end gap-2">
+              <div className="mt-8 flex justify-end gap-2">
                 <AlertDialog.Close render={<Button variant="secondary">Cancel</Button>} />
                 <AlertDialog.Close
                   render={<Button variant="danger">{payload?.confirmLabel}</Button>}
@@ -390,7 +390,7 @@ function PropsTable({
 }) {
   return (
     <div className="overflow-x-auto rounded-3xl border border-border">
-      <table className="w-full min-w-14 text-left text-sm">
+      <table className="w-full min-w-[32rem] text-left text-sm">
         <thead className="border-b border-border bg-muted/muted">
           <tr>
             <th className="px-4 py-3 font-medium">Prop</th>
@@ -440,9 +440,9 @@ export default async function AlertDialogPage() {
         explicit action closes it.
       </p>
 
-      <section className="mt-8 space-y-8">
+      <section className="mt-16 space-y-16">
         <div className="space-y-3">
-          <h2 id="default" className="scroll-mt-10 text-lg font-medium">
+          <h2 id="default" className="scroll-mt-32 text-lg font-medium">
             Default
           </h2>
           <ComponentPreview code={defaultCode}>
@@ -451,7 +451,7 @@ export default async function AlertDialogPage() {
         </div>
 
         <div className="space-y-3">
-          <h2 id="anatomy" className="scroll-mt-10 text-lg font-medium">
+          <h2 id="anatomy" className="scroll-mt-32 text-lg font-medium">
             Anatomy
           </h2>
           <div
@@ -462,7 +462,7 @@ export default async function AlertDialogPage() {
 
         <div className="space-y-4">
           <div className="space-y-2">
-            <h2 id="with-icon" className="scroll-mt-10 text-lg font-medium">
+            <h2 id="with-icon" className="scroll-mt-32 text-lg font-medium">
               With icon
             </h2>
             <p className="text-base text-muted-foreground">
@@ -480,7 +480,7 @@ export default async function AlertDialogPage() {
           <div className="space-y-2">
             <h2
               id="with-tertiary-action"
-              className="scroll-mt-10 text-lg font-medium"
+              className="scroll-mt-32 text-lg font-medium"
             >
               With tertiary action
             </h2>
@@ -498,7 +498,7 @@ export default async function AlertDialogPage() {
           <div className="space-y-2">
             <h2
               id="with-blurred-backdrop"
-              className="scroll-mt-10 text-lg font-medium"
+              className="scroll-mt-32 text-lg font-medium"
             >
               With blurred backdrop
             </h2>
@@ -518,7 +518,7 @@ export default async function AlertDialogPage() {
           <div className="space-y-2">
             <h2
               id="detached-trigger"
-              className="scroll-mt-10 text-lg font-medium"
+              className="scroll-mt-32 text-lg font-medium"
             >
               Detached trigger
             </h2>
@@ -536,7 +536,7 @@ export default async function AlertDialogPage() {
 
         <div className="space-y-4">
           <div className="space-y-2">
-            <h2 id="payload" className="scroll-mt-10 text-lg font-medium">
+            <h2 id="payload" className="scroll-mt-32 text-lg font-medium">
               Multiple triggers with payload
             </h2>
             <p className="text-base text-muted-foreground">
@@ -553,10 +553,10 @@ export default async function AlertDialogPage() {
         </div>
 
         <div className="space-y-3">
-          <h2 id="guidelines" className="scroll-mt-10 text-lg font-medium">
+          <h2 id="guidelines" className="scroll-mt-32 text-lg font-medium">
             Usage Guidelines
           </h2>
-          <ul className="list-disc space-y-2 pl-5 text-base text-muted-foreground">
+          <ul className="list-disc space-y-2 pl-6 text-base text-muted-foreground">
             <li>
               <span className="font-medium text-foreground">
                 Alert Dialog vs. Dialog
@@ -579,8 +579,8 @@ export default async function AlertDialogPage() {
           </ul>
         </div>
 
-        <div className="space-y-6">
-          <h2 id="props" className="scroll-mt-10 text-lg font-medium">
+        <div className="space-y-8">
+          <h2 id="props" className="scroll-mt-32 text-lg font-medium">
             Props
           </h2>
 

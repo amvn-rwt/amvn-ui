@@ -19,11 +19,11 @@ const colors = {
   mutedForeground: "#575553", // --muted-foreground
 } as const;
 
-/** Spacing tokens from globals.css @theme */
+/** Default Tailwind spacing (px) used by the homepage layout */
 const space = {
-  4: 16, // --spacing-4 — mt-2 × 2 (keeps gap proportional to ×2 type)
-  6: 32, // --spacing-6 — sm:px-6
-  10: 128, // --spacing-10 — py-10
+  4: 16, // spacing-4 — mt-2 × 2 (keeps gap proportional to ×2 type)
+  8: 32, // spacing-8 — sm:px-8
+  32: 128, // spacing-32 — py-32
 } as const;
 
 /** Type tokens ×2 so the share card stays readable at 1200×630 */
@@ -49,7 +49,7 @@ export default async function Image() {
           justifyContent: "flex-start",
           background: colors.background,
           color: colors.foreground,
-          padding: `${space[10]}px ${space[6]}px`,
+          padding: `${space[32]}px ${space[8]}px`,
           fontFamily: "Satoshi",
         }}
       >

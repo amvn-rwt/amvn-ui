@@ -282,7 +282,7 @@ function DisabledDemo() {
   ];
 
   return (
-    <div className="flex w-full flex-col items-center gap-6">
+    <div className="flex w-full flex-col items-center gap-8">
       <Autocomplete.Root items={tags}>
         <label className="flex w-64 flex-col gap-2 text-sm font-medium">
           Per-item disabled

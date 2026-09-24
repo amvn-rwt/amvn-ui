@@ -12,8 +12,8 @@ export default function ComponentsLayout({
       <Navbar />
       <div className="flex min-w-0 flex-1">
         <DocsSidebar />
-        <main className="min-w-0 flex-1 px-5 py-8 sm:px-6">
-          <div className="mx-auto w-full max-w-15">{children}</div>
+        <main className="min-w-0 flex-1 px-6 py-16 sm:px-8">
+          <div className="mx-auto w-full max-w-[40rem]">{children}</div>
         </main>
         <DocsToc />
       </div>

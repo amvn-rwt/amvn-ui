@@ -125,7 +125,7 @@ function PropsTable({
 }) {
   return (
     <div className="overflow-x-auto rounded-3xl border border-border">
-      <table className="w-full min-w-14 text-left text-sm">
+      <table className="w-full min-w-[32rem] text-left text-sm">
         <thead className="border-b border-border bg-muted/muted">
           <tr>
             <th className="px-4 py-3 font-medium">Prop</th>
@@ -174,9 +174,9 @@ export default async function TabsPage() {
         and panels fade in from the direction you came from.
       </p>
 
-      <section className="mt-8 space-y-8">
+      <section className="mt-16 space-y-16">
         <div className="space-y-3">
-          <h2 id="default" className="scroll-mt-10 text-lg font-medium">
+          <h2 id="default" className="scroll-mt-32 text-lg font-medium">
             Default
           </h2>
           <p className="text-base text-muted-foreground">
@@ -184,13 +184,13 @@ export default async function TabsPage() {
             tab. Drop <InlineCode>Tabs.Indicator</InlineCode> inside{" "}
             <InlineCode>Tabs.List</InlineCode> and it tracks the active tab.
           </p>
-          <ComponentPreview code={defaultCode} previewClassName="p-5 sm:p-8">
+          <ComponentPreview code={defaultCode} previewClassName="p-6 sm:p-16">
             <DefaultDemo />
           </ComponentPreview>
         </div>
 
         <div className="space-y-3">
-          <h2 id="anatomy" className="scroll-mt-10 text-lg font-medium">
+          <h2 id="anatomy" className="scroll-mt-32 text-lg font-medium">
             Anatomy
           </h2>
           <p className="text-base text-muted-foreground">
@@ -205,7 +205,7 @@ export default async function TabsPage() {
         </div>
 
         <div className="space-y-3">
-          <h2 id="disabled" className="scroll-mt-10 text-lg font-medium">
+          <h2 id="disabled" className="scroll-mt-32 text-lg font-medium">
             Disabled
           </h2>
           <p className="text-base text-muted-foreground">
@@ -213,13 +213,13 @@ export default async function TabsPage() {
             <InlineCode>Tabs.Tab</InlineCode> to prevent activation while
             keeping the label visible.
           </p>
-          <ComponentPreview code={disabledCode} previewClassName="p-5 sm:p-8">
+          <ComponentPreview code={disabledCode} previewClassName="p-6 sm:p-16">
             <DisabledDemo />
           </ComponentPreview>
         </div>
 
-        <div className="space-y-6">
-          <h2 id="props" className="scroll-mt-10 text-lg font-medium">
+        <div className="space-y-8">
+          <h2 id="props" className="scroll-mt-32 text-lg font-medium">
             Props
           </h2>
 
