@@ -118,7 +118,7 @@ export function DocsToc() {
   }
 
   return (
-    <aside className="sticky top-16 hidden h-[calc(100vh-var(--spacing-16))] w-64 shrink-0 overflow-y-auto xl:block">
+    <aside className="sticky top-16 hidden h-[calc(100vh-4rem)] w-64 shrink-0 self-start overflow-y-auto xl:block">
       <nav className="px-4 py-16" aria-label="On this page">
         <p className="mb-3 px-2 text-sm font-medium tracking-wide">
           On this page

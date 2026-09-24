@@ -10,7 +10,7 @@ export function DocsSidebar() {
   const pathname = usePathname();
 
   return (
-    <aside className="sticky top-16 hidden h-[calc(100vh-var(--spacing-16))] w-64 shrink-0 overflow-y-auto lg:block">
+    <aside className="sticky top-16 hidden h-[calc(100vh-4rem)] w-64 shrink-0 self-start overflow-y-auto lg:block">
       <nav className="px-4 py-16" aria-label="Secondary">
         <div className="space-y-16">
           {docsNav.map((section) => (
