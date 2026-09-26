@@ -502,12 +502,14 @@ export default function Example() {
           <Menu.Portal>
             <Menu.Positioner align="start">
               <Menu.Popup>
-                <Menu.GroupLabel>{payload?.title}</Menu.GroupLabel>
-                <Menu.Viewport>
-                  {(payload?.items ?? []).map((item) => (
-                    <Menu.Item key={item}>{item}</Menu.Item>
-                  ))}
-                </Menu.Viewport>
+                <Menu.Group>
+                  <Menu.GroupLabel>{payload?.title}</Menu.GroupLabel>
+                  <Menu.Viewport>
+                    {(payload?.items ?? []).map((item) => (
+                      <Menu.Item key={item}>{item}</Menu.Item>
+                    ))}
+                  </Menu.Viewport>
+                </Menu.Group>
               </Menu.Popup>
             </Menu.Positioner>
           </Menu.Portal>

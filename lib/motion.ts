@@ -75,14 +75,14 @@ export function createPressMotion({
 }: PressMotionInput) {
   if (reducedMotion || disabled) {
     return {
-      whileHover: undefined,
       whileTap: undefined,
       transition: spring.press as Transition,
     };
   }
 
+  // Tap only. Hover scale changes the bounding box and shifts floating
+  // anchors (Menu, Dialog triggers) while the spring is running.
   return {
-    whileHover: { scale: 1.02 },
     whileTap: { scale: 0.96, y: 1 },
     transition: spring.press as Transition,
   };

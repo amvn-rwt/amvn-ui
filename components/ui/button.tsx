@@ -66,7 +66,6 @@ function Button({
       aria-busy={loading || undefined}
       render={
         <motion.button
-          whileHover={press.whileHover}
           whileTap={press.whileTap}
           transition={press.transition}
         />
