@@ -36,19 +36,6 @@ function MenuPortal(props: MenuPrimitive.Portal.Props) {
   return <MenuPrimitive.Portal data-slot="menu-portal" {...props} />;
 }
 
-function MenuBackdrop({
-  className,
-  ...props
-}: MenuPrimitive.Backdrop.Props) {
-  return (
-    <MenuPrimitive.Backdrop
-      data-slot="menu-backdrop"
-      className={cn("fixed inset-0 z-50", className)}
-      {...props}
-    />
-  );
-}
-
 function MenuPositioner({
   className,
   sideOffset = 6,
@@ -318,7 +305,6 @@ const Menu = Object.assign(MenuRoot, {
   Root: MenuRoot,
   Trigger: MenuTrigger,
   Portal: MenuPortal,
-  Backdrop: MenuBackdrop,
   Positioner: MenuPositioner,
   Popup: MenuPopup,
   Arrow: MenuArrow,

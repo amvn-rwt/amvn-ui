@@ -8,7 +8,7 @@ export const spring = {
   /** Overlays/backdrops — snappy, no bounce */
   overlay: { type: "spring", stiffness: 500, damping: 40, mass: 0.8 },
   /** Menus, autocomplete lists — snappier than panels */
-  menu: { type: "spring", stiffness: 470, damping: 30, mass: 0.7 },
+  menu: { type: "spring", stiffness: 460, damping: 30, mass: 0.7 },
   /** Panels, dialogs, sheets */
   panel: { type: "spring", stiffness: 420, damping: 28, mass: 0.8 },
   /** Layout size changes (height expand/collapse) */
