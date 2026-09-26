@@ -6,11 +6,12 @@ import { cva, type VariantProps } from "class-variance-authority";
 import { CheckIcon, ChevronRightIcon } from "lucide-react";
 import { motion, type HTMLMotionProps } from "motion/react";
 
+import { spring } from "@/lib/motion";
 import { usePanelMotion } from "@/lib/use-motion";
 import { cn } from "@/lib/utils";
 
 const menuItemClassName =
-  "flex h-8 cursor-default select-none items-center gap-2 rounded-xl px-3 text-sm outline-none transition-colors duration-fast data-highlighted:bg-muted data-disabled:pointer-events-none data-disabled:opacity-disabled [&_svg]:size-4 [&_svg]:shrink-0 [&_svg]:text-muted-foreground";
+  "flex h-8 cursor-default select-none items-center gap-2 rounded-xl px-3 text-sm outline-none data-highlighted:bg-muted data-disabled:pointer-events-none data-disabled:opacity-disabled [&_svg]:size-4 [&_svg]:shrink-0 [&_svg]:text-muted-foreground";
 
 const menuItemVariants = cva(menuItemClassName, {
   variants: {
@@ -279,10 +280,43 @@ function MenuSubmenuTrigger({
         className,
       )}
       {...props}
-    >
+      render={(triggerProps, state) => (
+        <MenuSubmenuTriggerInner
+          triggerProps={triggerProps}
+          open={state.open}
+        >
+          {children}
+        </MenuSubmenuTriggerInner>
+      )}
+    />
+  );
+}
+
+function MenuSubmenuTriggerInner({
+  triggerProps,
+  open,
+  children,
+}: {
+  triggerProps: React.HTMLAttributes<HTMLElement>;
+  open: boolean;
+  children: React.ReactNode;
+}) {
+  return (
+    <div {...triggerProps}>
       {children}
-      <ChevronRightIcon className="ml-auto" />
-    </MenuPrimitive.SubmenuTrigger>
+      <motion.span
+        aria-hidden
+        className="ml-auto inline-flex shrink-0"
+        initial={false}
+        animate={{
+          scale: open ? 1 : 0.8,
+          opacity: open ? 1 : 0.6,
+        }}
+        transition={spring.micro}
+      >
+        <ChevronRightIcon className="size-4 text-muted-foreground" />
+      </motion.span>
+    </div>
   );
 }
 

@@ -234,7 +234,7 @@ function AutocompleteItem({
     <AutocompletePrimitive.Item
       data-slot="autocomplete-item"
       className={cn(
-        "flex h-8 cursor-default select-none items-center rounded-xl px-3 text-sm outline-none transition-colors duration-fast data-highlighted:bg-muted data-disabled:pointer-events-none data-disabled:opacity-disabled",
+        "flex h-8 cursor-default select-none items-center rounded-xl px-3 text-sm outline-none data-highlighted:bg-muted data-disabled:pointer-events-none data-disabled:opacity-disabled",
         className,
       )}
       {...props}
