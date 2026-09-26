@@ -77,11 +77,34 @@ function AutocompletePreview() {
   );
 }
 
+// Static mockup of an open menu: outline trigger above a popup with three
+// rows (one highlighted, one separator). Mirrors Button outline, Popup, Item,
+// and Separator styles from the real component.
+function MenuPreview() {
+  return (
+    <div className="mx-auto flex w-full max-w-40 flex-col items-start text-left">
+      <Button variant="outline" size="sm">
+        Open menu
+      </Button>
+      <div className="mt-1.5 min-w-40 rounded-xl border border-border bg-background p-1 shadow-lg">
+        <div className="flex h-8 items-center rounded-xl bg-muted px-3 text-sm">
+          New file
+        </div>
+        <div className="-mx-1 my-1 h-px bg-border" />
+        <div className="flex h-8 items-center rounded-xl px-3 text-sm">
+          Delete
+        </div>
+      </div>
+    </div>
+  );
+}
+
 const previews: Record<string, ReactNode> = {
   "/components/button": <ButtonPreview />,
   "/components/accordion": <AccordionPreview />,
   "/components/alert-dialog": <AlertDialogPreview />,
   "/components/autocomplete": <AutocompletePreview />,
+  "/components/menu": <MenuPreview />,
 };
 
 type ComponentCardProps = {
