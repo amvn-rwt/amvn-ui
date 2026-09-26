@@ -7,6 +7,8 @@ export const spring = {
   press: { type: "spring", stiffness: 500, damping: 18, mass: 0.5 },
   /** Overlays/backdrops — snappy, no bounce */
   overlay: { type: "spring", stiffness: 500, damping: 40, mass: 0.8 },
+  /** Menus, autocomplete lists — snappier than panels */
+  menu: { type: "spring", stiffness: 470, damping: 30, mass: 0.7 },
   /** Panels, dialogs, sheets */
   panel: { type: "spring", stiffness: 420, damping: 28, mass: 0.8 },
   /** Layout size changes (height expand/collapse) */
@@ -43,6 +45,8 @@ type PanelMotionInput = ReducedMotionInput & {
   open: boolean;
   fromScale?: number;
   center?: boolean;
+  /** Defaults to panel. Use menu for high-frequency popups. */
+  spring?: "panel" | "menu";
 };
 
 export function createPanelMotion({
@@ -50,6 +54,7 @@ export function createPanelMotion({
   reducedMotion,
   fromScale = 0.95,
   center = false,
+  spring: springToken = "panel",
 }: PanelMotionInput) {
   const closedScale = reducedMotion ? 1 : fromScale;
   const centerXY = center ? ({ x: "-50%", y: "-50%" } as const) : {};
@@ -61,7 +66,9 @@ export function createPanelMotion({
       scale: open ? 1 : closedScale,
       ...centerXY,
     },
-    transition: (reducedMotion ? tween.fade : spring.panel) as Transition,
+    transition: (reducedMotion
+      ? tween.fade
+      : spring[springToken]) as Transition,
   };
 }
 

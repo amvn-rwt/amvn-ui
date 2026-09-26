@@ -10,7 +10,7 @@ import { usePanelMotion } from "@/lib/use-motion";
 import { cn } from "@/lib/utils";
 
 const menuItemClassName =
-  "flex h-8 cursor-default select-none items-center gap-2 rounded-xl px-3 text-sm outline-none data-highlighted:bg-muted data-disabled:pointer-events-none data-disabled:opacity-disabled [&_svg]:size-4 [&_svg]:shrink-0 [&_svg]:text-muted-foreground";
+  "flex h-8 cursor-default select-none items-center gap-2 rounded-xl px-3 text-sm outline-none transition-colors duration-fast data-highlighted:bg-muted data-disabled:pointer-events-none data-disabled:opacity-disabled [&_svg]:size-4 [&_svg]:shrink-0 [&_svg]:text-muted-foreground";
 
 const menuItemVariants = cva(menuItemClassName, {
   variants: {
@@ -87,7 +87,7 @@ function MenuPopupMotion({
   popupProps: React.HTMLAttributes<HTMLDivElement>;
   open: boolean;
 }) {
-  const panel = usePanelMotion(open);
+  const panel = usePanelMotion(open, { spring: "menu" });
 
   return (
     <motion.div

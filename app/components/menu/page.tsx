@@ -31,7 +31,6 @@ const anatomyCode = `import { Menu } from "@/components/ui/menu"
 <Menu.Root>
   <Menu.Trigger />
   <Menu.Portal>
-    <Menu.Backdrop />
     <Menu.Positioner>
       <Menu.Popup>
         <Menu.Arrow />

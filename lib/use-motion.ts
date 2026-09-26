@@ -22,7 +22,11 @@ export function useOverlayMotion(open: boolean) {
 
 export function usePanelMotion(
   open: boolean,
-  options?: { fromScale?: number; center?: boolean },
+  options?: {
+    fromScale?: number;
+    center?: boolean;
+    spring?: "panel" | "menu";
+  },
 ) {
   return createPanelMotion({
     open,
