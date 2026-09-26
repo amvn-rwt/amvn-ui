@@ -187,7 +187,7 @@ function MenuGroupLabel({
     <MenuPrimitive.GroupLabel
       data-slot="menu-group-label"
       className={cn(
-        "px-3 py-1.5 font-mono text-xs font-medium text-muted-foreground",
+        "px-3 py-1.5 text-xs font-medium text-muted-foreground",
         className,
       )}
       {...props}
@@ -304,7 +304,7 @@ function MenuShortcut({ className, ...props }: React.ComponentProps<"span">) {
     <span
       data-slot="menu-shortcut"
       className={cn(
-        "ml-auto font-mono text-xs text-muted-foreground",
+        "ml-auto text-xs text-muted-foreground",
         className,
       )}
       {...props}
