@@ -45,6 +45,7 @@ function AutocompleteInputGroup({
       data-slot="autocomplete-input-group"
       className={cn(
         "group/autocomplete-group flex h-8 w-full min-w-0 items-center gap-1 rounded-full border border-border bg-muted/faint px-3 focus-within:ring-2 focus-within:ring-ring focus-within:ring-offset-2 focus-within:ring-offset-background data-disabled:opacity-disabled",
+        "has-[>svg:first-child]:pl-2.5 has-[>[data-slot=autocomplete-clear]:last-child]:pr-2.5 has-[>[data-slot=autocomplete-icon]:last-child]:pr-2.5",
         "**:data-[slot=autocomplete-input]:h-auto **:data-[slot=autocomplete-input]:flex-1 **:data-[slot=autocomplete-input]:border-0 **:data-[slot=autocomplete-input]:bg-transparent **:data-[slot=autocomplete-input]:px-1 **:data-[slot=autocomplete-input]:focus-visible:ring-0 **:data-[slot=autocomplete-input]:focus-visible:ring-offset-0",
         className,
       )}
