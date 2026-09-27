@@ -23,7 +23,7 @@ const buttonVariants = cva(
         success: "bg-success text-success-foreground hover:bg-success/intense",
       },
       size: {
-        sm: "h-6 px-2 text-xs has-[>svg:first-child]:pl-1.5 has-[>svg:last-child]:pr-1.5",
+        sm: "h-7 gap-1.5 px-2.5 text-sm has-[>svg:first-child]:pl-2 has-[>svg:last-child]:pr-2 [&_svg:not([class*='size-'])]:size-3",
         md: "h-8 px-3 text-sm has-[>svg:first-child]:pl-2.5 has-[>svg:last-child]:pr-2.5",
         icon: "size-8",
       },
