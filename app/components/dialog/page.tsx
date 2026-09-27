@@ -269,7 +269,7 @@ export default function Example() {
               <Dialog.Title>Mission log</Dialog.Title>
               <Dialog.Description>
                 Full countdown transcript for Flight 47. Scroll the page-like
-                dialog to review every milestone through liftoff.
+                dialog to review every milestone through orbital insertion.
               </Dialog.Description>
             </Dialog.Header>
             <Dialog.Body className="space-y-4">

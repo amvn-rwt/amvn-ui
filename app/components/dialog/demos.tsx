@@ -69,12 +69,24 @@ const checklistItems = [
 ];
 
 const missionLogParagraphs = [
+  "T-01:15:00 Weather balloon data cleared the upper-level shear limit. The range weather officer keeps a watch on the eastern anvil, but the launch window remains open through 14:40 UTC.",
+  "T-00:58:22 Propellant loading reaches the 95 percent mark. LOX and RP densification hold steady, and the pad team reports no frost anomalies on the intertank flanges.",
   "T-00:42:18 Pad cameras show vapor venting from the LOX feedline as expected. Ground control confirms the chill-down sequence is on schedule and the crew reports green boards across the board.",
+  "T-00:36:44 Access arm retract test completes without a hitch. Camera 12 confirms the crew hatch seal indicator, and the white room is cleared for the terminal count.",
   "T-00:31:05 Navigation computers finished the final ephemeris load. Drift against the backup inertial unit is within tolerance, and the range has cleared the northeast corridor for ascent.",
+  "T-00:24:50 Ground power transfers to internal buses. Battery voltages sit inside the flight band, and the power officer signs the switchover as complete.",
   "T-00:18:40 Crew completed the suit integrity check. Cabin pressure is holding, and the commander confirmed the abort modes for the first-stage burn with the flight director.",
+  "T-00:14:05 Flight termination system safing pins are pulled. Range safety verifies both command receivers, and the destruct enable is armed for the ascent corridor.",
   "T-00:09:12 Auto-sequence armed. Hold keys are removed, and every station has called go. The vehicle is now under computer control for the terminal countdown.",
+  "T-00:06:30 Hydraulic pumps spin up on the first-stage TVC actuators. Gimbal sweeps finish inside the commanded envelope, and the guidance team reports no bias residuals.",
+  "T-00:04:10 Strongback disconnect confirmed. Umbilicals are clear, and the pad is now a restricted zone for the remaining countdown.",
   "T-00:02:55 Main engines start sequence begins. Chamber pressures climb in lockstep, and the stack settles against the hold-downs as thrust builds toward commit.",
+  "T-00:00:00 Hold-down clamps release. The vehicle lifts cleanly, and every station calls go for flight as the stack clears the pad deck.",
   "T+00:00:04 Liftoff confirmed. Telemetry shows clean roll and pitch programs, and the tower is clear. Next milestone is max-Q at T+00:01:12.",
+  "T+00:01:12 Max dynamic pressure. Structural loads stay inside the predicted band, and the guidance loop trims pitch without exceeding the rate limit.",
+  "T+00:02:28 First-stage MECO. Separation charges fire on schedule, and the second stage ignites with a clean chamber rise on all engines.",
+  "T+00:08:41 Second-stage cutoff for the parking orbit. Navigation confirms insertion within 1.2 kilometers of the target apogee, and the crew switches to orbital ops.",
+  "T+00:12:05 Payload fairing telemetry remains nominal after deployment. Solar arrays begin their unfold sequence, and Flight 47 closes the ascent chapter of the log.",
 ];
 
 // Dialog.createHandle() is client-only, so these live demos (and their
@@ -289,7 +301,7 @@ function LongContentDemo() {
                 <Dialog.Title>Mission log</Dialog.Title>
                 <Dialog.Description>
                   Full countdown transcript for Flight 47. Scroll the page-like
-                  dialog to review every milestone through liftoff.
+                  dialog to review every milestone through orbital insertion.
                 </Dialog.Description>
               </Dialog.Header>
               <Dialog.Body className="space-y-4">
