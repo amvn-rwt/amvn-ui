@@ -383,12 +383,8 @@ function OpenDialogDemo() {
               </AlertDialog.Description>
             </AlertDialog.Header>
             <AlertDialog.Footer>
-              <AlertDialog.Close
-                render={<Button variant="secondary">Cancel</Button>}
-              />
-              <AlertDialog.Close
-                render={<Button variant="danger">Discard</Button>}
-              />
+              <AlertDialog.Cancel />
+              <AlertDialog.Action>Discard</AlertDialog.Action>
             </AlertDialog.Footer>
           </AlertDialog.Popup>
         </AlertDialog.Portal>

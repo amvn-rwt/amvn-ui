@@ -34,7 +34,8 @@ const anatomyCode = `import { AlertDialog } from "@/components/ui/alert-dialog"
         <AlertDialog.Description />
       </AlertDialog.Header>
       <AlertDialog.Footer>
-        <AlertDialog.Close />
+        <AlertDialog.Cancel />
+        <AlertDialog.Action />
       </AlertDialog.Footer>
     </AlertDialog.Popup>
   </AlertDialog.Portal>
@@ -65,8 +66,8 @@ export default function Example() {
             </AlertDialog.Description>
           </AlertDialog.Header>
           <AlertDialog.Footer>
-            <AlertDialog.Close render={<Button variant="secondary">Cancel</Button>} />
-            <AlertDialog.Close render={<Button variant="danger">Discard</Button>} />
+            <AlertDialog.Cancel />
+            <AlertDialog.Action>Discard</AlertDialog.Action>
           </AlertDialog.Footer>
         </AlertDialog.Popup>
       </AlertDialog.Portal>
@@ -106,8 +107,8 @@ export default function Example() {
             </AlertDialog.Header>
           </div>
           <AlertDialog.Footer>
-            <AlertDialog.Close render={<Button variant="secondary">Cancel</Button>} />
-            <AlertDialog.Close render={<Button variant="danger">Purge</Button>} />
+            <AlertDialog.Cancel />
+            <AlertDialog.Action>Purge</AlertDialog.Action>
           </AlertDialog.Footer>
         </AlertDialog.Popup>
       </AlertDialog.Portal>
@@ -145,12 +146,8 @@ export default function Example() {
               render={<Button variant="outline">Remind me later</Button>}
             />
             <div className="flex gap-2">
-              <AlertDialog.Close
-                render={<Button variant="secondary">Cancel</Button>}
-              />
-              <AlertDialog.Close
-                render={<Button variant="danger">Overwrite</Button>}
-              />
+              <AlertDialog.Cancel />
+              <AlertDialog.Action>Overwrite</AlertDialog.Action>
             </div>
           </AlertDialog.Footer>
         </AlertDialog.Popup>
@@ -185,8 +182,8 @@ export default function Example() {
             </AlertDialog.Description>
           </AlertDialog.Header>
           <AlertDialog.Footer>
-            <AlertDialog.Close render={<Button variant="secondary">Cancel</Button>} />
-            <AlertDialog.Close render={<Button variant="danger">Scrub</Button>} />
+            <AlertDialog.Cancel />
+            <AlertDialog.Action>Scrub</AlertDialog.Action>
           </AlertDialog.Footer>
         </AlertDialog.Popup>
       </AlertDialog.Portal>
@@ -226,8 +223,8 @@ export default function Example() {
               </AlertDialog.Description>
             </AlertDialog.Header>
             <AlertDialog.Footer>
-              <AlertDialog.Close render={<Button variant="secondary">Stand Down</Button>} />
-              <AlertDialog.Close render={<Button variant="danger">Abort</Button>} />
+              <AlertDialog.Cancel>Stand Down</AlertDialog.Cancel>
+              <AlertDialog.Action>Abort</AlertDialog.Action>
             </AlertDialog.Footer>
           </AlertDialog.Popup>
         </AlertDialog.Portal>
@@ -314,10 +311,8 @@ export default function Example() {
                 <AlertDialog.Description>{payload?.description}</AlertDialog.Description>
               </AlertDialog.Header>
               <AlertDialog.Footer>
-                <AlertDialog.Close render={<Button variant="secondary">Cancel</Button>} />
-                <AlertDialog.Close
-                  render={<Button variant="danger">{payload?.confirmLabel}</Button>}
-                />
+                <AlertDialog.Cancel />
+                <AlertDialog.Action>{payload?.confirmLabel}</AlertDialog.Action>
               </AlertDialog.Footer>
             </AlertDialog.Popup>
           </AlertDialog.Portal>
@@ -378,6 +373,27 @@ const popupProps = [
     name: "finalFocus",
     type: "boolean | RefObject | (closeType) => boolean | HTMLElement | null | void",
     defaultValue: "—",
+  },
+] as const;
+
+const actionProps = [
+  {
+    name: "variant",
+    type: "ButtonProps['variant']",
+    defaultValue: '"danger"',
+  },
+] as const;
+
+const cancelProps = [
+  {
+    name: "variant",
+    type: "ButtonProps['variant']",
+    defaultValue: '"secondary"',
+  },
+  {
+    name: "children",
+    type: "React.ReactNode",
+    defaultValue: '"Cancel"',
   },
 ] as const;
 
@@ -499,8 +515,10 @@ export default async function AlertDialogPage() {
               With tertiary action
             </h2>
             <p className="text-base text-muted-foreground">
-              Place an optional outline action on the left, and keep Cancel and
-              the primary confirm grouped on the right.
+              Place an optional tertiary on the left with{" "}
+              <InlineCode>Close</InlineCode>, and keep{" "}
+              <InlineCode>Cancel</InlineCode> and{" "}
+              <InlineCode>Action</InlineCode> grouped on the right.
             </p>
           </div>
           <ComponentPreview code={withTertiaryCode}>
@@ -582,10 +600,11 @@ export default async function AlertDialogPage() {
               </span>{" "}
               To prevent accidental data loss from an errant{" "}
               <InlineCode>Enter</InlineCode> keypress, focus should land on the
-              safest action (e.g., Cancel) when the dialog opens. Because Cancel
-              is placed first in the DOM in these examples, focus lands there
-              naturally. Use the <InlineCode>initialFocus</InlineCode> prop if
-              your layout requires a different order.
+              safest action (e.g., <InlineCode>Cancel</InlineCode>) when the
+              dialog opens. Because Cancel is placed first in the DOM in these
+              examples, focus lands there naturally. Use the{" "}
+              <InlineCode>initialFocus</InlineCode> prop if your layout requires
+              a different order.
             </li>
             <li>
               <span className="font-medium text-foreground">
@@ -618,6 +637,25 @@ export default async function AlertDialogPage() {
           <div className="space-y-3">
             <h3 className="text-base font-medium">AlertDialog.Popup</h3>
             <PropsTable props={popupProps} />
+          </div>
+
+          <div className="space-y-3">
+            <h3 className="text-base font-medium">AlertDialog.Action</h3>
+            <p className="text-sm text-muted-foreground">
+              A <InlineCode>Button</InlineCode> that closes the dialog. Accepts
+              all Button props.
+            </p>
+            <PropsTable props={actionProps} />
+          </div>
+
+          <div className="space-y-3">
+            <h3 className="text-base font-medium">AlertDialog.Cancel</h3>
+            <p className="text-sm text-muted-foreground">
+              Same as Action, with safer defaults. Use{" "}
+              <InlineCode>Close</InlineCode> for uncommon dismissals such as a
+              tertiary.
+            </p>
+            <PropsTable props={cancelProps} />
           </div>
 
           <p className="text-base text-muted-foreground">

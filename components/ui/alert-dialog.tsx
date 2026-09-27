@@ -4,6 +4,7 @@ import * as React from "react";
 import { AlertDialog as AlertDialogPrimitive } from "@base-ui/react/alert-dialog";
 import { motion, type HTMLMotionProps } from "motion/react";
 
+import { Button, type ButtonProps } from "@/components/ui/button";
 import { useOverlayMotion, usePanelMotion } from "@/lib/use-motion";
 import { cn } from "@/lib/utils";
 
@@ -24,6 +25,35 @@ function AlertDialogTrigger<Payload>(
 function AlertDialogClose(props: AlertDialogPrimitive.Close.Props) {
   return (
     <AlertDialogPrimitive.Close data-slot="alert-dialog-close" {...props} />
+  );
+}
+
+function AlertDialogAction({
+  variant = "danger",
+  ...props
+}: ButtonProps) {
+  return (
+    <AlertDialogPrimitive.Close
+      data-slot="alert-dialog-action"
+      render={<Button variant={variant} {...props} />}
+    />
+  );
+}
+
+function AlertDialogCancel({
+  variant = "secondary",
+  children = "Cancel",
+  ...props
+}: ButtonProps) {
+  return (
+    <AlertDialogPrimitive.Close
+      data-slot="alert-dialog-cancel"
+      render={
+        <Button variant={variant} {...props}>
+          {children}
+        </Button>
+      }
+    />
   );
 }
 
@@ -173,6 +203,8 @@ const AlertDialog = Object.assign(AlertDialogRoot, {
   Root: AlertDialogRoot,
   Trigger: AlertDialogTrigger,
   Close: AlertDialogClose,
+  Action: AlertDialogAction,
+  Cancel: AlertDialogCancel,
   Portal: AlertDialogPortal,
   Backdrop: AlertDialogBackdrop,
   Popup: AlertDialogPopup,

@@ -86,12 +86,8 @@ function DefaultDemo() {
               </AlertDialog.Description>
             </AlertDialog.Header>
             <AlertDialog.Footer>
-              <AlertDialog.Close
-                render={<Button variant="secondary">Cancel</Button>}
-              />
-              <AlertDialog.Close
-                render={<Button variant="danger">Discard</Button>}
-              />
+              <AlertDialog.Cancel />
+              <AlertDialog.Action>Discard</AlertDialog.Action>
             </AlertDialog.Footer>
           </AlertDialog.Popup>
         </AlertDialog.Portal>
@@ -129,12 +125,8 @@ function WithIconDemo() {
               </AlertDialog.Header>
             </div>
             <AlertDialog.Footer>
-              <AlertDialog.Close
-                render={<Button variant="secondary">Cancel</Button>}
-              />
-              <AlertDialog.Close
-                render={<Button variant="danger">Purge</Button>}
-              />
+              <AlertDialog.Cancel />
+              <AlertDialog.Action>Purge</AlertDialog.Action>
             </AlertDialog.Footer>
           </AlertDialog.Popup>
         </AlertDialog.Portal>
@@ -170,12 +162,8 @@ function WithTertiaryDemo() {
                 render={<Button variant="outline">Remind me later</Button>}
               />
               <div className="flex gap-2">
-                <AlertDialog.Close
-                  render={<Button variant="secondary">Cancel</Button>}
-                />
-                <AlertDialog.Close
-                  render={<Button variant="danger">Overwrite</Button>}
-                />
+                <AlertDialog.Cancel />
+                <AlertDialog.Action>Overwrite</AlertDialog.Action>
               </div>
             </AlertDialog.Footer>
           </AlertDialog.Popup>
@@ -208,12 +196,8 @@ function WithBlurredBackdropDemo() {
               </AlertDialog.Description>
             </AlertDialog.Header>
             <AlertDialog.Footer>
-              <AlertDialog.Close
-                render={<Button variant="secondary">Cancel</Button>}
-              />
-              <AlertDialog.Close
-                render={<Button variant="danger">Scrub</Button>}
-              />
+              <AlertDialog.Cancel />
+              <AlertDialog.Action>Scrub</AlertDialog.Action>
             </AlertDialog.Footer>
           </AlertDialog.Popup>
         </AlertDialog.Portal>
@@ -246,12 +230,8 @@ function DetachedTriggerDemo() {
               </AlertDialog.Description>
             </AlertDialog.Header>
             <AlertDialog.Footer>
-              <AlertDialog.Close
-                render={<Button variant="secondary">Stand Down</Button>}
-              />
-              <AlertDialog.Close
-                render={<Button variant="danger">Abort</Button>}
-              />
+              <AlertDialog.Cancel>Stand Down</AlertDialog.Cancel>
+              <AlertDialog.Action>Abort</AlertDialog.Action>
             </AlertDialog.Footer>
           </AlertDialog.Popup>
         </AlertDialog.Portal>
@@ -291,14 +271,10 @@ function PayloadDemo() {
                 </AlertDialog.Description>
               </AlertDialog.Header>
               <AlertDialog.Footer>
-                <AlertDialog.Close
-                  render={<Button variant="secondary">Cancel</Button>}
-                />
-                <AlertDialog.Close
-                  render={
-                    <Button variant="danger">{payload?.confirmLabel}</Button>
-                  }
-                />
+                <AlertDialog.Cancel />
+                <AlertDialog.Action>
+                  {payload?.confirmLabel}
+                </AlertDialog.Action>
               </AlertDialog.Footer>
             </AlertDialog.Popup>
           </AlertDialog.Portal>
