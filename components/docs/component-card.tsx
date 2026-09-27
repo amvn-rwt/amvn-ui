@@ -57,6 +57,27 @@ function AlertDialogPreview() {
   );
 }
 
+// Static mockup, not a real Dialog — the card preview well is a
+// non-interactive snapshot, so there's no open state to trigger here.
+// Mirrors Dialog.Popup: rounded-4xl, border, shadow-lg, with a title,
+// one input line, and footer buttons.
+function DialogPreview() {
+  return (
+    <div className="mx-auto w-full max-w-56 rounded-3xl border border-border bg-background p-4 text-left shadow-lg">
+      <p className="text-sm font-semibold text-foreground">Edit crew profile</p>
+      <div className="mt-3 h-8 rounded-full border border-border bg-muted/faint px-3 text-xs leading-8 text-muted-foreground">
+        Callsign
+      </div>
+      <div className="mt-4 flex justify-end gap-2">
+        <Button variant="outline" size="sm">
+          Cancel
+        </Button>
+        <Button size="sm">Save</Button>
+      </div>
+    </div>
+  );
+}
+
 // Static mockup of an open autocomplete: input plus two suggestion rows.
 // Mirrors Input, Popup (sideOffset 6), and Item styles from the real component.
 function AutocompletePreview() {
@@ -128,6 +149,7 @@ const previews: Record<string, ReactNode> = {
   "/components/accordion": <AccordionPreview />,
   "/components/alert-dialog": <AlertDialogPreview />,
   "/components/autocomplete": <AutocompletePreview />,
+  "/components/dialog": <DialogPreview />,
   "/components/menu": <MenuPreview />,
   "/components/tabs": <TabsPreview />,
 };
