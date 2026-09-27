@@ -1,8 +1,6 @@
 import { codeToHtml, type BundledLanguage } from "shiki";
 
-const supportedLangs = ["tsx", "typescript", "jsx", "javascript"] as const;
-
-type HighlightLanguage = (typeof supportedLangs)[number];
+type HighlightLanguage = "tsx" | "typescript" | "jsx" | "javascript";
 
 export async function highlightCode(
   code: string,
