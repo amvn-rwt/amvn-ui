@@ -99,12 +99,37 @@ function MenuPreview() {
   );
 }
 
+// Static mockup of tabs with the first tab active. Mirrors List (border-b),
+// Tab (active/muted text), Indicator (underline), and Panel styles.
+function TabsPreview() {
+  return (
+    <div className="mx-auto w-full max-w-56 text-left">
+      <div className="flex items-end border-b border-border">
+        <div className="relative flex h-10 items-center px-2.5 text-sm font-medium text-foreground">
+          Flight
+          <span className="absolute inset-x-0 bottom-0 h-0.5 bg-foreground" />
+        </div>
+        <div className="flex h-10 items-center px-2.5 text-sm font-medium text-muted-foreground">
+          Systems
+        </div>
+        <div className="flex h-10 items-center px-2.5 text-sm font-medium text-muted-foreground">
+          Crew
+        </div>
+      </div>
+      <p className="mt-3 text-xs text-muted-foreground">
+        Mission elapsed: 14d 6h. All nominal.
+      </p>
+    </div>
+  );
+}
+
 const previews: Record<string, ReactNode> = {
   "/components/button": <ButtonPreview />,
   "/components/accordion": <AccordionPreview />,
   "/components/alert-dialog": <AlertDialogPreview />,
   "/components/autocomplete": <AutocompletePreview />,
   "/components/menu": <MenuPreview />,
+  "/components/tabs": <TabsPreview />,
 };
 
 type ComponentCardProps = {
