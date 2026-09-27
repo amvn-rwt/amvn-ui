@@ -4,11 +4,14 @@ import * as React from "react";
 import { Menu as MenuPrimitive } from "@base-ui/react/menu";
 import { cva, type VariantProps } from "class-variance-authority";
 import { CheckIcon, ChevronRightIcon } from "lucide-react";
-import { motion, type HTMLMotionProps } from "motion/react";
+import { motion, useReducedMotion, type HTMLMotionProps } from "motion/react";
 
 import { spring } from "@/lib/motion";
 import { usePanelMotion } from "@/lib/use-motion";
 import { cn } from "@/lib/utils";
+
+/** Selection-mark appear scale. See MenuItemIndicatorInner. */
+const INDICATOR_FROM_SCALE = 0.6;
 
 const menuItemClassName =
   "flex h-8 cursor-default select-none items-center gap-2 rounded-xl px-3 text-sm outline-none data-highlighted:bg-muted data-disabled:pointer-events-none data-disabled:opacity-disabled [&_svg]:size-4 [&_svg]:shrink-0 [&_svg]:text-muted-foreground";
@@ -222,11 +225,17 @@ function MenuRadioItemIndicator({
         className,
       )}
       {...props}
-    >
-      {children ?? (
-        <span className="size-1.5 rounded-full bg-foreground" />
+      render={(indicatorProps, state) => (
+        <MenuItemIndicatorInner
+          indicatorProps={indicatorProps}
+          checked={state.checked}
+        >
+          {children ?? (
+            <span className="size-1.5 rounded-full bg-foreground" />
+          )}
+        </MenuItemIndicatorInner>
       )}
-    </MenuPrimitive.RadioItemIndicator>
+    />
   );
 }
 
@@ -256,9 +265,47 @@ function MenuCheckboxItemIndicator({
         className,
       )}
       {...props}
-    >
-      {children ?? <CheckIcon />}
-    </MenuPrimitive.CheckboxItemIndicator>
+      render={(indicatorProps, state) => (
+        <MenuItemIndicatorInner
+          indicatorProps={indicatorProps}
+          checked={state.checked}
+        >
+          {children ?? <CheckIcon />}
+        </MenuItemIndicatorInner>
+      )}
+    />
+  );
+}
+
+function MenuItemIndicatorInner({
+  indicatorProps,
+  checked,
+  children,
+}: {
+  indicatorProps: React.HTMLAttributes<HTMLSpanElement>;
+  checked: boolean;
+  children: React.ReactNode;
+}) {
+  const reduced = Boolean(useReducedMotion());
+
+  return (
+    <span {...indicatorProps}>
+      <motion.span
+        className="inline-flex"
+        // Mount pop confirms pre-checked state; Base UI unmounts on uncheck.
+        initial={reduced ? false : { scale: INDICATOR_FROM_SCALE, opacity: 0 }}
+        animate={
+          checked
+            ? { scale: 1, opacity: 1 }
+            : { scale: INDICATOR_FROM_SCALE, opacity: 0 }
+        }
+        transition={
+          reduced || !checked ? { type: false } : spring.micro
+        }
+      >
+        {children}
+      </motion.span>
+    </span>
   );
 }
 
